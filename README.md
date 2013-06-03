@@ -1,6 +1,6 @@
-# LIB TECH - WordPress Theme
+# _LIB TECH - WordPress Theme_
 
-_Description: What does this project do and who does it serve?_
+_Description: WordPress theme for the Lib-Tech.com website_
 
 ## Project Setup
 
