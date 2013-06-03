@@ -136,14 +136,14 @@ get_header();
 						}
 						$home_query = new WP_Query($args);
 
-						$i=1;
+						$i=0;
 						if (have_posts()) :
 							while ($home_query->have_posts()) :
 								$home_query->the_post();
 								$post_thumbnail = get_post_image('square-medium');
 						?>
 
-						<li class="grid-item blog">
+						<li class="grid-item blog item-<?php echo $i; ?>">
 							<div class="grid-item-wrapper">
 								<a href="<?php the_permalink() ?>">
 									<div class="blog-copy">
@@ -160,6 +160,7 @@ get_header();
 						</li>
 
 						<?php
+								$i++;
 							endwhile;
 						endif;
 						wp_reset_query(); // Reset Post Data
@@ -171,16 +172,17 @@ get_header();
 	                        'orderby' => 'rand'
 	                    );
 	                    $loop = new WP_Query( $args );
+	                    $i=0;
 	                    while ( $loop->have_posts() ) : $loop->the_post();
 	                        // check if snowbaord is related to the tech
 	                        $overviewPhoto = get_field('libtech_team_profile_photo');
 	                        $overviewPhoto = wp_get_attachment_image_src($overviewPhoto, 'square-medium', false);
 		                ?>
 
-		                <li class="grid-item">
+		                <li class="grid-item team item-<?php echo $i; ?>">
 		                	<div class="grid-item-wrapper">
 			                    <a href="<?php the_permalink(); ?>">
-			                        <div class="team-member-image">
+			                        <div class="team-image">
 			                            <img src="<?php echo $overviewPhoto[0]; ?>" alt="<?php the_title(); ?> Profile" />
 			                        </div>
 			                    </a>
@@ -188,6 +190,7 @@ get_header();
 		                </li>
 
 		                <?php
+		                	$i++;
 	                    endwhile;
 	                    wp_reset_query(); // Reset Post Data
 
@@ -212,14 +215,14 @@ get_header();
 							// render out max of 4 related products
 							// loop through products
 							for($i = 0; $i < count($featuredProducts); ++$i) {
-								if($i == 4){
+								if($i == 3){
 									break;
 								}
 						?>
-						<li class="grid-item">
+						<li class="grid-item product item-<?php echo $i; ?>">
 		                	<div class="grid-item-wrapper">
 			                    <a href="<?php echo $featuredProducts[$i][1]; ?>">
-			                        <div class="team-member-image">
+			                        <div class="product-image">
 			                            <img src="<?php echo $featuredProducts[$i][2][0]; ?>" alt="<?php echo $featuredProducts[$i][0]; ?>" />
 			                        </div>
 			                    </a>

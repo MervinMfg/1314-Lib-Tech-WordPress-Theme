@@ -280,7 +280,7 @@ LIBTECH.main = {
                     var photoData, listItem;
                     photoData = photosData[i];
                     // set up instagram list item
-                    listItem = '<li class="grid-item instagram"><div class="grid-item-wrapper"><a href="' + photoData.link + '" target="_blank"><div class="insta-copy"><p>' + photoData.caption.text + '</p></div><div class="insta-image"><img src="' + photoData.images.low_resolution.url + '" /></div><div class="clearfix"></div></a></div></li>';
+                    listItem = '<li class="grid-item instagram item-' + i + '"><div class="grid-item-wrapper"><a href="' + photoData.link + '" target="_blank"><div class="insta-copy"><p>' + photoData.caption.text + '</p></div><div class="insta-image"><img src="' + photoData.images.low_resolution.url + '" /></div><div class="clearfix"></div></a></div></li>';
                     // add list item to content grid
                     $('.content-grid ul').append(listItem);
                 }
@@ -304,7 +304,7 @@ LIBTECH.main = {
                     postData = postsData[i];
                     if (postData.type != "status") {
                         // set up facebook list item
-                        listItem = '<li class="grid-item facebook"><div class="grid-item-wrapper"><a href="' + postData.link + '" target="_blank"><div class="facebook-wrapper"><div class="facebook-header"><div class="facebook-profile"><img src="https://graph.facebook.com/' + facebookUsername + '/picture" /></div><p class="facebook-name">' + postData.from.name + '</p><p class="facebook-time">' + postData.created_time + '</p><div class="clearfix"></div></div><div class="facebook-photo"><img src="' + postData.picture + '" /></div><p class="facebook-likes">' + postData.likes.count + ' people <span>like this</span></p><p class="facebook-excerpt">' + postData.message + '</p></div><div class="facebook-aspect-ratio"><img src="/wp-content/themes/libtech_2/_/img/square.gif" /></div><div class="clearfix"></div></a></div></li>';
+                        listItem = '<li class="grid-item facebook item-' + totalItems + '"><div class="grid-item-wrapper"><a href="' + postData.link + '" target="_blank"><div class="facebook-wrapper"><div class="facebook-header"><div class="facebook-profile"><img src="https://graph.facebook.com/' + facebookUsername + '/picture" /></div><p class="facebook-name">' + postData.from.name + '</p><p class="facebook-time">' + postData.created_time + '</p><div class="clearfix"></div></div><div class="facebook-photo"><img src="' + postData.picture + '" /></div><p class="facebook-likes">' + postData.likes.count + ' people <span>like this</span></p><p class="facebook-excerpt">' + postData.message + '</p></div><div class="facebook-aspect-ratio"><img src="/wp-content/themes/libtech_2/_/img/square.gif" /></div><div class="clearfix"></div></a></div></li>';
                         // add list item to content grid
                         $('.content-grid ul').append(listItem);
                         totalItems ++;
