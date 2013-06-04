@@ -1010,10 +1010,14 @@ footer {
 		}
 .whats-new {}
 	.whats-new .section-content {
-		padding: 0 20px;
+		padding: 0 10px;
 	}
-		.whats-new .section-container .social-links {
+		.whats-new .section-content h2 {
+			padding: 0 10px;
+		}
+		.whats-new .section-content .social-links {
 			clear: both;
+			padding: 0 5px 0 10px;
 		}
 .content-grid {
 	clear: both;
@@ -1023,7 +1027,7 @@ footer {
 	float: left;
 }
 	.grid-item .grid-item-wrapper {
-		padding: 2px;
+		padding: 10px;
 	}
 		.grid-item .grid-item-wrapper a {
 			width: 100%;
@@ -1133,17 +1137,14 @@ footer {
 				color: #000;
 				font-size: .875em;
 			}
-	.grid-item.instagram {
-		
+	.grid-item a {
+		background: #000;
+		background: rgba(0, 0, 0, .8);
 	}
-		.grid-item.instagram a {
-			background: #000;
-			background: rgba(0, 0, 0, .8);
-		}
-		.grid-item.instagram a .insta-copy {
+		.grid-item a .item-copy {
 			opacity: 0;
 			position: absolute;
-			padding: 20px;
+			padding: 10px;
 			font-style: normal;
 			color: #fff;
 			transition: opacity 300ms ease-in-out;
@@ -1151,35 +1152,49 @@ footer {
 			-moz-transition: opacity 300ms ease-in-out;
 			-o-transition: opacity 300ms ease-in-out;
 		}
-			.grid-item.instagram a:hover .insta-copy,
-			.grid-item.instagram a:focus .insta-copy {
+			.grid-item a:hover .item-copy,
+			.grid-item a:focus .item-copy {
 				opacity: 1;
 			}
-		.grid-item.instagram a .insta-image {
+			.grid-item a .item-copy .h3 {
+				color: #FFFF00;
+			}
+			.grid-item a .item-copy .h5 {
+				color: #fff;
+			}
+		.grid-item a .item-image {
 			opacity: 1;
 			transition: opacity 300ms ease-in-out;
 			-webkit-transition: opacity 300ms ease-in-out;
 			-moz-transition: opacity 300ms ease-in-out;
 			-o-transition: opacity 300ms ease-in-out;
 		}
-			.grid-item.instagram a:hover .insta-image,
-			.grid-item.instagram a:focus .insta-image {
+			.grid-item a:hover .item-image,
+			.grid-item a:focus .item-image {
 				opacity: .3;
 			}
-			.grid-item.instagram a .insta-image img {
+			.grid-item a .item-image img {
 				float: left;
 				width: 100%;
 				max-width: 200%;
 			}
+	.grid-item.instagram {
+		
+	}
+		.grid-item.instagram a {
+			background: #000;
+			background: rgba(0, 0, 0, .8);
+		}
 	.grid-item.product {
 
 	}
 		.grid-item.product .grid-item-wrapper a {
-			background: url('_/img/bg-grid-item-stone.jpg');
+			background-image: url('_/img/bg-grid-item-stone.jpg');
+			background-size: 100%;
 			position: relative;
 		}
 			.grid-item.product:nth-child(even) .grid-item-wrapper a {
-				background: url('_/img/bg-grid-item-wood.jpg');
+				background-image: url('_/img/bg-grid-item-wood.jpg');
 			}
 				.grid-item.product .grid-item-wrapper a:after {
 					-moz-box-shadow: inset 0 0 10em #000;  
@@ -1421,6 +1436,7 @@ footer {
 	}
 	.whats-new .section-content .social-links {
 		float: right;
+		clear: none;
 	}
 	.content-grid .grid-item {
 		width: 50%;

@@ -100,8 +100,8 @@ get_header();
 			if ($twitterUsername == "") { $twitterUsername = "libtechnologies"; }
 		?>
 
-		<div class="bg2-top"></div>
-		<section class="whats-new bg2">
+		<div class="bg3-top"></div>
+		<section class="whats-new bg3">
 			<div class="section-content">
 				<h2>What's New:</h2>
 				<div class="social-links">
@@ -182,7 +182,11 @@ get_header();
 		                <li class="grid-item team item-<?php echo $i; ?>">
 		                	<div class="grid-item-wrapper">
 			                    <a href="<?php the_permalink(); ?>">
-			                        <div class="team-image">
+			                    	<div class="item-copy">
+			                    		<p class="h3"><?php the_title(); ?></p>
+			                    		<p class="h5"><?php the_field('libtech_team_profile_tagline'); ?></p>
+			                    	</div>
+			                        <div class="item-image">
 			                            <img src="<?php echo $overviewPhoto[0]; ?>" alt="<?php the_title(); ?> Profile" />
 			                        </div>
 			                    </a>
@@ -207,8 +211,9 @@ get_header();
 								$productImage = wp_get_attachment_image_src($imageID, 'overview-thumb');
 								$productLink = get_permalink($post_object->ID);
 								$productTitle = get_the_title($post_object->ID);
+								$productTag = get_field('libtech_product_slogan', $post_object->ID);
 								// add to related product array
-								array_push($featuredProducts, Array($productTitle, $productLink, $productImage));
+								array_push($featuredProducts, Array($productTitle, $productLink, $productImage, $productTag));
 							endforeach;
 							// randomly sort related products array
 							shuffle($featuredProducts);
@@ -222,7 +227,11 @@ get_header();
 						<li class="grid-item product item-<?php echo $i; ?>">
 		                	<div class="grid-item-wrapper">
 			                    <a href="<?php echo $featuredProducts[$i][1]; ?>">
-			                        <div class="product-image">
+			                    	<div class="item-copy">
+			                    		<p class="h3"><?php echo $featuredProducts[$i][0]; ?></p>
+			                    		<p class="h5"><?php echo $featuredProducts[$i][3]; ?></p>
+			                    	</div>
+			                        <div class="item-image">
 			                            <img src="<?php echo $featuredProducts[$i][2][0]; ?>" alt="<?php echo $featuredProducts[$i][0]; ?>" />
 			                        </div>
 			                    </a>
@@ -238,8 +247,8 @@ get_header();
 			</div><!-- END .section-content -->
 		</section><!-- END .whats-new -->
 
-		<div class="bg3-top"></div>
-		<section class="events bg3">
+		<div class="bg1-top"></div>
+		<section class="events bg1">
 			<div class="section-content">
 				<h2>Events:</h2>
 			</div>

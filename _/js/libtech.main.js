@@ -280,7 +280,7 @@ LIBTECH.main = {
                     var photoData, listItem;
                     photoData = photosData[i];
                     // set up instagram list item
-                    listItem = '<li class="grid-item instagram item-' + i + '"><div class="grid-item-wrapper"><a href="' + photoData.link + '" target="_blank"><div class="insta-copy"><p>' + photoData.caption.text + '</p></div><div class="insta-image"><img src="' + photoData.images.low_resolution.url + '" /></div><div class="clearfix"></div></a></div></li>';
+                    listItem = '<li class="grid-item instagram item-' + i + '"><div class="grid-item-wrapper"><a href="' + photoData.link + '" target="_blank"><div class="item-copy"><p>' + photoData.caption.text + '</p></div><div class="item-image"><img src="' + photoData.images.low_resolution.url + '" /></div><div class="clearfix"></div></a></div></li>';
                     // add list item to content grid
                     $('.content-grid ul').append(listItem);
                 }
