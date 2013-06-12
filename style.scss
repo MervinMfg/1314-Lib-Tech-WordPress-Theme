@@ -4,8 +4,15 @@ Theme URI: http://www.lib-tech.com
 Description: Mervin's wordpress theme for the Lib Tech website.
 Author: Brian Behrens
 Author URI: http://www.mervin.com
-Version: 4ss
+Version: 4
 */
+
+@mixin fadeOpacity($time: 300ms) {
+	transition: opacity $time ease-in-out;
+	-webkit-transition: opacity $time ease-in-out;
+	-moz-transition: opacity $time ease-in-out;
+	-o-transition: opacity $time ease-in-out;
+}
 
 /* Reset Styles
 -------------------------------------------------------------------------------*/
@@ -583,10 +590,7 @@ header {
 			width: 25%;
 			visibility: hidden;
 			opacity: 0;
-			transition: opacity 300ms ease-in-out;
-			-webkit-transition: opacity 300ms ease-in-out;
-			-moz-transition: opacity 300ms ease-in-out;
-			-o-transition: opacity 300ms ease-in-out;
+			@include fadeOpacity(300ms);
 
 			&.visible {
 				visibility: visible;
@@ -832,10 +836,7 @@ footer {
 	left: 0;
 	z-index: 899;
 	opacity: 0;
-	transition: opacity 500ms ease-in-out;
-	-webkit-transition: opacity 500ms ease-in-out;
-	-moz-transition: opacity 500ms ease-in-out;
-	-o-transition: opacity 500ms ease-in-out;
+	@include fadeOpacity(500ms);
 
 	&.visible {
 		visibility: visible;
@@ -1055,13 +1056,19 @@ footer {
 /* Sport Homepage Styles
 -------------------------------------------------------------------------------*/
 .product-slider {
+	overflow: hidden;
+
 	.bx-wrapper {
 		.bx-viewport {
 			background: none;
+			overflow: visible !important;
 
 			ul {
 				li {
 					a {
+						img {
+							width: 140%;
+						}
 						.product-peek {
 							background: #000;
 							padding: 5px;
@@ -1129,10 +1136,7 @@ footer {
 					padding: 10px;
 					font-style: normal;
 					color: #fff;
-					transition: opacity 300ms ease-in-out;
-					-webkit-transition: opacity 300ms ease-in-out;
-					-moz-transition: opacity 300ms ease-in-out;
-					-o-transition: opacity 300ms ease-in-out;
+					@include fadeOpacity(300ms);
 
 					.h3 {
 						color: #FFFF00;
@@ -1143,10 +1147,7 @@ footer {
 				}
 				.item-image {
 					opacity: 1;
-					transition: opacity 300ms ease-in-out;
-					-webkit-transition: opacity 300ms ease-in-out;
-					-moz-transition: opacity 300ms ease-in-out;
-					-o-transition: opacity 300ms ease-in-out;
+					@include fadeOpacity(300ms);
 
 					img {
 						float: left;
@@ -1170,10 +1171,7 @@ footer {
 					opacity: 1;
 					position: absolute;
 					padding: 20px;
-					transition: opacity 300ms ease-in-out;
-					-webkit-transition: opacity 300ms ease-in-out;
-					-moz-transition: opacity 300ms ease-in-out;
-					-o-transition: opacity 300ms ease-in-out;
+					@include fadeOpacity(300ms);
 
 					.h3 {
 						font-style: normal;
@@ -1189,10 +1187,7 @@ footer {
 				}
 				.blog-image {
 					opacity: 0;
-					transition: opacity 300ms ease-in-out;
-					-webkit-transition: opacity 300ms ease-in-out;
-					-moz-transition: opacity 300ms ease-in-out;
-					-o-transition: opacity 300ms ease-in-out;
+					@include fadeOpacity(300ms);
 
 					img {
 						width: 100%;
@@ -1332,6 +1327,85 @@ footer {
 		&.team.item-1,
 		&.team.item-2 {
 			display: none;
+		}
+	}
+}
+/* Product Overview Styles
+-------------------------------------------------------------------------------*/
+.featured-product-slider {
+	overflow: hidden;
+
+	.section-content {
+		h2 {
+			color: #000;
+			padding: 10px 0 0 20px;
+		}
+		.bx-wrapper {
+			padding: 20px;
+
+			.bx-loading {
+				background: none;
+			}
+			.bx-viewport {
+				background: none;
+				
+
+				ul.product-listing {
+					> li {
+						opacity: .2;
+						@include fadeOpacity(1000ms);
+
+						&.active {
+							opacity: 1;
+						}
+						.product-image {
+							width: 30%;
+							float: left;
+							overflow: hidden;
+
+							img {
+								width: 140%;
+								max-width: 200%;
+								height: auto;
+								margin-left: -20%;
+							}
+						}
+						.product-copy {
+							width: 70%;
+							float: left;
+							color: #000;
+
+							.title {
+								color: #000;
+							}
+							.contour {
+								color: #000;
+								padding: 0 0 20px 0;
+							}
+							.slogan {
+								color: #000;
+								clear: both;
+								padding-bottom: 20px;
+							}
+							.description {
+								padding-bottom: 20px;
+								display: none;
+							}
+							.price {
+								color: #000;
+								float: left;
+								padding-right: 40px;
+							}
+							a.buy {
+								background: #000;
+								padding: 5px 15px 5px 10px;
+								display: block;
+								float: left;
+							}
+						}
+					}
+				}
+			}
 		}
 	}
 }
@@ -1569,6 +1643,29 @@ footer {
 			}
 		}
 	}
+	/* product overview */
+	.featured-product-slider {
+		.section-content {
+			.bx-wrapper {
+				.bx-viewport {
+					ul.product-listing {
+						li {
+							.product-image {
+							}
+							.product-copy {
+								.title {
+									padding: 20px 0 5px 0;
+								}
+								.description {
+									display: block;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 }
 
 @media screen and (min-width: 768px) {
@@ -1721,6 +1818,18 @@ footer {
 			&.facebook.item-2,
 			&.team.item-1 {
 				display: block;
+			}
+		}
+	}
+	/* product overview */
+	.featured-product-slider {
+		.section-content {
+			.bx-wrapper {
+				.bx-viewport {
+					max-width: 1200px;
+					margin: 0 auto;
+					overflow: visible !important;
+				}
 			}
 		}
 	}

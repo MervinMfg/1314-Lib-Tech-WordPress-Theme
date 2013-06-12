@@ -29,8 +29,8 @@ LIBTECH.main = {
             self.homeInit();
         } else if ($('body').hasClass('page-template-page-home-sport-php')) {
             self.homeSportInit();
-        } else if ($('body').hasClass('page-template-page-about-php')) {
-            self.videosInit();
+        } else if ($('body').hasClass('page-template-page-overview-products-php')) {
+            self.productOverviewInit();
         } else if ($('body').hasClass('page-template-page-history-php')) {
             self.historyInit();
         } else if ($('body').hasClass('page-id-9')) {
@@ -254,7 +254,8 @@ LIBTECH.main = {
             randomStart: true,
             controls: true,
             pager: false,
-            mode: 'horizontal'
+            mode: 'horizontal',
+            moveSlides: 2
         });
 
         $.fn.randomize = function(selector){
@@ -314,6 +315,27 @@ LIBTECH.main = {
                 }
                 // randomize content grid
                 $('.content-grid ul').randomize('li');
+            }
+        });
+    },
+    productOverviewInit: function () {
+        var slider = $('.featured-product-slider .bxslider').bxSlider({
+            auto: true,
+            autoHover: true,
+            speed: 800,
+            randomStart: false,
+            slideMargin: 20,
+            controls: true,
+            pager: false,
+            mode: 'horizontal',
+            adaptiveHeight: true,
+            onSliderLoad: function (currentIndex) {
+                console.log('index: ' + currentIndex);
+                $('.featured-product-slider .bxslider > li').eq(currentIndex+1).addClass('active');
+            },
+            onSlideBefore: function (slideElement, oldIndex, newIndex){
+                slideElement.addClass('active');
+                $('.featured-product-slider .bxslider > li').eq(oldIndex+1).removeClass('active');
             }
         });
     },

@@ -4,7 +4,7 @@ Theme URI: http://www.lib-tech.com
 Description: Mervin's wordpress theme for the Lib Tech website.
 Author: Brian Behrens
 Author URI: http://www.mervin.com
-Version: 4ss
+Version: 4
 */
 /* Reset Styles
 -------------------------------------------------------------------------------*/
@@ -1177,8 +1177,15 @@ footer .footer-copy {
 
 /* Sport Homepage Styles
 -------------------------------------------------------------------------------*/
+.product-slider {
+  overflow: hidden;
+}
 .product-slider .bx-wrapper .bx-viewport {
   background: none;
+  overflow: visible !important;
+}
+.product-slider .bx-wrapper .bx-viewport ul li a img {
+  width: 140%;
 }
 .product-slider .bx-wrapper .bx-viewport ul li a .product-peek {
   background: #000;
@@ -1400,6 +1407,78 @@ footer .footer-copy {
   display: none;
 }
 
+/* Product Overview Styles
+-------------------------------------------------------------------------------*/
+.featured-product-slider {
+  overflow: hidden;
+}
+.featured-product-slider .section-content h2 {
+  color: #000;
+  padding: 10px 0 0 20px;
+}
+.featured-product-slider .section-content .bx-wrapper {
+  padding: 20px;
+}
+.featured-product-slider .section-content .bx-wrapper .bx-loading {
+  background: none;
+}
+.featured-product-slider .section-content .bx-wrapper .bx-viewport {
+  background: none;
+}
+.featured-product-slider .section-content .bx-wrapper .bx-viewport ul.product-listing > li {
+  opacity: .2;
+  transition: opacity 1000ms ease-in-out;
+  -webkit-transition: opacity 1000ms ease-in-out;
+  -moz-transition: opacity 1000ms ease-in-out;
+  -o-transition: opacity 1000ms ease-in-out;
+}
+.featured-product-slider .section-content .bx-wrapper .bx-viewport ul.product-listing > li.active {
+  opacity: 1;
+}
+.featured-product-slider .section-content .bx-wrapper .bx-viewport ul.product-listing > li .product-image {
+  width: 30%;
+  float: left;
+  overflow: hidden;
+}
+.featured-product-slider .section-content .bx-wrapper .bx-viewport ul.product-listing > li .product-image img {
+  width: 140%;
+  max-width: 200%;
+  height: auto;
+  margin-left: -20%;
+}
+.featured-product-slider .section-content .bx-wrapper .bx-viewport ul.product-listing > li .product-copy {
+  width: 70%;
+  float: left;
+  color: #000;
+}
+.featured-product-slider .section-content .bx-wrapper .bx-viewport ul.product-listing > li .product-copy .title {
+  color: #000;
+}
+.featured-product-slider .section-content .bx-wrapper .bx-viewport ul.product-listing > li .product-copy .contour {
+  color: #000;
+  padding: 0 0 20px 0;
+}
+.featured-product-slider .section-content .bx-wrapper .bx-viewport ul.product-listing > li .product-copy .slogan {
+  color: #000;
+  clear: both;
+  padding-bottom: 20px;
+}
+.featured-product-slider .section-content .bx-wrapper .bx-viewport ul.product-listing > li .product-copy .description {
+  padding-bottom: 20px;
+  display: none;
+}
+.featured-product-slider .section-content .bx-wrapper .bx-viewport ul.product-listing > li .product-copy .price {
+  color: #000;
+  float: left;
+  padding-right: 40px;
+}
+.featured-product-slider .section-content .bx-wrapper .bx-viewport ul.product-listing > li .product-copy a.buy {
+  background: #000;
+  padding: 5px 15px 5px 10px;
+  display: block;
+  float: left;
+}
+
 /* Print Styles
 -------------------------------------------------------------------------------*/
 /* Media Queries
@@ -1606,6 +1685,14 @@ footer .footer-copy {
   .content-grid .grid-item.blog.item-1, .content-grid .grid-item.facebook.item-1, .content-grid .grid-item.instagram.item-1 {
     display: block;
   }
+
+  /* product overview */
+  .featured-product-slider .section-content .bx-wrapper .bx-viewport ul.product-listing li .product-copy .title {
+    padding: 20px 0 5px 0;
+  }
+  .featured-product-slider .section-content .bx-wrapper .bx-viewport ul.product-listing li .product-copy .description {
+    display: block;
+  }
 }
 @media screen and (min-width: 768px) {
   /* General Styles */
@@ -1748,6 +1835,13 @@ footer .footer-copy {
   }
   .content-grid .grid-item.blog.item-2, .content-grid .grid-item.facebook.item-2, .content-grid .grid-item.team.item-1 {
     display: block;
+  }
+
+  /* product overview */
+  .featured-product-slider .section-content .bx-wrapper .bx-viewport {
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: visible !important;
   }
 }
 @media screen and (min-width: 1200px) {
