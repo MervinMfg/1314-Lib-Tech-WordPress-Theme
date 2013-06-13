@@ -109,12 +109,9 @@ get_header();
                     <li class="product-item">
                         <a href="<? the_permalink(); ?>">
                             <img src="<?php echo $imageFile[0]; ?>" width="<?php echo $imageFile[1]; ?>" height="<?php echo $imageFile[2]; ?>" alt="<?php the_title(); ?> Image" />
-                            <h3><?php the_title(); ?></h3>
+                            <h5><?php the_title(); ?></h5>
                             <div class="price">
                                 <?php getDisplayPrice( get_field('libtech_product_price_us'), get_field('libtech_product_price_ca'), get_field('libtech_product_on_sale'), get_field('libtech_product_sale_percentage') ); ?>
-                            </div>
-                            <div class="sizes">
-                                <span>Sizes:</span><br /><?php echo $sizes; ?>
                             </div>
                         </a>
                     </li>

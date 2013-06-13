@@ -155,6 +155,22 @@ function libtech_excerpt($length_callback='libtech_excerptlength_home') {
 // removes auto paragraph wrapper
 remove_filter('the_excerpt', 'wpautop');
 
+// GET THE REGION CODE BASED ON A COOKIE
+function getRegionCode () {
+    if (isset($_COOKIE["libtech_region"])){
+        if($_COOKIE["libtech_region"] == "ca"){
+            $GLOBALS['language'] = "ca";
+        } else if($_COOKIE["libtech_region"] == "int"){
+            $GLOBALS['language'] = "int";
+        } else{
+            $GLOBALS['language'] = "us";
+        }
+    }else{
+        $GLOBALS['language'] = "us";
+    }
+    return $GLOBALS['language'];
+}
+
 // GET PRICE DISPLAY
 function getDisplayPrice ($usPrice, $caPrice, $sale, $salePercent) {
     if($GLOBALS['language'] == "ca"){

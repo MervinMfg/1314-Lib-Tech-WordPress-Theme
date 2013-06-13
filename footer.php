@@ -176,6 +176,7 @@
 	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery.fitvids.js"></script>
 	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery.bxslider.min.js"></script>
     <script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery.treeview.js"></script>
+    <script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery.isotope.min.js"></script>
     <script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/froogaloop.js"></script>
 	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/libtech.main.js"></script>
 	<!-- Init the main JS -->

@@ -50,6 +50,8 @@
 	<![endif]-->
 	<?php if (is_search()) echo '<meta name="robots" content="noindex, nofollow" />'; ?>
 	<?php
+        // GET THE REGION
+        getRegionCode();
         // GET THE PAGE TITLE
         $GLOBALS['pageTitle'] = "";
         if (function_exists('is_tag') && is_tag()) {
@@ -168,7 +170,7 @@
     <!-- Fav Icon -->
     <link rel="shortcut icon" href="<?php bloginfo('template_directory'); ?>/_/img/favicon.ico" />
     <!-- Styles -->
-    <link href="http://172.21.44.159/~bbehrens/mervin-sites/Lib-Tech-1314/style.css<?php //bloginfo('stylesheet_url'); ?>" rel="stylesheet" type="text/css" />
+    <link href="<?php bloginfo('stylesheet_url'); //http://172.21.44.159/~bbehrens/mervin-sites/Lib-Tech-1314/style.css ?>" rel="stylesheet" type="text/css" />
     <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css' />
     <!--  Mobile Meta Info -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">

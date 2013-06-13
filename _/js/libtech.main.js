@@ -319,7 +319,9 @@ LIBTECH.main = {
         });
     },
     productOverviewInit: function () {
-        var slider = $('.featured-product-slider .bxslider').bxSlider({
+        var self, slider, productListing;
+        self = this;
+        slider = $('.featured-product-slider .bxslider').bxSlider({
             auto: true,
             autoHover: true,
             speed: 800,
@@ -338,6 +340,51 @@ LIBTECH.main = {
                 $('.featured-product-slider .bxslider > li').eq(oldIndex+1).removeClass('active');
             }
         });
+        // BEGIN SETTING UP ISOTOPE
+        productListing = $('.product-overview .product-listing');
+        // adjust initial item widths
+        setWidths();
+        // set up initial settings
+        productListing.isotope({
+            itemSelector : '.product-item',
+            resizable: false, // turn off because it's responsive
+            layoutMode: 'fitRows',
+            fitRows: { columnWidth: getUnitWidth() }
+        });
+        // on window load run layout again to fix image heights
+        $(window).load(function(){
+            productListing.isotope('reLayout');
+        });
+        // update columnWidth on window resize
+        $(window).smartresize(function () {
+            // set the widths of items
+            setWidths();
+            // reinit isotop with new column width
+            productListing.isotope({
+                fitRows: { columnWidth: getUnitWidth() }
+            });
+        });
+        // get new width of each item based on browser width
+        function getUnitWidth() {
+            var width, windowWidth;
+            windowWidth = self.utilities.getMediaWidth();
+            if (windowWidth < 600) {
+                width = productListing.width() / 2;
+            } else if (windowWidth < 768) {
+                width = productListing.width() / 3;
+            } else if (windowWidth < 980) {
+                width = productListing.width() / 4;
+            } else {
+                width = productListing.width() / 5;
+            }
+            width = Math.floor(width);
+            return width;
+        }
+        // set the widths of each item
+        function setWidths() {
+            var unitWidth = getUnitWidth();
+            productListing.children(".product-item").css({ width: unitWidth });
+        }
     },
     shoppingCartInit: function () {
         var self, lang, regionCookie;
