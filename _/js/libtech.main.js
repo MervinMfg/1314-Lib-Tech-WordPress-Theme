@@ -1,12 +1,13 @@
-    /*
+/*
 
     Lib Tech - lib-tech.com
     VERSION 2.0
     AUTHOR brian.behrens@mervin.com
 
     DEPENDENCIES:
-    - jQuery v1.9.1
+    - jQuery v1.10.1
     - Modernizr 2.6.2
+    - Shopatron API v2.2.0
 
 */
 
@@ -73,14 +74,21 @@ LIBTECH.main = {
         $("body").append('<div id="shopatronCart">' + shopAPIKeyString + '</div>');
         // request the shopatron api
         $.ajax({
-            url: "//mediacdn.shopatron.com/media/js/product/shopatronCart-1.0.min.js",
+            url: "//mediacdn.shopatron.com/media/js/product/shopatronAPI-2.2.0.min.js",
             dataType: "script",
             success: function (data) {
-                // init the shopatron page elements
-                self.quickCartInit();
-                if ($('body').hasClass('page-template-page-shopping-cart-php')) {
-                    self.shoppingCartInit();
-                }
+                // request other aditional api for quick cart and shopping cart
+                $.ajax({
+                    url: "//mediacdn.shopatron.com/media/js/product/shopatronJST-2.2.0.min.js",
+                    dataType: "script",
+                    success: function (data) {
+                        // init the shopatron page elements
+                        self.quickCartInit();
+                        if ($('body').hasClass('page-template-page-shopping-cart-php')) {
+                            self.shoppingCartInit();
+                        }
+                    }
+                });
             }
         });
     },
@@ -390,14 +398,13 @@ LIBTECH.main = {
         var self, lang, regionCookie;
         self = this;
 
-        shopatron.getCart({
-            template: 'default'
-        }, {
-            view: 'html',
-            location: 'shopping-cart',
-            success: function (data, textStatus) {},
-            error: function (textStatus, errorThrown) {},
-            complete: function (textStatus) {}
+        Shopatron('#shopping-cart').getCart({
+            imageWidth: 100,
+            imageHeight: 100
+        },{
+            success: function(cartData) {},
+            error: function() {},
+            complete: function() {}
         });
         // check for the region
         regionCookie = self.utilities.cookie.getCookie('libtech_region');
@@ -421,10 +428,7 @@ LIBTECH.main = {
         });
     },
     quickCartInit: function () {
-        shopatron.getQuickCart({
-            cartLink: '/shopping-cart/'
-        }, {
-            view: 'json',
+        Shopatron.getCart({
             success: function (data, textStatus) {
                 var itemsInCart = 0;
                 // find quantity of items in cart
@@ -433,8 +437,6 @@ LIBTECH.main = {
                 });
                 $('#quick-cart a span').html(itemsInCart);
             },
-            error: function (textStatus, errorThrown) {},
-            complete: function (textStatus) {}
         });
     },
     utilities: {
