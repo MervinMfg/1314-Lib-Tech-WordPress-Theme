@@ -182,12 +182,12 @@ ol.commentlist li.thread-odd {}
 /* General Styles
 -------------------------------------------------------------------------------*/
 @font-face {
-    font-family: 'Kraftsmen Regular';
-    src: url('_/fonts/kraftsmen-regular-webfont.eot');
-    src: url('_/fonts/kraftsmen-regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('_/fonts/kraftsmen-regular-webfont.woff') format('woff'),
-         url('_/fonts/kraftsmen-regular-webfont.ttf') format('truetype'),
-         url('_/fonts/kraftsmen-regular-webfont.svg#kraftsmenregular') format('svg');
+    font-family: 'Duke Fill';
+    src: url('_/fonts/duke-fill-webfont.eot');
+    src: url('_/fonts/duke-fill-webfont.eot?#iefix') format('embedded-opentype'),
+         url('_/fonts/duke-fill-webfont.woff') format('woff'),
+         url('_/fonts/duke-fill-webfont.ttf') format('truetype'),
+         url('_/fonts/duke-fill-webfont.svg#kraftsmenregular') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -221,7 +221,7 @@ body {
 	font-family: "PT Sans Narrow", "Myriad Pro", Helvetica, Arial, sans-serif;
 }
 h1, h2, .h1, .h2 {
-	font-family: "Kraftsmen Regular", Impact, Arial, sans-serif;
+	font-family: "Duke Fill", Impact, Arial, sans-serif;
 	text-transform: uppercase;
 	font-weight: 400;
 	font-size: 2.125em; /* 34 / 16 */
@@ -465,7 +465,7 @@ header {
 	.nav-main,
 	.nav-product,
 	.nav-sub {
-		font-family: "Kraftsmen Regular", Impact, Arial, sans-serif;
+		font-family: "Duke Fill", Impact, Arial, sans-serif;
 		text-transform: uppercase;
 		text-align: center;
 	}
