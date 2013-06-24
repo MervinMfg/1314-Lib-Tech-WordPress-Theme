@@ -236,6 +236,7 @@ get_header();
 			                        </div>
 			                    </a>
 			                </div>
+			            </li>
 			            <?php
 			        		}
 						endif;
