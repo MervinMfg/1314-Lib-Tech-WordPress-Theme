@@ -52,6 +52,72 @@ get_header();
         <section class="product-overview bg3">
             <div class="section-content">
                 <h1>Snowboards</h1>
+                <ul class="product-filtering">
+                    <li>
+                        <p>Product Filter</p>
+                        <p>Show Products By</p>
+                    </li>
+                    <li class="filters ripper">
+                        <p class="select-title">Ripper</p>
+                        <p class="selected-items">Select</p>
+                        <ul>
+                            <li data-filter=".mens">Mens</li>
+                            <li data-filter=".womens">Womens</li>
+                            <li data-filter=".youth">Youth</li>
+                        </ul>
+                    </li>
+                    <li class="filters categories">
+                        <p class="select-title">Categories</p>
+                        <p class="selected-items">Select</p>
+                        <ul>
+                            <li data-filter=".snowboards">Snowboards</li>
+                            <li data-filter=".splitboards">Splitboards</li>
+                            <li data-filter=".snowskates">Snowskates</li>
+                            <li data-filter=".fundamentals">fundaMENTALS</li>
+                        </ul>
+                    </li>
+                    <li class="filters contours">
+                        <p class="select-title">Contours</p>
+                        <p class="selected-items">Select</p>
+                        <ul>
+                            <li data-filter=".BTX">BTX</li>
+                            <li data-filter="._BTX_">!BTX!</li>
+                            <li data-filter=".C1_BTX">C1 BTX</li>
+                            <li data-filter=".C2_BTX">C2 BTX</li>
+                            <li data-filter=".C3_BTX">C3 BTX</li>
+                            <li data-filter=".EC2_BTX">EC2 BTX</li>
+                            <li data-filter=".TTTR">TTTR</li>
+                        </ul>
+                    </li>
+                    <li class="filters size">
+                        <p class="select-title">Size</p>
+                        <p class="selected-items">Select</p>
+                        <ul>
+                            <li data-filter=".150">150</li>
+                            <li data-filter=".151">151</li>
+                            <li data-filter=".152">152</li>
+                        </ul>
+                    </li>
+                    <li class="filters width">
+                        <p class="select-title">Width</p>
+                        <p class="selected-items">Select</p>
+                        <ul>
+                            <li data-filter=".Narrow">Narrow</li>
+                            <li data-filter=".Standard">Standard</li>
+                            <li data-filter=".Wide">Wide</li>
+                        </ul>
+                    </li>
+                    <li class="filters pricing">
+                        <p class="select-title">Pricing</p>
+                        <p class="selected-items">Select</p>
+                        <ul>
+                            <li data-sort="price" data-sort-asc="true">Low - High</li>
+                            <li data-sort="price" data-sort-asc="false">High - Low</li>
+                            <li data-filter=".available">Availabile</li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
                 <ul class="product-listing">
                     <?php
                         // Get Snowboards
@@ -70,12 +136,35 @@ get_header();
                         );
                         $loop = new WP_Query( $args );
                         while ( $loop->have_posts() ) : $loop->the_post();
+                            $filterList = ""; // start list of items to filter by
                             $postType = $post->post_type;
                             $imageID = get_field('libtech_product_image');
                             if($postType != "libtech_nas" && $postType != "libtech_skateboards"){
                                 $imageFile = wp_get_attachment_image_src($imageID, 'overview-thumb');
                             }else{
                                 $imageFile = wp_get_attachment_image_src($imageID, 'overview-thumb-vertical');
+                            }
+
+                            $isProductAvailable = "No";
+                            if(get_field('libtech_snowboard_options')):
+                                while(the_repeater_field('libtech_snowboard_options')):
+                                    $optionVariations = get_sub_field('libtech_snowboard_options_variations');
+                                    // loop through variations
+                                    for ($i = 0; $i < count($optionVariations); $i++) {
+                                        if ($GLOBALS['language'] == "ca") {
+                                            $variationAvailable = $optionVariations[$i]['libtech_snowboard_options_variations_availability_ca'];
+                                        } else {
+                                            $variationAvailable = $optionVariations[$i]['libtech_snowboard_options_variations_availability_us'];
+                                        }
+                                        // set overall availability
+                                        if($variationAvailable == "Yes"){
+                                            $isProductAvailable = "Yes";
+                                        }
+                                    }
+                                endwhile;
+                            endif;
+                            if ($isProductAvailable == "Yes") {
+                                $filterList .= " available";
                             }
 
                             // build array of sizes
@@ -92,6 +181,8 @@ get_header();
                                     }
                                     // add size to array
                                     array_push($snowboardSizes, $snowboardLength);
+
+                                    $filterList .= " " . $snowboardWidth;
                                 endwhile;
                             endif;
                             // sort sizes
@@ -104,9 +195,15 @@ get_header();
                                     $sizes .= ", ";
                                 }
                             }
+                            $categories = get_the_terms( $post->ID , 'libtech_snowboard_categories' );
+                            foreach ( $categories as $category ) {
+                                $filterList .= " " . $category->slug;
+                            }
+                            // add contour to filter
+                            $filterList .= " " . str_replace(array(' ', '!'), '_', get_field('libtech_snowboard_contour'));
                     ?>
 
-                    <li class="product-item">
+                    <li class="product-item<?php echo $filterList; ?>">
                         <a href="<? the_permalink(); ?>">
                             <img src="<?php echo $imageFile[0]; ?>" width="<?php echo $imageFile[1]; ?>" height="<?php echo $imageFile[2]; ?>" alt="<?php the_title(); ?> Image" />
                             <h5><?php the_title(); ?></h5>

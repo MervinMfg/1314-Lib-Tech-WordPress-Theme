@@ -7,6 +7,11 @@ Author URI: http://www.mervin.com
 Version: 4
 */
 
+$snowColor: #FFFF00;
+$skiColor: #0099FF;
+$surfColor: #FF6600;
+$skateColor: #66CC00;
+
 @mixin fadeOpacity($time: 300ms) {
 	transition: opacity $time ease-in-out;
 	-webkit-transition: opacity $time ease-in-out;
@@ -205,12 +210,12 @@ input:-moz-placeholder { color:#a9a9a9; }
 textarea:-moz-placeholder { color:#a9a9a9; }
 
 ::-moz-selection{
-	background: #ffff00;
+	background: $snowColor;
 	color: #000;
 	text-shadow: none;
 }
 ::selection {
-	background: #ffff00;
+	background: $snowColor;
 	color: #000;
 	text-shadow: none;
 } 
@@ -225,7 +230,7 @@ h1, h2, .h1, .h2 {
 	text-transform: uppercase;
 	font-weight: 400;
 	font-size: 2.125em; /* 34 / 16 */
-	color: #ffff00;
+	color: $snowColor;
 }
 h3, .h3 {
 	text-transform: uppercase;
@@ -238,7 +243,7 @@ h4, .h4 {
 	text-transform: uppercase;
     font-size: 1em; /* 16 / 16 */
     font-weight: 700;
-    color: #ffff00;
+    color: $snowColor;
 }
 h5, .h5 {
 	text-transform: uppercase;
@@ -250,7 +255,7 @@ p, .p {
     font-size: .875em; /* 14 / 16 */
 }
 a {
-	color: #ffff00;
+	color: $snowColor;
 	font-style: italic;
 	text-decoration: none;
 }
@@ -349,15 +354,15 @@ a.selected {
 .ski h2,
 .ski h4,
 .ski a {
-	color: #0099FF;
+	color: $skiColor;
 }
 .ski ::-moz-selection{
-	background: #0099FF;
+	background: $skiColor;
 	color: #000;
 	text-shadow: none;
 }
 .ski ::selection {
-	background: #0099FF;
+	background: $skiColor;
 	color: #000;
 	text-shadow: none;
 }
@@ -367,15 +372,15 @@ a.selected {
 .surf h2,
 .surf h4,
 .surf a {
-	color: #FF6600;
+	color: $surfColor;
 }
 .surf ::-moz-selection{
-	background: #FF6600;
+	background: $surfColor;
 	color: #000;
 	text-shadow: none;
 }
 .surf ::selection {
-	background: #FF6600;
+	background: $surfColor;
 	color: #000;
 	text-shadow: none;
 }
@@ -385,15 +390,15 @@ a.selected {
 .skate h2,
 .skate h4,
 .skate a {
-	color: #66CC00;
+	color: $skateColor;
 }
 .skate ::-moz-selection{
-	background: #66CC00;
+	background: $skateColor;
 	color: #000;
 	text-shadow: none;
 }
 .skate ::selection {
-	background: #66CC00;
+	background: $skateColor;
 	color: #000;
 	text-shadow: none;
 }
@@ -415,32 +420,32 @@ header {
 	a:hover,
 	a:focus,
 	.current-menu-item a {
-		color: #ffff00;
+		color: $snowColor;
 		text-decoration: none;
 	}
 	.snow a:hover,
 	.snow a:focus,
 	.snow.current-menu-item a,
 	.snow .current-menu-item a {
-		color: #ffff00;
+		color: $snowColor;
 	}
 	.ski a:hover,
 	.ski a:focus,
 	.ski.current-menu-item a,
 	.ski .current-menu-item a {
-		color: #0099FF;
+		color: $skiColor;
 	}
 	.surf a:hover,
 	.surf a:focus,
 	.surf.current-menu-item a,
 	.surf .current-menu-item a {
-		color: #FF6600;
+		color: $surfColor;
 	}
 	.skate a:hover,
 	.skate a:focus,
 	.skate.current-menu-item a,
 	.skate .current-menu-item a {
-		color: #66CC00;
+		color: $skateColor;
 	}
 
 	.logo-wrapper {
@@ -972,11 +977,11 @@ footer {
 			}
 			a:hover .post-title,
 			a:focus .post-title {
-				color: #ffff00;
+				color: $snowColor;
 			}
 			a:hover .post-meta,
 			a:focus .post-meta {
-				color: #ffff00;
+				color: $snowColor;
 			}
 			a:hover .post-more,
 			a:focus .post-more {
@@ -1139,7 +1144,7 @@ footer {
 					@include fadeOpacity(300ms);
 
 					.h3 {
-						color: #FFFF00;
+						color: $snowColor;
 					}
 					.h5 {
 						color: #fff;
@@ -1407,9 +1412,11 @@ footer {
 .product-overview  {
 	.section-content {
 		h1 {
-			padding-left: 20px;
+			padding: 0 0 20px 20px;
+			float: left;
 		}
 		ul.product-listing {
+
 			li.product-item {
 				width: 18%;
 				float: left;
@@ -1422,6 +1429,115 @@ footer {
 					height: auto;
 					
 				}
+			}
+		}
+	}
+}
+.product-filtering {
+	display: none;
+	float: right;
+	padding: 0 10px 20px 0;
+
+	& > li.filters {
+		width: 100px;
+		cursor: pointer;
+	}
+
+	& > li {
+		position: relative;
+		float: left;
+		margin-right: 10px;
+
+		& > p {
+			background: #000;
+			color: #fff;
+			padding: .2em .6em;
+			text-transform: uppercase;
+			font-size: .875em; /* 14 / 16 */
+
+			&.select-title {
+				cursor: default;
+			}
+			&.selected-items {
+				background: $snowColor;
+				color: #000;
+				font-weight: 900;
+				margin-bottom: .8em;
+			}
+		}
+		& > ul {
+			display: none;
+			position: absolute;
+			top: 3.5em;
+			z-index: 999;
+			padding: 2px;
+
+			li {
+				padding: .1em .25em;
+				text-transform: uppercase;
+				font-size: .875em; /* 14 / 16 */
+				color: #000;
+				float: left;
+				width: 80px;
+				text-align: center;
+
+				&:hover,
+				&:focus {
+					background: #333;
+					color: $snowColor;
+				}
+				&.selected {
+					background: #000;
+					color: $snowColor;
+				}
+			}
+		}
+		&.ripper > ul > li {
+			width: 5em;
+		}
+		&.categories > ul > li {
+			width: 7em;
+		}
+		&.contours > ul > li {
+			width: 4em;
+		}
+		&.size > ul > li {
+			width: 3em;
+		}
+		&.width > ul {
+			right: 0;
+
+			& > li {
+				width: 6em;
+			}
+		}
+		&.pricing > ul {
+			right: 0;
+
+			& > li {
+				width: 6em;
+			}
+		}
+		&:hover,
+		&:focus {
+			& > p.selected-items {
+				padding-bottom: .8em;
+				margin-bottom: 0;
+			}
+			& > ul {
+				display: block;
+				background: $snowColor;
+			}
+		}
+	}
+	& > li:first-child {
+		& > p {
+			text-align: right;
+			background: none;
+			
+			&:first-child {
+				font-weight: bold;
+				color: $snowColor;
 			}
 		}
 	}
@@ -1739,6 +1855,10 @@ footer {
 			}
 		}
 	}
+	/* product overview */
+	.product-filtering {
+		display: block;
+	}
 }
 
 /* Desktop Styles
@@ -1919,7 +2039,7 @@ body.international .shopping-cart-wrapper { display: none; }
 	padding-bottom: 20px;
 }
 .shopping-cart-wrapper a {
-	color: #ffff00;
+	color: $snowColor;
 }
 /* Default */
 .shptrn_quantity {
@@ -2187,22 +2307,22 @@ body.international .shopping-cart-wrapper { display: none; }
 .bx-wrapper .bx-pager.bx-default-pager a:hover,
 .bx-wrapper .bx-pager.bx-default-pager a:focus,
 .bx-wrapper .bx-pager.bx-default-pager a.active {
-	background: #ffff00;
+	background: $snowColor;
 }
 	.ski .bx-wrapper .bx-pager.bx-default-pager a:hover,
 	.ski .bx-wrapper .bx-pager.bx-default-pager a:focus,
 	.ski .bx-wrapper .bx-pager.bx-default-pager a.active {
-		background: #0099FF;
+		background: $skiColor;
 	}
 	.surf .bx-wrapper .bx-pager.bx-default-pager a:hover,
 	.surf .bx-wrapper .bx-pager.bx-default-pager a:focus,
 	.surf .bx-wrapper .bx-pager.bx-default-pager a.active {
-		background: #FF6600;
+		background: $surfColor;
 	}
 	.skate .bx-wrapper .bx-pager.bx-default-pager a:hover,
 	.skate .bx-wrapper .bx-pager.bx-default-pager a:focus,
 	.skate .bx-wrapper .bx-pager.bx-default-pager a.active {
-		background: #66CC00;
+		background: $skateColor;
 	}
 
 /* DIRECTION CONTROLS (NEXT / PREV) */
