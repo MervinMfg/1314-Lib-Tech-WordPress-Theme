@@ -372,6 +372,15 @@ LIBTECH.main = {
                 $(this).find('ul > li').each( function () {
                     widthTotal += $(this).outerWidth();
                 });
+                if(widthTotal > 646) {
+                    widthTotal = 646;
+                }
+                if($('body').hasClass('ski') || $('body').hasClass('skate')) {
+                    if(widthTotal > 316) {
+                        widthTotal = 316;
+                    }
+                    console.log('on ski page');
+                }
                 $(this).find('ul').width(widthTotal);
             });
         });

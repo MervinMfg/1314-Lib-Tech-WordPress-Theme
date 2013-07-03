@@ -1477,7 +1477,6 @@ footer .footer-copy {
 
 .product-overview .section-content h1 {
   padding: 0 0 20px 20px;
-  float: left;
 }
 .product-overview .section-content ul.product-listing li.product-item {
   width: 18%;
@@ -1493,22 +1492,22 @@ footer .footer-copy {
 
 .product-filtering {
   display: none;
-  float: right;
-  padding: 0 10px 20px 0;
+  padding: 0 10px 20px 20px;
+  height: 100px;
 }
 .product-filtering > li.filters {
   width: 100px;
   cursor: pointer;
+  float: left;
 }
 .product-filtering > li {
   position: relative;
-  float: left;
   margin-right: 10px;
 }
 .product-filtering > li > p {
   background: #000;
   color: #fff;
-  padding: .2em .6em;
+  padding: 2px 5px;
   text-transform: uppercase;
   font-size: .875em;
   /* 14 / 16 */
@@ -1520,12 +1519,11 @@ footer .footer-copy {
   background: yellow;
   color: #000;
   font-weight: 900;
-  margin-bottom: .8em;
 }
 .product-filtering > li > ul {
   display: none;
   position: absolute;
-  top: 3.5em;
+  top: 55px;
   z-index: 999;
   padding: 2px;
 }
@@ -1553,16 +1551,43 @@ footer .footer-copy {
 .product-filtering > li.categories > ul > li {
   width: 7em;
 }
+.product-filtering > li.skate-categories > ul {
+  right: -92px;
+}
+.product-filtering > li.skate-categories > ul > li {
+  width: 7.1em;
+}
 .product-filtering > li.contours > ul > li {
   width: 4em;
 }
+.product-filtering > li.size > ul {
+  left: -330px;
+}
 .product-filtering > li.size > ul > li {
-  width: 3em;
+  width: 2.4em;
+}
+.product-filtering > li.nas-size > ul {
+  left: 0;
+}
+.product-filtering > li.nas-size > ul > li {
+  width: 2.5em;
 }
 .product-filtering > li.width > ul {
   right: 0;
 }
 .product-filtering > li.width > ul > li {
+  width: 6em;
+}
+.product-filtering > li.skate-width > ul {
+  left: 0;
+}
+.product-filtering > li.skate-width > ul > li {
+  width: 3.22em;
+}
+.product-filtering > li.nas-width > ul {
+  right: -46px;
+}
+.product-filtering > li.nas-width > ul > li {
   width: 6em;
 }
 .product-filtering > li.pricing > ul {
@@ -1572,20 +1597,63 @@ footer .footer-copy {
   width: 6em;
 }
 .product-filtering > li:hover > p.selected-items, .product-filtering > li:focus > p.selected-items {
-  padding-bottom: .8em;
+  padding-bottom: 14px;
   margin-bottom: 0;
 }
 .product-filtering > li:hover > ul, .product-filtering > li:focus > ul {
   display: block;
   background: yellow;
 }
-.product-filtering > li:first-child > p {
-  text-align: right;
-  background: none;
+.product-filtering > li.details {
+  text-align: left;
 }
-.product-filtering > li:first-child > p:first-child {
+.product-filtering > li.details > p {
+  text-align: left;
+  background: none;
+  display: inline-block;
+}
+.product-filtering > li.details > p:first-child {
   font-weight: bold;
   color: yellow;
+}
+
+.ski .product-filtering > li > p.selected-items,
+.ski .product-filtering > li:hover > ul,
+.ski .product-filtering > li:focus > ul {
+  background: #0099ff;
+}
+
+.ski .product-filtering > li > ul > li:hover,
+.ski .product-filtering > li > ul > li:focus,
+.ski .product-filtering > li > ul > li.selected,
+.ski .product-filtering > li:first-child > p:first-child {
+  color: #0099ff;
+}
+
+.surf .product-filtering > li > p.selected-items,
+.surf .product-filtering > li:hover > ul,
+.surf .product-filtering > li:focus > ul {
+  background: #ff6600;
+}
+
+.surf .product-filtering > li > ul > li:hover,
+.surf .product-filtering > li > ul > li:focus,
+.surf .product-filtering > li > ul > li.selected,
+.surf .product-filtering > li:first-child > p:first-child {
+  color: #ff6600;
+}
+
+.skate .product-filtering > li > p.selected-items,
+.skate .product-filtering > li:hover > ul,
+.skate .product-filtering > li:focus > ul {
+  background: #66cc00;
+}
+
+.skate .product-filtering > li > ul > li:hover,
+.skate .product-filtering > li > ul > li:focus,
+.skate .product-filtering > li > ul > li.selected,
+.skate .product-filtering > li:first-child > p:first-child {
+  color: #66cc00;
 }
 
 /* Print Styles
@@ -1956,6 +2024,27 @@ footer .footer-copy {
     max-width: 1200px;
     margin: 0 auto;
     overflow: visible !important;
+  }
+
+  .product-overview .section-content h1 {
+    float: left;
+  }
+
+  .product-filtering {
+    float: right;
+    height: 75px;
+  }
+  .product-filtering > li.details {
+    float: left;
+  }
+  .product-filtering > li.details > p {
+    text-align: right;
+    background: none;
+    display: block;
+  }
+  .product-filtering > li.details > p:first-child {
+    font-weight: bold;
+    color: yellow;
   }
 }
 @media screen and (min-width: 1200px) {

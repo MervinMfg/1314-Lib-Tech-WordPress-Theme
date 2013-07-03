@@ -4,59 +4,247 @@ Template Name: Products Overview
 */
 get_header();
 ?>
+        <?php
+        // GET FEATURED PRODUCTS
+        $post_objects = get_field('libtech_featured_products');
+        if( $post_objects ):
+        ?>
         <div class="bg-product-<?php echo $GLOBALS['sport']; ?>-top"></div>
         <section class="featured-product-slider bg-product-<?php echo $GLOBALS['sport']; ?>">
             <div class="section-content">
                 <ul class="product-listing bxslider">
                     <?php
-                        // Get Snowboards
-                        $args = array(
-                            'post_type' => 'libtech_snowboards',
-                            'posts_per_page' => -1,
-                            'orderby' => 'menu_order',
-                            'order' => 'ASC',
-                        );
-                        $loop = new WP_Query( $args );
-                        while ( $loop->have_posts() ) : $loop->the_post();
-                            $postType = $post->post_type;
-                            $imageID = get_field('libtech_product_image');
-                            $imageFile = wp_get_attachment_image_src($imageID, 'full');
+                    // get each related product
+                    foreach( $post_objects as $post_object):
+                        $postType = $post_object->post_type;
+                        // get variable values
+                        $imageID = get_field('libtech_product_image', $post_object->ID);
+                        // check which image size to use based on post type
+                        $productImage = wp_get_attachment_image_src($imageID, 'full');
+                        $productLink = get_permalink($post_object->ID);
+                        $productTitle = get_the_title($post_object->ID);
+                        $productContent = apply_filters('the_content', $post_object->post_content);
+                        $productTag = get_field('libtech_product_slogan', $post_object->ID);
+                        $productPrice = getPrice( get_field('libtech_product_price_us', $post_object->ID), get_field('libtech_product_price_ca', $post_object->ID), get_field('libtech_product_on_sale', $post_object->ID), get_field('libtech_product_sale_percentage', $post_object->ID) );
                     ?>
-
                     <li>
                         <div class="product-image">
-                            <img src="<?php echo $imageFile[0]; ?>" width="<?php echo $imageFile[1]; ?>" height="<?php echo $imageFile[2]; ?>" alt="<?php the_title(); ?> Image" />
+                            <img src="<?php echo $productImage[0]; ?>" width="<?php echo $productImage[1]; ?>" height="<?php echo $productImage[2]; ?>" alt="<?php echo $productTitle; ?> Image" />
                         </div>
                         <div class="product-copy">
-                            <div class="title h2"><?php the_title(); ?></div>
-                            <div class="contour h3"><?php the_field('libtech_snowboard_contour'); ?></div>
-                            <p class="slogan h4"><?php the_field('libtech_product_slogan'); ?></p>
+                            <div class="title h2"><?php echo $productTitle; ?></div>
+                            <?php if($postType == "libtech_snowboards"): ?><div class="contour h3"><?php the_field('libtech_snowboard_contour', $post_object->ID); ?></div><?php endif; ?>
+                            <p class="slogan h4"><?php echo $productTag; ?></p>
                             <div class="description">
-                                <?php the_content(); ?>
+                                <?php echo $productContent; ?>
                             </div>
-                            <p class="price h3">$696.69</p>
-                            <a href="<? the_permalink(); ?>" class="buy h4">Buy Now!</a>
+                            <p class="price h3"><?php echo $productPrice; ?></p>
+                            <a href="<?php echo $productLink; ?>" class="buy h4">Buy Now!</a>
                         </div>
                         <div class="clearfix"></div>
                     </li>
-
-                    <?
-                        endwhile;
-                        wp_reset_query();
-                    ?>
+                    <?php endforeach; ?>
                 </ul>
             </div>
             <div class="clearfix"></div>
         </section><!-- END .product-slider -->
         <div class="bg3-top"></div>
+        <?php endif; ?>
+
+
+
+
+        <?php
+        $productsArray = Array();
+        // find product post type to query
+        switch (get_the_title()) {
+            case "Snowboards":
+                $postType = "libtech_snowboards";
+                break;
+            case "Skis":
+                $postType = "libtech_nas";
+                break;
+            case "Surfboards":
+                $postType = "libtech_snowboards";
+                break;
+            case "Skateboards":
+                $postType = "libtech_skateboards";
+                break;
+            case "Outerwear":
+                $postType = "libtech_outerwear";
+                break;
+            case "Apparel":
+                $postType = "libtech_apparel";
+                break;
+            case "Accessories":
+                $postType = "libtech_accessories";
+                break;
+            case "Luggage":
+                $postType = "libtech_luggage";
+                break;
+            case "Bindings":
+                $postType = "libtech_bindings";
+                break;
+            default:
+                $postType = "libtech_snowboards";
+        }
+        // Get Products
+        $args = array(
+            'post_type' => $postType,
+            'posts_per_page' => -1,
+            'orderby' => 'menu_order',
+            'order' => 'ASC'
+        );
+        $loop = new WP_Query( $args );
+        while ( $loop->have_posts() ) : $loop->the_post();
+            $productArray = Array();
+            $filterList = ""; // start list of items to filter by
+            $productArray['postType'] = $post->post_type;
+            $productArray['title'] = get_the_title();
+            $productArray['link'] = get_permalink($post->ID);
+            $imageID = get_field('libtech_product_image');
+            $productArray['imageFile'] = wp_get_attachment_image_src($imageID, 'overview-thumb');
+            $productArray['available'] = "No";
+            $productArray['price'] = getPrice( get_field('libtech_product_price_us'), get_field('libtech_product_price_ca'), get_field('libtech_product_on_sale'), get_field('libtech_product_sale_percentage') );
+
+            if($productArray['postType'] == "libtech_snowboards"): // BEGIN SETTING UP SNOWBOARD FILTER CLASSES
+                // check snowboard product availability
+                if(get_field('libtech_snowboard_options')):
+                    while(the_repeater_field('libtech_snowboard_options')):
+                        $optionVariations = get_sub_field('libtech_snowboard_options_variations');
+                        // loop through variations
+                        for ($i = 0; $i < count($optionVariations); $i++) {
+                            if ($GLOBALS['language'] == "ca") {
+                                $variationAvailable = $optionVariations[$i]['libtech_snowboard_options_variations_availability_ca'];
+                            } else {
+                                $variationAvailable = $optionVariations[$i]['libtech_snowboard_options_variations_availability_us'];
+                            }
+                            // set overall availability
+                            if($variationAvailable == "Yes"){
+                                $productArray['available'] = "Yes";
+                            }
+                        }
+                    endwhile;
+                endif;
+                // build array of snowboard sizes
+                $productSize = Array();
+                $productWidth = Array();
+                if(get_field('libtech_snowboard_specs')):
+                    while(the_repeater_field('libtech_snowboard_specs')):
+                        $snowboardLength = str_replace('&quot;', '_', get_sub_field('libtech_snowboard_specs_length'));
+                        $snowboardWidth = get_sub_field('libtech_snowboard_specs_width');
+                        // add size & width to arrays
+                        array_push($productSize, $snowboardLength);
+                        array_push($productWidth, $snowboardWidth);
+                        // add length and width to filter list
+                        $filterList .= " " . $snowboardLength;
+                        $filterList .= " " . $snowboardWidth;
+                    endwhile;
+                endif;
+                // sort sizes
+                array_multisort($productSize, SORT_ASC);
+                $productArray['size'] = $productSize;
+                $productArray['width'] = $productWidth;
+                // build filter list of snowboard categories
+                $productCategories = Array();
+                $categories = get_the_terms( $post->ID , 'libtech_snowboard_categories' );
+                foreach ( $categories as $category ) {
+                    array_push($productCategories, $category->slug);
+                    $filterList .= " " . $category->slug;
+                }
+                $productArray['categories'] = $productCategories;
+                // add contour to filter
+                $filterList .= " " . str_replace(array(' ', '!'), '_', get_field('libtech_snowboard_contour'));
+                $productArray['contour'] = get_field('libtech_snowboard_contour');
+            elseif($productArray['postType'] == "libtech_nas"):
+                // get nas availability
+                if(get_field('libtech_nas_variations')):
+                    while(the_repeater_field('libtech_nas_variations')):
+                        if ($GLOBALS['language'] == "ca") {
+                            $variationAvailable = get_sub_field('libtech_nas_variations_availability_ca');
+                        } else {
+                            $variationAvailable = get_sub_field('libtech_nas_variations_availability_us');
+                        }
+                        // set overall availability
+                        if($variationAvailable == "Yes"){
+                            $productArray['available'] = "Yes";
+                        }
+                    endwhile;
+                endif;
+                // build array of nas sizes & widths
+                $productSize = Array();
+                $productWidth = Array();
+                if(get_field('libtech_nas_specs')):
+                    while(the_repeater_field('libtech_nas_specs')):
+                        $length = get_sub_field('libtech_nas_specs_length');
+                        $width = get_sub_field('libtech_nas_specs_waist_width');
+                        // Narrow (84mm - 97mm)
+                        // Normal (98mm - 112mm)
+                        // Wide (113mm - 118mm)
+                        if($width < 98) {
+                            $width = "Narrow";
+                        } else if ($width < 113) {
+                            $width = "Standard";
+                        } else {
+                            $width = "Wide";
+                        }
+                        // add size & width to arrays
+                        array_push($productSize, $length);
+                        array_push($productWidth, $width);
+                        // add length and width to filter list
+                        $filterList .= " " . $length;
+                        $filterList .= " " . $width;
+                    endwhile;
+                endif;
+                // sort sizes
+                array_multisort($productSize, SORT_ASC);
+                $productArray['size'] = $productSize;
+            elseif($productArray['postType'] == "libtech_skateboards"):
+                // build array of skateboard widths
+                $productWidth = Array();
+                if(get_field('libtech_skateboard_variations')):
+                    while(the_repeater_field('libtech_skateboard_variations')):
+                        $variationWidth = str_replace('.', '_', get_sub_field('libtech_skateboard_variations_width'));
+                        // get skateboard availability
+                        if ($GLOBALS['language'] == "ca") {
+                            $variationAvailable = get_sub_field('libtech_skateboard_variations_availability_ca');
+                        } else {
+                            $variationAvailable = get_sub_field('libtech_skateboard_variations_availability_us');
+                        }
+                        // set overall availability
+                        if($variationAvailable == "Yes"){
+                            $productArray['available'] = "Yes";
+                        }
+                        // add wodth to array
+                        array_push($productWidth, $variationWidth);
+                        // add width to filter list
+                        $filterList .= " " . $variationWidth;
+                    endwhile;
+                endif;
+                // sort sizes
+                array_multisort($productWidth, SORT_ASC);
+                $productArray['width'] = $productWidth;
+            endif;
+            // if product is available set filter list class
+            if ($productArray['available'] == "Yes") {
+                $filterList .= " available";
+            }
+            $productArray['filterList'] = $filterList;
+            // add single product to products array
+            array_push($productsArray, $productArray);
+        endwhile;
+        wp_reset_query();
+        ?>
+
         <section class="product-overview bg3">
             <div class="section-content">
-                <h1>Snowboards</h1>
+                <h1><?php the_title(); ?></h1>
                 <ul class="product-filtering">
-                    <li>
+                    <li class="details">
                         <p>Product Filter</p>
                         <p>Show Products By</p>
                     </li>
+                    <?php if (get_the_title() == "Snowboards"): ?>
                     <li class="filters ripper">
                         <p class="select-title">Ripper</p>
                         <p class="selected-items">Select</p>
@@ -81,21 +269,34 @@ get_header();
                         <p class="selected-items">Select</p>
                         <ul>
                             <li data-filter=".BTX">BTX</li>
-                            <li data-filter="._BTX_">!BTX!</li>
-                            <li data-filter=".C1_BTX">C1 BTX</li>
-                            <li data-filter=".C2_BTX">C2 BTX</li>
-                            <li data-filter=".C3_BTX">C3 BTX</li>
                             <li data-filter=".EC2_BTX">EC2 BTX</li>
-                            <li data-filter=".TTTR">TTTR</li>
+                            <li data-filter=".C2_BTX">C2 BTX</li>
+                            <li data-filter=".XC2_BTX">XC2 BTX</li>
+                            <li data-filter=".C3_BTX">C3 BTX</li>
+                            <li data-filter=".C1_BTX">C1 BTX</li>
+                            <li data-filter="._BTX_">!BTX!</li>
                         </ul>
                     </li>
                     <li class="filters size">
                         <p class="select-title">Size</p>
                         <p class="selected-items">Select</p>
                         <ul>
-                            <li data-filter=".150">150</li>
-                            <li data-filter=".151">151</li>
-                            <li data-filter=".152">152</li>
+                            <?php
+                            $sizeArray = Array();
+                            foreach ($productsArray as $product):
+                                foreach ($product['size'] as $size):
+                                    if (in_array($size, $sizeArray) == false) {
+                                        array_push($sizeArray, $size);
+                                    }
+                                endforeach;
+                            endforeach;
+                            array_multisort($sizeArray, SORT_ASC);
+                            foreach ($sizeArray as $size):
+                            ?>
+                            <li data-filter=".<?php echo $size; ?>"><?php echo str_replace('_', '&quot;', $size); ?></li>
+                            <?php
+                            endforeach;
+                            ?>
                         </ul>
                     </li>
                     <li class="filters width">
@@ -107,6 +308,149 @@ get_header();
                             <li data-filter=".Wide">Wide</li>
                         </ul>
                     </li>
+                    <?php elseif (get_the_title() == "Skis"): ?>
+                    <li class="filters nas-size">
+                        <p class="select-title">Size</p>
+                        <p class="selected-items">Select</p>
+                        <ul>
+                            <?php
+                            $sizeArray = Array();
+                            foreach ($productsArray as $product):
+                                foreach ($product['size'] as $size):
+                                    if (in_array($size, $sizeArray) == false) {
+                                        array_push($sizeArray, $size);
+                                    }
+                                endforeach;
+                            endforeach;
+                            array_multisort($sizeArray, SORT_ASC);
+                            foreach ($sizeArray as $size):
+                            ?>
+                            <li data-filter=".<?php echo $size; ?>"><?php echo str_replace('_', '&quot;', $size); ?></li>
+                            <?php
+                            endforeach;
+                            ?>
+                        </ul>
+                    </li>
+                    <li class="filters nas-width">
+                        <p class="select-title">Waist Width</p>
+                        <p class="selected-items">Select</p>
+                        <ul>
+                            <li data-filter=".Narrow">Narrow</li>
+                            <li data-filter=".Standard">Standard</li>
+                            <li data-filter=".Wide">Wide</li>
+                        </ul>
+                    </li>
+                    <?php elseif (get_the_title() == "Surfboards"): ?>
+                    <li class="filters size">
+                        <p class="select-title">Size</p>
+                        <p class="selected-items">Select</p>
+                        <ul>
+                            <li data-filter=".150">150</li>
+                            <li data-filter=".151">151</li>
+                            <li data-filter=".152">152</li>
+                        </ul>
+                    </li>
+                    <?php elseif (get_the_title() == "Skateboards"): ?>
+                    <li class="filters skate-width">
+                        <p class="select-title">Width</p>
+                        <p class="selected-items">Select</p>
+                        <ul>
+                            <?php
+                            $widthArray = Array();
+                            foreach ($productsArray as $product):
+                                foreach ($product['width'] as $width):
+                                    if (in_array($width, $widthArray) == false) {
+                                        array_push($widthArray, $width);
+                                    }
+                                endforeach;
+                            endforeach;
+                            array_multisort($widthArray, SORT_ASC);
+                            foreach ($widthArray as $width):
+                            ?>
+                            <li data-filter=".<?php echo $width; ?>"><?php echo str_replace('_', '.', $width); ?></li>
+                            <?php
+                            endforeach;
+                            ?>
+                        </ul>
+                    </li>
+                    <li class="filters skate-categories">
+                        <p class="select-title">Categories</p>
+                        <p class="selected-items">Select</p>
+                        <ul>
+                            <li data-filter=".hesho">Hesho</li>
+                            <li data-filter=".maple-bottoms">Maple Bottoms</li>
+                            <li data-filter=".semi-slicks">Semi Slicks</li>
+                        </ul>
+                    </li>
+                    <?php elseif (get_the_title() == "Outerwear"): ?>
+                    <li class="filters size">
+                        <p class="select-title">Size</p>
+                        <p class="selected-items">Select</p>
+                        <ul>
+                            <li data-filter=".xs">X Small</li>
+                            <li data-filter=".s">Small</li>
+                            <li data-filter=".m">Medium</li>
+                            <li data-filter=".large">Large</li>
+                            <li data-filter=".xlarge">X Large</li>
+                            <li data-filter=".xxlarge">XX Large</li>
+                        </ul>
+                    </li>
+                    <li class="filters categories">
+                        <p class="select-title">Categories</p>
+                        <p class="selected-items">Select</p>
+                        <ul>
+                            <li data-filter=".jackets">Jackets</li>
+                            <li data-filter=".pants">Pants</li>
+                        </ul>
+                    </li>
+                    <?php elseif (get_the_title() == "Apparel"): ?>
+                    <li class="filters size">
+                        <p class="select-title">Size</p>
+                        <p class="selected-items">Select</p>
+                        <ul>
+                            <li data-filter=".xs">X Small</li>
+                            <li data-filter=".s">Small</li>
+                            <li data-filter=".m">Medium</li>
+                            <li data-filter=".large">Large</li>
+                            <li data-filter=".xlarge">X Large</li>
+                            <li data-filter=".xxlarge">XX Large</li>
+                        </ul>
+                    </li>
+                    <li class="filters categories">
+                        <p class="select-title">Categories</p>
+                        <p class="selected-items">Select</p>
+                        <ul>
+                            <li data-filter=".sweatshirts">Sweatshirts</li>
+                            <li data-filter=".tshirts">Tshirts</li>
+                            <li data-filter=".hats">Hats</li>
+                            <li data-filter=".beanies">Beanies</li>
+                            <li data-filter=".layers">Layers</li>
+                            <li data-filter=".socks">Socks</li>
+                        </ul>
+                    </li>
+                    <?php elseif (get_the_title() == "Accessories"): ?>
+                    <li class="filters categories">
+                        <p class="select-title">Categories</p>
+                        <p class="selected-items">Select</p>
+                        <ul>
+                            <li data-filter=".stomp-pads">Stomp Pads</li>
+                            <li data-filter=".wax-tunning-tools">Wax, Tunning and Tools</li>
+                            <li data-filter=".helmets">Helmets</li>
+                            <li data-filter=".stickers">Stickers</li>
+                        </ul>
+                    </li>
+                    <?php elseif (get_the_title() == "Luggage"): ?>
+                    <li class="filters categories">
+                        <p class="select-title">Categories</p>
+                        <p class="selected-items">Select</p>
+                        <ul>
+                            <li data-filter=".stomp-pads">Snow</li>
+                            <li data-filter=".ski">Ski</li>
+                            <li data-filter=".surf">Surf</li>
+                            <li data-filter=".skate">Skate</li>
+                        </ul>
+                    </li>
+                    <?php endif; ?>
                     <li class="filters pricing">
                         <p class="select-title">Pricing</p>
                         <p class="selected-items">Select</p>
@@ -120,102 +464,17 @@ get_header();
                 <div class="clearfix"></div>
                 <ul class="product-listing">
                     <?php
-                        // Get Snowboards
-                        $args = array(
-                            'post_type' => 'libtech_snowboards',
-                            'posts_per_page' => -1,
-                            'orderby' => 'menu_order',
-                            'order' => 'ASC'/*,
-                            'tax_query' => array(
-                                array(
-                                    'taxonomy' => 'libtech_snowboard_categories',
-                                    'field' => 'slug',
-                                    'terms' => 'snowboards'
-                                )
-                            )*/
-                        );
-                        $loop = new WP_Query( $args );
-                        while ( $loop->have_posts() ) : $loop->the_post();
-                            $filterList = ""; // start list of items to filter by
-                            $postType = $post->post_type;
-                            $imageID = get_field('libtech_product_image');
-                            if($postType != "libtech_nas" && $postType != "libtech_skateboards"){
-                                $imageFile = wp_get_attachment_image_src($imageID, 'overview-thumb');
-                            }else{
-                                $imageFile = wp_get_attachment_image_src($imageID, 'overview-thumb-vertical');
-                            }
-
-                            $isProductAvailable = "No";
-                            if(get_field('libtech_snowboard_options')):
-                                while(the_repeater_field('libtech_snowboard_options')):
-                                    $optionVariations = get_sub_field('libtech_snowboard_options_variations');
-                                    // loop through variations
-                                    for ($i = 0; $i < count($optionVariations); $i++) {
-                                        if ($GLOBALS['language'] == "ca") {
-                                            $variationAvailable = $optionVariations[$i]['libtech_snowboard_options_variations_availability_ca'];
-                                        } else {
-                                            $variationAvailable = $optionVariations[$i]['libtech_snowboard_options_variations_availability_us'];
-                                        }
-                                        // set overall availability
-                                        if($variationAvailable == "Yes"){
-                                            $isProductAvailable = "Yes";
-                                        }
-                                    }
-                                endwhile;
-                            endif;
-                            if ($isProductAvailable == "Yes") {
-                                $filterList .= " available";
-                            }
-
-                            // build array of sizes
-                            $snowboardSizes = Array();
-                            if(get_field('libtech_snowboard_specs')):
-                                while(the_repeater_field('libtech_snowboard_specs')):
-                                    $snowboardLength = get_sub_field('libtech_snowboard_specs_length');
-                                    $snowboardWidth = get_sub_field('libtech_snowboard_specs_width');
-                                    // add the proper width abbreviation if not standard
-                                    if($snowboardWidth == "Narrow"){
-                                        $snowboardLength = $snowboardLength . "N";
-                                    }else if($snowboardWidth == "Wide"){
-                                        $snowboardLength = $snowboardLength . "W";
-                                    }
-                                    // add size to array
-                                    array_push($snowboardSizes, $snowboardLength);
-
-                                    $filterList .= " " . $snowboardWidth;
-                                endwhile;
-                            endif;
-                            // sort sizes
-                            array_multisort($snowboardSizes, SORT_ASC);
-                            // setup sizes text display
-                            $sizes = "";
-                            for ($i = 0; $i < count($snowboardSizes); $i++) {
-                                $sizes .= $snowboardSizes[$i];
-                                if($i < count($snowboardSizes)-1){
-                                    $sizes .= ", ";
-                                }
-                            }
-                            $categories = get_the_terms( $post->ID , 'libtech_snowboard_categories' );
-                            foreach ( $categories as $category ) {
-                                $filterList .= " " . $category->slug;
-                            }
-                            // add contour to filter
-                            $filterList .= " " . str_replace(array(' ', '!'), '_', get_field('libtech_snowboard_contour'));
+                    foreach ($productsArray as $product):
                     ?>
-
-                    <li class="product-item<?php echo $filterList; ?>">
-                        <a href="<? the_permalink(); ?>">
-                            <img src="<?php echo $imageFile[0]; ?>" width="<?php echo $imageFile[1]; ?>" height="<?php echo $imageFile[2]; ?>" alt="<?php the_title(); ?> Image" />
-                            <h5><?php the_title(); ?></h5>
-                            <div class="price">
-                                <?php getDisplayPrice( get_field('libtech_product_price_us'), get_field('libtech_product_price_ca'), get_field('libtech_product_on_sale'), get_field('libtech_product_sale_percentage') ); ?>
-                            </div>
+                    <li class="product-item<?php echo $product['filterList']; ?>">
+                        <a href="<? echo $product['link']; ?>">
+                            <img src="<?php echo $product['imageFile'][0]; ?>" width="<?php echo $product['imageFile'][1]; ?>" height="<?php echo $product['imageFile'][2]; ?>" alt="<?php the_title(); ?> Image" />
+                            <h5><?php echo $product['title']; ?></h5>
+                            <div class="price"><?php echo $product['price']; ?></div>
                         </a>
                     </li>
-
-                    <?
-                        endwhile;
-                        wp_reset_query();
+                    <?php
+                    endforeach;
                     ?>
                 </ul>
             </div>

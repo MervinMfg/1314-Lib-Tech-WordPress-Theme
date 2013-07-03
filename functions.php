@@ -172,20 +172,22 @@ function getRegionCode () {
 }
 
 // GET PRICE DISPLAY
-function getDisplayPrice ($usPrice, $caPrice, $sale, $salePercent) {
+function getPrice ($usPrice, $caPrice, $sale, $salePercent) {
+    $price = "";
     if($GLOBALS['language'] == "ca"){
         if ($sale == "Yes") {
-            echo '<p class="ca-price strike"><span>$' . $caPrice . '</span> CAD</p><p class="ca-price"><span>$' . round($caPrice * ((100 - $salePercent) / 100), 2) . '</span> CAD (' . $salePercent . '% off)</p>';
+            $price = '<p class="ca-price strike"><span>$' . $caPrice . '</span> CAD</p><p class="ca-price"><span>$' . round($caPrice * ((100 - $salePercent) / 100), 2) . '</span> CAD (' . $salePercent . '% off)</p>';
         } else {
-            echo '<p class="ca-price"><span>$' . $caPrice . '</span> CAD</p>';
+            $price = '<p class="ca-price"><span>$' . $caPrice . '</span> CAD</p>';
         }
     } else {
         if ($sale == "Yes") {
-            echo '<p class="us-price strike"><span>$' . $usPrice . '</span> USD</p><p class="us-price"><span>$' . round($usPrice * ((100 - $salePercent) / 100), 2) . '</span> USD (' . $salePercent . '% off)</p>';
+            $price = '<p class="us-price strike"><span>$' . $usPrice . '</span> USD</p><p class="us-price"><span>$' . round($usPrice * ((100 - $salePercent) / 100), 2) . '</span> USD (' . $salePercent . '% off)</p>';
         } else {
-            echo '<p class="us-price"><span>$' . $usPrice . '</span> USD</p>';
+            $price = '<p class="us-price"><span>$' . $usPrice . '</span> USD</p>';
         }
     }
+    return $price;
 }
 
 /******************************
