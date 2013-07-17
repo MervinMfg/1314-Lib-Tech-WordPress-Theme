@@ -152,7 +152,7 @@
     <!-- Google+ Meta Data -->
     <meta itemprop="name" content="<?php echo $GLOBALS['pageTitle']; ?>" />
     <meta itemprop="description" content="<?php echo $pageDescription; ?>" />
-    <meta itemprop="image" content="<?php echo $pageImage; ?>" />
+    <meta itemprop="image" content="<?php echo $GLOBALS['pageImage']; ?>" />
     <!-- Twitter -->
 	<meta name="twitter:card" content="">
 	<meta name="twitter:site" content="">

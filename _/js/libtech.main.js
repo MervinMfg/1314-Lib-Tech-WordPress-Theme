@@ -8,6 +8,7 @@
     - jQuery v1.10.1
     - Modernizr 2.6.2
     - Shopatron API v2.2.0
+    - FitVids 1.0
 
 */
 
@@ -32,10 +33,8 @@ LIBTECH.main = {
             self.homeSportInit();
         } else if ($('body').hasClass('page-template-page-overview-products-php')) {
             self.productOverviewInit();
-        } else if ($('body').hasClass('page-template-page-history-php')) {
-            self.historyInit();
-        } else if ($('body').hasClass('page-id-9')) {
-            self.environmentalInit();
+        } else if ($('body').hasClass('single-libtech_snowboards')) {
+            self.productDetailInit();
         } else if ($('body').hasClass('blog') || $('body').hasClass('search') || $('body').hasClass('archive') || $('body').hasClass('error404')) {
             self.blogInit();
         } else if ($('body').hasClass('single-post')) {
@@ -481,6 +480,11 @@ LIBTECH.main = {
             });
             return false;
         });
+    },
+    productDetailInit: function () {
+        var self = this;
+        $(".product-tech-major").fitVids();
+        $(".product-video").fitVids();
     },
     shoppingCartInit: function () {
         var self, lang, regionCookie;

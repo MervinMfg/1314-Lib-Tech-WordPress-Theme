@@ -190,6 +190,48 @@ function getPrice ($usPrice, $caPrice, $sale, $salePercent) {
     return $price;
 }
 
+// GET RELATED PRODUCTS
+function getRelatedProducts () {
+    // display additional products
+    $post_objects = get_field('libtech_product_associated');
+    if( $post_objects ):
+        echo "<div class=\"bg-product-" . $GLOBALS['sport'] . "-top\"></div><section class=\"product-related bg-product-" . $GLOBALS['sport'] . "\">\n<div class=\"section-content\">\n";
+        $relatedProducts = Array();
+        // get each related product
+        foreach( $post_objects as $post_object):
+            $postType = $post_object->post_type;
+            // get variable values
+            $imageID = get_field('libtech_product_image', $post_object->ID);
+            // check which image size to use based on post type
+            $relatedImage = wp_get_attachment_image_src($imageID, 'overview-thumb');
+            $relatedLink = get_permalink($post_object->ID);
+            $relatedTitle = get_the_title($post_object->ID);
+            // get price
+            $relatedPrice = getPrice(get_field('libtech_product_price_us', $post_object->ID), get_field('libtech_product_price_ca', $post_object->ID), get_field('libtech_product_on_sale', $post_object->ID), get_field('libtech_product_sale_percentage', $post_object->ID));
+            // add to related product array
+            array_push($relatedProducts, Array($relatedTitle, $relatedLink, $relatedImage, $relatedPrice));
+        endforeach;
+        // randomly sort related products array
+        shuffle($relatedProducts);
+        // render out max of 4 related products
+        echo "<h2>Suggested Products</h2>\n<ul>\n";
+        // loop through products
+        for($i = 0; $i < count($relatedProducts); ++$i) {
+            if($i == 4){
+                break;
+            }
+            // give the 4th product a class of last
+            if(($i + 1) % 4 == 0){
+                $relatedClass = "product-item last";
+            }else{
+                $relatedClass = "product-item";
+            }
+            echo '<li class="'. $relatedClass .'"><a href="'. $relatedProducts[$i][1] .'"><img src="'.$relatedProducts[$i][2][0].'" width="'.$relatedProducts[$i][2][1].'" height="'.$relatedProducts[$i][2][2].'" /><h4>' . $relatedProducts[$i][0] . '</h4>' . $relatedProducts[$i][3] . '</a></li>';
+        }
+        echo "</ul>\n<div class=\"clearfix\"></div></div>\n</section>\n";
+    endif;
+}
+
 /******************************
 CODE FOR CUSTOM POST TYPES
 ******************************/
