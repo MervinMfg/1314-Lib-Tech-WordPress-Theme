@@ -195,7 +195,7 @@ function getRelatedProducts () {
     // display additional products
     $post_objects = get_field('libtech_product_associated');
     if( $post_objects ):
-        echo "<div class=\"bg-product-" . $GLOBALS['sport'] . "-top\"></div><section class=\"product-related bg-product-" . $GLOBALS['sport'] . "\">\n<div class=\"section-content\">\n";
+        echo "<div class=\"product-replated-top bg-product-" . $GLOBALS['sport'] . "-top\"></div><section class=\"product-related bg-product-" . $GLOBALS['sport'] . "\">\n<div class=\"section-content\">\n";
         $relatedProducts = Array();
         // get each related product
         foreach( $post_objects as $post_object):
@@ -214,19 +214,13 @@ function getRelatedProducts () {
         // randomly sort related products array
         shuffle($relatedProducts);
         // render out max of 4 related products
-        echo "<h2>Suggested Products</h2>\n<ul>\n";
+        echo "<h2>But wait, there's more:</h2>\n<ul>\n";
         // loop through products
         for($i = 0; $i < count($relatedProducts); ++$i) {
-            if($i == 4){
+            if($i == 6){
                 break;
             }
-            // give the 4th product a class of last
-            if(($i + 1) % 4 == 0){
-                $relatedClass = "product-item last";
-            }else{
-                $relatedClass = "product-item";
-            }
-            echo '<li class="'. $relatedClass .'"><a href="'. $relatedProducts[$i][1] .'"><img src="'.$relatedProducts[$i][2][0].'" width="'.$relatedProducts[$i][2][1].'" height="'.$relatedProducts[$i][2][2].'" /><h4>' . $relatedProducts[$i][0] . '</h4>' . $relatedProducts[$i][3] . '</a></li>';
+            echo '<li><a href="'. $relatedProducts[$i][1] .'"><img src="'.$relatedProducts[$i][2][0].'" width="'.$relatedProducts[$i][2][1].'" height="'.$relatedProducts[$i][2][2].'" /><div class="related-title h4">' . $relatedProducts[$i][0] . '</div></a></li>';
         }
         echo "</ul>\n<div class=\"clearfix\"></div></div>\n</section>\n";
     endif;
@@ -275,7 +269,7 @@ function register_custom_post_types() {
         'rewrite' => array("slug" => "snowboards"),
         'capability_type' => 'page',
         'has_archive' => false, 
-        'hierarchical' => true,
+        'hierarchical' => false,
         'menu_position' => null,
         'supports' => array( 'title', 'editor', 'page-attributes', 'comments' )
     ); 
@@ -335,7 +329,7 @@ function register_custom_post_types() {
         'rewrite' => array("slug" => "bent-metal/bindings"),
         'capability_type' => 'page',
         'has_archive' => false, 
-        'hierarchical' => true,
+        'hierarchical' => false,
         'menu_position' => null,
         'supports' => array( 'title', 'editor', 'page-attributes', 'comments' )
     ); 
@@ -368,7 +362,7 @@ function register_custom_post_types() {
         'rewrite' => array("slug" => "nas"),
         'capability_type' => 'page',
         'has_archive' => false, 
-        'hierarchical' => true,
+        'hierarchical' => false,
         'menu_position' => null,
         'supports' => array( 'title', 'editor', 'page-attributes', 'comments' )
     ); 
@@ -401,7 +395,7 @@ function register_custom_post_types() {
         'rewrite' => array("slug" => 'skateboards'),
         'capability_type' => 'page',
         'has_archive' => false, 
-        'hierarchical' => true,
+        'hierarchical' => false,
         'menu_position' => null,
         'supports' => array( 'title', 'editor', 'page-attributes', 'comments' )
     ); 
@@ -555,7 +549,7 @@ function register_custom_post_types() {
         'rewrite' => array("slug" => 'outerwear'),
         'capability_type' => 'page',
         'has_archive' => false, 
-        'hierarchical' => true,
+        'hierarchical' => false,
         'menu_position' => null,
         'supports' => array( 'title', 'editor', 'page-attributes', 'comments' )
     ); 
@@ -616,7 +610,7 @@ function register_custom_post_types() {
         'rewrite' => array("slug" => 'apparel'),
         'capability_type' => 'page',
         'has_archive' => false, 
-        'hierarchical' => true,
+        'hierarchical' => false,
         'menu_position' => null,
         'supports' => array( 'title', 'editor', 'page-attributes', 'comments' )
     ); 
@@ -677,7 +671,7 @@ function register_custom_post_types() {
         'rewrite' => array("slug" => 'accessories'),
         'capability_type' => 'page',
         'has_archive' => false, 
-        'hierarchical' => true,
+        'hierarchical' => false,
         'menu_position' => null,
         'supports' => array( 'title', 'editor', 'page-attributes', 'comments' )
     ); 
@@ -738,7 +732,7 @@ function register_custom_post_types() {
         'rewrite' => array("slug" => 'luggage'),
         'capability_type' => 'page',
         'has_archive' => false, 
-        'hierarchical' => true,
+        'hierarchical' => false,
         'menu_position' => null,
         'supports' => array( 'title', 'editor', 'page-attributes', 'comments' )
     ); 

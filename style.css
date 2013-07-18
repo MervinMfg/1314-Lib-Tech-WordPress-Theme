@@ -381,6 +381,7 @@ h4, .h4 {
   font-size: 1em;
   /* 16 / 16 */
   font-weight: 700;
+  line-height: 1em;
   color: yellow;
 }
 
@@ -1960,24 +1961,63 @@ footer .footer-copy {
   text-align: right;
 }
 
+.product-replated-top {
+  display: none;
+}
+
 .product-related {
   padding: 0 20px;
+  display: none;
 }
 .product-related h2 {
   color: #000;
 }
 .product-related ul li {
-  width: 25%;
+  width: 33.33%;
   float: left;
+  position: relative;
+}
+.product-related ul li:nth-child(4), .product-related ul li:nth-child(5), .product-related ul li:nth-child(6) {
+  display: none;
+}
+.product-related ul li a {
+  padding: 0 10px;
+  display: block;
+}
+.product-related ul li a img {
+  width: 100%;
+  height: auto;
+}
+.product-related ul li a .related-title {
+  background-color: #000;
+  padding: 5px 10px;
+  position: absolute;
+  width: 80%;
+  top: 40%;
+  left: 10%;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 300ms ease-in-out;
+  -webkit-transition: opacity 300ms ease-in-out;
+  -moz-transition: opacity 300ms ease-in-out;
+  -o-transition: opacity 300ms ease-in-out;
+}
+.product-related ul li a:hover .related-title {
+  opacity: 1;
 }
 
 /* Discussion styles
 -------------------------------------------------------------------------------*/
-.discussion h2 {
-  padding: 0 20px 20px;
+.discussion-top {
+  display: none;
 }
-.discussion .discussion-thread {
+
+.discussion {
+  display: none;
   padding: 0 20px;
+}
+.discussion h2 {
+  padding-bottom: 20px;
 }
 .discussion .discussion-thread .fb_iframe_widget,
 .discussion .discussion-thread .fb_iframe_widget span,
@@ -2210,6 +2250,15 @@ footer .footer-copy {
   .product-extras .product-tech-minor ul li .tech-pad {
     padding: 10px;
   }
+
+  .product-replated-top, .product-related {
+    display: block;
+  }
+
+  /* Discussion styles */
+  .discussion-top, .discussion {
+    display: block;
+  }
 }
 @media screen and (min-width: 768px) {
   /* General Styles */
@@ -2308,6 +2357,13 @@ footer .footer-copy {
   .product-video .video-copy .quote,
   .product-video .video-copy .quote-attribution {
     padding-left: 20px;
+  }
+
+  .product-related ul li {
+    width: 25%;
+  }
+  .product-related ul li:nth-child(4) {
+    display: block;
   }
 }
 /* Desktop Styles
@@ -2477,6 +2533,13 @@ footer .footer-copy {
     vertical-align: top;
     text-align: left;
   }
+
+  .product-related ul li {
+    width: 20%;
+  }
+  .product-related ul li:nth-child(5) {
+    display: block;
+  }
 }
 @media screen and (min-width: 1200px) {
   /* homepage styles */
@@ -2571,6 +2634,13 @@ footer .footer-copy {
     display: inline-block;
     vertical-align: top;
     text-align: left;
+  }
+
+  .product-related ul li {
+    width: 16.66%;
+  }
+  .product-related ul li:nth-child(6) {
+    display: block;
   }
 }
 /* Shopatron Shopping Cart

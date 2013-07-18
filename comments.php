@@ -11,7 +11,7 @@
 ?>
 
 <?php if ( comments_open() ) : ?>
-		<div class="bg1-top"></div>
+		<div class="discussion-top bg1-top"></div>
         <section class="discussion bg1">
         	<div class="section-content">
 				<h2>Discussion:</h2>
