@@ -24,7 +24,7 @@ Template Name: Snowboard Detail
 			       			// add image to array
 			       			// array_push($thumbnailImages, Array($snowboardImageThumb, "Overview", "", ""));
 			       		?>
-			       		<li><a href="<?php echo $snowboardImageFull[0]; ?>" title="<?php the_title(); ?>"><img src="<?php echo $snowboardImageLarge[0]; ?>" alt="<?php the_title(); ?>" width="<?php echo $snowboardImageLarge[1]; ?>" height="<?php echo $snowboardImageLarge[2]; ?>" /></a></li>
+			       		<!--<li><a href="<?php echo $snowboardImageFull[0]; ?>" title="<?php the_title(); ?>"><img src="<?php echo $snowboardImageLarge[0]; ?>" alt="<?php the_title(); ?>" width="<?php echo $snowboardImageLarge[1]; ?>" height="<?php echo $snowboardImageLarge[2]; ?>" /></a></li>-->
 
 			       		<?php
 							if(get_field('libtech_snowboard_options')):
@@ -34,7 +34,7 @@ Template Name: Snowboard Detail
 
 									$optionImage = get_sub_field('libtech_snowboard_options_img');
 									$optionImageThumb = wp_get_attachment_image_src($optionImage, 'thumbnail', false);
-				       				$optionImageMedium = wp_get_attachment_image_src($optionImage, 'medium', false);
+				       				$optionImageMedium = wp_get_attachment_image_src($optionImage, 'large', false);
 				       				$optionImageFull = wp_get_attachment_image_src($optionImage, 'full', false);
 
 									// get variations
@@ -70,134 +70,143 @@ Template Name: Snowboard Detail
 						
 					</ul>
 				</div><!-- END .product-images -->
-				<h3><?php the_field('libtech_product_slogan'); ?></h3>
-				<ul class="image-list-thumbs <?php if(count($thumbnailImages) < 2){ echo 'hidden'; }?>">
-					<?php if($thumbnailImages): foreach ($thumbnailImages as $thumbnail) { ?>
 
-					<li><a href="<?php echo $thumbnail[1][0]; ?>" title="<?php the_title(); ?> - <?php echo $thumbnail[3]; ?>" data-sku="<?php echo $thumbnail[4]; ?>"><img src="<?php echo $thumbnail[0][0]; ?>" alt="<?php the_title(); ?> - <?php echo $thumbnail[3]; ?>" width="<?php echo $thumbnail[0][1]; ?>" height="<?php echo $thumbnail[0][2]; ?>" /></a></li>
-					
-					<?php }; endif; ?>
-				</ul>
-				<div class="clearfix"></div>
-				<div class="product-price">
-					<?php echo getPrice( get_field('libtech_product_price_us'), get_field('libtech_product_price_ca'), get_field('libtech_product_on_sale'), get_field('libtech_product_sale_percentage') ); ?>
-				</div>
-				<?php
-					$snowboards = Array();
-					$isProductAvailable = "No";
-					if(get_field('libtech_snowboard_options')):
-						while(the_repeater_field('libtech_snowboard_options')):
-							$optionName = get_sub_field('libtech_snowboard_options_name');
-							// get variations
-							$optionVariations = get_sub_field('libtech_snowboard_options_variations');
-							// loop through variations
-							for ($i = 0; $i < count($optionVariations); $i++) {
-								$variationWidth = $optionVariations[$i]['libtech_snowboard_options_variations_width'];
-								$variationLength = $optionVariations[$i]['libtech_snowboard_options_variations_length'];
-								$variationSKU = $optionVariations[$i]['libtech_snowboard_options_variations_sku'];
-								if ($GLOBALS['language'] == "ca") {
-									$variationAvailable = $optionVariations[$i]['libtech_snowboard_options_variations_availability_ca'];
-								} else {
-									$variationAvailable = $optionVariations[$i]['libtech_snowboard_options_variations_availability_us'];
-								}
-								// set overall availability
-								if($variationAvailable == "Yes"){
-									$isProductAvailable = "Yes";
-								}
-								// setup readable short form of length and width
-								if($variationWidth == "Narrow"){
-									$variationLength = $variationLength . "N";
-								}else if($variationWidth == "Wide"){
-									$variationLength = $variationLength . "W";
-								}
-								// setup variation name
-								if($optionName != ""){
-									$variationName = $variationLength . " - " . $optionName;
-								}else{
-									$variationName = $variationLength;
-								}
-								
+				<div class="product-details-right">
+					<h3><?php the_field('libtech_product_slogan'); ?></h3>
+					<div class="image-list-thumbs">
+						<ul class="<?php if(count($thumbnailImages) < 2){ echo 'hidden'; }?>" id="image-list-thumbs">
+							<?php if($thumbnailImages): $i = 0; foreach ($thumbnailImages as $thumbnail) { ?>
 
-								array_push($snowboards, Array($variationName, $variationSKU, $variationAvailable));
-							}
-						endwhile;
-					endif;
-				?>
-				<div class="product-variations <?php if($isProductAvailable == "No"){echo 'hide';} ?>">
-					<select id="product-variation">
-						<option value="-1">Select a Size</option>
-						<?php
-							// sort by variation name
-							asort($snowboards);
-							// render out snowboards dropdown
-							foreach ($snowboards as $snowboard) {
-						?>
-						<option value="<?php echo $snowboard[1]; ?>" title="<?php echo $snowboard[0]; ?>"<?php if($snowboard[2] == "No") echo ' disabled="disabled"'; ?>><?php echo $snowboard[0]; ?></option>
-						<?php
-							}
-						?>
-					</select>
-				</div>
-				<div class="product-buy">
-					<ul>
-						<?php if($isProductAvailable == "Yes"): ?>
-						<li class="loading hidden"></li>
-						<li class="cart-button visible"><a href="#add-to-cart" class="add-to-cart h3">Add to Cart</a> <img src="<?php bloginfo('template_directory'); ?>/_/img/shopatron-secure-logo.png" alt="Shopatron Secure" /></li>
-						<?php else: ?>
-						<li>Item is currently not available online.</li>
-						<?php endif; ?>
-						<li class="find-dealer h4"><a href="/store-locator/">Find a Dealer</a></li>
-					</ul>
-					<div class="cart-success"><p>The item has been added to your cart.</p><p><a href="/shopping-cart/" class="cart-link">View your shopping cart</a></p></div>
-					<div class="cart-failure"><p>There has been an error adding the item to your cart.</p><p>Try again later or <a href="/contact/">contact us</a> if the problem persists.</p></div>
-				</div>
-				<ul class="product-quick-specs">
-					<li><span>Shape</span> <?php the_field('libtech_snowboard_shape'); ?></li>
-					<li><span>Contour</span> <?php the_field('libtech_snowboard_contour'); ?></li>
+							<li><a href="<?php echo $thumbnail[1][0]; ?>" title="<?php the_title(); ?> - <?php echo $thumbnail[3]; ?>" data-sku="<?php echo $thumbnail[4]; ?>" data-slide-index="<?php echo $i; ?>"><img src="<?php echo $thumbnail[0][0]; ?>" alt="<?php the_title(); ?> - <?php echo $thumbnail[3]; ?>" width="<?php echo $thumbnail[0][1]; ?>" height="<?php echo $thumbnail[0][2]; ?>" /></a></li>
+							
+							<?php $i ++; }; endif; ?>
+						</ul>
+					</div>
+					<div class="product-price">
+						<?php echo getPrice( get_field('libtech_product_price_us'), get_field('libtech_product_price_ca'), get_field('libtech_product_on_sale'), get_field('libtech_product_sale_percentage') ); ?>
+					</div>
 					<?php
-						// build array of sizes
-						$snowboardSizes = Array();
-						if(get_field('libtech_snowboard_specs')):
-							while(the_repeater_field('libtech_snowboard_specs')):
-								$snowboardLength = get_sub_field('libtech_snowboard_specs_length');
-								$snowboardWidth = get_sub_field('libtech_snowboard_specs_width');
-								// add the proper width abbreviation if not standard
-								if($snowboardWidth == "Narrow"){
-									$snowboardLength = $snowboardLength . "N";
-								}else if($snowboardWidth == "Wide"){
-									$snowboardLength = $snowboardLength . "W";
+						$snowboards = Array();
+						$isProductAvailable = "No";
+						if(get_field('libtech_snowboard_options')):
+							while(the_repeater_field('libtech_snowboard_options')):
+								$optionName = get_sub_field('libtech_snowboard_options_name');
+								// get variations
+								$optionVariations = get_sub_field('libtech_snowboard_options_variations');
+								// loop through variations
+								for ($i = 0; $i < count($optionVariations); $i++) {
+									$variationWidth = $optionVariations[$i]['libtech_snowboard_options_variations_width'];
+									$variationLength = $optionVariations[$i]['libtech_snowboard_options_variations_length'];
+									$variationSKU = $optionVariations[$i]['libtech_snowboard_options_variations_sku'];
+									if ($GLOBALS['language'] == "ca") {
+										$variationAvailable = $optionVariations[$i]['libtech_snowboard_options_variations_availability_ca'];
+									} else {
+										$variationAvailable = $optionVariations[$i]['libtech_snowboard_options_variations_availability_us'];
+									}
+									// set overall availability
+									if($variationAvailable == "Yes"){
+										$isProductAvailable = "Yes";
+									}
+									// setup readable short form of length and width
+									if($variationWidth == "Narrow"){
+										$variationLength = $variationLength . "N";
+									}else if($variationWidth == "Wide"){
+										$variationLength = $variationLength . "W";
+									}
+									// setup variation name
+									if($optionName != ""){
+										$variationName = $variationLength . " - " . $optionName;
+									}else{
+										$variationName = $variationLength;
+									}
+									
+
+									array_push($snowboards, Array($variationName, $variationSKU, $variationAvailable));
 								}
-								// add size to array
-								array_push($snowboardSizes, $snowboardLength);
 							endwhile;
 						endif;
-						// sort sizes
-						array_multisort($snowboardSizes, SORT_ASC);
-						// setup sizes text display
-						$sizes = "";
-						for ($i = 0; $i < count($snowboardSizes); $i++) {
-							$sizes .= $snowboardSizes[$i];
-							if($i < count($snowboardSizes)-1){
-								$sizes .= ", ";
-							}
-						}
 					?>
-					<li><span>Sizes</span> <?php echo $sizes; ?></li>
-				</ul>
-				<ul class="product-share">
-					<li><div class="fb-like" data-href="<? the_permalink(); ?>" data-layout="button_count" data-width="120" data-show-faces="false" data-colorscheme="dark" data-font="trebuchet ms"></div></li>
-					<li><a href="https://twitter.com/share" class="twitter-share-button" data-via="libtechnologies">Tweet</a></li>
-					<li><div class="g-plusone" data-size="medium" data-href="<? the_permalink(); ?>"></div></li>
-					<li><a href="http://pinterest.com/pin/create/button/?url=<?php the_permalink(); ?>&media=<?php echo $GLOBALS['pageImage']; ?>&description=<?php echo $GLOBALS['pageTitle']; ?>" class="pin-it-button" count-layout="horizontal"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It" /></a></li>
-				</ul>
+					<div class="product-variations <?php if($isProductAvailable == "No"){echo 'hide';} ?>">
+						<select id="product-variation">
+							<option value="-1">Select a Size</option>
+							<?php
+								// sort by variation name
+								asort($snowboards);
+								// render out snowboards dropdown
+								foreach ($snowboards as $snowboard) {
+							?>
+							<option value="<?php echo $snowboard[1]; ?>" title="<?php echo $snowboard[0]; ?>"<?php if($snowboard[2] == "No") echo ' disabled="disabled"'; ?>><?php echo $snowboard[0]; ?></option>
+							<?php
+								}
+							?>
+						</select>
+					</div>
+					<div class="product-buy">
+						<ul>
+							<?php if($isProductAvailable == "Yes"): ?>
+							<li class="loading hidden"></li>
+							<li class="cart-button visible"><a href="#add-to-cart" class="add-to-cart h3">Add to Cart</a> <img src="<?php bloginfo('template_directory'); ?>/_/img/shopatron-secure-logo.png" alt="Shopatron Secure" /></li>
+							<?php else: ?>
+							<li>Item is currently not available online.</li>
+							<?php endif; ?>
+							<li class="find-dealer h4"><a href="/store-locator/">Find a Dealer</a></li>
+						</ul>
+						<div class="cart-success"><p>The item has been added to your cart.</p><p><a href="/shopping-cart/" class="cart-link">View your shopping cart</a></p></div>
+						<div class="cart-failure"><p>There has been an error adding the item to your cart.</p><p>Try again later or <a href="/contact/">contact us</a> if the problem persists.</p></div>
+					</div>
+					<ul class="product-quick-specs">
+						<li><span>Shape</span> <?php the_field('libtech_snowboard_shape'); ?></li>
+						<li><span>Contour</span> <?php the_field('libtech_snowboard_contour'); ?></li>
+						<?php
+							// build array of sizes
+							$snowboardSizes = Array();
+							if(get_field('libtech_snowboard_specs')):
+								while(the_repeater_field('libtech_snowboard_specs')):
+									$snowboardLength = get_sub_field('libtech_snowboard_specs_length');
+									$snowboardWidth = get_sub_field('libtech_snowboard_specs_width');
+									// add the proper width abbreviation if not standard
+									if($snowboardWidth == "Narrow"){
+										$snowboardLength = $snowboardLength . "N";
+									}else if($snowboardWidth == "Wide"){
+										$snowboardLength = $snowboardLength . "W";
+									}
+									// add size to array
+									array_push($snowboardSizes, $snowboardLength);
+								endwhile;
+							endif;
+							// sort sizes
+							array_multisort($snowboardSizes, SORT_ASC);
+							// setup sizes text display
+							$sizes = "";
+							for ($i = 0; $i < count($snowboardSizes); $i++) {
+								$sizes .= $snowboardSizes[$i];
+								if($i < count($snowboardSizes)-1){
+									$sizes .= ", ";
+								}
+							}
+						?>
+						<li><span>Sizes</span> <?php echo $sizes; ?></li>
+					</ul>
+					<ul class="product-share">
+						<li><div class="fb-like" data-href="<? the_permalink(); ?>" data-layout="button_count" data-width="120" data-show-faces="false" data-colorscheme="dark" data-font="trebuchet ms"></div></li>
+						<li><a href="https://twitter.com/share" class="twitter-share-button" data-via="libtechnologies">Tweet</a></li>
+						<li><div class="g-plusone" data-size="medium" data-href="<? the_permalink(); ?>"></div></li>
+						<li><a href="http://pinterest.com/pin/create/button/?url=<?php the_permalink(); ?>&media=<?php echo $GLOBALS['pageImage']; ?>&description=<?php echo $GLOBALS['pageTitle']; ?>" class="pin-it-button" count-layout="horizontal"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It" /></a></li>
+					</ul>
+				</div><!-- END .product-details-right -->
 				<div class="clearfix"></div>
-			</div>
+			</div><!-- END .section-content -->
 		</section>
-
-
 		<div class="bg2-top"></div>
-        <section class="product-extras bg2">
+        <section class="product-extras bg2 info">
         	<div class="section-content">
+        		<div class="product-mobile-nav">
+        			<ul>
+        				<li><a href="#info" class="h3 selected" id="info">Info</a></li>
+        				<li><a href="#specs" class="h3" id="specs">Specs</a></li>
+        				<li><a href="#tech" class="h3" id="tech">Tech</a></li>
+        			</ul>
+        		</div>
         		<div class="product-desc-awards-specs">
         			<div class="product-desc-awards">
 		        		<div class="product-description">
@@ -381,7 +390,7 @@ Template Name: Snowboard Detail
 			$videoID = get_field('libtech_product_video');
 			if( $videoID ):
 		?>
-		<div class="bg3-top"></div>
+		<div class="bg3-top product-video-top"></div>
         <section class="bg3 product-video">
         	<div class="section-content">
 				<h2><span>Product Video:</span></h2>

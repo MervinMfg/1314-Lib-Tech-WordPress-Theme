@@ -482,9 +482,96 @@ LIBTECH.main = {
         });
     },
     productDetailInit: function () {
-        var self = this;
+        var self, slider, thumbSlider;
+        self = this;
         $(".product-tech-major").fitVids();
         $(".product-video").fitVids();
+        // navigation when displayed below 600px (mobile phone)
+        $('.product-extras .product-mobile-nav ul li a').click(function (e) {
+            e.preventDefault();
+            // update extras display
+            $('.product-extras').removeClass('info specs tech');
+            $('.product-extras').addClass($(this).attr('id'));
+            // update video top border display
+            $('.product-video-top').removeClass('info specs tech');
+            $('.product-video-top').addClass($(this).attr('id'));
+            // update video display
+            $('.product-video').removeClass('info specs tech');
+            $('.product-video').addClass($(this).attr('id'));
+            // update nav item state
+            $('.product-extras .product-mobile-nav ul li a').each( function() {
+                $(this).removeClass('selected');
+            });
+            $(this).addClass('selected');
+        });
+
+        // grab any gallery images and turn them into a lightbox
+        //$('.product-images #image-list li a').colorbox({rel: 'productImages'});
+        // grab view all specs link and turn into lightbox
+        //$('a.get_specs').colorbox({width: 980, height: 600, iframe: true});
+
+        // assign the slider to a variable
+        slider = $('#image-list').bxSlider({
+            controls: false,
+            mode: 'fade',
+            pagerCustom: '#image-list-thumbs'
+        });
+
+        thumbSlider = $('#image-list-thumbs').bxSlider({
+            slideWidth: 100,
+            minSlides: 2,
+            maxSlides: 8,
+            slideMargin: 10,
+            controls: true,
+            pager: false,
+            mode: 'horizontal',
+            moveSlides: 2,
+            infiniteLoop: false,
+            hideControlOnEnd: true
+        });
+
+        /*// assign a click event to the external thumbnails
+        $('.image-list-thumbs a').click(function () {
+            var thumbIndex = $('.image-list-thumbs a').index(this);
+            // call the "goToSlide" public function
+            slider.goToSlide(thumbIndex+1); // skip overview index
+
+            // remove all active classes
+            $('.image-list-thumbs a').removeClass('pager-active');
+            // assisgn "pager-active" to clicked thumb
+            $(this).addClass('pager-active');
+            // very important! you must kill the links default behavior
+            return false;
+        });*/
+        // assign "pager-active" class to the first thumb
+        // $('.image-list-thumbs a:first').addClass('pager-active');
+
+        
+
+        /*// select the appropriate board
+        $('#product-variation').change(function () {
+            // select the correct image
+            var boardSKU, boardThumbs;
+            boardSKU = $(this).val();
+            boardSKUs = [];
+
+            if (boardSKU != "-1") {
+                $('#product-variation-label').removeClass('alert');
+            }
+
+            $(".image-list-thumbs li a").each(function(){
+                var skus = $(this).attr('data-sku');
+                boardSKUs.push([$(this), skus]);
+            });
+
+            for (var i=0; i < boardSKUs.length; i++) {
+                var skus = boardSKUs[i][1];
+
+                if (skus.indexOf(boardSKU) != -1) {
+                    boardSKUs[i][0].click();
+                }
+            }
+        });*/
     },
     shoppingCartInit: function () {
         var self, lang, regionCookie;
