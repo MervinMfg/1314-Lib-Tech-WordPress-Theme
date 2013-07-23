@@ -1667,6 +1667,16 @@ footer {
 		}
 		li {
 			float: left;
+
+			a {
+				img {
+					opacity: .65;
+					@include fadeOpacity(200ms);
+				}
+				&:hover img, &:focus img, &.active img {
+					opacity: 1;
+				}
+			}
 		}
 	}
 	.product-price {
@@ -1780,6 +1790,56 @@ footer {
 .skate .product-details .product-buy .cart-success, .skate .product-details .product-buy .cart-failure {
 	border-color: $skateColor;
 }
+.product-zoom {
+	display: none;
+
+	.section-content {
+		position: relative;
+		min-height: 250px;
+
+		.zoom-title {
+			text-align: center;
+		}
+		.zoom-image {
+			img {
+				width: 100%;
+			}
+		}
+		.zoom-controls {
+			position: absolute;
+			top: 0;
+			right: 20px;
+			width: 200px;
+			text-align: center;
+
+			.zoom-close {
+				padding: 5px 10px;
+				color: #000;
+				background: $snowColor;
+				display: inline-block;
+				clear: both;
+				margin-bottom: 40px;
+			}
+			ul {
+				clear: both;
+				li {
+					float: left;
+					padding: 0 0 10px;
+
+					a {
+						img {
+							opacity: .65;
+							@include fadeOpacity(200ms);
+						}
+						&:hover img, &:focus img, &.active img {
+							opacity: 1;
+						}
+					}
+				}
+			}
+		}
+	}
+}
 .product-extras {
 	padding-right: 20px;
 	padding-left: 20px;
@@ -1806,7 +1866,6 @@ footer {
 			}
 		}
 	}
-
 	&.info .product-specs,
 	&.info .product-tech-major,
 	&.info .product-tech-minor {
@@ -1823,7 +1882,6 @@ footer {
 	&.tech .product-specs {
 		display: none;
 	}
-
 	.product-description {
 		
 		margin-bottom: 20px;
@@ -1843,7 +1901,6 @@ footer {
 			}
 		}
 	}
-
 	.product-awards {
 		padding-bottom: 20px;
 
@@ -1890,7 +1947,6 @@ footer {
 			}
 		}
 	}
-
 	.product-specs {
 		padding-bottom: 20px;
 		overflow: hidden;
@@ -1928,7 +1984,6 @@ footer {
 			}
 		}
 	}
-
 	.product-tech-major {
 		h2 {
 			margin-bottom: 10px;
@@ -1971,6 +2026,30 @@ footer {
 				clear: both;
 			}
 		}
+	}
+}
+.ski .product-extras .product-mobile-nav li a {
+	background: $skiColor;
+
+	&.selected {
+		color: $skiColor;
+		background: none;
+	}
+}
+.surf .product-extras .product-mobile-nav li a {
+	background: $surfColor;
+
+	&.selected {
+		color: $surfColor;
+		background: none;
+	}
+}
+.skate .product-extras .product-mobile-nav li a {
+	background: $skateColor;
+
+	&.selected {
+		color: $skateColor;
+		background: none;
 	}
 }
 .product-video-top {
@@ -2327,6 +2406,9 @@ footer {
 	}
 	/* Product Detail Styles */
 	.product-details {
+		&.hide {
+			display: none;
+		}
 		h1 {
 			text-align: left;
 			width: 50%;
@@ -2350,6 +2432,9 @@ footer {
 		h3, .product-price, .product-variations, .product-buy, .product-quick-specs, .product-share {
 			max-width: 540px;
 		}
+	}
+	.product-zoom.show {
+		display: block;
 	}
 	.product-extras {
 		.product-mobile-nav {

@@ -504,9 +504,59 @@ LIBTECH.main = {
             });
             $(this).addClass('selected');
         });
+        
+        // check for browser resize and see if desktop zoom should occur
+        $(window).on('resize.productZoom', function() {
+            if (self.utilities.getMediaWidth() >= 600) { // if not mobile, trigger zoom on click
+                $('.product-images #image-list li a').on('click.productZoom', function (e) {
+                    e.preventDefault();
+                    initZoom($(this).parent().index());
+                });
+            } else { // if mobile, do not zoom on click
+                $('.product-images #image-list li a').off('click.productZoom');
+            }
+        });
+        $(window).resize(); // trigger resize to init features
+        // add product image zoom features
+        function initZoom(clickIndex) {
+            $('.product-zoom').addClass('show');
+            $('.product-details').addClass('hide');
+            // add close event
+            $('.product-zoom .zoom-close').on('click.productZoom', function (e) {
+                uninitZoom();
+            });
+            // get thumbnail images from page
+            var thumbnailList = $('#image-list-thumbs').html();
+            $('#zoom-thumbnails').html(thumbnailList);
+            // reset style and classes on thumbnails
+            $('#zoom-thumbnails li').attr('style', '');
+            $('#zoom-thumbnails li a').attr('class', '');
+            // listen for clicks on thumbnails to load proper image
+            $('#zoom-thumbnails li a').on('click.productZoom', function (e) {
+                e.preventDefault();
+                // change source of zoom image
+                $('.product-zoom .zoom-image img').attr('src', $(this).attr('href'));
+                // remove active class from all and add to selected
+                $('#zoom-thumbnails li a').each( function() {
+                    $(this).removeClass('active');
+                });
+                $(this).addClass('active');
+                // update title above product
+                $('.product-zoom .zoom-title').html($(this).children('img').attr('alt'));
+            });
+            // trigger click of correct indexed image
+            $('#zoom-thumbnails li a:eq(' + clickIndex + ')').click();
+        }
+        // remove product image zoom features
+        function uninitZoom() {
+            // kill listeners
+            $('.product-zoom .zoom-close').off('click.productZoom');
+            $('#zoom-thumbnails li a').off('click.productZoom');
+            // swap display
+            $('.product-zoom').removeClass('show');
+            $('.product-details').removeClass('hide');
+        }
 
-        // grab any gallery images and turn them into a lightbox
-        //$('.product-images #image-list li a').colorbox({rel: 'productImages'});
         // grab view all specs link and turn into lightbox
         //$('a.get_specs').colorbox({width: 980, height: 600, iframe: true});
 
@@ -529,24 +579,6 @@ LIBTECH.main = {
             infiniteLoop: false,
             hideControlOnEnd: true
         });
-
-        /*// assign a click event to the external thumbnails
-        $('.image-list-thumbs a').click(function () {
-            var thumbIndex = $('.image-list-thumbs a').index(this);
-            // call the "goToSlide" public function
-            slider.goToSlide(thumbIndex+1); // skip overview index
-
-            // remove all active classes
-            $('.image-list-thumbs a').removeClass('pager-active');
-            // assisgn "pager-active" to clicked thumb
-            $(this).addClass('pager-active');
-            // very important! you must kill the links default behavior
-            return false;
-        });*/
-        // assign "pager-active" class to the first thumb
-        // $('.image-list-thumbs a:first').addClass('pager-active');
-
-        
 
         /*// select the appropriate board
         $('#product-variation').change(function () {
