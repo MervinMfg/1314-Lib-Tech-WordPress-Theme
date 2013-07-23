@@ -186,8 +186,8 @@
 	<script src="<?php bloginfo('template_directory'); ?>/_/js/lib/respond.min.js"></script>
 	<![endif]-->
 	<!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if necessary -->
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery-1.10.1.min.js"><\/script>')</script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery-1.10.2.min.js"><\/script>')</script>
     <!-- WordPress Head -->
 	<?php wp_head(); ?>
 </head>
