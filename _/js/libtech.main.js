@@ -5,7 +5,7 @@
     AUTHOR brian.behrens@mervin.com
 
     DEPENDENCIES:
-    - jQuery v1.10.1
+    - jQuery v1.10.2
     - Modernizr 2.6.2
     - Shopatron API v2.2.0
     - FitVids 1.0
@@ -42,6 +42,8 @@ LIBTECH.main = {
             self.blogSingleInit();
         } else if ($('body').hasClass('page-template-page-support-faq-php')) {
             self.faqInit();
+        } else if ($('body').hasClass('page-template-page-snowboard-builder-php')) {
+            LIBTECH.snowboardbuilder.init();
         }
     },
     initShopatron: function () {
@@ -178,8 +180,10 @@ LIBTECH.main = {
             }
         } else {
             if (navigator.cookieEnabled === true) {
-                // if no region cookie has been set, open selector
-                //self.regionSelectorOverlayInit();
+                // if no region cookie has been set, open selector if on product page
+                if ($('body').hasClass('page-template-page-snowboard-builder-php')) {
+                    self.regionSelectorOverlayInit();
+                }
                 // pick us by default
                 self.utilities.cookie.setCookie('libtech_region', 'us', 60);
                 $(".country-us").addClass("selected");
