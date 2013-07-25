@@ -32,11 +32,6 @@ Template Name: Snowboard Detail
 
 									$optionName = get_sub_field('libtech_snowboard_options_name');
 
-									$optionImage = get_sub_field('libtech_snowboard_options_img');
-									$optionImageThumb = wp_get_attachment_image_src($optionImage, 'thumbnail', false);
-				       				$optionImageMedium = wp_get_attachment_image_src($optionImage, 'large', false);
-				       				$optionImageFull = wp_get_attachment_image_src($optionImage, 'full', false);
-
 									// get variations
 									$optionVariations = get_sub_field('libtech_snowboard_options_variations');
 									$optionVariationSizes = "";
@@ -60,10 +55,22 @@ Template Name: Snowboard Detail
 											$optionVariationSKUs .= ", ";
 										}
 									}
-									array_push($thumbnailImages, Array($optionImageThumb, $optionImageFull, $optionName, $optionVariationSizes, $optionVariationSKUs));
+									
+
+									if(get_sub_field('libtech_snowboard_options_images')):
+										while(the_repeater_field('libtech_snowboard_options_images')):
+
+											$optionImage = get_sub_field('libtech_snowboard_options_images_img');
+											$optionImageThumb = wp_get_attachment_image_src($optionImage, 'thumbnail', false);
+				       						$optionImageMedium = wp_get_attachment_image_src($optionImage, 'large', false);
+				       						$optionImageFull = wp_get_attachment_image_src($optionImage, 'full', false);
+
+				       						array_push($thumbnailImages, Array($optionImageThumb, $optionImageFull, $optionName, $optionVariationSizes, $optionVariationSKUs));
 						?>
 						<li><a href="<?php echo $optionImageFull[0]; ?>" title="<?php the_title(); ?> - <?php echo $optionVariationSizes; ?>"><img src="<?php echo $optionImageMedium[0]; ?>" alt="<?php the_title(); ?> - <?php echo $optionVariationSizes; ?>" width="<?php echo $optionImageMedium[1]; ?>" height="<?php echo $optionImageMedium[2]; ?>" /></a></li>
 						<?php
+										endwhile;
+				       				endif;
 								endwhile;
 							endif;
 						?>
@@ -77,7 +84,7 @@ Template Name: Snowboard Detail
 						<ul class="<?php if(count($thumbnailImages) < 2){ echo 'hidden'; }?>" id="image-list-thumbs">
 							<?php if($thumbnailImages): $i = 0; foreach ($thumbnailImages as $thumbnail) { ?>
 
-							<li><a href="<?php echo $thumbnail[1][0]; ?>" title="<?php the_title(); ?> - <?php echo $thumbnail[3]; ?>" data-sku="<?php echo $thumbnail[4]; ?>" data-slide-index="<?php echo $i; ?>"><img src="<?php echo $thumbnail[0][0]; ?>" alt="<?php the_title(); ?> - <?php echo $thumbnail[3]; ?>" width="<?php echo $thumbnail[0][1]; ?>" height="<?php echo $thumbnail[0][2]; ?>" /></a></li>
+							<li><a href="<?php echo $thumbnail[1][0]; ?>" title="<?php echo $thumbnail[2]; ?> - <?php echo $thumbnail[3]; ?>" data-sku="<?php echo $thumbnail[4]; ?>" data-slide-index="<?php echo $i; ?>"><img src="<?php echo $thumbnail[0][0]; ?>" alt="<?php echo $thumbnail[2]; ?> - <?php echo $thumbnail[3]; ?>" width="<?php echo $thumbnail[0][1]; ?>" height="<?php echo $thumbnail[0][2]; ?>" /></a></li>
 							
 							<?php $i ++; }; endif; ?>
 						</ul>
@@ -249,7 +256,7 @@ Template Name: Snowboard Detail
 						<table>
 							<thead>
 								<tr>
-									<th>Model<br />Name</th>
+									<th>Size</th>
 									<th>Contact<br />Length</th>
 									<th>Side<br />Cut</th>
 									<th>Nose<br />Width</th>
@@ -286,12 +293,18 @@ Template Name: Snowboard Detail
 
 								<?php endwhile; endif; ?>
 							</tbody>
-							<thead>
+							<tfoot>
 								<tr>
-									<th colspan="7"></th>
-									<th colspan="2"><a href="/snowboarding/specifications/" class="get_specs">View all specs</a></th>
+									<td colspan="2"><a href="/snowboarding/specifications/" class="get_specs">View all specs</a></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
 								</tr>
-							</thead>
+							</tfoot>
 						</table>
 					</div>
 				</div><!-- END .product-desc-awards-specs -->
