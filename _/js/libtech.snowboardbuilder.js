@@ -33,8 +33,9 @@ LIBTECH.snowboardbuilder = {
                 itemOptions: {
                     "Size": "156W",
                     "TopGraphic": "Skate Banana",
-                    "Sidewall": "Slime Green",
+                    "SidewallColor": "Slime Green",
                     "BaseGraphic": "Skunk Ape",
+                    "KnifeCutColor": "Orange",
                     "KnifeCutText": "Input Text",
                     "BadgeText": "Input Text"
                 }
