@@ -29,6 +29,7 @@ if ( function_exists( 'add_image_size' ) ) {
     // additional image sizes
     add_image_size('square-medium', 300, 300, true);
     add_image_size('square-large', 640, 640, true);
+    add_image_size('square-xlarge', 800, 800, true);
     add_image_size('media-email', 560, 300, true);
 }
 // update auto embed sizes for videos

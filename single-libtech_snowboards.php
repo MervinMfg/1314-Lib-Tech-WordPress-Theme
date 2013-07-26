@@ -19,7 +19,7 @@ Template Name: Snowboard Detail
 							// get overview image
 							$overviewImageID = get_field('libtech_product_image');
 							$snowboardImageThumb = wp_get_attachment_image_src($overviewImageID, 'thumbnail', false);
-			       			$snowboardImageLarge = wp_get_attachment_image_src($overviewImageID, 'large', false);
+			       			$snowboardImageLarge = wp_get_attachment_image_src($overviewImageID, 'square-xlarge', false);
 			       			$snowboardImageFull = wp_get_attachment_image_src($overviewImageID, 'full', false);
 			       			// add image to array
 			       			// array_push($thumbnailImages, Array($snowboardImageThumb, "Overview", "", ""));
@@ -62,7 +62,7 @@ Template Name: Snowboard Detail
 
 											$optionImage = get_sub_field('libtech_snowboard_options_images_img');
 											$optionImageThumb = wp_get_attachment_image_src($optionImage, 'thumbnail', false);
-				       						$optionImageMedium = wp_get_attachment_image_src($optionImage, 'large', false);
+				       						$optionImageMedium = wp_get_attachment_image_src($optionImage, 'square-xlarge', false);
 				       						$optionImageFull = wp_get_attachment_image_src($optionImage, 'full', false);
 
 				       						array_push($thumbnailImages, Array($optionImageThumb, $optionImageFull, $optionName, $optionVariationSizes, $optionVariationSKUs));

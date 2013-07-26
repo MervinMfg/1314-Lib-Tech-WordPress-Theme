@@ -1211,6 +1211,9 @@ footer .footer-copy {
 }
 .product-slider .bx-wrapper .bx-viewport ul li a img {
   width: 140%;
+  max-width: 140%;
+  height: auto;
+  margin-left: -20%;
 }
 .product-slider .bx-wrapper .bx-viewport ul li a .product-peek {
   background: #000;

@@ -53,9 +53,18 @@ get_header();
 			<div class="section-content">
 				<ul class="product-listing bxslider">
 		            <?php
+		            	if ($GLOBALS['sport'] == "ski") {
+		            		$postType = "libtech_nas";
+		            	} else if ($GLOBALS['sport'] == "surf") {
+		            		$postType = "libtech_waterboards";
+		            	} else if ($GLOBALS['sport'] == "skate") {
+		            		$postType = "libtech_skateboards";
+		            	} else {
+		            		$postType = "libtech_snowboards";
+		            	}
 		                // Get Snowboards
 		                $args = array(
-		                    'post_type' => 'libtech_snowboards',
+		                    'post_type' => $postType,
 		                    'posts_per_page' => -1,
 		                    'orderby' => 'menu_order',
 		                    'order' => 'ASC',
@@ -64,11 +73,7 @@ get_header();
 		                while ( $loop->have_posts() ) : $loop->the_post();
 		                    $postType = $post->post_type;
 		                    $imageID = get_field('libtech_product_image');
-		                    if($postType != "libtech_nas" && $postType != "libtech_skateboards"){
-		                        $imageFile = wp_get_attachment_image_src($imageID, 'overview-thumb');
-		                    }else{
-		                        $imageFile = wp_get_attachment_image_src($imageID, 'overview-thumb-vertical');
-		                    }
+		                    $imageFile = wp_get_attachment_image_src($imageID, 'square-medium');
 		            ?>
 
 		            <li>
@@ -165,9 +170,18 @@ get_header();
 						endif;
 						wp_reset_query(); // Reset Post Data
 
+						if ($GLOBALS['sport'] == "ski") {
+		            		$postType = "libtech_team_nas";
+		            	} else if ($GLOBALS['sport'] == "surf") {
+		            		$postType = "libtech_team_surf";
+		            	} else if ($GLOBALS['sport'] == "skate") {
+		            		$postType = "libtech_team_skate";
+		            	} else {
+		            		$postType = "libtech_team_snow";
+		            	}
 						// GET TEAM MEMBERS
 	                    $args = array(
-	                        'post_type' => 'libtech_team_snow',
+	                        'post_type' => $postType,
 	                        'posts_per_page' => 3,
 	                        'orderby' => 'rand'
 	                    );
