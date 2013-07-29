@@ -103,7 +103,7 @@ get_header();
             $productArray['title'] = get_the_title();
             $productArray['link'] = get_permalink($post->ID);
             $imageID = get_field('libtech_product_image');
-            $productArray['imageFile'] = wp_get_attachment_image_src($imageID, 'overview-thumb');
+            $productArray['imageFile'] = wp_get_attachment_image_src($imageID, 'square-medium');
             $productArray['available'] = "No";
             $productArray['price'] = getPrice( get_field('libtech_product_price_us'), get_field('libtech_product_price_ca'), get_field('libtech_product_on_sale'), get_field('libtech_product_sale_percentage') );
 
