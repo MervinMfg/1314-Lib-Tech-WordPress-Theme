@@ -266,7 +266,9 @@ LIBTECH.main = {
             controls: true,
             pager: false,
             mode: 'horizontal',
-            moveSlides: 2
+            moveSlides: 2,
+            infiniteLoop: false,
+            hideControlOnEnd: true
         });
 
         $.fn.randomize = function(selector){
