@@ -560,9 +560,12 @@ LIBTECH.main = {
             $('.product-zoom').removeClass('show');
             $('.product-details').removeClass('hide');
         }
-
         // grab view all specs link and turn into lightbox
-        //$('a.get_specs').colorbox({width: 980, height: 600, iframe: true});
+        $('.product-specs a.view-all-specs').magnificPopup({
+            type: 'ajax',
+            disableOn: '768',
+            closeOnBgClick: false
+        });
 
         // assign the slider to a variable
         slider = $('#image-list').bxSlider({
@@ -584,30 +587,62 @@ LIBTECH.main = {
             hideControlOnEnd: true
         });
 
-        /*// select the appropriate board
         $('#product-variation').change(function () {
-            // select the correct image
-            var boardSKU, boardThumbs;
-            boardSKU = $(this).val();
-            boardSKUs = [];
-
-            if (boardSKU != "-1") {
-                $('#product-variation-label').removeClass('alert');
+            // display the correct image matching selected option
+            var productSKU, productSKUs, productThumbs;
+            productSKU = $(this).val();
+            productSKUs = [];
+            if (productSKU != "-1") {
+                $('#product-variation').removeClass('alert');
             }
-
             $(".image-list-thumbs li a").each(function(){
                 var skus = $(this).attr('data-sku');
-                boardSKUs.push([$(this), skus]);
+                productSKUs.push([$(this), skus]);
             });
-
-            for (var i=0; i < boardSKUs.length; i++) {
-                var skus = boardSKUs[i][1];
-
-                if (skus.indexOf(boardSKU) != -1) {
-                    boardSKUs[i][0].click();
+            for (var i=0; i < productSKUs.length; i++) {
+                var skus = productSKUs[i][1];
+                if (skus.indexOf(productSKU) != -1) {
+                    productSKUs[i][0].click();
                 }
             }
-        });*/
+        });
+        // add to cart api btn
+        $('a.add-to-cart').click(function (e) {
+            e.preventDefault();
+            var productSKU;
+            // check size selection
+            productSKU = $('#product-variation').val();
+            if (productSKU === "-1") {
+                // add alert to class
+                $('#product-variation').addClass('alert');
+                return;
+            }
+            // hide add to cart, show loading while request is made
+            $('.product-buy ul li.loading').removeClass('hidden');
+            $('.product-buy ul li.cart-button').addClass('hidden');
+            // make sure to hide cart messages on each add
+            $('.product-buy .cart-success').addClass('hidden');
+            $('.product-buy .cart-failure').addClass('hidden');
+            // call shopatron's api
+            Shopatron.addToCart({
+                quantity: '1', // Optional: Defaults to 1 if not set
+                partNumber: productSKU // Required: This is the product that will be added to the cart.
+            }, {
+                // All event handlers are optional
+                success: function (data, textStatus) {
+                    $('.product-buy .cart-success').removeClass('hidden');
+                    $('.product-buy .cart-failure').addClass('hidden');
+                },
+                error: function (textStatus, errorThrown) {
+                    $('.product-buy .cart-failure').removeClass('hidden');
+                    $('.product-buy .cart-success').addClass('hidden');
+                },
+                complete: function (textStatus) {
+                    $('.product-buy ul li.loading').addClass('hidden');
+                    $('.product-buy ul li.cart-button').removeClass('hidden');
+                }
+            });
+        });
     },
     shoppingCartInit: function () {
         var self, lang, regionCookie;

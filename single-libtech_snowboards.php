@@ -13,20 +13,8 @@ Template Name: Snowboard Detail
 				<h1><?php the_title(); ?></h1>
 				<div class="product-images">
 					<ul id="image-list">
-
-						<?php
-							$thumbnailImages = Array();
-							// get overview image
-							$overviewImageID = get_field('libtech_product_image');
-							$snowboardImageThumb = wp_get_attachment_image_src($overviewImageID, 'thumbnail', false);
-			       			$snowboardImageLarge = wp_get_attachment_image_src($overviewImageID, 'square-xlarge', false);
-			       			$snowboardImageFull = wp_get_attachment_image_src($overviewImageID, 'full', false);
-			       			// add image to array
-			       			// array_push($thumbnailImages, Array($snowboardImageThumb, "Overview", "", ""));
-			       		?>
-			       		<!--<li><a href="<?php echo $snowboardImageFull[0]; ?>" title="<?php the_title(); ?>"><img src="<?php echo $snowboardImageLarge[0]; ?>" alt="<?php the_title(); ?>" width="<?php echo $snowboardImageLarge[1]; ?>" height="<?php echo $snowboardImageLarge[2]; ?>" /></a></li>-->
-
 			       		<?php
+			       			$thumbnailImages = Array();
 							if(get_field('libtech_snowboard_options')):
 								while(the_repeater_field('libtech_snowboard_options')):
 
@@ -55,8 +43,6 @@ Template Name: Snowboard Detail
 											$optionVariationSKUs .= ", ";
 										}
 									}
-									
-
 									if(get_sub_field('libtech_snowboard_options_images')):
 										while(the_repeater_field('libtech_snowboard_options_images')):
 
@@ -80,8 +66,8 @@ Template Name: Snowboard Detail
 
 				<div class="product-details-right">
 					<h3><?php the_field('libtech_product_slogan'); ?></h3>
-					<div class="image-list-thumbs">
-						<ul class="<?php if(count($thumbnailImages) < 2){ echo 'hidden'; }?>" id="image-list-thumbs">
+					<div class="image-list-thumbs <?php if(count($thumbnailImages) < 2){ echo 'hidden'; }?>">
+						<ul id="image-list-thumbs">
 							<?php if($thumbnailImages): $i = 0; foreach ($thumbnailImages as $thumbnail) { ?>
 
 							<li><a href="<?php echo $thumbnail[1][0]; ?>" title="<?php echo $thumbnail[2]; ?> - <?php echo $thumbnail[3]; ?>" data-sku="<?php echo $thumbnail[4]; ?>" data-slide-index="<?php echo $i; ?>"><img src="<?php echo $thumbnail[0][0]; ?>" alt="<?php echo $thumbnail[2]; ?> - <?php echo $thumbnail[3]; ?>" width="<?php echo $thumbnail[0][1]; ?>" height="<?php echo $thumbnail[0][2]; ?>" /></a></li>
@@ -133,7 +119,7 @@ Template Name: Snowboard Detail
 							endwhile;
 						endif;
 					?>
-					<div class="product-variations <?php if($isProductAvailable == "No"){echo 'hide';} ?>">
+					<div class="product-variations <?php if($isProductAvailable == "No"){echo 'hidden';} ?>">
 						<select id="product-variation">
 							<option value="-1">Select a Size</option>
 							<?php
@@ -152,14 +138,14 @@ Template Name: Snowboard Detail
 						<ul>
 							<?php if($isProductAvailable == "Yes"): ?>
 							<li class="loading hidden"></li>
-							<li class="cart-button visible"><a href="#add-to-cart" class="add-to-cart h3">Add to Cart</a> <img src="<?php bloginfo('template_directory'); ?>/_/img/shopatron-secure-logo.png" alt="Shopatron Secure" /></li>
+							<li class="cart-button"><a href="#add-to-cart" class="add-to-cart h3">Add to Cart</a> <img src="<?php bloginfo('template_directory'); ?>/_/img/shopatron-secure-logo.png" alt="Shopatron Secure" /></li>
 							<?php else: ?>
 							<li>Item is currently not available online.</li>
 							<?php endif; ?>
 							<li class="find-dealer h4"><a href="/store-locator/">Find a Dealer</a></li>
 						</ul>
-						<div class="cart-success"><p>The item has been added to your cart.</p><p><a href="/shopping-cart/" class="cart-link">View your shopping cart</a></p></div>
-						<div class="cart-failure"><p>There has been an error adding the item to your cart.</p><p>Try again later or <a href="/contact/">contact us</a> if the problem persists.</p></div>
+						<div class="cart-success hidden"><p>The item has been added to your cart.</p><p><a href="/shopping-cart/" class="cart-link">View your shopping cart</a></p></div>
+						<div class="cart-failure hidden"><p>There has been an error adding the item to your cart.</p><p>Try again later or <a href="/contact/">contact us</a> if the problem persists.</p></div>
 					</div>
 					<ul class="product-quick-specs">
 						<li><span>Shape</span> <?php the_field('libtech_snowboard_shape'); ?></li>
@@ -295,7 +281,7 @@ Template Name: Snowboard Detail
 							</tbody>
 							<tfoot>
 								<tr>
-									<td colspan="2"><a href="/snowboarding/specifications/" class="get_specs">View all specs</a></td>
+									<td colspan="2"><a href="/snowboarding/specifications/" class="view-all-specs">View all specs</a></td>
 									<td></td>
 									<td></td>
 									<td></td>
