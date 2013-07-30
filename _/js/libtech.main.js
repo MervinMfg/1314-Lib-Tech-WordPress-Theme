@@ -33,7 +33,7 @@ LIBTECH.main = {
             self.homeSportInit();
         } else if ($('body').hasClass('page-template-page-overview-products-php')) {
             self.productOverviewInit();
-        } else if ($('body').hasClass('single-libtech_snowboards')) {
+        } else if ($('body').hasClass('single-libtech_snowboards') || $('body').hasClass('single-libtech_nas')) {
             self.productDetailInit();
         } else if ($('body').hasClass('blog') || $('body').hasClass('search') || $('body').hasClass('archive') || $('body').hasClass('error404')) {
             self.blogInit();
@@ -529,6 +529,7 @@ LIBTECH.main = {
             $('.product-details').addClass('hide');
             // add close event
             $('.product-zoom .zoom-close').on('click.productZoom', function (e) {
+                e.preventDefault();
                 uninitZoom();
             });
             // get thumbnail images from page

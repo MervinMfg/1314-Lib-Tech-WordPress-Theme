@@ -1872,6 +1872,15 @@ footer {
 		}
 	}
 }
+.ski .product-zoom .section-content .zoom-controls .zoom-close {
+	background: $skiColor;
+}
+.surf .product-zoom .section-content .zoom-controls .zoom-close {
+	background: $surfColor;
+}
+.skate .product-zoom .section-content .zoom-controls .zoom-close {
+	background: $skateColor;
+}
 .product-extras {
 	padding-right: 20px;
 	padding-left: 20px;
