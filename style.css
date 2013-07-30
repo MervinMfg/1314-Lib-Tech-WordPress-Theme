@@ -2453,6 +2453,7 @@ footer .footer-copy {
   .product-details .product-details-right {
     width: 50%;
     float: right;
+    clear: right;
   }
   .product-details h3 {
     text-align: left;
