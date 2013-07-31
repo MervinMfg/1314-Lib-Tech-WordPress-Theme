@@ -298,13 +298,12 @@ Template Name: Snowboard Detail
 					<h2>TECHNOLOGY:</h2>
 					<ul>
 						<?php
-						// get navigation for waterboards list
 						$args = array( 'post_type' => 'libtech_technology', 'posts_per_page' => -1, 'orderby' => 'menu_order', 'order' => 'ASC' );
 						$loop = new WP_Query( $args );
 						while ( $loop->have_posts() ) : $loop->the_post();
 							// check if item is major
 							if(get_field("libtech_technology_type") == "Major"):
-								// check if snowbaord is related to the tech
+								// check if product is related to the tech
 								$relatedItems = get_field('libtech_technology_related_products');
 								if( $relatedItems ):
 									foreach( $relatedItems as $relatedItem):
@@ -331,44 +330,21 @@ Template Name: Snowboard Detail
 						?>
 					</ul>
 					<div class="clearfix"></div>
-				</div>
+				</div><!-- END .product-tech-major -->
 				<div class="product-tech-minor">
 					<h2>Ingredients:</h2>
 					<ul>
 						<?php
-						// get navigation for waterboards list
-						$i=1;
-
-						$total_techs = 0;
-
 						$args = array( 'post_type' => 'libtech_technology', 'posts_per_page' => -1, 'orderby' => 'menu_order', 'order' => 'ASC' );
 						$loop = new WP_Query( $args );
 						while ( $loop->have_posts() ) : $loop->the_post();
-							// check if item is major
+							// check if item is minor
 							if(get_field("libtech_technology_type") == "Minor"):
-								// check if snowbaord is related to the tech
+								// check if product is related to the tech
 								$relatedItems = get_field('libtech_technology_related_products');
 								if( $relatedItems ):
-									foreach( $relatedItems as $relatedItem):
-										if($relatedItem->ID == $thePostID):
-											$total_techs ++;
-										endif;
-									endforeach;
-								endif;
-							endif;
-						endwhile;
-						wp_reset_query();
-
-						$args = array( 'post_type' => 'libtech_technology', 'posts_per_page' => -1, 'orderby' => 'menu_order', 'order' => 'ASC' );
-						$loop = new WP_Query( $args );
-						while ( $loop->have_posts() ) : $loop->the_post();
-							// check if item is major
-							if(get_field("libtech_technology_type") == "Minor"):
-								// check if snowbaord is related to the tech
-								$relatedItems = get_field('libtech_technology_related_products');
-								if( $relatedItems ):
-									foreach( $relatedItems as $relatedItem):
-										if($relatedItem->ID == $thePostID):
+									foreach( $relatedItems as $relatedItem ):
+										if( $relatedItem->ID == $thePostID ):
 											$imageID = get_field("libtech_technology_icon");
 											$imageFile = wp_get_attachment_image_src($imageID, 'thumbnail');
 						?>
@@ -383,7 +359,6 @@ Template Name: Snowboard Detail
 						</li>
 
 						<?php
-											$i++;
 										endif;
 									endforeach;
 								endif;
@@ -392,7 +367,7 @@ Template Name: Snowboard Detail
 						wp_reset_query();
 						?>
 					</ul>
-				</div>
+				</div><!-- END .product-tech-minor -->
 			</div>
 		</section>
 

@@ -227,13 +227,12 @@ Template Name: NAS Detail
 					<h2>TECHNOLOGY:</h2>
 					<ul>
 						<?php
-						// get navigation for waterboards list
 						$args = array( 'post_type' => 'libtech_technology', 'posts_per_page' => -1, 'orderby' => 'menu_order', 'order' => 'ASC' );
 						$loop = new WP_Query( $args );
 						while ( $loop->have_posts() ) : $loop->the_post();
 							// check if item is major
 							if(get_field("libtech_technology_type") == "Major"):
-								// check if snowbaord is related to the tech
+								// check if product is related to the tech
 								$relatedItems = get_field('libtech_technology_related_products');
 								if( $relatedItems ):
 									foreach( $relatedItems as $relatedItem):
@@ -260,7 +259,7 @@ Template Name: NAS Detail
 						?>
 					</ul>
 					<div class="clearfix"></div>
-				</div>
+				</div><!-- END .product-tech-major -->
 				<div class="product-tech-minor">
 					<h2>Ingredients:</h2>
 					<ul>
@@ -297,7 +296,7 @@ Template Name: NAS Detail
 						wp_reset_query();
 						?>
 					</ul>
-				</div>
+				</div><!-- END .product-tech-minor -->
 			</div>
 		</section>
 
