@@ -222,7 +222,7 @@ get_header();
 								// get variable values
 								$imageID = get_field('libtech_product_image', $post_object->ID);
 								// check which image size to use based on post type
-								$productImage = wp_get_attachment_image_src($imageID, 'overview-thumb');
+								$productImage = wp_get_attachment_image_src($imageID, 'square-medium');
 								$productLink = get_permalink($post_object->ID);
 								$productTitle = get_the_title($post_object->ID);
 								$productTag = get_field('libtech_product_slogan', $post_object->ID);
