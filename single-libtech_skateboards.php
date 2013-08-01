@@ -44,7 +44,7 @@ Template Name: Skateboard Detail
 							// set up sku list
 							$productSkus = "";
 							for ($i = 0; $i < count($variations); $i++) {
-								$productSkus .= $variations[1];
+								$productSkus .= $variations[$i][1];
 								if($i < count($variations)-1){
 									$productSkus .= ", ";
 								}
@@ -55,7 +55,7 @@ Template Name: Skateboard Detail
 				</div><!-- END .product-images -->
 				<div class="product-details-right">
 					<h3><?php the_field('libtech_product_slogan'); ?></h3>
-					<div class="image-list-thumbs <?php if(count($thumbnailImages) < 2){ echo 'hidden'; }?>">
+					<div class="image-list-thumbs hidden">
 						<ul id="image-list-thumbs">
 							<li><a href="<?php echo $productImageFull[0]; ?>" title="<?php the_title(); ?>" data-sku="<?php echo $productSkus; ?>" data-slide-index="<?php echo $i; ?>"><img src="<?php echo $productImageThumb[0]; ?>" alt="<?php the_title(); ?>" width="<?php echo $productImageThumb[1]; ?>" height="<?php echo $productImageThumb[2]; ?>" /></a></li>
 						</ul>
@@ -381,7 +381,7 @@ Template Name: Skateboard Detail
         	<div class="section-content">
 				<h2><span>Product Video:</span></h2>
 				<div class="video-player">
-					<iframe src="http://player.vimeo.com/video/<?php echo $videoID; ?>?title=0&amp;byline=0&amp;portrait=0&amp;color=fff100" width="940" height="528" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+					<iframe src="http://player.vimeo.com/video/<?php echo $videoID; ?>?title=0&amp;byline=0&amp;portrait=0&amp;color=66CC00" width="940" height="528" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
 				</div>
 				<div class="video-copy">
 					<p class="quote h3"><?php the_field('libtech_product_video_quote'); ?></p>
