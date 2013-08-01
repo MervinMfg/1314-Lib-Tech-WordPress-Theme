@@ -1946,10 +1946,10 @@ footer .footer-copy {
   text-decoration: none;
   cursor: default;
 }
-.product-extras.info .product-specs, .product-extras.info .product-tech-major, .product-extras.info .product-tech-minor {
+.product-extras.info .product-specs, .product-extras.info .product-tech-major, .product-extras.info .product-tech-minor, .product-extras.info .product-tech-construction {
   display: none;
 }
-.product-extras.specs .product-description, .product-extras.specs .product-awards, .product-extras.specs .product-tech-major, .product-extras.specs .product-tech-minor {
+.product-extras.specs .product-description, .product-extras.specs .product-awards, .product-extras.specs .product-tech-major, .product-extras.specs .product-tech-minor, .product-extras.specs .product-tech-construction {
   display: none;
 }
 .product-extras.tech .product-description, .product-extras.tech .product-awards, .product-extras.tech .product-specs {
@@ -2079,6 +2079,25 @@ footer .footer-copy {
 }
 .product-extras .product-tech-major .tech-copy h4, .product-extras .product-tech-major .tech-copy h5, .product-extras .product-tech-major .tech-copy p {
   margin-bottom: 5px;
+}
+.product-extras .product-tech-construction {
+  margin-bottom: 20px;
+  clear: both;
+}
+.product-extras .product-tech-construction h2 {
+  margin-bottom: 10px;
+}
+.product-extras .product-tech-construction ul li .construction-image img {
+  width: 100%;
+  max-width: none;
+}
+.product-extras .product-tech-construction ul li .construction-caption {
+  position: absolute;
+  bottom: 0;
+  padding: 10px;
+  width: 100%;
+  background: #000;
+  background: rgba(0, 0, 0, 0.5);
 }
 .product-extras .product-tech-minor {
   clear: both;
@@ -2481,7 +2500,7 @@ footer .footer-copy {
   .product-extras .product-mobile-nav {
     display: none;
   }
-  .product-extras.info .product-specs, .product-extras.info .product-tech-major, .product-extras.info .product-tech-minor, .product-extras.specs .product-description, .product-extras.specs .product-awards, .product-extras.specs .product-tech-major, .product-extras.specs .product-tech-minor, .product-extras.tech .product-description, .product-extras.tech .product-awards, .product-extras.tech .product-specs {
+  .product-extras.info .product-specs, .product-extras.info .product-tech-major, .product-extras.info .product-tech-construction, .product-extras.info .product-tech-minor, .product-extras.specs .product-description, .product-extras.specs .product-awards, .product-extras.specs .product-tech-major, .product-extras.specs .product-tech-construction, .product-extras.specs .product-tech-minor, .product-extras.tech .product-description, .product-extras.tech .product-awards, .product-extras.tech .product-specs {
     display: block;
   }
   .product-extras .product-tech-minor ul li {
@@ -2591,6 +2610,9 @@ footer .footer-copy {
     margin-left: 40px;
   }
   .product-extras .product-tech-major {
+    clear: both;
+  }
+  .product-extras .product-tech-construction {
     clear: both;
   }
 
@@ -2761,6 +2783,14 @@ footer .footer-copy {
   .product-extras .product-desc-awards-specs .product-specs h2, .product-extras .product-desc-awards-specs .product-specs table {
     margin-left: 0;
   }
+  .product-extras .product-tech-construction {
+    float: left;
+    width: 60%;
+    clear: none;
+  }
+  .product-extras .product-tech-construction .construction-slideshow {
+    padding-right: 40px;
+  }
   .product-extras .product-tech-major {
     width: 60%;
     float: left;
@@ -2877,6 +2907,16 @@ footer .footer-copy {
   .product-extras .product-desc-awards-specs .product-specs table tfoot tr td:nth-child(7) {
     display: table-cell;
   }
+  .product-extras .product-tech-construction {
+    width: 60%;
+    float: right;
+  }
+  .product-extras .product-tech-construction h2 {
+    padding-left: 40px;
+  }
+  .product-extras .product-tech-construction .construction-slideshow {
+    padding-left: 40px;
+  }
   .product-extras .product-tech-major {
     width: 60%;
     float: right;
@@ -2909,6 +2949,17 @@ footer .footer-copy {
     display: inline-block;
     vertical-align: top;
     text-align: left;
+  }
+  .product-extras .product-tech-minor.hesho {
+    width: 60%;
+    float: right;
+    clear: none;
+  }
+  .product-extras .product-tech-minor.hesho h2, .product-extras .product-tech-minor.hesho ul {
+    padding-left: 40px;
+  }
+  .product-extras .product-tech-minor.hesho ul li {
+    width: 48%;
   }
 
   .product-related ul li {
@@ -3348,7 +3399,7 @@ body.international .shopping-cart-wrapper {
   position: absolute;
   bottom: 0;
   left: 0;
-  background: #666666 \9;
+  background: #6669;
   background: rgba(80, 80, 80, 0.75);
   width: 100%;
 }

@@ -1909,13 +1909,15 @@ footer {
 	}
 	&.info .product-specs,
 	&.info .product-tech-major,
-	&.info .product-tech-minor {
+	&.info .product-tech-minor,
+	&.info .product-tech-construction {
 		display: none;
 	}
 	&.specs .product-description,
 	&.specs .product-awards,
 	&.specs .product-tech-major,
-	&.specs .product-tech-minor {
+	&.specs .product-tech-minor,
+	&.specs .product-tech-construction {
 		display: none;
 	}
 	&.tech .product-description,
@@ -2061,6 +2063,30 @@ footer {
 
 			h4, h5, p {
 				margin-bottom: 5px;
+			}
+		}
+	}
+	.product-tech-construction {
+		margin-bottom: 20px;
+		clear: both;
+
+		h2 {
+			margin-bottom: 10px;
+		}
+		ul li {
+			.construction-image {
+				img {
+					width: 100%;
+					max-width: none;
+				}
+			}
+			.construction-caption {
+				position: absolute;
+				bottom: 0;
+				padding: 10px;
+				width: 100%;
+				background: #000;
+				background: rgba(0, 0, 0, 0.5);
 			}
 		}
 	}
@@ -2516,10 +2542,12 @@ footer {
 		}
 		&.info .product-specs,
 		&.info .product-tech-major,
+		&.info .product-tech-construction,
 		&.info .product-tech-minor,
 		&.specs .product-description,
 		&.specs .product-awards,
 		&.specs .product-tech-major,
+		&.specs .product-tech-construction,
 		&.specs .product-tech-minor,
 		&.tech .product-description,
 		&.tech .product-awards,
@@ -2635,6 +2663,9 @@ footer {
 			}
 		}
 		.product-tech-major {
+			clear: both;
+		}
+		.product-tech-construction {
 			clear: both;
 		}
 	}
@@ -2833,6 +2864,15 @@ footer {
 				}
 			}
 		}
+		.product-tech-construction {
+			float: left;
+			width: 60%;
+			clear: none;
+
+			.construction-slideshow {
+				padding-right: 40px;
+			}
+		}
 		.product-tech-major {
 			width: 60%;
 			float: left;
@@ -2981,6 +3021,18 @@ footer {
 			}
 		}
 
+		.product-tech-construction {
+			width: 60%;
+			float: right;
+
+			h2 {
+				padding-left: 40px;
+			}
+			.construction-slideshow {
+				padding-left: 40px;
+			}
+		}
+
 		.product-tech-major {
 			width: 60%;
 			float: right;
@@ -3017,6 +3069,18 @@ footer {
 			display: inline-block;
 			vertical-align: top;
 			text-align: left;
+		}
+		.product-tech-minor.hesho {
+			width: 60%;
+			float: right;
+			clear: none;
+
+			h2, ul {
+				padding-left: 40px;
+			}
+			ul li {
+				width: 48%;
+			}
 		}
 	}
 	.product-related ul li {
@@ -3421,7 +3485,7 @@ body.international .shopping-cart-wrapper { display: none; }
 	position: absolute;
 	bottom: 0;
 	left: 0;
-	background: #666\9;
+	background: #6669;
 	background: rgba(80, 80, 80, 0.75);
 	width: 100%;
 }

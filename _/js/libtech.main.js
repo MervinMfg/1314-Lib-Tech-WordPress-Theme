@@ -33,7 +33,7 @@ LIBTECH.main = {
             self.homeSportInit();
         } else if ($('body').hasClass('page-template-page-overview-products-php')) {
             self.productOverviewInit();
-        } else if ($('body').hasClass('single-libtech_snowboards') || $('body').hasClass('single-libtech_nas')) {
+        } else if ($('body').hasClass('single-libtech_snowboards') || $('body').hasClass('single-libtech_nas') || $('body').hasClass('single-libtech_skateboards')) {
             self.productDetailInit();
         } else if ($('body').hasClass('blog') || $('body').hasClass('search') || $('body').hasClass('archive') || $('body').hasClass('error404')) {
             self.blogInit();
@@ -492,6 +492,30 @@ LIBTECH.main = {
         self = this;
         $(".product-tech-major").fitVids();
         $(".product-video").fitVids();
+
+        var techConstructionSlider = $('.product-tech-construction ul').bxSlider({
+            video: true,
+            useCSS: false,
+            auto: true,
+            autoHover: true,
+            speed: 500,
+            controls: true,
+            pager: false,
+            mode: 'horizontal'/*,
+            onSlideBefore: function(slideElement, oldIndex, newIndex){
+                var prevSlide, videoPlayer;
+                prevSlide = $('.featured-slider .bxslider li').eq(oldIndex + 1);
+                prevSlide.removeClass('active');
+                videoPlayer = prevSlide.find(".video-container");
+                if(videoPlayer.length > 0) {
+                    videoPlayer.remove();
+                    slider.startAuto();
+                }
+            },
+            onSlideAfter: function(slideElement, oldIndex, newIndex){
+                slideElement.addClass('active');
+            }*/
+        });
         // navigation when displayed below 600px (mobile phone)
         $('.product-extras .product-mobile-nav ul li a').click(function (e) {
             e.preventDefault();
@@ -509,6 +533,10 @@ LIBTECH.main = {
                 $(this).removeClass('selected');
             });
             $(this).addClass('selected');
+            // reload slider to fix responsive bug when visible
+            if($('body').hasClass('single-libtech_skateboards') && $(this).attr('id') == 'tech') {
+                techConstructionSlider.reloadSlider();
+            }
         });
         
         // check for browser resize and see if desktop zoom should occur
