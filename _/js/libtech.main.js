@@ -262,7 +262,6 @@ LIBTECH.main = {
             auto: true,
             autoHover: true,
             speed: 500,
-            randomStart: true,
             controls: true,
             pager: false,
             mode: 'horizontal',
@@ -501,20 +500,7 @@ LIBTECH.main = {
             speed: 500,
             controls: true,
             pager: false,
-            mode: 'horizontal'/*,
-            onSlideBefore: function(slideElement, oldIndex, newIndex){
-                var prevSlide, videoPlayer;
-                prevSlide = $('.featured-slider .bxslider li').eq(oldIndex + 1);
-                prevSlide.removeClass('active');
-                videoPlayer = prevSlide.find(".video-container");
-                if(videoPlayer.length > 0) {
-                    videoPlayer.remove();
-                    slider.startAuto();
-                }
-            },
-            onSlideAfter: function(slideElement, oldIndex, newIndex){
-                slideElement.addClass('active');
-            }*/
+            mode: 'horizontal'
         });
         // navigation when displayed below 600px (mobile phone)
         $('.product-extras .product-mobile-nav ul li a').click(function (e) {
