@@ -1828,6 +1828,12 @@ footer {
 .skate .product-details .product-buy .cart-success, .skate .product-details .product-buy .cart-failure {
 	border-color: $skateColor;
 }
+.single-libtech_apparel .product-details .product-images ul li a,
+.single-libtech_accessories .product-details .product-images ul li a,
+.single-libtech_luggage .product-details .product-images ul li a  {
+	width: 100%;
+	margin-left: 0;
+}
 .product-zoom {
 	display: none;
 

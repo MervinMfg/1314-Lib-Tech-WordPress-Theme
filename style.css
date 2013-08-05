@@ -1870,6 +1870,13 @@ footer .footer-copy {
   border-color: #66cc00;
 }
 
+.single-libtech_apparel .product-details .product-images ul li a,
+.single-libtech_accessories .product-details .product-images ul li a,
+.single-libtech_luggage .product-details .product-images ul li a {
+  width: 100%;
+  margin-left: 0;
+}
+
 .product-zoom {
   display: none;
 }
