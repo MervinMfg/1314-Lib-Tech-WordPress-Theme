@@ -223,7 +223,7 @@ Template Name: NAS Detail
 						</table>
 					</div>
 				</div><!-- END .product-desc-awards-specs -->
-				<div class="product-tech-major">
+				<div class="product-tech-major tech-major">
 					<h2>TECHNOLOGY:</h2>
 					<ul>
 						<?php
@@ -260,7 +260,7 @@ Template Name: NAS Detail
 					</ul>
 					<div class="clearfix"></div>
 				</div><!-- END .product-tech-major -->
-				<div class="product-tech-minor">
+				<div class="product-tech-minor tech-minor">
 					<h2>Ingredients:</h2>
 					<ul>
 						<?php

@@ -35,6 +35,8 @@ LIBTECH.main = {
             self.productOverviewInit();
         } else if ($('body').hasClass('single-libtech_snowboards') || $('body').hasClass('single-libtech_nas') || $('body').hasClass('single-libtech_skateboards') || $('body').hasClass('single-libtech_apparel') || $('body').hasClass('single-libtech_accessories') || $('body').hasClass('single-libtech_luggage') || $('body').hasClass('single-libtech_outerwear')) {
             self.productDetailInit();
+        } else if ($('body').hasClass('page-template-page-technology-sport-php')) {
+            self.technologyDetailInit();
         } else if ($('body').hasClass('blog') || $('body').hasClass('search') || $('body').hasClass('archive') || $('body').hasClass('error404')) {
             self.blogInit();
         } else if ($('body').hasClass('single-post')) {
@@ -660,6 +662,9 @@ LIBTECH.main = {
                 }
             });
         });
+    },
+    technologyDetailInit: function () {
+        $(".tech-major").fitVids();
     },
     shoppingCartInit: function () {
         var self, lang, regionCookie;

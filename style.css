@@ -2082,17 +2082,8 @@ footer .footer-copy {
 .product-extras .product-specs table tfoot td:nth-child(5), .product-extras .product-specs table tfoot td:nth-child(6), .product-extras .product-specs table tfoot td:nth-child(7), .product-extras .product-specs table tfoot td:nth-child(8), .product-extras .product-specs table tfoot td:nth-child(9) {
   display: none;
 }
-.product-extras .product-tech-major h2 {
-  margin-bottom: 10px;
-}
-.product-extras .product-tech-major .tech-video {
-  margin-bottom: 10px;
-}
-.product-extras .product-tech-major .tech-copy {
-  margin-bottom: 20px;
-}
-.product-extras .product-tech-major .tech-copy h4, .product-extras .product-tech-major .tech-copy h5, .product-extras .product-tech-major .tech-copy p {
-  margin-bottom: 5px;
+.product-extras .product-tech-major {
+  /* check .tech-major */
 }
 .product-extras .product-tech-construction {
   margin-bottom: 20px;
@@ -2114,28 +2105,7 @@ footer .footer-copy {
   background: rgba(0, 0, 0, 0.5);
 }
 .product-extras .product-tech-minor {
-  clear: both;
-}
-.product-extras .product-tech-minor h2 {
-  margin-bottom: 10px;
-}
-.product-extras .product-tech-minor ul li {
-  padding-bottom: 20px;
-}
-.product-extras .product-tech-minor ul li h4 img {
-  width: 25%;
-  height: auto;
-  vertical-align: middle;
-  display: inline-block;
-  padding-bottom: 10px;
-}
-.product-extras .product-tech-minor ul li h4 span {
-  width: 75%;
-  padding-left: 20px;
-  display: inline-block;
-}
-.product-extras .product-tech-minor ul li .tech-copy {
-  clear: both;
+  /* check .tech-minor */
 }
 
 .ski .product-extras .product-mobile-nav li a {
@@ -2261,6 +2231,85 @@ footer .footer-copy {
 .discussion .discussion-thread .fb_iframe_widget span,
 .discussion .discussion-thread .fb_iframe_widget iframe {
   width: 100% !important;
+}
+
+/* Technology styles
+-------------------------------------------------------------------------------*/
+.tech-major .section-content {
+  padding: 0 20px;
+}
+.tech-major .tech-header {
+  margin-bottom: 20px;
+}
+.tech-major .tech-header h1 {
+  margin-bottom: 20px;
+}
+.tech-major .tech-header p {
+  margin-bottom: 10px;
+}
+.tech-major h2 {
+  margin-bottom: 10px;
+}
+.tech-major ul li {
+  margin-bottom: 20px;
+}
+.tech-major ul li .tech-video {
+  margin-bottom: 10px;
+}
+.tech-major ul li .tech-copy {
+  margin-bottom: 20px;
+}
+.tech-major ul li .tech-copy h4, .tech-major ul li .tech-copy h5, .tech-major ul li .tech-copy p {
+  margin-bottom: 5px;
+}
+.tech-major ul li .tech-copy .tech-found-on {
+  display: none;
+  margin: 10px 0 20px;
+}
+.tech-major ul li .tech-copy ul {
+  list-style: square;
+  padding-left: 25px;
+}
+.tech-major ul li .tech-copy ul li {
+  margin-bottom: 3px;
+}
+
+.tech-minor {
+  clear: both;
+}
+.tech-minor h2 {
+  margin-bottom: 10px;
+}
+.tech-minor ul li {
+  padding-bottom: 20px;
+}
+.tech-minor ul li h4 img {
+  width: 25%;
+  height: auto;
+  vertical-align: middle;
+  display: inline-block;
+  padding-bottom: 10px;
+}
+.tech-minor ul li h4 > span {
+  width: 75%;
+  padding-left: 20px;
+  display: inline-block;
+}
+.tech-minor ul li .tech-copy {
+  clear: both;
+}
+
+.tech-overview .section-content {
+  padding: 0 20px;
+}
+.tech-overview .section-content h1 {
+  margin-bottom: 20px;
+}
+.tech-overview .section-content p {
+  margin-bottom: 10px;
+}
+.tech-overview .section-content h3 {
+  margin: 40px 0 10px;
 }
 
 /* Print Styles
@@ -2517,15 +2566,6 @@ footer .footer-copy {
   .product-extras.info .product-specs, .product-extras.info .product-tech-major, .product-extras.info .product-tech-construction, .product-extras.info .product-tech-minor, .product-extras.specs .product-description, .product-extras.specs .product-awards, .product-extras.specs .product-tech-major, .product-extras.specs .product-tech-construction, .product-extras.specs .product-tech-minor, .product-extras.tech .product-description, .product-extras.tech .product-awards, .product-extras.tech .product-specs {
     display: block;
   }
-  .product-extras .product-tech-minor ul li {
-    width: 48%;
-    display: inline-block;
-    vertical-align: top;
-    text-align: left;
-  }
-  .product-extras .product-tech-minor ul li .tech-pad {
-    padding: 10px;
-  }
 
   .product-video-top.specs, .product-video-top.tech {
     display: block;
@@ -2542,6 +2582,17 @@ footer .footer-copy {
   /* Discussion styles */
   .discussion-top, .discussion {
     display: block;
+  }
+
+  /* Technology styles */
+  .tech-minor ul li {
+    width: 48%;
+    display: inline-block;
+    vertical-align: top;
+    text-align: left;
+  }
+  .tech-minor ul li .tech-pad {
+    padding: 10px;
   }
 }
 @media screen and (min-width: 768px) {
@@ -2655,6 +2706,19 @@ footer .footer-copy {
   }
   .product-related ul li:nth-child(4) {
     display: block;
+  }
+
+  /* Technology styles */
+  .tech-major .section-content ul li .tech-video {
+    width: 50%;
+    float: left;
+  }
+  .tech-major .section-content ul li .tech-copy {
+    width: 50%;
+    float: left;
+  }
+  .tech-major .section-content ul li .tech-copy h4, .tech-major .section-content ul li .tech-copy h5, .tech-major .section-content ul li .tech-copy p, .tech-major .section-content ul li .tech-copy ul {
+    margin-left: 20px;
   }
 }
 /* Desktop Styles
@@ -2810,34 +2874,40 @@ footer .footer-copy {
     float: left;
     clear: none;
   }
-  .product-extras .product-tech-major ul li {
-    clear: both;
-    margin-bottom: 10px;
-    padding-right: 40px;
-  }
-  .product-extras .product-tech-major ul li .tech-video {
-    width: 40%;
-    float: left;
-  }
-  .product-extras .product-tech-major ul li .tech-copy {
-    width: 60%;
-    float: left;
-  }
-  .product-extras .product-tech-major ul li .tech-copy h4, .product-extras .product-tech-major ul li .tech-copy h5, .product-extras .product-tech-major ul li .tech-copy p {
-    margin-left: 20px;
-  }
-  .product-extras .product-tech-minor ul li {
-    width: 33%;
-    display: inline-block;
-    vertical-align: top;
-    text-align: left;
-  }
 
   .product-related ul li {
     width: 20%;
   }
   .product-related ul li:nth-child(5) {
     display: block;
+  }
+
+  /* Technology styles */
+  .tech-major ul li {
+    clear: both;
+    margin-bottom: 10px;
+    padding-right: 40px;
+  }
+  .tech-major ul li .tech-video {
+    width: 40%;
+    float: left;
+  }
+  .tech-major ul li .tech-copy {
+    width: 60%;
+    float: left;
+  }
+  .tech-major ul li .tech-copy h4, .tech-major ul li .tech-copy h5, .tech-major ul li .tech-copy p {
+    margin-left: 20px;
+  }
+  .tech-major ul li .tech-copy .tech-found-on {
+    display: block;
+  }
+
+  .tech-minor ul li {
+    width: 33%;
+    display: inline-block;
+    vertical-align: top;
+    text-align: left;
   }
 }
 @media screen and (min-width: 1200px) {
@@ -2943,26 +3013,7 @@ footer .footer-copy {
     padding-left: 40px;
   }
   .product-extras .product-tech-major ul li {
-    clear: both;
-    margin-bottom: 10px;
     padding-right: 0;
-  }
-  .product-extras .product-tech-major ul li .tech-video {
-    width: 40%;
-    float: left;
-  }
-  .product-extras .product-tech-major ul li .tech-copy {
-    width: 60%;
-    float: left;
-  }
-  .product-extras .product-tech-major ul li .tech-copy h4, .product-extras .product-tech-major ul li .tech-copy h5, .product-extras .product-tech-major ul li .tech-copy p {
-    margin-left: 20px;
-  }
-  .product-extras .product-tech-minor ul li {
-    width: 24%;
-    display: inline-block;
-    vertical-align: top;
-    text-align: left;
   }
   .product-extras .product-tech-minor.hesho {
     width: 60%;
@@ -2981,6 +3032,14 @@ footer .footer-copy {
   }
   .product-related ul li:nth-child(6) {
     display: block;
+  }
+
+  /* Technology styles */
+  .tech-minor ul li {
+    width: 24%;
+    display: inline-block;
+    vertical-align: top;
+    text-align: left;
   }
 }
 /* Shopatron Shopping Cart

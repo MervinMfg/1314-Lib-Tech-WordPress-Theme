@@ -330,7 +330,7 @@ Template Name: Skateboard Detail
 				</div><!-- END .product-tech-construction -->
 				<?php endif; ?>
 
-				<div class="product-tech-minor<?php if ($hesho == true) { echo " hesho"; } ?>">
+				<div class="product-tech-minor tech-minor<?php if ($hesho == true) { echo " hesho"; } ?>">
 					<h2>Ingredients:</h2>
 					<ul>
 						<?php
