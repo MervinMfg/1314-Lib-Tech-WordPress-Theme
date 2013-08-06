@@ -247,7 +247,7 @@
 	                </ul>
 				</div>
 				<div class="link-dealer">
-					<a href="/dealers/">Find a dealer</a>
+					<a href="/dealer-locator/">Find a dealer</a>
 				</div>
 				<div class="search">
 					<a href="#search">Search</a>

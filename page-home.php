@@ -142,40 +142,40 @@ get_header();
 				<ul>
 					<li class="homepage-link">
 						<div class="link-wrapper">
-							<a href="/snowboarding/">
-								<img src="<?php bloginfo('template_directory'); ?>/_/img/home-rippers.jpg" alt="Snowboarding" />
+							<a href="/team/">
+								<img src="<?php bloginfo('template_directory'); ?>/_/img/home-rippers.jpg" alt="Team" />
 								<h4>Rippers</h4>
 							</a>
 						</div>
 					</li>
 					<li class="homepage-link">
 						<div class="link-wrapper">
-							<a href="/skiing/">
-								<img src="<?php bloginfo('template_directory'); ?>/_/img/home-kraftsmen.jpg" alt="Nasing" />
+							<a href="/kraftsmen/">
+								<img src="<?php bloginfo('template_directory'); ?>/_/img/home-kraftsmen.jpg" alt="Kraftsmen" />
 								<h4>Kraftsmen</h4>
 							</a>
 						</div>
 					</li>
 					<li class="homepage-link">
 						<div class="link-wrapper">
-							<a href="/surfing/">
-								<img src="<?php bloginfo('template_directory'); ?>/_/img/home-artists.jpg" alt="Waterboarding" />
+							<a href="/artists/">
+								<img src="<?php bloginfo('template_directory'); ?>/_/img/home-artists.jpg" alt="Artists" />
 								<h4>Artists</h4>
 							</a>
 						</div>
 					</li>
 					<li class="homepage-link">
 						<div class="link-wrapper">
-							<a href="/skateboarding/">
-								<img src="<?php bloginfo('template_directory'); ?>/_/img/home-technology.jpg" alt="Skatboarding" />
+							<a href="/technology/">
+								<img src="<?php bloginfo('template_directory'); ?>/_/img/home-technology.jpg" alt="Technology" />
 								<h4>Technology</h4>
 							</a>
 						</div>
 					</li>
 					<li class="homepage-link">
 						<div class="link-wrapper">
-							<a href="/skateboarding/">
-								<img src="<?php bloginfo('template_directory'); ?>/_/img/home-environmental.jpg" alt="Skatboarding" />
+							<a href="/environmental/">
+								<img src="<?php bloginfo('template_directory'); ?>/_/img/home-environmental.jpg" alt="Environmental" />
 								<h4><span>environ</span>Mental</h4>
 							</a>
 						</div>
