@@ -29,7 +29,7 @@ get_header();
                     ?>
                     <li>
                         <div class="product-image">
-                            <img src="<?php echo $productImage[0]; ?>" width="<?php echo $productImage[1]; ?>" height="<?php echo $productImage[2]; ?>" alt="<?php echo $productTitle; ?> Image" />
+                            <a href="<?php echo $productLink; ?>"><img src="<?php echo $productImage[0]; ?>" width="<?php echo $productImage[1]; ?>" height="<?php echo $productImage[2]; ?>" alt="<?php echo $productTitle; ?> Image" /></a>
                         </div>
                         <div class="product-copy">
                             <div class="title h2"><?php echo $productTitle; ?></div>
@@ -38,7 +38,7 @@ get_header();
                             <div class="description">
                                 <?php echo $productContent; ?>
                             </div>
-                            <p class="price h3"><?php echo $productPrice; ?></p>
+                            <div class="price"><?php echo $productPrice; ?></div>
                             <a href="<?php echo $productLink; ?>" class="buy h4">Buy Now!</a>
                         </div>
                         <div class="clearfix"></div>

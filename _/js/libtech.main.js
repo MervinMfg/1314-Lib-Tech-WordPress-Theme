@@ -349,8 +349,11 @@ LIBTECH.main = {
                 $('.featured-product-slider .bxslider > li').eq(currentIndex+1).addClass('active');
             },
             onSlideBefore: function (slideElement, oldIndex, newIndex){
+                $('.featured-product-slider .bxslider > li').removeClass('active');
                 slideElement.addClass('active');
-                $('.featured-product-slider .bxslider > li').eq(oldIndex+1).removeClass('active');
+                if(newIndex == 0) { // run fix for duplicate slides at begining and end
+                    $('.featured-product-slider .bxslider > li').eq($('.featured-product-slider .bxslider > li').length - 1).addClass('active');
+                }
             }
         });
         // BEGIN SETTING UP ISOTOPE
@@ -665,6 +668,11 @@ LIBTECH.main = {
     },
     technologyDetailInit: function () {
         $(".tech-major").fitVids();
+    },
+    blogInit: function () {
+    },
+    blogSingleInit: function () {
+        $(".blog-post .entry-content").fitVids();
     },
     shoppingCartInit: function () {
         var self, lang, regionCookie;

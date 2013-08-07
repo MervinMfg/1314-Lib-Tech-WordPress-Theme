@@ -1442,6 +1442,7 @@ footer .footer-copy {
 -------------------------------------------------------------------------------*/
 .featured-product-slider {
   overflow: hidden;
+  display: none;
 }
 .featured-product-slider .section-content .bx-wrapper {
   padding: 20px;
@@ -1495,9 +1496,17 @@ footer .footer-copy {
   display: none;
 }
 .featured-product-slider .section-content .bx-wrapper .bx-viewport ul.product-listing > li .product-copy .price {
-  color: #000;
   float: left;
   padding-right: 40px;
+}
+.featured-product-slider .section-content .bx-wrapper .bx-viewport ul.product-listing > li .product-copy .price .us-price, .featured-product-slider .section-content .bx-wrapper .bx-viewport ul.product-listing > li .product-copy .price .ca-price {
+  color: #000;
+  font-size: 1.4em;
+}
+.featured-product-slider .section-content .bx-wrapper .bx-viewport ul.product-listing > li .product-copy .price .us-price span, .featured-product-slider .section-content .bx-wrapper .bx-viewport ul.product-listing > li .product-copy .price .ca-price span {
+  color: #000;
+  font-weight: bold;
+  font-size: 1.2em;
 }
 .featured-product-slider .section-content .bx-wrapper .bx-viewport ul.product-listing > li .product-copy a.buy {
   background: #000;
@@ -2613,10 +2622,7 @@ footer .footer-copy {
   }
 
   /* product overview */
-  .featured-product-slider .section-content .bx-wrapper .bx-viewport ul.product-listing li .product-copy .title {
-    padding: 20px 0 5px 0;
-  }
-  .featured-product-slider .section-content .bx-wrapper .bx-viewport ul.product-listing li .product-copy .description {
+  .featured-product-slider {
     display: block;
   }
 
@@ -2901,9 +2907,22 @@ footer .footer-copy {
 
   /* product overview */
   .featured-product-slider .section-content .bx-wrapper .bx-viewport {
-    max-width: 1200px;
+    max-width: 980px;
     margin: 0 auto;
     overflow: visible !important;
+  }
+
+  /* product overview */
+  .featured-product-slider .section-content .bx-wrapper .bx-viewport {
+    max-width: 980px;
+    margin: 0 auto;
+    overflow: visible !important;
+  }
+  .featured-product-slider .section-content .bx-wrapper .bx-viewport ul.product-listing li .product-copy .title {
+    padding: 20px 0 5px 0;
+  }
+  .featured-product-slider .section-content .bx-wrapper .bx-viewport ul.product-listing li .product-copy .description {
+    display: block;
   }
 
   .product-overview .section-content h1 {
