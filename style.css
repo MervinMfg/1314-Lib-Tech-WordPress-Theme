@@ -2350,6 +2350,61 @@ footer .footer-copy {
   margin: 0 auto;
 }
 
+/* Blog styles
+-------------------------------------------------------------------------------*/
+.pagination {
+  clear: both;
+  text-align: center;
+  letter-spacing: -4px;
+}
+.pagination .page-numbers {
+  background: yellow;
+  padding: 10px;
+  letter-spacing: 1px;
+}
+.pagination span.page-numbers {
+  color: #666;
+}
+.pagination a.page-numbers {
+  color: #000;
+  display: inline-block;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-style: normal;
+}
+
+.ski .pagination .page-numbers {
+  background: #0099ff;
+}
+
+.surf .pagination .page-numbers {
+  background: #ff6600;
+}
+
+.skate .pagination .page-numbers {
+  background: #66cc00;
+}
+
+.blog-post .section-content {
+  padding: 0 20px;
+}
+.blog-post .section-content article .entry-header .entry-title {
+  margin-bottom: .25em;
+}
+.blog-post .section-content article .entry-header .entry-meta {
+  margin-bottom: 1em;
+}
+.blog-post .section-content article .entry-header .entry-share li {
+  float: left;
+  padding-bottom: 1em;
+}
+.blog-post .section-content article .entry-content {
+  clear: both;
+}
+.blog-post .section-content article .entry-content p {
+  margin-bottom: 1.25em;
+}
+
 /* Print Styles
 -------------------------------------------------------------------------------*/
 /* Media Queries

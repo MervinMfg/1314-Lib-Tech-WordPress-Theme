@@ -2359,6 +2359,78 @@ footer {
 	width: 920px;
 	margin: 0 auto;
 }
+/* Blog styles
+-------------------------------------------------------------------------------*/
+.pagination {
+	clear: both;
+	text-align: center;
+	letter-spacing: -4px;
+
+	.page-numbers {
+		background: $snowColor;
+		padding: 10px;
+		letter-spacing: 1px;
+	}
+
+	span.page-numbers {
+		color: #666;
+	}
+
+	a.page-numbers {
+		color: #000;
+		display: inline-block;
+		text-transform: uppercase;
+		font-weight: bold;
+		font-style: normal;
+	}
+}
+.ski .pagination .page-numbers {
+	background: $skiColor;
+}
+.surf .pagination .page-numbers {
+	background: $surfColor;
+}
+.skate .pagination .page-numbers {
+	background: $skateColor;
+}
+
+.blog-post {
+	.section-content {
+		padding: 0 20px;
+
+		article {
+			.entry-header {
+				.entry-title {
+					margin-bottom: .25em;
+				}
+				.entry-meta {
+					margin-bottom: 1em;
+				}
+				.entry-share {
+					li {
+						float: left;
+						padding-bottom: 1em;
+					}
+				}
+			}
+			.entry-content {
+				clear: both;
+
+				p {
+					margin-bottom: 1.25em;
+				}
+			}
+			.entry-categories-tags {
+				.entry-categories {
+
+				}
+				.entry-tags {
+
+				}
+			}
+		}
+	}
+}
 
 /* Print Styles
 -------------------------------------------------------------------------------*/

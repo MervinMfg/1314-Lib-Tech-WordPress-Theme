@@ -1,41 +1,44 @@
 <?php
 /**
  * @package WordPress
- * @subpackage HTML5-Reset-Wordpress-Theme
- * @since HTML5 Reset 2.0
+ * @subpackage Lib-Tech-WordPress-Theme
  */
  get_header(); ?>
 
-	<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-
-		<article <?php post_class() ?> id="post-<?php the_ID(); ?>">
-
-			<h2><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></h2>
-
-			<?php posted_on(); ?>
-
-			<div class="entry">
-				<?php the_content(); ?>
-			</div>
-
-			<footer class="postmetadata">
-				<?php the_tags('Tags: ', ', ', '<br />'); ?>
-				<?php _e('Posted in','html5reset'); ?> <?php the_category(', ') ?> | 
-				<?php comments_popup_link('No Comments &#187;', '1 Comment &#187;', '% Comments &#187;'); ?>
-			</footer>
-
-		</article>
-
-	<?php endwhile; ?>
-
-	<?php post_navigation(); ?>
-
-	<?php else : ?>
-
-		<h2><?php _e('Nothing Found','html5reset'); ?></h2>
-
-	<?php endif; ?>
-
+		<section class="homepage-posts bg3">
+			<div class="section-content">
+				<?php if (have_posts()) : ?>
+				<ul>
+					<?php
+						while (have_posts()) :
+							the_post();
+							$postImage = get_post_image('square-medium');
+					?>
+					<li <?php post_class('homepage-post'); ?> id="post-<?php the_ID(); ?>">
+						<div class="post-wrapper">
+							<a href="<?php the_permalink() ?>">
+								<img src="<?php echo $postImage[0]; ?>" alt="Image From <?php echo get_the_title(); ?>" />
+								<h3 class="post-title"><?php the_title(); ?></h3>
+								<p class="post-meta">
+									<time datetime="<?php the_time('c') ?>"><?php the_time('F jS, Y') ?></time> | <span><fb:comments-count href=<?php the_permalink() ?>></fb:comments-count> Comments</span>
+								</p>
+								<p class="post-excerpt"><?php libtech_excerpt('libtech_excerptlength_home'); ?></p>
+								<p class="post-more">READ MORE</p>
+							</a>
+						</div>
+					</li>
+					<?php endwhile; ?>
+				</ul>
+				<?php
+					post_navigation();
+					else :
+				?>
+				<h1>Nothing Found</h1>
+				<?php endif; ?>
+			</div><!-- END .section-content -->
+			<div class="clearfix"></div>
+		</section><!-- END .homepage-posts -->
+<!--
 <?php get_sidebar(); ?>
-
+-->
 <?php get_footer(); ?>

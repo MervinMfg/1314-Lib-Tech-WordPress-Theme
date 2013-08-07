@@ -227,6 +227,28 @@ function getRelatedProducts () {
     endif;
 }
 
+// Navigation - update coming from twentythirteen
+function post_navigation() {
+    //echo '<div class="navigation">';
+    //echo '  <div class="next-posts">'.get_next_posts_link('&laquo; Older Entries').'</div>';
+    //echo '  <div class="prev-posts">'.get_previous_posts_link('Newer Entries &raquo;').'</div>';
+    //echo '</div>';
+    global $wp_query;
+    if ( $wp_query->max_num_pages > 1 ) {
+        echo '<div class="pagination">';
+        $big = 999999999; // need an unlikely integer
+        echo paginate_links( array(
+            'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+            'format' => '?paged=%#%',
+            'current' => max( 1, get_query_var('paged') ),
+            'total' => $wp_query->max_num_pages,
+            'prev_text'    => __('« Prev'),
+            'next_text'    => __('Next »')
+        ) );
+        echo '</div>';
+    }
+}
+
 /******************************
 CODE FOR CUSTOM POST TYPES
 ******************************/
