@@ -2389,7 +2389,17 @@ footer .footer-copy {
   width: 50%;
   padding: 5px;
 }
-.online-dealers .section-content .dealer-list li img {
+.online-dealers .section-content .dealer-list li a {
+  opacity: .5;
+  transition: opacity 200ms ease-in-out;
+  -webkit-transition: opacity 200ms ease-in-out;
+  -moz-transition: opacity 200ms ease-in-out;
+  -o-transition: opacity 200ms ease-in-out;
+}
+.online-dealers .section-content .dealer-list li a:hover {
+  opacity: 1;
+}
+.online-dealers .section-content .dealer-list li a img {
   width: 100%;
   max-width: 200%;
   height: auto;
