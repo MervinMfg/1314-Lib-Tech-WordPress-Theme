@@ -2350,88 +2350,6 @@ footer .footer-copy {
   margin: 0 auto;
 }
 
-.online-dealers .section-content {
-  padding: 0 15px;
-}
-.online-dealers .section-content h2 {
-  padding: 0 5px 20px;
-}
-.online-dealers .section-content h3 {
-  clear: both;
-  padding: 30px 5px 0;
-  margin-bottom: 10px;
-}
-.online-dealers .section-content #snowboarding, .online-dealers .section-content #skiing, .online-dealers .section-content #surfing, .online-dealers .section-content #skateboarding {
-  padding-bottom: 40px;
-  display: none;
-}
-.online-dealers .section-content #snowboarding.selected, .online-dealers .section-content #skiing.selected, .online-dealers .section-content #surfing.selected, .online-dealers .section-content #skateboarding.selected {
-  display: block;
-}
-.online-dealers .section-content .dealer-nav {
-  padding: 0 5px;
-}
-.online-dealers .section-content .dealer-nav li {
-  display: inline-block;
-  margin: 0 8px 8px 0;
-}
-.online-dealers .section-content .dealer-nav li a {
-  background: yellow;
-  padding: 5px 10px;
-  color: #000;
-  display: inline-block;
-}
-.online-dealers .section-content .dealer-nav li a.selected {
-  background: none;
-  color: yellow;
-  text-decoration: none;
-  cursor: default;
-}
-.online-dealers .section-content .dealer-list li {
-  float: left;
-  width: 50%;
-  padding: 5px;
-}
-.online-dealers .section-content .dealer-list li a {
-  opacity: .5;
-  transition: opacity 200ms ease-in-out;
-  -webkit-transition: opacity 200ms ease-in-out;
-  -moz-transition: opacity 200ms ease-in-out;
-  -o-transition: opacity 200ms ease-in-out;
-}
-.online-dealers .section-content .dealer-list li a:hover {
-  opacity: 1;
-}
-.online-dealers .section-content .dealer-list li a img {
-  width: 100%;
-  max-width: 200%;
-  height: auto;
-}
-.online-dealers.snowboarding #snowboarding {
-  display: block;
-}
-.online-dealers.snowboarding #skiing, .online-dealers.snowboarding #surfing, .online-dealers.snowboarding #skateboarding {
-  display: none;
-}
-.online-dealers.skiing #skiing {
-  display: block;
-}
-.online-dealers.skiing #snowboarding, .online-dealers.skiing #surfing, .online-dealers.skiing #skateboarding {
-  display: none;
-}
-.online-dealers.surfing #surfing {
-  display: block;
-}
-.online-dealers.surfing #snowboarding, .online-dealers.surfing #skiing, .online-dealers.surfing #skateboarding {
-  display: none;
-}
-.online-dealers.skateboarding #skateboarding {
-  display: block;
-}
-.online-dealers.skateboarding #snowboarding, .online-dealers.skateboarding #skiing, .online-dealers.skateboarding #surfing {
-  display: none;
-}
-
 /* Print Styles
 -------------------------------------------------------------------------------*/
 /* Media Queries
@@ -2469,11 +2387,6 @@ footer .footer-copy {
   }
   #region-selector .choose-region ul li .copy h3, #region-selector .choose-region ul li .copy p {
     padding-left: 0;
-  }
-
-  /* Dealer Locator */
-  .online-dealers .section-content .dealer-list li {
-    width: 180px;
   }
 }
 /* Tablet Styles
