@@ -37,6 +37,8 @@ LIBTECH.main = {
             self.productDetailInit();
         } else if ($('body').hasClass('page-template-page-technology-sport-php')) {
             self.technologyDetailInit();
+        } else if ($('body').hasClass('page-template-page-dealer-locator-php')) {
+            self.dealerLocatorInit();
         } else if ($('body').hasClass('blog') || $('body').hasClass('search') || $('body').hasClass('archive') || $('body').hasClass('error404')) {
             self.blogInit();
         } else if ($('body').hasClass('single-post')) {
@@ -665,6 +667,20 @@ LIBTECH.main = {
     },
     technologyDetailInit: function () {
         $(".tech-major").fitVids();
+    },
+    dealerLocatorInit: function () {
+        var self = this;
+        $('.online-dealers .dealer-nav li a').click(function (e) {
+            e.preventDefault();
+            // update extras display
+            $('.online-dealers').removeClass('snowboarding skiing surfing skateboarding');
+            $('.online-dealers').addClass($(this).attr('href').replace("#",""));
+            // update nav item state
+            $('.online-dealers .dealer-nav li a').each( function() {
+                $(this).removeClass('selected');
+            });
+            $(this).addClass('selected');
+        });
     },
     shoppingCartInit: function () {
         var self, lang, regionCookie;

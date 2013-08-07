@@ -2312,6 +2312,106 @@ footer .footer-copy {
   margin: 40px 0 10px;
 }
 
+/* Dealer Locator styles
+-------------------------------------------------------------------------------*/
+.dealer-locator .section-content {
+  padding: 0 20px;
+}
+.dealer-locator .section-content h1 {
+  margin-bottom: 20px;
+}
+.dealer-locator .section-content .dealer-copy p {
+  margin-bottom: 10px;
+}
+.dealer-locator .section-content iframe {
+  display: none;
+  width: 920px;
+  margin-top: 10px;
+}
+.dealer-locator .section-content .iframe-fallback {
+  margin-top: 40px;
+}
+.dealer-locator .section-content .iframe-fallback p {
+  margin-bottom: 10px;
+}
+
+.dealer-locator-map {
+  width: 920px;
+  margin: 0 auto;
+}
+
+.online-dealers .section-content {
+  padding: 0 15px;
+}
+.online-dealers .section-content h2 {
+  padding: 0 5px 20px;
+}
+.online-dealers .section-content h3 {
+  clear: both;
+  padding: 30px 5px 0;
+  margin-bottom: 10px;
+}
+.online-dealers .section-content #snowboarding, .online-dealers .section-content #skiing, .online-dealers .section-content #surfing, .online-dealers .section-content #skateboarding {
+  padding-bottom: 40px;
+  display: none;
+}
+.online-dealers .section-content #snowboarding.selected, .online-dealers .section-content #skiing.selected, .online-dealers .section-content #surfing.selected, .online-dealers .section-content #skateboarding.selected {
+  display: block;
+}
+.online-dealers .section-content .dealer-nav {
+  padding: 0 5px;
+}
+.online-dealers .section-content .dealer-nav li {
+  display: inline-block;
+  margin: 0 8px 8px 0;
+}
+.online-dealers .section-content .dealer-nav li a {
+  background: yellow;
+  padding: 5px 10px;
+  color: #000;
+  display: inline-block;
+}
+.online-dealers .section-content .dealer-nav li a.selected {
+  background: none;
+  color: yellow;
+  text-decoration: none;
+  cursor: default;
+}
+.online-dealers .section-content .dealer-list li {
+  float: left;
+  width: 50%;
+  padding: 5px;
+}
+.online-dealers .section-content .dealer-list li img {
+  width: 100%;
+  max-width: 200%;
+  height: auto;
+}
+.online-dealers.snowboarding #snowboarding {
+  display: block;
+}
+.online-dealers.snowboarding #skiing, .online-dealers.snowboarding #surfing, .online-dealers.snowboarding #skateboarding {
+  display: none;
+}
+.online-dealers.skiing #skiing {
+  display: block;
+}
+.online-dealers.skiing #snowboarding, .online-dealers.skiing #surfing, .online-dealers.skiing #skateboarding {
+  display: none;
+}
+.online-dealers.surfing #surfing {
+  display: block;
+}
+.online-dealers.surfing #snowboarding, .online-dealers.surfing #skiing, .online-dealers.surfing #skateboarding {
+  display: none;
+}
+.online-dealers.skateboarding #skateboarding {
+  display: block;
+}
+.online-dealers.skateboarding #snowboarding, .online-dealers.skateboarding #skiing, .online-dealers.skateboarding #surfing {
+  display: none;
+}
+
 /* Print Styles
 -------------------------------------------------------------------------------*/
 /* Media Queries
@@ -2349,6 +2449,11 @@ footer .footer-copy {
   }
   #region-selector .choose-region ul li .copy h3, #region-selector .choose-region ul li .copy p {
     padding-left: 0;
+  }
+
+  /* Dealer Locator */
+  .online-dealers .section-content .dealer-list li {
+    width: 180px;
   }
 }
 /* Tablet Styles
@@ -2909,6 +3014,14 @@ footer .footer-copy {
     vertical-align: top;
     text-align: left;
   }
+
+  /* Dealer Locator */
+  .dealer-locator .section-content iframe {
+    display: block;
+  }
+  .dealer-locator .section-content .iframe-fallback {
+    display: none;
+  }
 }
 @media screen and (min-width: 1200px) {
   /* homepage styles */
@@ -2940,6 +3053,16 @@ footer .footer-copy {
   }
   .product-extras .product-specs table tfoot tr td:nth-child(5), .product-extras .product-specs table tfoot tr td:nth-child(6), .product-extras .product-specs table tfoot tr td:nth-child(8), .product-extras .product-specs table tfoot tr td:nth-child(9) {
     display: table-cell;
+  }
+
+  /* Dealer Locator */
+  .dealer-locator .section-content .dealer-copy {
+    float: right;
+    width: 20%;
+  }
+  .dealer-locator .section-content iframe {
+    width: 79%;
+    margin-top: 0;
   }
 }
 @media screen and (min-width: 1400px) {
@@ -3040,6 +3163,14 @@ footer .footer-copy {
     display: inline-block;
     vertical-align: top;
     text-align: left;
+  }
+
+  /* Dealer Locator */
+  .dealer-locator .section-content .dealer-copy {
+    width: 30%;
+  }
+  .dealer-locator .section-content iframe {
+    width: 70%;
   }
 }
 /* Shopatron Shopping Cart

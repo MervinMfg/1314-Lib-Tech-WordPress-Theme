@@ -2315,6 +2315,125 @@ footer {
 		}
 	}
 }
+/* Dealer Locator styles
+-------------------------------------------------------------------------------*/
+.dealer-locator {
+	.section-content {
+		padding: 0 20px;
+
+		h1 {
+			margin-bottom: 20px;
+		}
+		.dealer-copy {
+			p {
+				margin-bottom: 10px;
+			}
+		}
+		iframe {
+			display: none;
+			width: 920px;
+			margin-top: 10px;
+		}
+		.iframe-fallback {
+			margin-top: 40px;
+			p {
+				margin-bottom: 10px;
+			}
+		}
+	}
+}
+.dealer-locator-map {
+	width: 920px;
+	margin: 0 auto;
+}
+.online-dealers {
+	.section-content {
+		padding: 0 15px;
+		h2 {
+			padding: 0 5px 20px;
+		}
+		h3 {
+			clear: both;
+			padding: 30px 5px 0;
+			margin-bottom: 10px;
+		}
+		#snowboarding, #skiing, #surfing, #skateboarding {
+			padding-bottom: 40px;
+			display: none;
+
+			&.selected {
+				display: block;
+			}
+		}
+		.dealer-nav {
+			padding: 0 5px;
+
+			li {
+				display: inline-block;
+				margin: 0 8px 8px 0;
+
+				a {
+					background: $snowColor;
+					padding: 5px 10px;
+					color: #000;
+					display: inline-block;
+
+					&.selected {
+						background: none;
+						color: $snowColor;
+						text-decoration: none;
+						cursor: default;
+					}
+				}
+			}
+		}
+		.dealer-list {
+			li {
+				float: left;
+				width: 50%;
+				padding: 5px;
+
+				img {
+					width: 100%;
+					max-width: 200%;
+					height: auto;
+				}
+			}
+		}
+	}
+	&.snowboarding {
+		#snowboarding {
+			display: block;
+		}
+		#skiing, #surfing, #skateboarding {
+			display: none;
+		}
+	}
+	&.skiing {
+		#skiing {
+			display: block;
+		}
+		#snowboarding, #surfing, #skateboarding {
+			display: none;
+		}
+	}
+	&.surfing {
+		#surfing {
+			display: block;
+		}
+		#snowboarding, #skiing, #skateboarding {
+			display: none;
+		}
+	}
+	&.skateboarding {
+		#skateboarding {
+			display: block;
+		}
+		#snowboarding, #skiing, #surfing {
+			display: none;
+		}
+	}
+}
 
 /* Print Styles
 -------------------------------------------------------------------------------*/
@@ -2363,6 +2482,12 @@ footer {
 					}
 				}
 			}
+		}
+	}
+	/* Dealer Locator */
+	.online-dealers .section-content .dealer-list {
+		li {
+			width: 180px;
 		}
 	}
 }
@@ -2999,6 +3124,15 @@ footer {
 		vertical-align: top;
 		text-align: left;
 	}
+	/* Dealer Locator */
+	.dealer-locator .section-content {
+		iframe {
+			display: block;
+		}
+		.iframe-fallback {
+			display: none;
+		}
+	}
 }
 
 @media screen and (min-width: 1200px) {
@@ -3046,6 +3180,18 @@ footer {
 					display: table-cell;
 				}
 			}
+		}
+	}
+	/* Dealer Locator */
+	.dealer-locator .section-content {
+		.dealer-copy {
+			float: right;
+			width: 20%;
+
+		}
+		iframe {
+			width: 79%;
+			margin-top: 0;
 		}
 	}
 }
@@ -3161,6 +3307,16 @@ footer {
 		display: inline-block;
 		vertical-align: top;
 		text-align: left;
+	}
+	/* Dealer Locator */
+	.dealer-locator .section-content {
+		.dealer-copy {
+			width: 30%;
+
+		}
+		iframe {
+			width: 70%;
+		}
 	}
 }
 

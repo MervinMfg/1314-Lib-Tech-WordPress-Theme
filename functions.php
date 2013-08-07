@@ -234,7 +234,7 @@ CODE FOR CUSTOM POST TYPES
 function set_custom_post_types_admin_order($wp_query) {  
   if (is_admin()) {  
     $post_type = $wp_query->query['post_type'];
-    if ( $post_type == 'libtech_snowboards' || $post_type == 'libtech_nas' || $post_type == 'libtech_skateboards' || $post_type == 'libtech_awards' || $post_type == 'libtech_technology' || $post_type == 'libtech_outerwear' || $post_type == 'libtech_apparel' || $post_type == 'libtech_accessories' || $post_type == 'libtech_luggage' || $post_type == 'libtech_team_snow' || $post_type == 'libtech_team_nas' || $post_type == 'libtech_team_skate' ) { 
+    if ( $post_type == 'libtech_snowboards' || $post_type == 'libtech_nas' || $post_type == 'libtech_skateboards' || $post_type == 'libtech_awards' || $post_type == 'libtech_technology' || $post_type == 'libtech_outerwear' || $post_type == 'libtech_apparel' || $post_type == 'libtech_accessories' || $post_type == 'libtech_luggage' || $post_type == 'libtech_team_snow' || $post_type == 'libtech_team_nas' || $post_type == 'libtech_team_skate' || $post_type == 'libtech_dealers') { 
       $wp_query->set('orderby', 'menu_order');  
       $wp_query->set('order', 'ASC');  
     }  
@@ -896,6 +896,66 @@ function register_custom_post_types() {
     register_taxonomy( 'libtech_team_nas_cat', 'libtech_team_nas', $args );
     register_taxonomy( 'libtech_team_skate_cat', 'libtech_team_skate', $args );
     // END TEAM
+
+    // START DEALERS
+    $labels = array(
+        'name' => _x('Dealers', 'post type general name'),
+        'singular_name' => _x('Dealer', 'post type singular name'),
+        'add_new' => _x('Add New', 'libtech_dealers'),
+        'add_new_item' => __('Add New Dealer'),
+        'edit_item' => __('Edit Dealer'),
+        'new_item' => __('New Dealer'),
+        'all_items' => __('All Dealers'),
+        'view_item' => __('View Dealer'),
+        'search_items' => __('Search Dealers'),
+        'not_found' =>  __('No Dealer Found'),
+        'not_found_in_trash' => __('No Dealer Found In Trash'), 
+        'parent_item_colon' => '',
+        'menu_name' => 'Dealers'
+    );
+    $args = array(
+        'labels' => $labels,
+        'public' => true,
+        'publicly_queryable' => true,
+        'show_ui' => true, 
+        'show_in_menu' => true, 
+        'query_var' => true,
+        //'rewrite' => array("slug" => "dealers"),
+        'capability_type' => 'page',
+        'has_archive' => false, 
+        'hierarchical' => false,
+        'menu_position' => null,
+        'supports' => array( 'title', 'page-attributes' )
+    ); 
+    register_post_type('libtech_dealers',$args);
+    // start taxonamy for Dealers
+    $labels = array(
+        'name'                          => 'Categories',
+        'singular_name'                 => 'Category',
+        'search_items'                  => 'Search Category',
+        'popular_items'                 => 'Popular Categories',
+        'all_items'                     => 'All Categories',
+        'parent_item'                   => 'Parent Category',
+        'edit_item'                     => 'Edit Category',
+        'update_item'                   => 'Update Category',
+        'add_new_item'                  => 'Add New Category',
+        'new_item_name'                 => 'New Category',
+        'separate_items_with_commas'    => 'Separate Categories with commas',
+        'add_or_remove_items'           => 'Add or remove Categories',
+        'choose_from_most_used'         => 'Choose from most used Categories'
+    );
+    $args = array(
+        'label'                         => 'Categories',
+        'labels'                        => $labels,
+        'public'                        => true,
+        'hierarchical'                  => true,
+        'show_ui'                       => true,
+        'show_in_nav_menus'             => true,
+        'args'                          => array( 'orderby' => 'term_order' ),
+        'query_var'                     => true
+    );
+    register_taxonomy( 'libtech_dealers_categories', 'libtech_dealers', $args );
+    // END DEALERS
 }
 // run the registration
 add_action( 'init', 'register_custom_post_types' );
