@@ -1514,12 +1514,12 @@ footer .footer-copy {
   float: left;
   overflow: hidden;
   text-align: center;
-  padding-bottom: 20px;
+  padding-bottom: 40px;
 }
 .product-overview .section-content ul.product-listing li.product-item img {
-  width: 120%;
+  width: 140%;
   max-width: 200%;
-  margin-left: -10%;
+  margin-left: -20%;
   height: auto;
   padding-bottom: 10px;
 }

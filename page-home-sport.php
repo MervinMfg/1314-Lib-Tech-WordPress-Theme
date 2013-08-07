@@ -261,7 +261,7 @@ get_header();
 				</div><!-- END .content-grid -->
 			</div><!-- END .section-content -->
 		</section><!-- END .whats-new -->
-
+		<!--
 		<div class="bg1-top"></div>
 		<section class="events bg1">
 			<div class="section-content">
