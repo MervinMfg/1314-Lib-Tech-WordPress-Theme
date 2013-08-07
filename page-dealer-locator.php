@@ -24,8 +24,8 @@ get_header();
                     <h2>Authorized Online Dealers</h2>
                     <ul class="dealer-nav">
                          <li><a href="#snowboarding" class="h4 selected">Snowboarding</a></li>
-                         <li><a href="#skiing" class="h4">Skiing</a></li>
-                         <li><a href="#surfing" class="h4">Surfing</a></li>
+                         <li><a href="#skiing" class="h4">NASing</a></li>
+                         <!--<li><a href="#surfing" class="h4">Surfing</a></li>-->
                          <li><a href="#skateboarding" class="h4">Skateboarding</a></li>
                     </ul>
                     <?php
@@ -222,6 +222,7 @@ get_header();
                          endif;
                          ?>
                     </div><!-- END #skiing -->
+                    <!--
                     <div id="surfing">
                          <?php
                          // CHECK FOR US SURF DEALERS
