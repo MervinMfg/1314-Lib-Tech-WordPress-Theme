@@ -50,10 +50,7 @@ get_header();
         </section><!-- END .product-slider -->
         <div class="bg3-top"></div>
         <?php endif; ?>
-
-
-
-
+        
         <?php
         $productsArray = Array();
         // find product post type to query
@@ -462,7 +459,7 @@ get_header();
                     </li>
                 </ul>
                 <div class="clearfix"></div>
-                <ul class="product-listing">
+                <ul class="product-listing <?php echo strtolower(get_the_title()); ?>">
                     <?php
                     foreach ($productsArray as $product):
                     ?>
