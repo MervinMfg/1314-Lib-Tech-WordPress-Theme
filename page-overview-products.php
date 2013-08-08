@@ -10,7 +10,7 @@ get_header();
         if( $post_objects ):
         ?>
         <div class="bg-product-<?php echo $GLOBALS['sport']; ?>-top"></div>
-        <section class="featured-product-slider bg-product-<?php echo $GLOBALS['sport']; ?>">
+        <section class="featured-product-slider bg-product-<?php echo $GLOBALS['sport']; ?> <?php echo strtolower(get_the_title()); ?>">
             <div class="section-content">
                 <ul class="product-listing bxslider">
                     <?php
@@ -48,7 +48,6 @@ get_header();
             </div>
             <div class="clearfix"></div>
         </section><!-- END .product-slider -->
-        <div class="bg3-top"></div>
         <?php endif; ?>
         
         <?php
@@ -233,6 +232,7 @@ get_header();
         wp_reset_query();
         ?>
 
+        <div class="bg3-top"></div>
         <section class="product-overview bg3">
             <div class="section-content">
                 <h1><?php the_title(); ?></h1>
@@ -387,9 +387,9 @@ get_header();
                             <li data-filter=".xs">X Small</li>
                             <li data-filter=".s">Small</li>
                             <li data-filter=".m">Medium</li>
-                            <li data-filter=".large">Large</li>
-                            <li data-filter=".xlarge">X Large</li>
-                            <li data-filter=".xxlarge">XX Large</li>
+                            <li data-filter=".l">Large</li>
+                            <li data-filter=".xl">X Large</li>
+                            <li data-filter=".xxl">XX Large</li>
                         </ul>
                     </li>
                     <li class="filters categories">
@@ -398,6 +398,7 @@ get_header();
                         <ul>
                             <li data-filter=".jackets">Jackets</li>
                             <li data-filter=".pants">Pants</li>
+                            <li data-filter=".layers">Layers</li>
                         </ul>
                     </li>
                     <?php elseif (get_the_title() == "Apparel"): ?>
@@ -408,9 +409,9 @@ get_header();
                             <li data-filter=".xs">X Small</li>
                             <li data-filter=".s">Small</li>
                             <li data-filter=".m">Medium</li>
-                            <li data-filter=".large">Large</li>
-                            <li data-filter=".xlarge">X Large</li>
-                            <li data-filter=".xxlarge">XX Large</li>
+                            <li data-filter=".l">Large</li>
+                            <li data-filter=".xl">X Large</li>
+                            <li data-filter=".xxl">XX Large</li>
                         </ul>
                     </li>
                     <li class="filters categories">
@@ -421,7 +422,6 @@ get_header();
                             <li data-filter=".tshirts">Tshirts</li>
                             <li data-filter=".hats">Hats</li>
                             <li data-filter=".beanies">Beanies</li>
-                            <li data-filter=".layers">Layers</li>
                             <li data-filter=".socks">Socks</li>
                         </ul>
                     </li>
@@ -441,10 +441,10 @@ get_header();
                         <p class="select-title">Categories</p>
                         <p class="selected-items">Select</p>
                         <ul>
-                            <li data-filter=".stomp-pads">Snow</li>
-                            <li data-filter=".ski">Ski</li>
-                            <li data-filter=".surf">Surf</li>
-                            <li data-filter=".skate">Skate</li>
+                            <li data-filter=".snow-luggage">Snow</li>
+                            <li data-filter=".nas-luggage">NAS</li>
+                            <li data-filter=".surf-luggage">Surf</li>
+                            <li data-filter=".skate-luggage">Skate</li>
                         </ul>
                     </li>
                     <?php endif; ?>

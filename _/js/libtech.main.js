@@ -344,7 +344,7 @@ LIBTECH.main = {
             controls: true,
             pager: false,
             mode: 'horizontal',
-            adaptiveHeight: true,
+            adaptiveHeight: false,
             onSliderLoad: function (currentIndex) {
                 $('.featured-product-slider .bxslider > li').eq(currentIndex+1).addClass('active');
             },
@@ -388,7 +388,6 @@ LIBTECH.main = {
                     if(widthTotal > 316) {
                         widthTotal = 316;
                     }
-                    console.log('on ski page');
                 }
                 $(this).find('ul').width(widthTotal);
             });
