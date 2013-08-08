@@ -703,7 +703,12 @@ LIBTECH.main = {
         // region selector trigger
         $('.link-region-selector').click(function (e) {
             e.preventDefault();
-            self.regionSelectorOverlayInit();
+            e.stopPropagation(); // kill even from firing further
+            if (navigator.cookieEnabled === false) {
+                alert('Enable cookies in your browser in order to select your region.');
+            } else {
+                self.regionSelectorOverlayInit();
+            }
         });
     },
     quickCartInit: function () {
