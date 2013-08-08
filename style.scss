@@ -913,6 +913,26 @@ footer {
 /* Shopping Cart Styles
 -------------------------------------------------------------------------------*/
 #shopatronCart {display: none;} /* hide shopatron api key */
+.shopping-cart {
+	.section-content {
+		padding: 0 20px;
+
+		p {
+			margin-bottom: 1em;
+		}
+		#shopping-cart {
+			min-height:250px;
+
+			& > span {
+				display:block;
+				background: url(_/img/loader.gif) center center no-repeat #000;
+				width: 64px;
+				height: 20px;
+			}
+		}
+	}
+}
+
 
 /* Homepage Styles
 -------------------------------------------------------------------------------*/
