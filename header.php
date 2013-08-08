@@ -132,6 +132,14 @@
             $logo = get_bloginfo('template_directory') . '/_/img/lib-tech-logo.png';
         }
         setcookie('libtech_sport', $GLOBALS['sport'], time() + (86400 * 30), '/'); // 86400 = 1 day
+        // set up classes to add to body
+        $bodyClass = $GLOBALS['sport'];
+        // check for international, will be removed by JS if imporoperly cached
+        if (isset($_COOKIE["libtech_region"])) {
+            if ($_COOKIE["libtech_region"] == "int") {
+                $bodyClass .= " international";
+            }
+        }
     ?>
 
 	<title><?php echo $GLOBALS['pageTitle']; ?></title>
@@ -191,7 +199,7 @@
     <!-- WordPress Head -->
 	<?php wp_head(); ?>
 </head>
-<body <?php body_class($GLOBALS['sport']); ?>>
+<body <?php body_class($bodyClass); ?>>
 	<div class="wrapper">
 		<header>
 			<div class="logo-wrapper">

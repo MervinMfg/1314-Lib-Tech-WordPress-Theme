@@ -174,16 +174,18 @@ LIBTECH.main = {
         if (lang) {
             if (lang === 'ca') {
                 $(".country-ca").addClass("selected");
+                $("body").removeClass("international");
             } else if (lang === 'int') {
                 $("body").addClass("international");
                 $(".country-int").addClass("selected");
             } else {
                 $(".country-us").addClass("selected");
+                $("body").removeClass("international");
             }
         } else {
             if (navigator.cookieEnabled === true) {
                 // if no region cookie has been set, open selector if on product page
-                if ($('body').hasClass('page-template-page-snowboard-builder-php')) {
+                if ($('body').hasClass('page-template-page-snowboard-builder-php') || $('body').hasClass('page-template-page-shopping-cart-php') || $('body').hasClass('page-template-page-overview-products-php') || $('body').hasClass('single-libtech_snowboards') || $('body').hasClass('single-libtech_nas') || $('body').hasClass('single-libtech_skateboards') || $('body').hasClass('single-libtech_apparel') || $('body').hasClass('single-libtech_accessories') || $('body').hasClass('single-libtech_luggage') || $('body').hasClass('single-libtech_outerwear')) {
                     self.regionSelectorOverlayInit();
                 }
                 // pick us by default
