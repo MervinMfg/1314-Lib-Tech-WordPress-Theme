@@ -259,8 +259,8 @@
 				</div>
 				<div class="search">
 					<a href="#search">Search</a>
-					<form name="header-search" id="header-search" method="get" action="/">
-						<input type="text" class="text-input" name="s" value="" />
+					<form name="header-search" id="header-search" method="get" action="/search/">
+						<input type="text" class="text-input" name="q" value="" />
 						<input type="submit" class="submit" value="Search" />
 					</form>
 				</div>

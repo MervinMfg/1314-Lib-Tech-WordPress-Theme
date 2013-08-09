@@ -2477,6 +2477,63 @@ footer .footer-copy {
   margin-bottom: 1.25em;
 }
 
+/* Search styles
+-------------------------------------------------------------------------------*/
+.search .section-content {
+  padding: 0 20px;
+  min-height: 500px;
+}
+.search .section-content .gsc-control-cse .gs-result .gs-title {
+  text-transform: uppercase;
+  font-size: 1.375em !important;
+  /* 22 / 16 */
+  line-height: 1.32;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 5px;
+}
+.search .section-content .gsc-control-cse .gs-result .gs-title b {
+  color: yellow;
+  font-size: 1em !important;
+  /* 22 / 16 */
+}
+.search .section-content .gsc-control-cse .gs-result .gs-image-box {
+  margin-right: 10px;
+}
+.search .section-content .gsc-control-cse .gs-result .gs-visibleUrl {
+  color: #ccc;
+}
+.search .section-content .gsc-control-cse .gsc-cursor-box {
+  padding-top: 20px;
+}
+.search .section-content .gsc-control-cse .gsc-cursor-box .gsc-cursor {
+  background: #fff;
+  color: #000;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-style: normal;
+  font-size: 1.375em !important;
+  /* 22 / 16 */
+}
+.search .section-content .gsc-control-cse .gsc-cursor-box .gsc-cursor .gsc-cursor-page {
+  margin: 10px;
+}
+.search .section-content .gsc-control-cse .gsc-cursor-box .gsc-cursor .gsc-cursor-page.gsc-cursor-current-page {
+  color: #666;
+}
+
+.ski .search .section-content .gsc-control-cse .gs-result .gs-title b {
+  color: #0099ff;
+}
+
+.surf .search .section-content .gsc-control-cse .gs-result .gs-title b {
+  color: #ff6600;
+}
+
+.skate .search .section-content .gsc-control-cse .gs-result .gs-title b {
+  color: #66cc00;
+}
+
 /* Print Styles
 -------------------------------------------------------------------------------*/
 /* Media Queries
