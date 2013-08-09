@@ -15,8 +15,8 @@ Template Name: Luggage Detail
 					<ul id="image-list">
 						<?php
 						$thumbnailImages = Array();
-						if(get_field('libtech_luggage_images_image')):
-							while(the_repeater_field('libtech_luggage_images_image')):
+						if(get_field('libtech_luggage_images')):
+							while(the_repeater_field('libtech_luggage_images')):
 			       				$optionImage = get_sub_field('libtech_luggage_images_image');
 								$optionImageThumb = wp_get_attachment_image_src($optionImage, 'thumbnail', false);
 	       						$optionImageMedium = wp_get_attachment_image_src($optionImage, 'square-xlarge', false);
@@ -34,35 +34,6 @@ Template Name: Luggage Detail
 				</div><!-- END .product-images -->
 
 				<div class="product-details-right">
-					<!-- product array -->
-					<script type='text/javascript'>
-						<?php
-							// create new product array
-							$productArray = array();
-							$isProductAvailable = "No";
-							// loop through repeater
-							if(get_field('libtech_apparel_variations')):
-								while(the_repeater_field('libtech_apparel_variations')):
-									$apparelSize = get_sub_field('libtech_apparel_variations_size');
-									$apparelColor = get_sub_field('libtech_apparel_variations_color');
-									$apparelSKU = get_sub_field('libtech_apparel_variations_sku');
-									if ($GLOBALS['language'] == "ca") {
-										$apparelAvailable = get_sub_field('libtech_apparel_variations_availability_ca');
-									} else {
-										$apparelAvailable = get_sub_field('libtech_apparel_variations_availability_us');
-									}
-									$product = array("size" => $apparelSize, "color" => $apparelColor, "sku" => $apparelSKU, "available" => $apparelAvailable);
-									array_push($productArray, $product);
-									if($apparelAvailable == "Yes"){
-										$isProductAvailable = "Yes";
-									}
-								endwhile;
-							endif;
-
-							$jsArray = json_encode($productArray);
-							echo "var productArray = ". $jsArray . ";\n";
-						?>
-					</script>
 					<h3><?php the_field('libtech_product_slogan'); ?></h3>
 					<div class="image-list-thumbs <?php if(count($thumbnailImages) < 2){ echo 'hidden'; }?>">
 						<ul id="image-list-thumbs">
@@ -76,44 +47,39 @@ Template Name: Luggage Detail
 					<div class="product-price">
 						<?php echo getPrice( get_field('libtech_product_price_us'), get_field('libtech_product_price_ca'), get_field('libtech_product_on_sale'), get_field('libtech_product_sale_percentage') ); ?>
 					</div>
-					<div class="product-variations <?php if($isProductAvailable == "No"){echo 'hidden';} ?>">
-						<select id="product-variation-size">
-							<option value="-1">Select Size</option>
-							<?php
-							$sizeArray = array();
-							foreach ($productArray as $product) :
-								$productSize = $product['size'];
-								$productAvailable = $product['available'];
-								if(!in_array($productSize, $sizeArray) && $productAvailable != "No"):
-							?>
-							<option value="<?php echo $productSize; ?>" title="<?php echo $productSize; ?>" <?php if($productSize == "OSFA" || count($productArray) == 1){echo 'selected="selected"';} ?>><?php echo $productSize; ?></option>
-							<?php
-								endif;
-								// add product to size array if it's available
-								if($productAvailable != "No"){
-									array_push($sizeArray, $productSize);
-								}
-							endforeach;
-							?>
-						</select>
-						<select id="product-variation-color">
-							<option value="-1">Select Color</option>
-							<?php
-							$colorArray = array();
 
-							foreach ($productArray as $product) :
-								$productColor = $product['color'];
-								$productAvailable = $product['available'];
-								if(!in_array($productColor, $colorArray) && $productAvailable != "No"):
-							?>
-							<option value="<?php echo $productColor; ?>" title="<?php echo $productColor; ?>" <?php if(count($productArray) == 1){echo 'selected="selected"';} ?>><?php echo $productColor; ?></option>
-							<?php
-								endif;
-								// add product to color array if it's available
-								if($productAvailable != "No"){
-									array_push($colorArray, $productColor);
+					<?php
+						$productArray = Array();
+						$isProductAvailable = "No";
+						if(get_field('libtech_luggage_variations')):
+							while(the_repeater_field('libtech_luggage_variations')):
+								$optionColor = get_sub_field('libtech_luggage_variations_color');
+								$optionSKU = get_sub_field('libtech_luggage_variations_sku');
+								if($GLOBALS['language'] == "ca"){
+									$optionAvailable = get_sub_field('libtech_luggage_variations_availability_ca');
+								} else {
+									$optionAvailable = get_sub_field('libtech_luggage_variations_availability_us');
 								}
-							endforeach;
+								// set overall availability
+								if($optionAvailable == "Yes"){
+									$isProductAvailable = "Yes";
+								}
+								array_push($productArray, Array($optionColor, $optionSKU, $optionAvailable));
+							endwhile;
+						endif;
+					?>
+					<div class="product-variations <?php if($isProductAvailable == "No"){echo 'hidden';} ?>">
+						<select id="product-variation">
+							<option value="-1">Select a Size</option>
+							<?php
+								// sort by variation length
+								asort($productArray);
+								// render out variation dropdown
+								foreach ($productArray as $product) {
+							?>
+							<option value="<?php echo $product[1]; ?>" title="<?php echo $product[0]; ?>"<?php if($product[2] == "No") echo ' disabled="disabled"'; ?>><?php echo $product[0]; ?></option>
+							<?php
+								}
 							?>
 						</select>
 					</div>
@@ -130,31 +96,11 @@ Template Name: Luggage Detail
 						<div class="cart-success hidden"><p>The item has been added to your cart.</p><p><a href="/shopping-cart/" class="cart-link">View your shopping cart</a></p></div>
 						<div class="cart-failure hidden"><p>There has been an error adding the item to your cart.</p><p>Try again later or <a href="/contact/">contact us</a> if the problem persists.</p></div>
 					</div>
+					<?php if(get_field('libtech_luggage_volume') != ""): ?>
 					<ul class="product-quick-specs">
-						<?php
-						$sizeArray = array();
-						$sizeDisplayArray = array();
-						foreach ($productArray as $product) :
-							$productSize = $product['size'];
-							if(!in_array($productSize, $sizeArray)):
-								array_push($sizeDisplayArray, $productSize);
-							endif;
-							// add product to size array if it's available
-							if($productAvailable != "No"){
-								array_push($sizeArray, $productSize);
-							}
-						endforeach;
-						// setup sizes text display
-						$sizes = "";
-						for ($i = 0; $i < count($sizeDisplayArray); $i++) {
-							$sizes .= $sizeDisplayArray[$i];
-							if($i < count($sizeDisplayArray)-1){
-								$sizes .= ", ";
-							}
-						}
-						?>
-						<li><span>Sizes</span> <?php echo $sizes; ?></li>
+						<li><span>Volume</span> <?php the_field('libtech_luggage_volume'); ?> L</li>
 					</ul>
+					<?php endif; ?>
 					<div class="product-description">
 						<?php the_content(); ?>
 					</div>
