@@ -249,6 +249,49 @@ function post_navigation() {
     }
 }
 
+// function to determine the proper size to display for bindings
+function bindingSizeLookup ($sizeString, $verbose = true) {
+    $returnString = "";
+    switch ($sizeString) {
+        case "S/M":
+            if ($verbose) {
+                $returnString = "S/M (US M 5-9), (MP 23-27)";
+            } else {
+                $returnString = "S/M";
+            }
+            break;
+        case "M/L":
+            if ($verbose) {
+                $returnString = "M/L (US M 9-14), (MP 27-32)";
+            } else {
+                $returnString = "M/L";
+            }
+            break;
+        case "S":
+            if ($verbose) {
+                $returnString = "S (US M 6-8), (US W 7-9), (MP 24-26)";
+            } else {
+                $returnString = "S";
+            }
+            break;
+        case "M":
+            if ($verbose) {
+                $returnString = "M (US M 8.5-11), (MP 26-29)";
+            } else {
+                $returnString = "M";
+            }
+            break;
+        case "L":
+            if ($verbose) {
+                $returnString = "L (US M 11.5-14), (MP 29-32)";
+            } else {
+                $returnString = "L";
+            }
+            break;
+    }
+    return $returnString;
+}
+
 /******************************
 CODE FOR CUSTOM POST TYPES
 ******************************/
