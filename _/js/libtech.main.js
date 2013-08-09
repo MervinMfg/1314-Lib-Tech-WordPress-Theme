@@ -609,63 +609,164 @@ LIBTECH.main = {
             infiniteLoop: false,
             hideControlOnEnd: true
         });
-
-        $('#product-variation').change(function () {
-            // display the correct image matching selected option
-            var productSKU, productSKUs, productThumbs;
-            productSKU = $(this).val();
-            productSKUs = [];
-            if (productSKU != "-1") {
-                $('#product-variation').removeClass('alert');
-            }
-            $(".image-list-thumbs li a").each(function(){
-                var skus = $(this).attr('data-sku');
-                productSKUs.push([$(this), skus]);
-            });
-            for (var i=0; i < productSKUs.length; i++) {
-                var skus = productSKUs[i][1];
-                if (skus.indexOf(productSKU) != -1) {
-                    productSKUs[i][0].click();
+        // CHECK WHICH PRODUCT WE'RE ON AND RUN THE CORRECT CODE
+        if( $('body').hasClass('single-libtech_outerwear') || $('body').hasClass('single-libtech_accessories') || $('body').hasClass('single-libtech_apparel') ){
+            console.log('2 variations');
+            // FOR PRODCUTS WITH MORE THAN 1 VARTIATION SELECTION
+            // select field for color
+            $('#product-variation-color').change(function () {
+                // select the correct image
+                var colorValue, colorThumbs;
+                colorValue = $(this).val();
+                colorThumbs = $('.image-list-thumbs li a[data-color="' + colorValue + '"]');
+                if (colorThumbs.length > 0) {
+                    $(colorThumbs[0]).click();
                 }
-            }
-        });
-        // add to cart api btn
-        $('a.add-to-cart').click(function (e) {
-            e.preventDefault();
-            var productSKU;
-            // check size selection
-            productSKU = $('#product-variation').val();
-            if (productSKU === "-1") {
-                // add alert to class
-                $('#product-variation').addClass('alert');
-                return;
-            }
-            // hide add to cart, show loading while request is made
-            $('.product-buy ul li.loading').removeClass('hidden');
-            $('.product-buy ul li.cart-button').addClass('hidden');
-            // make sure to hide cart messages on each add
-            $('.product-buy .cart-success').addClass('hidden');
-            $('.product-buy .cart-failure').addClass('hidden');
-            // call shopatron's api
-            Shopatron.addToCart({
-                quantity: '1', // Optional: Defaults to 1 if not set
-                partNumber: productSKU // Required: This is the product that will be added to the cart.
-            }, {
-                // All event handlers are optional
-                success: function (data, textStatus) {
-                    $('.product-buy .cart-success').removeClass('hidden');
-                    $('.product-buy .cart-failure').addClass('hidden');
-                },
-                error: function (textStatus, errorThrown) {
-                    $('.product-buy .cart-failure').removeClass('hidden');
-                    $('.product-buy .cart-success').addClass('hidden');
-                },
-                complete: function (textStatus) {
-                    $('.product-buy ul li.loading').addClass('hidden');
-                    $('.product-buy ul li.cart-button').removeClass('hidden');
+                // kill alert color, if it's added
+                $('#product-variation-color').removeClass('alert');
+            });
+            // select field for size
+            $('#product-variation-size').change(function () {
+                var sizeValue, colorValue, colorOptions, colorArray;
+                sizeValue = $(this).val();
+                // build color list based on size
+                colorValue = $('#product-variation-color').val();
+                colorOptions = '<option value="-1">Select Color</option>';
+                colorArray = [];
+                $.each(productArray, function (key, value) {
+                    // check if size already exists
+                    var inArrayCheck =  $.inArray(value.color, colorArray);
+                    // add available options
+                    if ((sizeValue === "-1" && value.available === "Yes" && inArrayCheck === -1) || (sizeValue === value.size && value.available === "Yes" && inArrayCheck === -1)) {
+                        if (colorValue === value.color) {
+                            colorOptions += '<option value="' + value.color + '" selected="selected">' + value.color + '</option>';
+                        } else {
+                            colorOptions += '<option value="' + value.color + '">' + value.color + '</option>';
+                        }
+                        colorArray.push(value.color);
+                    }
+                });
+                // render out html
+                $('#product-variation-color').html(colorOptions);
+                // kill alert color, if it's added
+                $('#product-variation-size').removeClass('alert');
+            });
+            // add to cart api btn
+            $('a.add-to-cart').click(function (e) {
+                e.preventDefault();
+                var productSize, productColor, productSKU;
+                // check size selection
+                productSize = $('#product-variation-size').val();
+                if (productSize === "-1") {
+                    // add alert to class
+                    $('#product-variation-size').addClass('alert');
+                }
+                // check color selection
+                productColor = $('#product-variation-color').val();
+                if (productColor === "-1") {
+                    $('#product-variation-color').addClass('alert');
+                }
+                // check if either are -1, and return if they are
+                if (productSize === "-1" || productColor === "-1") {
+                    return;
+                }
+                // find the SKU in the product array
+                productSKU = "";
+                $.each(productArray, function (key, value) {
+                    if (productSize === value.size && productColor === value.color) {
+                        productSKU = value.sku;
+                    }
+                });
+                if (productSKU === "") {
+                    $('.product-buy .cart-failure').addClass('visible').removeClass('hidden');
+                    return;
+                }
+                // hide add to cart, show loading while request is made
+                $('.product-buy ul li.loading').addClass('visible').removeClass('hidden');
+                $('.product-buy ul li.cart-button').addClass('hidden').removeClass('visible');
+                // call shopatron's api
+                Shopatron.addToCart({
+                    quantity: '1', // Optional: Defaults to 1 if not set
+                    partNumber: productSKU, // Required: This is the product that will be added to the cart.
+                    itemOptions: {
+                        'Color': productColor,
+                        'Size': productSize
+                    }
+                }, {
+                    // All event handlers are optional
+                    success: function (data, textStatus) {
+                        $('.product-buy .cart-success').removeClass('hidden');
+                        $('.product-buy .cart-failure').addClass('hidden');
+                    },
+                    error: function (textStatus, errorThrown) {
+                        $('.product-buy .cart-failure').removeClass('hidden');
+                        $('.product-buy .cart-success').addClass('hidden');
+                    },
+                    complete: function (textStatus) {
+                        $('.product-buy ul li.loading').addClass('hidden');
+                        $('.product-buy ul li.cart-button').removeClass('hidden');
+                    }
+                });
+            });
+        } else {
+            // FUNCTIONALITY FOR PRODUCTS WITH ONLY 1 SELECTION
+            $('#product-variation').change(function () {
+                // display the correct image matching selected option
+                var productSKU, productSKUs, productThumbs;
+                productSKU = $(this).val();
+                productSKUs = [];
+                if (productSKU != "-1") {
+                    $('#product-variation').removeClass('alert');
+                }
+                $(".image-list-thumbs li a").each(function(){
+                    var skus = $(this).attr('data-sku');
+                    productSKUs.push([$(this), skus]);
+                });
+                for (var i=0; i < productSKUs.length; i++) {
+                    var skus = productSKUs[i][1];
+                    if (skus.indexOf(productSKU) != -1) {
+                        productSKUs[i][0].click();
+                    }
                 }
             });
-        });
+            // add to cart api btn
+            $('a.add-to-cart').click(function (e) {
+                e.preventDefault();
+                var productSKU;
+                // check size selection
+                productSKU = $('#product-variation').val();
+                if (productSKU === "-1") {
+                    // add alert to class
+                    $('#product-variation').addClass('alert');
+                    return;
+                }
+                // hide add to cart, show loading while request is made
+                $('.product-buy ul li.loading').removeClass('hidden');
+                $('.product-buy ul li.cart-button').addClass('hidden');
+                // make sure to hide cart messages on each add
+                $('.product-buy .cart-success').addClass('hidden');
+                $('.product-buy .cart-failure').addClass('hidden');
+                // call shopatron's api
+                Shopatron.addToCart({
+                    quantity: '1', // Optional: Defaults to 1 if not set
+                    partNumber: productSKU // Required: This is the product that will be added to the cart.
+                }, {
+                    // All event handlers are optional
+                    success: function (data, textStatus) {
+                        $('.product-buy .cart-success').removeClass('hidden');
+                        $('.product-buy .cart-failure').addClass('hidden');
+                    },
+                    error: function (textStatus, errorThrown) {
+                        $('.product-buy .cart-failure').removeClass('hidden');
+                        $('.product-buy .cart-success').addClass('hidden');
+                    },
+                    complete: function (textStatus) {
+                        $('.product-buy ul li.loading').addClass('hidden');
+                        $('.product-buy ul li.cart-button').removeClass('hidden');
+                    }
+                });
+            });
+        }
     },
     technologyDetailInit: function () {
         $(".tech-major").fitVids();
