@@ -41,19 +41,19 @@ Template Name: Accessories Detail
 							$productArray = array();
 							$isProductAvailable = "No";
 							// loop through repeater
-							if(get_field('libtech_apparel_variations')):
-								while(the_repeater_field('libtech_apparel_variations')):
-									$apparelSize = get_sub_field('libtech_apparel_variations_size');
-									$apparelColor = get_sub_field('libtech_apparel_variations_color');
-									$apparelSKU = get_sub_field('libtech_apparel_variations_sku');
+							if(get_field('libtech_accessories_variations')):
+								while(the_repeater_field('libtech_accessories_variations')):
+									$productSize = get_sub_field('libtech_accessories_variations_size');
+									$productColor = get_sub_field('libtech_accessories_variations_color');
+									$productSKU = get_sub_field('libtech_accessories_variations_sku');
 									if ($GLOBALS['language'] == "ca") {
-										$apparelAvailable = get_sub_field('libtech_apparel_variations_availability_ca');
+										$productAvailable = get_sub_field('libtech_accessories_variations_availability_ca');
 									} else {
-										$apparelAvailable = get_sub_field('libtech_apparel_variations_availability_us');
+										$productAvailable = get_sub_field('libtech_accessories_variations_availability_us');
 									}
-									$product = array("size" => $apparelSize, "color" => $apparelColor, "sku" => $apparelSKU, "available" => $apparelAvailable);
+									$product = array("size" => $productSize, "color" => $productColor, "sku" => $productSKU, "available" => $productAvailable);
 									array_push($productArray, $product);
-									if($apparelAvailable == "Yes"){
+									if($productAvailable == "Yes"){
 										$isProductAvailable = "Yes";
 									}
 								endwhile;
