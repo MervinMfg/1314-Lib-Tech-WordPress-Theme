@@ -117,7 +117,7 @@ get_header();
 					</li>
 					<li class="homepage-sport">
 						<div class="sport-wrapper">
-							<a href="/surfing/">
+							<a href="http://www.libtechwaterboarding.com" target="_blank">
 								<img src="<?php bloginfo('template_directory'); ?>/_/img/home-surf.jpg" alt="Waterboarding" />
 								<h4>Waterboarding</h4>
 							</a>
@@ -142,7 +142,7 @@ get_header();
 				<ul>
 					<li class="homepage-link">
 						<div class="link-wrapper">
-							<a href="/team/">
+							<a href="#team">
 								<img src="<?php bloginfo('template_directory'); ?>/_/img/home-rippers.jpg" alt="Team" />
 								<h4>Rippers</h4>
 							</a>
@@ -150,7 +150,7 @@ get_header();
 					</li>
 					<li class="homepage-link">
 						<div class="link-wrapper">
-							<a href="/kraftsmen/">
+							<a href="#kraftsmen">
 								<img src="<?php bloginfo('template_directory'); ?>/_/img/home-kraftsmen.jpg" alt="Kraftsmen" />
 								<h4>Kraftsmen</h4>
 							</a>
@@ -158,7 +158,7 @@ get_header();
 					</li>
 					<li class="homepage-link">
 						<div class="link-wrapper">
-							<a href="/artists/">
+							<a href="#artists">
 								<img src="<?php bloginfo('template_directory'); ?>/_/img/home-artists.jpg" alt="Artists" />
 								<h4>Artists</h4>
 							</a>

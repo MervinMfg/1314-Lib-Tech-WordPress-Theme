@@ -66,7 +66,7 @@
 						<ul>
 							<li><a href="/snowboarding/">Snow</a></li>
 							<li><a href="/skiing/">Ski</a></li>
-							<li><a href="/surfing/">Surf</a></li>
+							<li><a href="http://www.libtechwaterboarding.com" target="_blank">Surf</a></li>
 							<li><a href="/skateboarding/">Skate</a></li>
 						</ul>
 					</div>
@@ -75,7 +75,7 @@
 						<ul>
 							<li><a href="/snowboards/">Snowboards</a></li>
 							<li><a href="/skis/">NAS</a></li>
-							<li><a href="/surfboards/">Waterboards</a></li>
+							<li><a href="http://www.libtechwaterboarding.com/waterboards/" target="_blank">Waterboards</a></li>
 							<li><a href="/skateboards/">Skateboards</a></li>
 							<li><a href="/bindings/">Bindings</a></li>
 							<li><a href="/outerwear/">Outerwear</a></li>
@@ -87,28 +87,28 @@
 					<div class="about">
 						<p class="h2">About</p>
 						<ul>
-							<li><a href="/rippers/">Rippers</a></li>
+							<!--<li><a href="/rippers/">Rippers</a></li>
 							<li><a href="/kraftsmen/">Kraftsmen</a></li>
-							<li><a href="/artists/">Artists</a></li>
+							<li><a href="/artists/">Artists</a></li>-->
 							<li><a href="/technology/">Technology</a></li>
 							<li><a href="/environmental/">Environmental</a></li>
-							<li><a href="/faqs/">Faqs</a></li>
-							<li><a href="/testimonials/">Testimonials</a></li>
+							<!--<li><a href="/faqs/">Faqs</a></li>
+							<li><a href="/testimonials/">Testimonials</a></li>-->
 							<li><a href="/dealer-locator/">Find a Dealer</a></li>
 						</ul>
 					</div>
 					<div class="support">
 						<p class="h2">Support</p>
 						<ul>
-							<li><a href="/rippers/">Contact</a></li>
-							<li><a href="/rippers/">Register</a></li>
-							<li><a href="/rippers/">Warranty</a></li>
-							<li><a href="/rippers/">Policies</a></li>
-							<li><a href="/rippers/">Privacy</a></li>
-							<li><a href="/rippers/">My Account</a></li>
-							<li><a href="/rippers/">Safety &amp; Security</a></li>
-							<li><a href="/rippers/">30 Day Returns</a></li>
-							<li><a href="/rippers/">Ordering Info</a></li>
+							<li><a href="http://www.mervin.com/contact/">Contact</a></li>
+							<li><a href="http://www.mervin.com/support/register/">Register</a></li>
+							<li><a href="http://www.mervin.com/support/warranty/">Warranty</a></li>
+							<li><a href="http://lib-tech.shptron.com/home/privacy/4374.4.1.1" target="_blank" id="link-privacy">Privacy</a></li>
+			                <li><a href="http://lib-tech.shptron.com/home/policies/4374.4.1.1" target="_blank" id="link-policies">Policies</a></li>
+			                <li><a href="http://lib-tech.shptron.com/account/?mfg_id=4374.4&language_id=1" target="_blank" id="link-login">My Account</a></li>
+			                <li><a href="http://lib-tech.shptron.com/home/security/4374.4.1.1" target="_blank" id="link-safety">Safety &amp; Security</a></li>
+			                <li><a href="http://lib-tech.shptron.com/home/policies/4374.4.1.1#Returns" target="_blank" id="link-returns">30-Day Returns</a></li>
+			                <li><a href="http://lib-tech.shptron.com/home/ordering/4374.4.1.1" target="_blank" id="link-ordering">Ordering Info</a></li>
 						</ul>
 					</div>
 				</nav>
