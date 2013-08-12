@@ -2363,10 +2363,14 @@ footer {
 .tech-minor {
 	clear: both;
 
+	.section-content {
+		padding: 0 20px;
+	}
+
 	h2 {
 		margin-bottom: 10px;
 	}
-	& > ul > li {
+	ul > li {
 		padding-bottom: 20px;
 
 		h4 {
@@ -2879,7 +2883,7 @@ footer {
 		display: block;
 	}
 	/* Technology styles */
-	.tech-minor > ul > li {
+	.tech-minor ul > li {
 		width: 48%;
 		display: inline-block;
 		vertical-align: top;
@@ -3245,7 +3249,7 @@ footer {
 			}
 		}
 	}
-	.tech-minor > ul > li {
+	.tech-minor ul > li {
 		width: 33%;
 		display: inline-block;
 		vertical-align: top;
@@ -3429,7 +3433,7 @@ footer {
 		}
 	}
 	/* Technology styles */
-	.tech-minor > ul > li {
+	.tech-minor ul > li {
 		width: 24%;
 		display: inline-block;
 		vertical-align: top;

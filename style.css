@@ -2355,28 +2355,31 @@ footer .footer-copy {
 .tech-minor {
   clear: both;
 }
+.tech-minor .section-content {
+  padding: 0 20px;
+}
 .tech-minor h2 {
   margin-bottom: 10px;
 }
-.tech-minor > ul > li {
+.tech-minor ul > li {
   padding-bottom: 20px;
 }
-.tech-minor > ul > li h4 img {
+.tech-minor ul > li h4 img {
   width: 25%;
   height: auto;
   vertical-align: middle;
   display: inline-block;
   padding-bottom: 10px;
 }
-.tech-minor > ul > li h4 > span {
+.tech-minor ul > li h4 > span {
   width: 75%;
   padding-left: 20px;
   display: inline-block;
 }
-.tech-minor > ul > li .tech-copy {
+.tech-minor ul > li .tech-copy {
   clear: both;
 }
-.tech-minor > ul > li .tech-copy ul {
+.tech-minor ul > li .tech-copy ul {
   margin-left: 25px;
   list-style: square;
 }
@@ -2804,13 +2807,13 @@ footer .footer-copy {
   }
 
   /* Technology styles */
-  .tech-minor > ul > li {
+  .tech-minor ul > li {
     width: 48%;
     display: inline-block;
     vertical-align: top;
     text-align: left;
   }
-  .tech-minor > ul > li .tech-pad {
+  .tech-minor ul > li .tech-pad {
     padding: 10px;
   }
 }
@@ -3135,7 +3138,7 @@ footer .footer-copy {
     display: block;
   }
 
-  .tech-minor > ul > li {
+  .tech-minor ul > li {
     width: 33%;
     display: inline-block;
     vertical-align: top;
@@ -3285,7 +3288,7 @@ footer .footer-copy {
   }
 
   /* Technology styles */
-  .tech-minor > ul > li {
+  .tech-minor ul > li {
     width: 24%;
     display: inline-block;
     vertical-align: top;
