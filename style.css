@@ -2387,14 +2387,25 @@ footer .footer-copy {
 .tech-overview .section-content {
   padding: 0 20px;
 }
-.tech-overview .section-content h1 {
-  margin-bottom: 20px;
+.tech-overview .section-content .tech-header {
+  margin-bottom: 40px;
 }
-.tech-overview .section-content p {
-  margin-bottom: 10px;
+.tech-overview .section-content .tech-sport {
+  clear: both;
+  padding-bottom: 40px;
 }
-.tech-overview .section-content h3 {
-  margin: 40px 0 10px;
+.tech-overview .section-content .tech-sport h1 {
+  margin-bottom: 1em;
+}
+.tech-overview .section-content .tech-sport h3 {
+  margin-bottom: 1em;
+}
+.tech-overview .section-content .tech-sport img {
+  width: 100%;
+  margin-bottom: 1em;
+}
+.tech-overview .section-content .tech-sport .tech-copy p {
+  margin-bottom: 1em;
 }
 
 /* Dealer Locator styles
@@ -2815,6 +2826,18 @@ footer .footer-copy {
   }
   .tech-minor ul > li .tech-pad {
     padding: 10px;
+  }
+
+  .tech-overview .section-content .tech-sport img {
+    width: 50%;
+    float: left;
+  }
+  .tech-overview .section-content .tech-sport .tech-copy {
+    width: 50%;
+    float: right;
+  }
+  .tech-overview .section-content .tech-sport .tech-copy p {
+    padding-left: 20px;
   }
 }
 @media screen and (min-width: 768px) {
