@@ -220,6 +220,13 @@ get_header();
                 // sort sizes
                 array_multisort($productWidth, SORT_ASC);
                 $productArray['width'] = $productWidth;
+                // get categories for skateboards
+                $terms = get_the_terms( $post->ID, 'libtech_skateboard_categories' );
+                if( $terms && !is_wp_error( $terms ) ) {
+                    foreach( $terms as $term ) {
+                        $filterList .= " " . $term->slug;
+                    }
+                }
             endif;
             // if product is available set filter list class
             if ($productArray['available'] == "Yes") {
@@ -374,7 +381,7 @@ get_header();
                         <p class="select-title">Categories</p>
                         <p class="selected-items">Select</p>
                         <ul>
-                            <li data-filter=".hesho">Hesho</li>
+                            <li data-filter=".hesho-disposable-standards">Hesho</li>
                             <li data-filter=".maple-bottoms">Maple Bottoms</li>
                             <li data-filter=".semi-slicks">Semi Slicks</li>
                         </ul>
