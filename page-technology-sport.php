@@ -25,7 +25,15 @@ switch ($parentSlug) {
             <div class="section-content">
                 <div class="tech-header">
                     <h1><?php the_title(); ?></h1>
+                    <?php if ($categorySlug == "snowboards") : ?>
+                    <img src="<?php bloginfo('template_directory'); ?>/_/img/tech-snow.jpg" alt="Lib Tech Snowboard Technology" />
+                    <?php elseif ($categorySlug == "nas"): ?>
+                    <img src="<?php bloginfo('template_directory'); ?>/_/img/tech-ski.jpg" alt="Lib Tech NAS Technology" />
+                    <?php elseif ($categorySlug == "skateboards"): ?>
+                    <img src="<?php bloginfo('template_directory'); ?>/_/img/tech-skate.jpg" alt="Lib Tech Skate Technology" />
+                    <?php endif; ?>
                     <?php the_content(); ?>
+                    <div class="clearfix"></div>
                 </div>
                 <ul>
                     <?php
@@ -70,6 +78,7 @@ switch ($parentSlug) {
                                         endif;
                                     ?>
                                 </ul>
+                                <div class="clearfix"></div>
                             </div>
                         </div>
                         <div class="clearfix"></div>
@@ -79,6 +88,7 @@ switch ($parentSlug) {
                     endwhile;
                     wp_reset_query();
                     ?>
+                    <div class="clearfix"></div>
             </div><!-- END .section-content -->
         </section><!-- END .tech-major -->
         <div class="bg3-top product-video-top"></div>
