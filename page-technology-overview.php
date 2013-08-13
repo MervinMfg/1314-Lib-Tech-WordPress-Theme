@@ -56,6 +56,27 @@ get_header();
 
                 <?php
                 $techPage = new WP_Query();
+                $techPage->query('page_id=18918'); // surfing
+                while ($techPage->have_posts()) : $techPage->the_post();
+                ?>
+
+                <div class="tech-sport">
+                    <h3><?php the_title(); ?></h3>
+                    <img src="<?php bloginfo('template_directory'); ?>/_/img/tech-surf.jpg" alt="Lib Tech Surf Technology" />
+                    <div class="tech-copy">
+                        <?php the_content(); ?>
+                        <p class="tech-link"><a href="http://www.libtechwaterboarding.com/technology/" target="_blank">View More</a></p>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+
+                <?php 
+                endwhile;
+                wp_reset_query();
+                ?>
+
+                <?php
+                $techPage = new WP_Query();
                 $techPage->query('page_id=18912'); // skateboarding
                 while ($techPage->have_posts()) : $techPage->the_post();
                 ?>
