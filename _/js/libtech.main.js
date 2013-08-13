@@ -37,6 +37,8 @@ LIBTECH.main = {
             self.productDetailInit();
         } else if ($('body').hasClass('page-template-page-technology-sport-php')) {
             self.technologyDetailInit();
+        } else if ($('body').hasClass('page-template-page-environmental-php')) {
+            self.environmentalInit();
         } else if ($('body').hasClass('blog') || $('body').hasClass('search') || $('body').hasClass('archive') || $('body').hasClass('error404')) {
             self.blogInit();
         } else if ($('body').hasClass('single-post')) {
@@ -770,6 +772,9 @@ LIBTECH.main = {
     },
     technologyDetailInit: function () {
         $(".tech-major").fitVids();
+    },
+    environmentalInit: function () {
+        $(".enviro-video").fitVids();
     },
     blogInit: function () {
     },
