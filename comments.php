@@ -18,6 +18,7 @@
 				<div class="discussion-thread">
 					<fb:comments href="<?php the_permalink(); ?>" width="940" colorscheme="dark" num_posts="5" mobile="false"></fb:comments>
 				</div>
+				<div class="clearfix"></div>
 			</div>
 		</section>
 <?php endif; ?>
