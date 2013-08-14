@@ -307,6 +307,29 @@ get_header();
                         }
                     }
                     break;
+                case "libtech_luggage":
+                    if(get_field('libtech_luggage_variations')):
+                        while(the_repeater_field('libtech_luggage_variations')):
+                            // get outerwear availability
+                            if ($GLOBALS['language'] == "ca") {
+                                $variationAvailable = get_sub_field('libtech_luggage_variations_availability_ca');
+                            } else {
+                                $variationAvailable = get_sub_field('libtech_luggage_variations_availability_us');
+                            }
+                            // set overall availability
+                            if($variationAvailable == "Yes"){
+                                $productArray['available'] = "Yes";
+                            }
+                        endwhile;
+                    endif;
+                    // get categories for outerwear
+                    $terms = get_the_terms( $post->ID, 'libtech_luggage_categories' );
+                    if( $terms && !is_wp_error( $terms ) ) {
+                        foreach( $terms as $term ) {
+                            $filterList .= " " . $term->slug;
+                        }
+                    }
+                    break;
             }
             // if product is available set filter list class
             if ($productArray['available'] == "Yes") {
