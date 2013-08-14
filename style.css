@@ -1648,6 +1648,12 @@ footer .footer-copy {
 .product-filtering > li.skate-categories > ul > li {
   width: 7.1em;
 }
+.product-filtering > li.outerwear-categories > ul {
+  right: -78px;
+}
+.product-filtering > li.outerwear-categories > ul > li {
+  width: 6em;
+}
 .product-filtering > li.contours > ul > li {
   width: 4em;
 }
@@ -1661,7 +1667,13 @@ footer .footer-copy {
   left: 0;
 }
 .product-filtering > li.nas-size > ul > li {
-  width: 2.5em;
+  width: 4em;
+}
+.product-filtering > li.outerwear-size > ul {
+  left: 0;
+}
+.product-filtering > li.outerwear-size > ul > li {
+  width: 4.5em;
 }
 .product-filtering > li.width > ul {
   right: 0;

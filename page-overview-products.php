@@ -103,131 +103,170 @@ get_header();
             $productArray['available'] = "No";
             $productArray['price'] = getPrice( get_field('libtech_product_price_us'), get_field('libtech_product_price_ca'), get_field('libtech_product_on_sale'), get_field('libtech_product_sale_percentage') );
 
-            if($productArray['postType'] == "libtech_snowboards"): // BEGIN SETTING UP SNOWBOARD FILTER CLASSES
-                // check snowboard product availability
-                if(get_field('libtech_snowboard_options')):
-                    while(the_repeater_field('libtech_snowboard_options')):
-                        $optionVariations = get_sub_field('libtech_snowboard_options_variations');
-                        // loop through variations
-                        for ($i = 0; $i < count($optionVariations); $i++) {
+
+
+            switch ($productArray['postType']) {
+                case "libtech_snowboards":
+                    // BEGIN SETTING UP SNOWBOARD FILTER CLASSES
+                    // check snowboard product availability
+                    if(get_field('libtech_snowboard_options')):
+                        while(the_repeater_field('libtech_snowboard_options')):
+                            $optionVariations = get_sub_field('libtech_snowboard_options_variations');
+                            // loop through variations
+                            for ($i = 0; $i < count($optionVariations); $i++) {
+                                if ($GLOBALS['language'] == "ca") {
+                                    $variationAvailable = $optionVariations[$i]['libtech_snowboard_options_variations_availability_ca'];
+                                } else {
+                                    $variationAvailable = $optionVariations[$i]['libtech_snowboard_options_variations_availability_us'];
+                                }
+                                // set overall availability
+                                if($variationAvailable == "Yes"){
+                                    $productArray['available'] = "Yes";
+                                }
+                            }
+                        endwhile;
+                    endif;
+                    // build array of snowboard sizes
+                    $productSize = Array();
+                    $productWidth = Array();
+                    if(get_field('libtech_snowboard_specs')):
+                        while(the_repeater_field('libtech_snowboard_specs')):
+                            $snowboardLength = str_replace('&quot;', '_', get_sub_field('libtech_snowboard_specs_length'));
+                            $snowboardWidth = get_sub_field('libtech_snowboard_specs_width');
+                            // add size & width to arrays
+                            array_push($productSize, $snowboardLength);
+                            array_push($productWidth, $snowboardWidth);
+                            // add length and width to filter list
+                            $filterList .= " " . $snowboardLength;
+                            $filterList .= " " . $snowboardWidth;
+                        endwhile;
+                    endif;
+                    // sort sizes
+                    array_multisort($productSize, SORT_ASC);
+                    $productArray['size'] = $productSize;
+                    $productArray['width'] = $productWidth;
+                    // build filter list of snowboard categories
+                    $productCategories = Array();
+                    $categories = get_the_terms( $post->ID , 'libtech_snowboard_categories' );
+                    foreach ( $categories as $category ) {
+                        array_push($productCategories, $category->slug);
+                        $filterList .= " " . $category->slug;
+                    }
+                    $productArray['categories'] = $productCategories;
+                    // add contour to filter
+                    $filterList .= " " . str_replace(array(' ', '!'), '_', get_field('libtech_snowboard_contour'));
+                    $productArray['contour'] = get_field('libtech_snowboard_contour');
+                    break;
+                case "libtech_nas":
+                    // get nas availability
+                    if(get_field('libtech_nas_variations')):
+                        while(the_repeater_field('libtech_nas_variations')):
                             if ($GLOBALS['language'] == "ca") {
-                                $variationAvailable = $optionVariations[$i]['libtech_snowboard_options_variations_availability_ca'];
+                                $variationAvailable = get_sub_field('libtech_nas_variations_availability_ca');
                             } else {
-                                $variationAvailable = $optionVariations[$i]['libtech_snowboard_options_variations_availability_us'];
+                                $variationAvailable = get_sub_field('libtech_nas_variations_availability_us');
                             }
                             // set overall availability
                             if($variationAvailable == "Yes"){
                                 $productArray['available'] = "Yes";
                             }
+                        endwhile;
+                    endif;
+                    // build array of nas sizes & widths
+                    $productSize = Array();
+                    $productWidth = Array();
+                    if(get_field('libtech_nas_specs')):
+                        while(the_repeater_field('libtech_nas_specs')):
+                            $length = get_sub_field('libtech_nas_specs_length');
+                            $width = get_sub_field('libtech_nas_specs_waist_width');
+                            // Narrow (84mm - 97mm)
+                            // Normal (98mm - 112mm)
+                            // Wide (113mm - 118mm)
+                            if($width < 98) {
+                                $width = "Narrow";
+                            } else if ($width < 113) {
+                                $width = "Standard";
+                            } else {
+                                $width = "Wide";
+                            }
+                            // add size & width to arrays
+                            array_push($productSize, $length);
+                            array_push($productWidth, $width);
+                            // add length and width to filter list
+                            $filterList .= " " . $length;
+                            $filterList .= " " . $width;
+                        endwhile;
+                    endif;
+                    // sort sizes
+                    array_multisort($productSize, SORT_ASC);
+                    $productArray['size'] = $productSize;
+                    break;
+                case "libtech_skateboards":
+                    // build array of skateboard widths
+                    $productWidth = Array();
+                    if(get_field('libtech_skateboard_variations')):
+                        while(the_repeater_field('libtech_skateboard_variations')):
+                            $variationWidth = str_replace('.', '_', get_sub_field('libtech_skateboard_variations_width'));
+                            // get skateboard availability
+                            if ($GLOBALS['language'] == "ca") {
+                                $variationAvailable = get_sub_field('libtech_skateboard_variations_availability_ca');
+                            } else {
+                                $variationAvailable = get_sub_field('libtech_skateboard_variations_availability_us');
+                            }
+                            // set overall availability
+                            if($variationAvailable == "Yes"){
+                                $productArray['available'] = "Yes";
+                            }
+                            // add wodth to array
+                            array_push($productWidth, $variationWidth);
+                            // add width to filter list
+                            $filterList .= " " . $variationWidth;
+                        endwhile;
+                    endif;
+                    // sort sizes
+                    array_multisort($productWidth, SORT_ASC);
+                    $productArray['width'] = $productWidth;
+                    // get categories for skateboards
+                    $terms = get_the_terms( $post->ID, 'libtech_skateboard_categories' );
+                    if( $terms && !is_wp_error( $terms ) ) {
+                        foreach( $terms as $term ) {
+                            $filterList .= " " . $term->slug;
                         }
-                    endwhile;
-                endif;
-                // build array of snowboard sizes
-                $productSize = Array();
-                $productWidth = Array();
-                if(get_field('libtech_snowboard_specs')):
-                    while(the_repeater_field('libtech_snowboard_specs')):
-                        $snowboardLength = str_replace('&quot;', '_', get_sub_field('libtech_snowboard_specs_length'));
-                        $snowboardWidth = get_sub_field('libtech_snowboard_specs_width');
-                        // add size & width to arrays
-                        array_push($productSize, $snowboardLength);
-                        array_push($productWidth, $snowboardWidth);
-                        // add length and width to filter list
-                        $filterList .= " " . $snowboardLength;
-                        $filterList .= " " . $snowboardWidth;
-                    endwhile;
-                endif;
-                // sort sizes
-                array_multisort($productSize, SORT_ASC);
-                $productArray['size'] = $productSize;
-                $productArray['width'] = $productWidth;
-                // build filter list of snowboard categories
-                $productCategories = Array();
-                $categories = get_the_terms( $post->ID , 'libtech_snowboard_categories' );
-                foreach ( $categories as $category ) {
-                    array_push($productCategories, $category->slug);
-                    $filterList .= " " . $category->slug;
-                }
-                $productArray['categories'] = $productCategories;
-                // add contour to filter
-                $filterList .= " " . str_replace(array(' ', '!'), '_', get_field('libtech_snowboard_contour'));
-                $productArray['contour'] = get_field('libtech_snowboard_contour');
-            elseif($productArray['postType'] == "libtech_nas"):
-                // get nas availability
-                if(get_field('libtech_nas_variations')):
-                    while(the_repeater_field('libtech_nas_variations')):
-                        if ($GLOBALS['language'] == "ca") {
-                            $variationAvailable = get_sub_field('libtech_nas_variations_availability_ca');
-                        } else {
-                            $variationAvailable = get_sub_field('libtech_nas_variations_availability_us');
-                        }
-                        // set overall availability
-                        if($variationAvailable == "Yes"){
-                            $productArray['available'] = "Yes";
-                        }
-                    endwhile;
-                endif;
-                // build array of nas sizes & widths
-                $productSize = Array();
-                $productWidth = Array();
-                if(get_field('libtech_nas_specs')):
-                    while(the_repeater_field('libtech_nas_specs')):
-                        $length = get_sub_field('libtech_nas_specs_length');
-                        $width = get_sub_field('libtech_nas_specs_waist_width');
-                        // Narrow (84mm - 97mm)
-                        // Normal (98mm - 112mm)
-                        // Wide (113mm - 118mm)
-                        if($width < 98) {
-                            $width = "Narrow";
-                        } else if ($width < 113) {
-                            $width = "Standard";
-                        } else {
-                            $width = "Wide";
-                        }
-                        // add size & width to arrays
-                        array_push($productSize, $length);
-                        array_push($productWidth, $width);
-                        // add length and width to filter list
-                        $filterList .= " " . $length;
-                        $filterList .= " " . $width;
-                    endwhile;
-                endif;
-                // sort sizes
-                array_multisort($productSize, SORT_ASC);
-                $productArray['size'] = $productSize;
-            elseif($productArray['postType'] == "libtech_skateboards"):
-                // build array of skateboard widths
-                $productWidth = Array();
-                if(get_field('libtech_skateboard_variations')):
-                    while(the_repeater_field('libtech_skateboard_variations')):
-                        $variationWidth = str_replace('.', '_', get_sub_field('libtech_skateboard_variations_width'));
-                        // get skateboard availability
-                        if ($GLOBALS['language'] == "ca") {
-                            $variationAvailable = get_sub_field('libtech_skateboard_variations_availability_ca');
-                        } else {
-                            $variationAvailable = get_sub_field('libtech_skateboard_variations_availability_us');
-                        }
-                        // set overall availability
-                        if($variationAvailable == "Yes"){
-                            $productArray['available'] = "Yes";
-                        }
-                        // add wodth to array
-                        array_push($productWidth, $variationWidth);
-                        // add width to filter list
-                        $filterList .= " " . $variationWidth;
-                    endwhile;
-                endif;
-                // sort sizes
-                array_multisort($productWidth, SORT_ASC);
-                $productArray['width'] = $productWidth;
-                // get categories for skateboards
-                $terms = get_the_terms( $post->ID, 'libtech_skateboard_categories' );
-                if( $terms && !is_wp_error( $terms ) ) {
-                    foreach( $terms as $term ) {
-                        $filterList .= " " . $term->slug;
                     }
-                }
-            endif;
+                    break;
+                case "libtech_outerwear":
+                    if(get_field('libtech_outerwear_variations')):
+                        while(the_repeater_field('libtech_outerwear_variations')):
+                            $variationWidth = get_sub_field('libtech_outerwear_variations_size');
+                            // get outerwear availability
+                            if ($GLOBALS['language'] == "ca") {
+                                $variationAvailable = get_sub_field('libtech_outerwear_variations_availability_ca');
+                            } else {
+                                $variationAvailable = get_sub_field('libtech_outerwear_variations_availability_us');
+                            }
+                            // set overall availability
+                            if($variationAvailable == "Yes"){
+                                $productArray['available'] = "Yes";
+                            }
+                            // add width to filter list
+                            $filterList .= " " . $variationWidth;
+                        endwhile;
+                    endif;
+                    // get categories for outerwear
+                    $terms = get_the_terms( $post->ID, 'libtech_outerwear_categories' );
+                    if( $terms && !is_wp_error( $terms ) ) {
+                        foreach( $terms as $term ) {
+                            $filterList .= " " . $term->slug;
+                        }
+                    }
+                    break;
+                case "libtech_skateboards":
+                    break;
+                case "libtech_skateboards":
+                    break;
+                default:
+                    echo "i is not equal to 0, 1 or 2";
+            }
             // if product is available set filter list class
             if ($productArray['available'] == "Yes") {
                 $filterList .= " available";
@@ -387,19 +426,18 @@ get_header();
                         </ul>
                     </li>
                     <?php elseif (get_the_title() == "Outerwear"): ?>
-                    <li class="filters size">
+                    <li class="filters outerwear-size">
                         <p class="select-title">Size</p>
                         <p class="selected-items">Select</p>
                         <ul>
-                            <li data-filter=".xs">X Small</li>
-                            <li data-filter=".s">Small</li>
-                            <li data-filter=".m">Medium</li>
-                            <li data-filter=".l">Large</li>
-                            <li data-filter=".xl">X Large</li>
-                            <li data-filter=".xxl">XX Large</li>
+                            <li data-filter=".S">Small</li>
+                            <li data-filter=".M">Medium</li>
+                            <li data-filter=".L">Large</li>
+                            <li data-filter=".XL">X Large</li>
+                            <li data-filter=".XXL">XX Large</li>
                         </ul>
                     </li>
-                    <li class="filters categories">
+                    <li class="filters outerwear-categories">
                         <p class="select-title">Categories</p>
                         <p class="selected-items">Select</p>
                         <ul>

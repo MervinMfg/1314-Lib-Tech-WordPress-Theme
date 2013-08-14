@@ -1601,6 +1601,13 @@ footer {
 				width: 7.1em;
 			}
 		}
+		&.outerwear-categories > ul {
+			right: -78px;
+
+			& > li {
+				width: 6em;
+			}
+		}
 		&.contours > ul > li {
 			width: 4em;
 		}
@@ -1615,7 +1622,14 @@ footer {
 			left: 0;
 
 			& > li {
-				width: 2.5em;
+				width: 4em;
+			}
+		}
+		&.outerwear-size > ul {
+			left: 0;
+
+			& > li {
+				width: 4.5em;
 			}
 		}
 		&.width > ul {
