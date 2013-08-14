@@ -1654,6 +1654,12 @@ footer .footer-copy {
 .product-filtering > li.outerwear-categories > ul > li {
   width: 6em;
 }
+.product-filtering > li.apparel-categories > ul {
+  right: -110px;
+}
+.product-filtering > li.apparel-categories > ul > li {
+  width: 5.64em;
+}
 .product-filtering > li.contours > ul > li {
   width: 4em;
 }
@@ -1673,6 +1679,12 @@ footer .footer-copy {
   left: 0;
 }
 .product-filtering > li.outerwear-size > ul > li {
+  width: 4.5em;
+}
+.product-filtering > li.apparel-size > ul {
+  left: 0;
+}
+.product-filtering > li.apparel-size > ul > li {
   width: 4.5em;
 }
 .product-filtering > li.width > ul {

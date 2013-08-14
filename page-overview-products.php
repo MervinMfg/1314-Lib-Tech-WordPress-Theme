@@ -103,8 +103,6 @@ get_header();
             $productArray['available'] = "No";
             $productArray['price'] = getPrice( get_field('libtech_product_price_us'), get_field('libtech_product_price_ca'), get_field('libtech_product_on_sale'), get_field('libtech_product_sale_percentage') );
 
-
-
             switch ($productArray['postType']) {
                 case "libtech_snowboards":
                     // BEGIN SETTING UP SNOWBOARD FILTER CLASSES
@@ -237,7 +235,7 @@ get_header();
                 case "libtech_outerwear":
                     if(get_field('libtech_outerwear_variations')):
                         while(the_repeater_field('libtech_outerwear_variations')):
-                            $variationWidth = get_sub_field('libtech_outerwear_variations_size');
+                            $variationSize = get_sub_field('libtech_outerwear_variations_size');
                             // get outerwear availability
                             if ($GLOBALS['language'] == "ca") {
                                 $variationAvailable = get_sub_field('libtech_outerwear_variations_availability_ca');
@@ -248,8 +246,8 @@ get_header();
                             if($variationAvailable == "Yes"){
                                 $productArray['available'] = "Yes";
                             }
-                            // add width to filter list
-                            $filterList .= " " . $variationWidth;
+                            // add size to filter list
+                            $filterList .= " " . $variationSize;
                         endwhile;
                     endif;
                     // get categories for outerwear
@@ -260,12 +258,32 @@ get_header();
                         }
                     }
                     break;
-                case "libtech_skateboards":
+                case "libtech_apparel":
+                    if(get_field('libtech_apparel_variations')):
+                        while(the_repeater_field('libtech_apparel_variations')):
+                            $variationSize = get_sub_field('libtech_apparel_variations_size');
+                            // get outerwear availability
+                            if ($GLOBALS['language'] == "ca") {
+                                $variationAvailable = get_sub_field('libtech_apparel_variations_availability_ca');
+                            } else {
+                                $variationAvailable = get_sub_field('libtech_apparel_variations_availability_us');
+                            }
+                            // set overall availability
+                            if($variationAvailable == "Yes"){
+                                $productArray['available'] = "Yes";
+                            }
+                            // add size to filter list
+                            $filterList .= " " . $variationSize;
+                        endwhile;
+                    endif;
+                    // get categories for outerwear
+                    $terms = get_the_terms( $post->ID, 'libtech_apparel_categories' );
+                    if( $terms && !is_wp_error( $terms ) ) {
+                        foreach( $terms as $term ) {
+                            $filterList .= " " . $term->slug;
+                        }
+                    }
                     break;
-                case "libtech_skateboards":
-                    break;
-                default:
-                    echo "i is not equal to 0, 1 or 2";
             }
             // if product is available set filter list class
             if ($productArray['available'] == "Yes") {
@@ -447,24 +465,23 @@ get_header();
                         </ul>
                     </li>
                     <?php elseif (get_the_title() == "Apparel"): ?>
-                    <li class="filters size">
+                    <li class="filters apparel-size">
                         <p class="select-title">Size</p>
                         <p class="selected-items">Select</p>
                         <ul>
-                            <li data-filter=".xs">X Small</li>
-                            <li data-filter=".s">Small</li>
-                            <li data-filter=".m">Medium</li>
-                            <li data-filter=".l">Large</li>
-                            <li data-filter=".xl">X Large</li>
-                            <li data-filter=".xxl">XX Large</li>
+                            <li data-filter=".S">Small</li>
+                            <li data-filter=".M">Medium</li>
+                            <li data-filter=".L">Large</li>
+                            <li data-filter=".XL">X Large</li>
+                            <li data-filter=".XXL">XX Large</li>
                         </ul>
                     </li>
-                    <li class="filters categories">
+                    <li class="filters apparel-categories">
                         <p class="select-title">Categories</p>
                         <p class="selected-items">Select</p>
                         <ul>
                             <li data-filter=".sweatshirts">Sweatshirts</li>
-                            <li data-filter=".tshirts">Tshirts</li>
+                            <li data-filter=".t-shirts">T-Shirts</li>
                             <li data-filter=".hats">Hats</li>
                             <li data-filter=".beanies">Beanies</li>
                             <li data-filter=".socks">Socks</li>
