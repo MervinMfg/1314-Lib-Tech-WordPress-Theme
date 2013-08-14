@@ -1615,6 +1615,13 @@ footer {
 				width: 5.64em;
 			}
 		}
+		&.accessory-categories > ul {
+			right: -110px;
+
+			& > li {
+				width: 11.25em;
+			}
+		}
 		&.contours > ul > li {
 			width: 4em;
 		}

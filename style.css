@@ -1660,6 +1660,12 @@ footer .footer-copy {
 .product-filtering > li.apparel-categories > ul > li {
   width: 5.64em;
 }
+.product-filtering > li.accessory-categories > ul {
+  right: -110px;
+}
+.product-filtering > li.accessory-categories > ul > li {
+  width: 11.25em;
+}
 .product-filtering > li.contours > ul > li {
   width: 4em;
 }

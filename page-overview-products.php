@@ -284,6 +284,29 @@ get_header();
                         }
                     }
                     break;
+                case "libtech_accessories":
+                    if(get_field('libtech_accessories_variations')):
+                        while(the_repeater_field('libtech_accessories_variations')):
+                            // get outerwear availability
+                            if ($GLOBALS['language'] == "ca") {
+                                $variationAvailable = get_sub_field('libtech_accessories_variations_availability_ca');
+                            } else {
+                                $variationAvailable = get_sub_field('libtech_accessories_variations_availability_us');
+                            }
+                            // set overall availability
+                            if($variationAvailable == "Yes"){
+                                $productArray['available'] = "Yes";
+                            }
+                        endwhile;
+                    endif;
+                    // get categories for outerwear
+                    $terms = get_the_terms( $post->ID, 'libtech_accessories_categories' );
+                    if( $terms && !is_wp_error( $terms ) ) {
+                        foreach( $terms as $term ) {
+                            $filterList .= " " . $term->slug;
+                        }
+                    }
+                    break;
             }
             // if product is available set filter list class
             if ($productArray['available'] == "Yes") {
@@ -488,13 +511,13 @@ get_header();
                         </ul>
                     </li>
                     <?php elseif (get_the_title() == "Accessories"): ?>
-                    <li class="filters categories">
+                    <li class="filters accessory-categories">
                         <p class="select-title">Categories</p>
                         <p class="selected-items">Select</p>
                         <ul>
-                            <li data-filter=".stomp-pads">Stomp Pads</li>
-                            <li data-filter=".wax-tunning-tools">Wax, Tunning and Tools</li>
+                            <li data-filter=".goggles">Goggles</li>
                             <li data-filter=".helmets">Helmets</li>
+                            <li data-filter=".wax-tuning-tools">Wax, Tuning and Tools</li>
                             <li data-filter=".stickers">Stickers</li>
                         </ul>
                     </li>
