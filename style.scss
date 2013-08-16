@@ -2680,6 +2680,56 @@ footer {
 	color: $skateColor;
 }
 
+/* Ripper styles
+-------------------------------------------------------------------------------*/
+.ripper-details {
+	padding-top: 60px;
+	margin-top: -40px;
+
+	.section-content {
+		padding: 0 20px;
+
+		h1, .ripper-photo {
+			margin-bottom: 10px;
+		}
+		.ripper-photo img {
+			height: auto;
+		}
+		.ripper-right {
+			.ripper-meta {
+				margin-bottom: 20px;
+
+				.ripper-home, .ripper-sponsors {
+					margin-bottom: 5px;
+
+					span {
+						font-weight: bold;
+						text-transform: uppercase;
+					}
+				}
+			}
+			h4 {
+				margin-bottom: 20px;
+			}
+			.ripper-bio {
+				display: none;
+				margin-bottom: 20px;
+
+				p {
+					margin-bottom: 10px;
+				}
+			}
+			.social-links {
+
+			}
+			.personal-site {
+				padding-top: 10px;
+				clear: both;
+			}
+		}
+	}
+}
+
 /* Print Styles
 -------------------------------------------------------------------------------*/
 @media print {
@@ -3014,6 +3064,25 @@ footer {
 			}
 		}
 	}
+	/* Ripper styles */
+	.ripper-details .section-content {
+		h1 {
+			width: 60%;
+			float: right;
+		}
+		.ripper-photo {
+			width: 40%;
+			float: left;
+
+			img {
+				padding-right: 40px;
+			}
+		}
+		.ripper-right {
+			width: 60%;
+			float: right;
+		}
+	}
 }
 
 @media screen and (min-width: 768px) {
@@ -3189,6 +3258,13 @@ footer {
 			img {
 				height: auto;
 			}
+		}
+	}
+	/* Ripper styles */
+	.ripper-details .section-content .ripper-right {
+		.ripper-meta, h4, .ripper-bio {
+			display: block;
+			max-width: 600px;
 		}
 	}
 }

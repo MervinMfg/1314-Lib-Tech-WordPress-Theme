@@ -2624,6 +2624,46 @@ footer .footer-copy {
   color: #66cc00;
 }
 
+/* Ripper styles
+-------------------------------------------------------------------------------*/
+.ripper-details {
+  padding-top: 60px;
+  margin-top: -40px;
+}
+.ripper-details .section-content {
+  padding: 0 20px;
+}
+.ripper-details .section-content h1, .ripper-details .section-content .ripper-photo {
+  margin-bottom: 10px;
+}
+.ripper-details .section-content .ripper-photo img {
+  height: auto;
+}
+.ripper-details .section-content .ripper-right .ripper-meta {
+  margin-bottom: 20px;
+}
+.ripper-details .section-content .ripper-right .ripper-meta .ripper-home, .ripper-details .section-content .ripper-right .ripper-meta .ripper-sponsors {
+  margin-bottom: 5px;
+}
+.ripper-details .section-content .ripper-right .ripper-meta .ripper-home span, .ripper-details .section-content .ripper-right .ripper-meta .ripper-sponsors span {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.ripper-details .section-content .ripper-right h4 {
+  margin-bottom: 20px;
+}
+.ripper-details .section-content .ripper-right .ripper-bio {
+  display: none;
+  margin-bottom: 20px;
+}
+.ripper-details .section-content .ripper-right .ripper-bio p {
+  margin-bottom: 10px;
+}
+.ripper-details .section-content .ripper-right .personal-site {
+  padding-top: 10px;
+  clear: both;
+}
+
 /* Print Styles
 -------------------------------------------------------------------------------*/
 /* Media Queries
@@ -2920,6 +2960,23 @@ footer .footer-copy {
   .tech-overview .section-content .tech-sport .tech-copy p {
     padding-left: 20px;
   }
+
+  /* Ripper styles */
+  .ripper-details .section-content h1 {
+    width: 60%;
+    float: right;
+  }
+  .ripper-details .section-content .ripper-photo {
+    width: 40%;
+    float: left;
+  }
+  .ripper-details .section-content .ripper-photo img {
+    padding-right: 40px;
+  }
+  .ripper-details .section-content .ripper-right {
+    width: 60%;
+    float: right;
+  }
 }
 @media screen and (min-width: 768px) {
   /* General Styles */
@@ -3087,6 +3144,12 @@ footer .footer-copy {
   }
   .enviro-content .section-content .enviro-norm img {
     height: auto;
+  }
+
+  /* Ripper styles */
+  .ripper-details .section-content .ripper-right .ripper-meta, .ripper-details .section-content .ripper-right h4, .ripper-details .section-content .ripper-right .ripper-bio {
+    display: block;
+    max-width: 600px;
   }
 }
 /* Desktop Styles
