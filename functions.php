@@ -224,7 +224,7 @@ function getRelatedProducts () {
             // get variable values
             $imageID = get_field('libtech_product_image', $post_object->ID);
             // check which image size to use based on post type
-            $relatedImage = wp_get_attachment_image_src($imageID, 'overview-thumb');
+            $relatedImage = wp_get_attachment_image_src($imageID, 'square-medium');
             $relatedLink = get_permalink($post_object->ID);
             $relatedTitle = get_the_title($post_object->ID);
             // get price
@@ -234,8 +234,8 @@ function getRelatedProducts () {
         endforeach;
         // randomly sort related products array
         shuffle($relatedProducts);
-        // render out max of 4 related products
-        echo "<h2>But wait, there's more:</h2>\n<ul>\n";
+        // render out related products
+        echo "<h2>But wait, there's more</h2>\n<ul>\n";
         // loop through products
         for($i = 0; $i < count($relatedProducts); ++$i) {
             if($i == 6){
