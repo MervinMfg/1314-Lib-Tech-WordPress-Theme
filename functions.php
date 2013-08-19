@@ -909,7 +909,7 @@ function register_custom_post_types() {
         'show_ui' => true, 
         'show_in_menu' => true, 
         'query_var' => true,
-        'rewrite' => array("slug" => "nasing/team"),
+        'rewrite' => array("slug" => "skiing/team"),
         'capability_type' => 'page',
         'has_archive' => false, 
         'hierarchical' => false,
