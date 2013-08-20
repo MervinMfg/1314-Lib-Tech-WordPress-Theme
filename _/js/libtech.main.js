@@ -39,6 +39,8 @@ LIBTECH.main = {
             self.technologyDetailInit();
         } else if ($('body').hasClass('page-template-page-environmental-php')) {
             self.environmentalInit();
+        } else if ($('body').hasClass('single-libtech_team_snow') || $('body').hasClass('single-libtech_team_nas') || $('body').hasClass('single-libtech_team_skate')) {
+            self.teamDetailsInit();
         } else if ($('body').hasClass('blog') || $('body').hasClass('search') || $('body').hasClass('archive') || $('body').hasClass('error404')) {
             self.blogInit();
         } else if ($('body').hasClass('single-post')) {
@@ -258,8 +260,9 @@ LIBTECH.main = {
     },
     homeSportInit: function () {
         var self = this;
+        // set up large featured images/video
         self.utilities.featuredSliderInit();
-
+        // set up product slider
         var slider = $('.product-slider .bxslider').bxSlider({
             slideWidth: 220,
             minSlides: 2,
@@ -275,66 +278,8 @@ LIBTECH.main = {
             infiniteLoop: false,
             hideControlOnEnd: true
         });
-
-        $.fn.randomize = function(selector){
-            var $elems = selector ? $(this).find(selector) : $(this).children(),
-            $parents = $elems.parent();
-            $parents.each(function(){
-                $(this).children(selector).sort(function(){
-                    return Math.round(Math.random()) - 0.5;
-                }).remove().appendTo(this);
-            });
-            return this;
-        };
-        // http://stage3-www.lib-tech.com/feeds/instagram/?username=libtechnologies&limit=5
-        // get instagram username
-        instagramUsername = $('.content-grid').attr('data-instagram');
-        // grab instagram photos
-        $.ajax({
-            dataType: "json",
-            url: '/feeds/instagram/?username=' + instagramUsername + '&limit=3',
-            success: function (photosJSON) {
-                var photosData = photosJSON.data;
-                for (var i = 0; i < photosData.length; i++) {
-                    var photoData, listItem;
-                    photoData = photosData[i];
-                    // set up instagram list item
-                    listItem = '<li class="grid-item instagram item-' + i + '"><div class="grid-item-wrapper"><a href="' + photoData.link + '" target="_blank"><div class="item-copy"><p>' + photoData.caption.text + '</p></div><div class="item-image"><img src="' + photoData.images.low_resolution.url + '" /></div><div class="clearfix"></div></a></div></li>';
-                    // add list item to content grid
-                    $('.content-grid ul').append(listItem);
-                }
-                // randomize content grid
-                $('.content-grid ul').randomize('li');
-            }
-        });
-        // http://stage3-www.lib-tech.com/feeds/facebook/?username=libtech&limit=8
-        // get facebook username
-        facebookUsername = $('.content-grid').attr('data-facebook')
-        // grab facebook posts
-        $.ajax({
-            dataType: "json",
-            url: '/feeds/facebook/?username=' + facebookUsername + '&limit=6',
-            success: function (postsJSON) {
-                var postsData, totalItems;
-                postsData = postsJSON.data;
-                totalItems = 0;
-                for (var i = 0; i < postsData.length; i++) {
-                    var postData, listItem;
-                    postData = postsData[i];
-                    if (postData.type != "status") {
-                        // set up facebook list item
-                        listItem = '<li class="grid-item facebook item-' + totalItems + '"><div class="grid-item-wrapper"><a href="' + postData.link + '" target="_blank"><div class="facebook-wrapper"><div class="facebook-header"><div class="facebook-profile"><img src="https://graph.facebook.com/' + facebookUsername + '/picture" /></div><p class="facebook-name">' + postData.from.name + '</p><p class="facebook-time">' + postData.created_time + '</p><div class="clearfix"></div></div><div class="facebook-photo"><img src="' + postData.picture + '" /></div><p class="facebook-likes">' + postData.likes.count + ' people <span>like this</span></p><p class="facebook-excerpt">' + postData.message + '</p></div><div class="facebook-aspect-ratio"><img src="/wp-content/themes/libtech_2/_/img/square.gif" /></div><div class="clearfix"></div></a></div></li>';
-                        // add list item to content grid
-                        $('.content-grid ul').append(listItem);
-                        totalItems ++;
-                    }
-                    if (totalItems == "3")
-                        break;
-                }
-                // randomize content grid
-                $('.content-grid ul').randomize('li');
-            }
-        });
+        // render social content grid items
+        self.utilities.socialContentGridItemsInit();
     },
     productOverviewInit: function () {
         var self, slider, productListing;
@@ -613,7 +558,6 @@ LIBTECH.main = {
         });
         // CHECK WHICH PRODUCT WE'RE ON AND RUN THE CORRECT CODE
         if( $('body').hasClass('single-libtech_outerwear') || $('body').hasClass('single-libtech_accessories') || $('body').hasClass('single-libtech_apparel') ){
-            console.log('2 variations');
             // FOR PRODCUTS WITH MORE THAN 1 VARTIATION SELECTION
             // select field for color
             $('#product-variation-color').change(function () {
@@ -781,6 +725,11 @@ LIBTECH.main = {
     blogSingleInit: function () {
         $(".blog-post .entry-content").fitVids();
     },
+    teamDetailsInit: function () {
+        var self = this;
+        // render social content grid items
+        self.utilities.socialContentGridItemsInit();
+    },
     shoppingCartInit: function () {
         var self, lang, regionCookie;
         self = this;
@@ -921,6 +870,68 @@ LIBTECH.main = {
                 // make sure video is not already embedded
                 if($(this).find(".video-container").length == 0)
                     $(this).prepend(vimeoEmbed).fitVids();
+            });
+        },
+        socialContentGridItemsInit: function () {
+            // add randomize function
+            $.fn.randomize = function(selector){
+                var $elems = selector ? $(this).find(selector) : $(this).children(),
+                $parents = $elems.parent();
+                $parents.each(function(){
+                    $(this).children(selector).sort(function(){
+                        return Math.round(Math.random()) - 0.5;
+                    }).remove().appendTo(this);
+                });
+                return this;
+            };
+            // feeds/instagram/?username=libtechnologies&limit=5
+            // get instagram username
+            instagramUsername = $('.content-grid').attr('data-instagram');
+            // grab instagram photos
+            $.ajax({
+                dataType: "json",
+                url: '/feeds/instagram/?username=' + instagramUsername + '&limit=3',
+                success: function (photosJSON) {
+                    var photosData = photosJSON.data;
+                    for (var i = 0; i < photosData.length; i++) {
+                        var photoData, listItem;
+                        photoData = photosData[i];
+                        // set up instagram list item
+                        listItem = '<li class="grid-item instagram item-' + i + '"><div class="grid-item-wrapper"><a href="' + photoData.link + '" target="_blank"><div class="item-copy"><p>' + photoData.caption.text + '</p></div><div class="item-image"><img src="' + photoData.images.low_resolution.url + '" /></div><div class="clearfix"></div></a></div></li>';
+                        // add list item to content grid
+                        $('.content-grid ul').append(listItem);
+                    }
+                    // randomize content grid
+                    $('.content-grid ul').randomize('li');
+                }
+            });
+            // feeds/facebook/?username=libtech&limit=8
+            // get facebook username
+            facebookUsername = $('.content-grid').attr('data-facebook')
+            // grab facebook posts
+            $.ajax({
+                dataType: "json",
+                url: '/feeds/facebook/?username=' + facebookUsername + '&limit=6',
+                success: function (postsJSON) {
+                    var postsData, totalItems;
+                    postsData = postsJSON.data;
+                    totalItems = 0;
+                    for (var i = 0; i < postsData.length; i++) {
+                        var postData, listItem;
+                        postData = postsData[i];
+                        if (postData.type != "status") {
+                            // set up facebook list item
+                            listItem = '<li class="grid-item facebook item-' + totalItems + '"><div class="grid-item-wrapper"><a href="' + postData.link + '" target="_blank"><div class="facebook-wrapper"><div class="facebook-header"><div class="facebook-profile"><img src="https://graph.facebook.com/' + facebookUsername + '/picture" /></div><p class="facebook-name">' + postData.from.name + '</p><p class="facebook-time">' + postData.created_time + '</p><div class="clearfix"></div></div><div class="facebook-photo"><img src="' + postData.picture + '" /></div><p class="facebook-likes">' + postData.likes.count + ' people <span>like this</span></p><p class="facebook-excerpt">' + postData.message + '</p></div><div class="facebook-aspect-ratio"><img src="/wp-content/themes/libtech_2/_/img/square.gif" /></div><div class="clearfix"></div></a></div></li>';
+                            // add list item to content grid
+                            $('.content-grid ul').append(listItem);
+                            totalItems ++;
+                        }
+                        if (totalItems == "3")
+                            break;
+                    }
+                    // randomize content grid
+                    $('.content-grid ul').randomize('li');
+                }
             });
         },
         filterList: function (productListing) {

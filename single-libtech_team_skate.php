@@ -36,7 +36,95 @@ get_header();
 			    <div class="clearfix"></div>
         	</div><!-- END section-content -->
         </section><!-- END section-content -->
+        <div class="bg3-top"></div>
+		<section class="whats-new bg3">
+			<div class="section-content">
+				<h2>What's New</h2>
+				<div class="content-grid" data-facebook="<?php if(get_field('libtech_team_facebook_username')) { the_field('libtech_team_facebook_username'); }; ?>" data-instagram="<?php if(get_field('libtech_team_instagram_username')) { the_field('libtech_team_instagram_username'); }; ?>">
+					<ul>
+						<?php
+						// GET BLOG ENTRIES
+						$post_cat_id = get_category_by_slug(get_field('libtech_team_blog_category_slug'));
+						$post_cat_id = $post_cat_id->term_id;
+						$args = array(
+							'category' => $post_cat_id,
+							'posts_per_page' => 3
+						);
+						$posts_query = get_posts($args);
+						foreach($posts_query as $post) :
+							$post_thumbnail = get_post_image('square-medium');
+						?>
 
+						<li class="grid-item blog item-<?php echo $i; ?>">
+							<div class="grid-item-wrapper">
+								<a href="<?php the_permalink() ?>">
+									<div class="blog-copy">
+										<p class="h3"><?php the_title(); ?></p>
+										<p class="meta"><time datetime="<?php the_time('c') ?>"><?php the_time('F jS, Y') ?></time> | <fb:comments-count href=<?php the_permalink() ?>></fb:comments-count> Comments</p>
+										<p class="excerpt"><?php the_excerpt(); ?></p>
+									</div>
+									<div class="blog-image">
+										<img src="<?php echo $post_thumbnail[0]; ?>" alt="Image From <?php echo get_the_title(); ?>" />
+									</div>
+									<div class="clearfix"></div>
+								</a>
+							</div>
+						</li>
+
+						<?php
+						endforeach;
+						wp_reset_query(); // Reset Post Data
+
+						// GET FEATURED PRODUCTS
+						$post_objects = get_field('libtech_team_related_products');
+						if( $post_objects ):
+							$featuredProducts = Array();
+							// get each related product
+							foreach( $post_objects as $post_object):
+								$postType = $post_object->post_type;
+								// get variable values
+								$imageID = get_field('libtech_product_image', $post_object->ID);
+								// check which image size to use based on post type
+								$productImage = wp_get_attachment_image_src($imageID, 'square-medium');
+								$productLink = get_permalink($post_object->ID);
+								$productTitle = get_the_title($post_object->ID);
+								$productTag = get_field('libtech_product_slogan', $post_object->ID);
+								// add to related product array
+								array_push($featuredProducts, Array($productTitle, $productLink, $productImage, $productTag));
+							endforeach;
+							// randomly sort related products array
+							shuffle($featuredProducts);
+							// render out max of 4 related products
+							// loop through products
+							for($i = 0; $i < count($featuredProducts); ++$i) {
+								if($i == 3){
+									break;
+								}
+						?>
+						<li class="grid-item product item-<?php echo $i; ?>">
+		                	<div class="grid-item-wrapper">
+			                    <a href="<?php echo $featuredProducts[$i][1]; ?>">
+			                    	<div class="item-copy">
+			                    		<p class="h3"><?php echo $featuredProducts[$i][0]; ?></p>
+			                    		<p class="h5"><?php echo $featuredProducts[$i][3]; ?></p>
+			                    	</div>
+			                        <div class="item-image">
+			                            <img src="<?php echo $featuredProducts[$i][2][0]; ?>" alt="<?php echo $featuredProducts[$i][0]; ?>" />
+			                        </div>
+			                    </a>
+			                </div>
+			            </li>
+			            <?php
+			        		}
+						endif;
+						?>
+
+					</ul>
+					<div class="clearfix"></div>
+				</div><!-- END .content-grid -->
+			</div><!-- END .section-content -->
+		</section><!-- END .whats-new -->
+		
 <?php
 		endwhile;
 	endif;
