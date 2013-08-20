@@ -108,7 +108,7 @@ get_header();
 		<div class="bg3-top"></div>
 		<section class="whats-new bg3">
 			<div class="section-content">
-				<h2>What's New:</h2>
+				<h2>What's New</h2>
 				<div class="social-links">
 					<p class="h4">Hit us up!</p>
 					<ul>
@@ -265,7 +265,7 @@ get_header();
 		<div class="bg1-top"></div>
 		<section class="events bg1">
 			<div class="section-content">
-				<h2>Events:</h2>
+				<h2>Events</h2>
 			</div>
 		</section><!-- END .events -->
 

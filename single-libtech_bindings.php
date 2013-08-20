@@ -200,7 +200,7 @@ Template Name: Bindings Detail
 						if( $awards ):
 						?>
 			        	<div class="product-awards">
-							<h2>Awards:</h2>
+							<h2>Awards</h2>
 							<ul>
 							<?php
 								foreach( $awards as $award):
@@ -217,7 +217,7 @@ Template Name: Bindings Detail
 					</div><!-- END .product-desc-awards -->
 				</div><!-- END .product-desc-awards-specs -->
 				<div class="product-tech-major tech-major">
-					<h2>TECHNOLOGY:</h2>
+					<h2>Technology</h2>
 					<ul>
 						<?php
 						$args = array( 'post_type' => 'libtech_technology', 'posts_per_page' => -1, 'orderby' => 'menu_order', 'order' => 'ASC' );
@@ -254,7 +254,7 @@ Template Name: Bindings Detail
 					<div class="clearfix"></div>
 				</div><!-- END .product-tech-major -->
 				<div class="product-tech-minor tech-minor">
-					<h2>Ingredients:</h2>
+					<h2>Ingredients</h2>
 					<ul>
 						<?php
 						$args = array( 'post_type' => 'libtech_technology', 'posts_per_page' => -1, 'orderby' => 'menu_order', 'order' => 'ASC' );
@@ -301,7 +301,7 @@ Template Name: Bindings Detail
 		<div class="bg3-top product-video-top"></div>
         <section class="bg3 product-video">
         	<div class="section-content">
-				<h2><span>Product Video:</span></h2>
+				<h2><span>Product Video</span></h2>
 				<div class="video-player">
 					<iframe src="http://player.vimeo.com/video/<?php echo $videoID; ?>?title=0&amp;byline=0&amp;portrait=0&amp;color=fff100" width="940" height="528" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
 				</div>

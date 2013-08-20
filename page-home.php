@@ -50,7 +50,7 @@ get_header();
 		<div class="bg3-top"></div>
 		<section class="homepage-posts bg3">
 			<div class="section-content">
-				<h2>Bitchin' Board Stories:</h2>
+				<h2>Bitchin' Board Stories</h2>
 				<ul>
 
 					<?php
@@ -97,7 +97,7 @@ get_header();
 		<div class="homepage-sports-top bg1-top"></div>
 		<section class="homepage-sports bg1">
 			<div class="section-content">
-				<h2>Sports:</h2>
+				<h2>Sports</h2>
 				<ul>
 					<li class="homepage-sport">
 						<div class="sport-wrapper">
@@ -138,7 +138,7 @@ get_header();
 		<div class="homepage-links-top bg2-top"></div>
 		<section class="homepage-links bg2">
 			<div class="section-content">
-				<h2>Handcrafted in the USA near Canada:</h2>
+				<h2>Handcrafted in the USA near Canada</h2>
 				<ul>
 					<li class="homepage-link">
 						<div class="link-wrapper">

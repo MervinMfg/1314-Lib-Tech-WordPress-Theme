@@ -160,7 +160,7 @@ Template Name: Skateboard Detail
 						if( $awards ):
 						?>
 			        	<div class="product-awards">
-							<h2>Awards:</h2>
+							<h2>Awards</h2>
 							<ul>
 							<?php
 								foreach( $awards as $award):
@@ -176,7 +176,7 @@ Template Name: Skateboard Detail
 						<? endif; // end awards ?>
 					</div><!-- END .product-desc-awards -->
 					<div class="product-specs">
-						<h2>SPECIFICATIONS:</h2>
+						<h2>Specifications</h2>
 						<table>
 							<thead>
 								<tr>
@@ -235,7 +235,7 @@ Template Name: Skateboard Detail
 				if ($hesho == false):
 				?>
 				<div class="product-tech-construction">
-					<h2>Construction:</h2>
+					<h2>Construction</h2>
 					<div class="construction-slideshow">
 						<ul>
 							<li>
@@ -331,7 +331,7 @@ Template Name: Skateboard Detail
 				<?php endif; ?>
 
 				<div class="product-tech-minor tech-minor<?php if ($hesho == true) { echo " hesho"; } ?>">
-					<h2>Ingredients:</h2>
+					<h2>Ingredients</h2>
 					<ul>
 						<?php
 						$args = array( 'post_type' => 'libtech_technology', 'posts_per_page' => -1, 'orderby' => 'menu_order', 'order' => 'ASC' );
@@ -379,7 +379,7 @@ Template Name: Skateboard Detail
 		<div class="bg3-top product-video-top"></div>
         <section class="bg3 product-video">
         	<div class="section-content">
-				<h2><span>Product Video:</span></h2>
+				<h2><span>Product Video</span></h2>
 				<div class="video-player">
 					<iframe src="http://player.vimeo.com/video/<?php echo $videoID; ?>?title=0&amp;byline=0&amp;portrait=0&amp;color=66CC00" width="940" height="528" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
 				</div>
