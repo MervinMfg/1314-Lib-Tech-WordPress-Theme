@@ -2682,6 +2682,43 @@ footer {
 
 /* Ripper styles
 -------------------------------------------------------------------------------*/
+.team-header {
+	.section-content {
+		padding-left: 20px;
+		padding-right: 20px;
+
+		p {
+			max-width: 900px;
+		}
+	}
+}
+.team-members {
+	.section-content {
+		padding-left: 10px;
+		padding-right: 10px;
+
+		h2 {
+			margin: 10px 0 20px 10px;
+		}
+		ul {
+			li {
+				margin-bottom: 20px;
+
+				a {
+					padding: 0 10px;
+					display: block;
+
+					img {
+						width: 100%;
+					}
+					h3 {
+						font-style: normal;
+					}
+				}
+			}
+		}
+	}
+}
 .ripper-details {
 	padding-top: 60px;
 	margin-top: -40px;
@@ -3065,6 +3102,11 @@ footer {
 		}
 	}
 	/* Ripper styles */
+	.team-members .section-content ul li {
+		width: 49.7%;
+		display: inline-block;
+		vertical-align: top;
+	}
 	.ripper-details .section-content {
 		h1 {
 			width: 60%;
@@ -3261,6 +3303,9 @@ footer {
 		}
 	}
 	/* Ripper styles */
+	.team-members .section-content ul li {
+		width: 33%;
+	}
 	.ripper-details .section-content .ripper-right {
 		.ripper-meta, h4, .ripper-bio {
 			display: block;
@@ -3526,6 +3571,10 @@ footer {
 			display: none;
 		}
 	}
+	/* Ripper styles */
+	.team-members .section-content ul li {
+		width: 24.7%;
+	}
 }
 
 @media screen and (min-width: 1200px) {
@@ -3586,6 +3635,10 @@ footer {
 			width: 79%;
 			margin-top: 0;
 		}
+	}
+	/* Ripper styles */
+	.team-members .section-content ul li {
+		width: 19.7%;
 	}
 }
 @media screen and (min-width: 1400px) {
