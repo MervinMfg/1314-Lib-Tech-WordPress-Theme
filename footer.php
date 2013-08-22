@@ -148,7 +148,27 @@
 
 	<?php wp_footer(); ?>
 	
-	<!-- SOCIAL MEDIA INCLUDES -->
+	<!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
+		 chromium.org/developers/how-tos/chrome-frame-getting-started -->
+	<!--[if lt IE 8]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+	<!-- JavaScript includes -->
+	<!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if necessary -->
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery-1.10.2.min.js"><\/script>')</script>
+	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery.fitvids.js"></script>
+	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery.bxslider.min.js"></script>
+	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery.magnific-popup.min.js"></script>
+    <script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery.treeview.js"></script>
+    <script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery.isotope.min.js"></script>
+    <script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/froogaloop.js"></script>
+	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/libtech.main.js"></script>
+	<!-- Init the main JS -->
+	<script type="text/javascript">
+	    $(document).ready(function(){
+	        LIBTECH.main.init();
+	    });
+	</script>
+	<!-- Social Media Includes -->
 	<div id="fb-root"></div>
 	<script type="text/javascript">
 	    // Facebook
@@ -169,23 +189,6 @@
 	    })();
 	</script>
 	<script type="text/javascript" src="//assets.pinterest.com/js/pinit.js"></script>
-	<!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
-		 chromium.org/developers/how-tos/chrome-frame-getting-started -->
-	<!--[if lt IE 8]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
-	<!-- JavaScript includes -->
-	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery.fitvids.js"></script>
-	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery.bxslider.min.js"></script>
-	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery.magnific-popup.min.js"></script>
-    <script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery.treeview.js"></script>
-    <script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery.isotope.min.js"></script>
-    <script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/froogaloop.js"></script>
-	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/libtech.main.js"></script>
-	<!-- Init the main JS -->
-	<script type="text/javascript">
-	    $(document).ready(function(){
-	        LIBTECH.main.init();
-	    });
-	</script>
 	<!-- Google Analytics -->
 	<script type="text/javascript">
 	    var _gaq = _gaq || [];

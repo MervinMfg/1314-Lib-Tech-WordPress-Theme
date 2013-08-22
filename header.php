@@ -107,7 +107,7 @@
             }
         }
         // check for the appropriate sport
-        if (is_tree('6886') || is_tree('7124') || get_post_type($post->ID) == "libtech_snowboards" || get_post_type($post->ID) == "libtech_bindings" || is_tree('18848') || get_post_type($post->ID) == "libtech_team_snow" || in_category( '220' ) || post_is_in_descendant_category( '220' )) {
+        if (is_front_page() || is_tree('6886') || is_tree('7124') || get_post_type($post->ID) == "libtech_snowboards" || get_post_type($post->ID) == "libtech_bindings" || is_tree('18848') || get_post_type($post->ID) == "libtech_team_snow" || in_category( '220' ) || post_is_in_descendant_category( '220' )) {
             $GLOBALS['sport'] = "snow";
         } else if (is_tree('6884') || is_tree('18938') || get_post_type($post->ID) == "libtech_nas" || get_post_type($post->ID) == "libtech_team_nas" || in_category( '828' ) || post_is_in_descendant_category( '828' )) {
             $GLOBALS['sport'] = "ski";
@@ -190,12 +190,9 @@
     <meta name="google-site-verification" content="wE_gDgt0-MYrOnCO0K7VH2HP7af_DuxpDK1EJFdohFc" />
     <!-- JavaScript Includes -->
 	<script src="<?php bloginfo('template_directory'); ?>/_/js/lib/modernizr-2.6.2.min.js"></script>
-	<!--[if lt IE 9]>
-	<script src="<?php bloginfo('template_directory'); ?>/_/js/lib/respond.min.js"></script>
-	<![endif]-->
-	<!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if necessary -->
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery-1.10.2.min.js"><\/script>')</script>
+    <!--[if lt IE 9]>
+    <script src="<?php bloginfo('template_directory'); ?>/_/js/lib/respond.min.js"></script>
+    <![endif]-->
     <!-- WordPress Head -->
 	<?php wp_head(); ?>
 </head>
