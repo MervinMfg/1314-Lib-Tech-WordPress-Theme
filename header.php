@@ -1,3 +1,95 @@
+<?php
+    // GET THE REGION
+    getRegionCode();
+    // GET THE PAGE TITLE
+    $GLOBALS['pageTitle'] = "";
+    if (function_exists('is_tag') && is_tag()) {
+        $GLOBALS['pageTitle'] .= single_tag_title("Tag Archive for &quot;", false) . '&quot; - ';
+    } elseif (is_archive()) {
+        $GLOBALS['pageTitle'] .= wp_title('', false) . ' Archive - ';
+    } elseif (is_search()) {
+        $GLOBALS['pageTitle'] .= 'Search for &quot;'.wp_specialchars($s).'&quot; - ';
+    } elseif (!(is_404()) && (is_single()) || (is_page()) && !(is_front_page())) {
+        $GLOBALS['pageTitle'] .= wp_title('-',false,'right');
+    } elseif (is_404()) {
+        $GLOBALS['pageTitle'] .=  'Not Found - ';
+    }
+    if (is_home() || is_front_page()) {
+        $GLOBALS['pageTitle'] .= get_bloginfo('name') . ' - ' . get_bloginfo('description');
+    } else {
+        $GLOBALS['pageTitle'] .= get_bloginfo('name');
+    }
+    if ($paged>1) {
+        $GLOBALS['pageTitle'] .=  ' - page '. $paged;
+    }
+    // SET DEFAULT PAGE IMAGE
+    $GLOBALS['pageImage'] = get_bloginfo('template_directory') . "/_/img/fb-like.png";
+    $pageDescriptionDefault = "We build snowboards. No really... that is what we do. We don’t order them from China or anywhere else and send someone to go check and see how they turned out. We physically hand build them right here at home in the USA. We buy the toughest, lightest, strongest, most environmental materials; many of which aren’t meant for snowboards or used by anyone else for what we use them for.";
+    // GET THE PAGE DESCRIPTION, AND IMAGE IF IT'S SINGLE
+    if (is_single()){
+        if (have_posts()){
+            while (have_posts()){
+                the_post();
+                $pageDescription = strip_tags(get_the_excerpt());
+                // set page thumbnail now that we know we have a single post, used for FB likes
+                $GLOBALS['pageImage'] = get_post_image('medium');
+                $GLOBALS['pageImage'] = $GLOBALS['pageImage'][0];
+            }
+        }else{
+            $pageDescription = $pageDescriptionDefault;
+        }
+    }else{
+        if(has_post_thumbnail($post->ID) && !is_home()){
+            $GLOBALS['pageImage'] = get_post_image('medium');
+            $GLOBALS['pageImage'] = $GLOBALS['pageImage'][0];
+        }
+        if (have_posts() && !is_home()){
+            while (have_posts()){
+                the_post();
+                $pageDescription = strip_tags(get_the_excerpt());
+                if($pageDescription == ""){
+                    $pageDescription = $pageDescriptionDefault;
+                }
+            }
+        }else {
+            $pageDescription = $pageDescriptionDefault;
+        }
+    }
+    // check for the appropriate sport
+    if (is_front_page() || is_tree('6886') || is_tree('7124') || get_post_type($post->ID) == "libtech_snowboards" || get_post_type($post->ID) == "libtech_bindings" || is_tree('18848') || get_post_type($post->ID) == "libtech_team_snow" || in_category( '220' ) || post_is_in_descendant_category( '220' )) {
+        $GLOBALS['sport'] = "snow";
+    } else if (is_tree('6884') || is_tree('18938') || get_post_type($post->ID) == "libtech_nas" || get_post_type($post->ID) == "libtech_team_nas" || in_category( '828' ) || post_is_in_descendant_category( '828' )) {
+        $GLOBALS['sport'] = "ski";
+    } else if (is_tree('11418') || is_tree('18952') || get_post_type($post->ID) == "libtech_waterboards") {
+        $GLOBALS['sport'] = "surf";
+    } else if (is_tree('7159') || is_tree('7161') || get_post_type($post->ID) == "libtech_skateboards" || get_post_type($post->ID) == "libtech_team_skate" || in_category( '190' ) || post_is_in_descendant_category( '190' ) || is_page('environmental')) {
+        $GLOBALS['sport'] = "skate";
+    } else {
+        if (isset($_COOKIE["libtech_sport"])) { // check cookie for stored sport
+            $GLOBALS['sport'] = $_COOKIE['libtech_sport'];
+        } else {
+            $GLOBALS['sport'] = "snow"; // default to snow if nothing was found
+        }
+    }
+    if ($GLOBALS['sport'] == "ski") { // set the correct colored logo
+        $logo = get_bloginfo('template_directory') . '/_/img/lib-tech-logo-ski.png';
+    } else if ($GLOBALS['sport'] == "surf") {
+        $logo = get_bloginfo('template_directory') . '/_/img/lib-tech-logo-surf.png';
+    } else if ($GLOBALS['sport'] == "skate") {
+        $logo = get_bloginfo('template_directory') . '/_/img/lib-tech-logo-skate.png';
+    } else {
+        $logo = get_bloginfo('template_directory') . '/_/img/lib-tech-logo.png';
+    }
+    setcookie('libtech_sport', $GLOBALS['sport'], time() + (86400 * 30), '/'); // 86400 = 1 day
+    // set up classes to add to body
+    $bodyClass = $GLOBALS['sport'];
+    // check for international, will be removed by JS if imporoperly cached
+    if (isset($_COOKIE["libtech_region"])) {
+        if ($_COOKIE["libtech_region"] == "int") {
+            $bodyClass .= " international";
+        }
+    }
+?>
 <!doctype html>
 <!--[if lt IE 7 ]> <html class="ie ie6 ie-lt10 ie-lt9 ie-lt8 ie-lt7 no-js" <?php language_attributes(); ?>> <![endif]-->
 <!--[if IE 7 ]>    <html class="ie ie7 ie-lt10 ie-lt9 ie-lt8 no-js" <?php language_attributes(); ?>> <![endif]-->
@@ -49,99 +141,6 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<![endif]-->
 	<?php if (is_search()) echo '<meta name="robots" content="noindex, nofollow" />'; ?>
-	<?php
-        // GET THE REGION
-        getRegionCode();
-        // GET THE PAGE TITLE
-        $GLOBALS['pageTitle'] = "";
-        if (function_exists('is_tag') && is_tag()) {
-            $GLOBALS['pageTitle'] .= single_tag_title("Tag Archive for &quot;", false) . '&quot; - ';
-        } elseif (is_archive()) {
-            $GLOBALS['pageTitle'] .= wp_title('', false) . ' Archive - ';
-        } elseif (is_search()) {
-            $GLOBALS['pageTitle'] .= 'Search for &quot;'.wp_specialchars($s).'&quot; - ';
-        } elseif (!(is_404()) && (is_single()) || (is_page()) && !(is_front_page())) {
-            $GLOBALS['pageTitle'] .= wp_title('-',false,'right');
-        } elseif (is_404()) {
-            $GLOBALS['pageTitle'] .=  'Not Found - ';
-        }
-        if (is_home() || is_front_page()) {
-            $GLOBALS['pageTitle'] .= get_bloginfo('name') . ' - ' . get_bloginfo('description');
-        } else {
-            $GLOBALS['pageTitle'] .= get_bloginfo('name');
-        }
-        if ($paged>1) {
-            $GLOBALS['pageTitle'] .=  ' - page '. $paged;
-        }
-        // SET DEFAULT PAGE IMAGE
-        $GLOBALS['pageImage'] = get_bloginfo('template_directory') . "/_/img/fb-like.png";
-        $pageDescriptionDefault = "We build snowboards. No really... that is what we do. We don’t order them from China or anywhere else and send someone to go check and see how they turned out. We physically hand build them right here at home in the USA. We buy the toughest, lightest, strongest, most environmental materials; many of which aren’t meant for snowboards or used by anyone else for what we use them for.";
-        // GET THE PAGE DESCRIPTION, AND IMAGE IF IT'S SINGLE
-        if (is_single()){
-            if (have_posts()){
-                while (have_posts()){
-                    the_post();
-                    $pageDescription = strip_tags(get_the_excerpt());
-                    // set page thumbnail now that we know we have a single post, used for FB likes
-                    $GLOBALS['pageImage'] = get_post_image('medium');
-                    $GLOBALS['pageImage'] = $GLOBALS['pageImage'][0];
-                }
-            }else{
-                $pageDescription = $pageDescriptionDefault;
-            }
-        }else{
-            if(has_post_thumbnail($post->ID) && !is_home()){
-                $GLOBALS['pageImage'] = get_post_image('medium');
-                $GLOBALS['pageImage'] = $GLOBALS['pageImage'][0];
-            }
-            if (have_posts() && !is_home()){
-                while (have_posts()){
-                    the_post();
-                    $pageDescription = strip_tags(get_the_excerpt());
-                    if($pageDescription == ""){
-                        $pageDescription = $pageDescriptionDefault;
-                    }
-                }
-            }else {
-                $pageDescription = $pageDescriptionDefault;
-            }
-        }
-        // check for the appropriate sport
-        if (is_front_page() || is_tree('6886') || is_tree('7124') || get_post_type($post->ID) == "libtech_snowboards" || get_post_type($post->ID) == "libtech_bindings" || is_tree('18848') || get_post_type($post->ID) == "libtech_team_snow" || in_category( '220' ) || post_is_in_descendant_category( '220' )) {
-            $GLOBALS['sport'] = "snow";
-        } else if (is_tree('6884') || is_tree('18938') || get_post_type($post->ID) == "libtech_nas" || get_post_type($post->ID) == "libtech_team_nas" || in_category( '828' ) || post_is_in_descendant_category( '828' )) {
-            $GLOBALS['sport'] = "ski";
-        } else if (is_tree('11418') || is_tree('18952') || get_post_type($post->ID) == "libtech_waterboards") {
-            $GLOBALS['sport'] = "surf";
-        } else if (is_tree('7159') || is_tree('7161') || get_post_type($post->ID) == "libtech_skateboards" || get_post_type($post->ID) == "libtech_team_skate" || in_category( '190' ) || post_is_in_descendant_category( '190' ) || is_page('environmental')) {
-            $GLOBALS['sport'] = "skate";
-        } else {
-            if (isset($_COOKIE["libtech_sport"])) { // check cookie for stored sport
-                $GLOBALS['sport'] = $_COOKIE['libtech_sport'];
-            } else {
-                $GLOBALS['sport'] = "snow"; // default to snow if nothing was found
-            }
-        }
-        if ($GLOBALS['sport'] == "ski") { // set the correct colored logo
-            $logo = get_bloginfo('template_directory') . '/_/img/lib-tech-logo-ski.png';
-        } else if ($GLOBALS['sport'] == "surf") {
-            $logo = get_bloginfo('template_directory') . '/_/img/lib-tech-logo-surf.png';
-        } else if ($GLOBALS['sport'] == "skate") {
-            $logo = get_bloginfo('template_directory') . '/_/img/lib-tech-logo-skate.png';
-        } else {
-            $logo = get_bloginfo('template_directory') . '/_/img/lib-tech-logo.png';
-        }
-        setcookie('libtech_sport', $GLOBALS['sport'], time() + (86400 * 30), '/'); // 86400 = 1 day
-        // set up classes to add to body
-        $bodyClass = $GLOBALS['sport'];
-        // check for international, will be removed by JS if imporoperly cached
-        if (isset($_COOKIE["libtech_region"])) {
-            if ($_COOKIE["libtech_region"] == "int") {
-                $bodyClass .= " international";
-            }
-        }
-    ?>
-
 	<title><?php echo $GLOBALS['pageTitle']; ?></title>
 	<meta name="title" content="<?php echo $GLOBALS['pageTitle']; ?>" />
 	<meta name="description" content="<?php echo $pageDescription; ?>" />
