@@ -22,6 +22,7 @@ LIBTECH.main = {
         var self = this;
         self.shopatronInit(); // init shopatron JS
         self.regionSelectorInit(); // init the region selector
+        self.sportCookieInit(); // init/check the sport cookie
         self.searchInit(); // init header search bar
         $(window).load(function(){
             self.menuInit(); // init main menu
@@ -252,6 +253,26 @@ LIBTECH.main = {
             $(document).unbind('click');
             $('#region-selector .choose-region ul li').unbind('click');
         });
+    },
+    sportCookieInit: function () {
+        var self, sport;
+        self = this;
+        sport = "";
+        if (navigator.cookieEnabled === true) {
+            /* if cookies are enabled, make sure the right cookie gets set
+               this is needed for pages that get cached
+               to notify non cached pages where we came from */
+            if ($('body').hasClass('ski')) {
+                sport = "ski";
+            } else if ($('body').hasClass('surf')) {
+                sport = "surf";
+            } else if ($('body').hasClass('skate')) {
+                sport = "skate";
+            } else {
+                sport = "snow";
+            }
+            self.utilities.cookie.setCookie('libtech_sport', sport, 30);
+        }
     },
     homeInit: function () {
         var self, instagramUsername, facebookUsername;
