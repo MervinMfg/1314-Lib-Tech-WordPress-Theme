@@ -20,7 +20,7 @@ LIBTECH.main = {
     },
     init: function () {
         var self = this;
-        self.initShopatron(); // init shopatron JS
+        self.shopatronInit(); // init shopatron JS
         self.regionSelectorInit(); // init the region selector
         self.searchInit(); // init header search bar
         $(window).load(function(){
@@ -52,7 +52,7 @@ LIBTECH.main = {
             LIBTECH.snowboardbuilder.init();
         }
     },
-    initShopatron: function () {
+    shopatronInit: function () {
         var self, lang, regionCookie, shopAPIKey, shopAPIKeyString;
         self = this;
         // check the language on the cookie
