@@ -122,11 +122,9 @@ function get_post_image($imageSize = "thumbnail", $imageName = "") {
                 $j=0;
                 $num = $keys[$j];
                 $image = wp_get_attachment_image_src($num, $imageSize, false);
-            }else if($imageSize == "blog-thumb"){
-                $image = array(get_bloginfo('template_url')."/_/img/blog-stock-thumb-medium.jpg",300,170);
             }else{
-                // if no image is found and size is anything but the blog-thumb, default to the small thumbnail
-                $image = array(get_bloginfo('template_url')."/_/img/blog-stock-thumb.jpg",100,100);
+                // if no image is found use default image
+                $image = array(get_bloginfo('template_url')."/_/img/blog-stock-image.png",300,300);
             }
         }
     } else {
