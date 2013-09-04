@@ -49,7 +49,7 @@ LIBTECH.main = {
             self.blogSingleInit();
         } else if ($('body').hasClass('page-template-page-support-faq-php')) {
             self.faqInit();
-        } else if ($('body').hasClass('page-template-page-snowboard-builder-php')) {
+        } else if ($('body').hasClass('page-template-page-snowboard-builder-php') || $('body').hasClass('page-template-page-bb-cart-test-php')) {
             LIBTECH.snowboardbuilder.init();
         }
     },
@@ -65,25 +65,25 @@ LIBTECH.main = {
             if (lang === 'ca') {
                 shopAPIKey = "tqwzzawb"; // CA Key
                 // set shopatron footer links for Canada
-                $('#link-privacy').attr('href', 'http://libtec-ca.shptron.com/k/privacy');
-                $('#link-policies').attr('href', 'http://libtec-ca.shptron.com/k/policies');
-                $('#link-login').attr('href', 'http://libtec-ca.shptron.com/account/?mfg_id=4374.5&language_id=1');
-                $('#link-safety').attr('href', 'http://libtec-ca.shptron.com/k/security');
-                $('#link-returns').attr('href', 'http://libtec-ca.shptron.com/k/policies#Returns');
-                $('#link-ordering').attr('href', 'http://libtec-ca.shptron.com/k/ordering');
+                $('#link-privacy').attr('href', 'http://libtech-ca.shptron.com/k/privacy');
+                $('#link-policies').attr('href', 'http://libtech-ca.shptron.com/k/policies');
+                $('#link-login').attr('href', 'http://libtech-ca.shptron.com/account/?mfg_id=4374.5&language_id=1');
+                $('#link-safety').attr('href', 'http://libtech-ca.shptron.com/k/security');
+                $('#link-returns').attr('href', 'http://libtech-ca.shptron.com/k/policies#Returns');
+                $('#link-ordering').attr('href', 'http://libtech-ca.shptron.com/k/ordering');
                 // set my account in header for Canada
-                $('header .nav-utility .link-account a').attr('href', 'http://libtec-ca.shptron.com/account/?mfg_id=4374.5&language_id=1');
+                $('header .nav-utility .link-account a').attr('href', 'http://libtech-ca.shptron.com/account/?mfg_id=4374.5&language_id=1');
             } else if (lang === 'int') {
                 shopAPIKey = "95tuotu0"; // International key
                 // set shopatron footer links for International
-                $('#link-privacy').attr('href', 'http://libtec-int.shptron.com/k/privacy');
-                $('#link-policies').attr('href', 'http://libtec-int.shptron.com/k/policies');
-                $('#link-login').attr('href', 'http://libtec-int.shptron.com/account/?mfg_id=4374.5&language_id=1');
-                $('#link-safety').attr('href', 'http://libtec-int.shptron.com/k/security');
-                $('#link-returns').attr('href', 'http://libtec-int.shptron.com/k/policies#Returns');
-                $('#link-ordering').attr('href', 'http://libtec-int.shptron.com/k/ordering');
+                $('#link-privacy').attr('href', 'http://libtech-int.shptron.com/k/privacy');
+                $('#link-policies').attr('href', 'http://libtech-int.shptron.com/k/policies');
+                $('#link-login').attr('href', 'http://libtech-int.shptron.com/account/?mfg_id=4374.5&language_id=1');
+                $('#link-safety').attr('href', 'http://libtech-int.shptron.com/k/security');
+                $('#link-returns').attr('href', 'http://libtech-int.shptron.com/k/policies#Returns');
+                $('#link-ordering').attr('href', 'http://libtech-int.shptron.com/k/ordering');
                 // set my account in header for International
-                $('header .nav-utility .link-account a').attr('href', 'http://libtec-int.shptron.com/account/?mfg_id=4374.5&language_id=1');
+                $('header .nav-utility .link-account a').attr('href', 'http://libtech-int.shptron.com/account/?mfg_id=4374.5&language_id=1');
             } else {
                 shopAPIKey = "rbb5pr37"; // US Key
             }
