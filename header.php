@@ -242,7 +242,7 @@
 
                 <div class="mobile-btn"></div>
 			</div>
-			<div class="nav-utility snow">
+			<div class="nav-utility">
 				<div class="region-selector">
 					<ul>
 	                    <li><a href="#country-us" class="country-us">UNITED STATES</a></li>
@@ -264,7 +264,7 @@
 					<a href="/shopping-cart/"><span></span></a>
 				</div>
 				<div class="link-account">
-					<a href="#my-account">My Account</a>
+					<a href="http://lib-tech.shptron.com/account/?mfg_id=4374.4&language_id=1" target="_blank">My Account</a>
 				</div>
 			</div>
 		</header>

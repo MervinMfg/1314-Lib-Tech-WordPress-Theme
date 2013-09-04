@@ -597,80 +597,80 @@ header {
 			font-style: normal;
 			text-transform: uppercase;
 		}
-	}
-	.search {
-		display: none;
-		padding: 3px 0 0 10px;
+		.search {
+			display: none;
+			padding: 3px 0 0 10px;
 
-		a {
-			display: block;
-			width: 26px;
-			height: 17px;
-			text-indent: -999999px;
-			background: url('_/img/sprite.png') -130px 0px;
-		}
-
-		#header-search {
-			position: absolute;
-			top: 4px;
-			right: 0px;
-			width: 25%;
-			visibility: hidden;
-			opacity: 0;
-			@include fadeOpacity(300ms);
-
-			&.visible {
-				visibility: visible;
-				opacity: 1;
-			}
-			.text-input {
-				width: 100%;
-				position: absolute;
-				top: 0px;
-				right: -5px;
-				padding-right: 35px;
-			}
-			.submit {
+			a {
+				display: block;
 				width: 26px;
 				height: 17px;
 				text-indent: -999999px;
-				background: url('_/img/sprite.png') -130px -37px;
+				background: url('_/img/sprite.png') -130px 0px;
+			}
+
+			#header-search {
 				position: absolute;
-				top: 8px;
+				top: 4px;
 				right: 0px;
+				width: 25%;
+				visibility: hidden;
+				opacity: 0;
+				@include fadeOpacity(300ms);
+
+				&.visible {
+					visibility: visible;
+					opacity: 1;
+				}
+				.text-input {
+					width: 100%;
+					position: absolute;
+					top: 0px;
+					right: -5px;
+					padding-right: 35px;
+				}
+				.submit {
+					width: 26px;
+					height: 17px;
+					text-indent: -999999px;
+					background: url('_/img/sprite.png') -130px -37px;
+					position: absolute;
+					top: 8px;
+					right: 0px;
+				}
 			}
 		}
-	}
-	.link-dealer {
-		display: none;
-	}
-	.link-account {
-		display: none;
-		padding-right: 10px;
-	}
-	#quick-cart {
-		width: 61px;
-		height: 22px;
-		background:url('_/img/sprite.png') -49px 0px;
-		float: left;
+		.link-dealer {
+			display: none;
+		}
+		.link-account {
+			display: none;
+			padding-right: 10px;
+		}
+		#quick-cart {
+			width: 61px;
+			height: 22px;
+			background:url('_/img/sprite.png') -49px 0px;
+			float: left;
 
-		a {
-			display: block;
-			width: 31px;
-			height: 20px;
-			padding: 2px 0 0 30px;
-
-			span{
-				width: 30px;
-				height: 16px;
-				font-size: 12px;
-				font-weight: bold;
-				text-align: center;
+			a {
 				display: block;
-			}
-			&:hover span,
-			&:focus span {
-				color: #fff;
+				width: 31px;
+				height: 20px;
+				padding: 2px 0 0 30px;
+
+				span{
+					width: 30px;
+					height: 16px;
+					font-size: 12px;
+					font-weight: bold;
+					text-align: center;
+					display: block;
+				}
+				&:hover span,
+				&:focus span {
+					color: #fff;
+				}
 			}
 		}
 	}
@@ -690,7 +690,19 @@ header {
 .skate .nav-product {
 	background-image: url('_/img/bg-product-menu-skate.png');
 }
-.region-selector {
+.snow header .nav-utility a:hover {
+	color: $snowColor;
+}
+.ski header .nav-utility a:hover {
+	color: $skiColor;
+}
+.surf header .nav-utility a:hover {
+	color: $surfColor;
+}
+.skate header .nav-utility a:hover {
+	color: $skateColor;
+}
+header .nav-utility .region-selector {
 	float: left;
 	padding-right: 10px;
 	display: none;
@@ -717,9 +729,6 @@ header {
 	.country-int.selected {
 		display: block;
 	}
-}	
-body.international #quick-cart {
-	display: none;
 }
 /* Footer Styles
 -------------------------------------------------------------------------------*/
@@ -936,9 +945,6 @@ footer {
 			}
 		}
 	}
-}
-.international .shopping-cart .section-content #shopping-cart {
-	display: none;
 }
 
 /* Homepage Styles
@@ -2871,21 +2877,22 @@ footer {
 			left: 50%;
 			width: 90%;
 			margin-left: -45%;
+
+			.link-dealer {
+				display: block;
+				float: left;
+			}
+			#quick-cart {
+				float: right;
+			}
+			.search {
+				display: block;
+				float: right;
+			}
+			.region-selector {
+				display: block;
+			}
 		}
-		.link-dealer {
-			display: block;
-			float: left;
-		}
-		#quick-cart {
-			float: right;
-		}
-		.search {
-			display: block;
-			float: right;
-		}
-	}
-	.region-selector {
-		display: block;
 	}
 	/* Footer Styles */
 	footer {
@@ -3318,7 +3325,7 @@ footer {
 -------------------------------------------------------------------------------*/
 @media screen and (min-width: 980px) {
 	/* Header Styles */
-	header .link-account {
+	header .nav-utility .link-account {
 		display: block;
 		float: right;
 	}
