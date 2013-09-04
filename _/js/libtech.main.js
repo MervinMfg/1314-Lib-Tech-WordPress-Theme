@@ -65,23 +65,23 @@ LIBTECH.main = {
             if (lang === 'ca') {
                 shopAPIKey = "tqwzzawb"; // CA Key
                 // set shopatron footer links for Canada
-                $('#link-privacy').attr('href', 'http://libtec-ca.shptron.com/home/privacy/4374.5.1.2');
-                $('#link-policies').attr('href', 'http://libtec-ca.shptron.com/home/policies/4374.5.1.2');
+                $('#link-privacy').attr('href', 'http://libtec-ca.shptron.com/k/privacy');
+                $('#link-policies').attr('href', 'http://libtec-ca.shptron.com/k/policies');
                 $('#link-login').attr('href', 'http://libtec-ca.shptron.com/account/?mfg_id=4374.5&language_id=1');
-                $('#link-safety').attr('href', 'http://libtec-ca.shptron.com/home/security/4374.5.1.2');
-                $('#link-returns').attr('href', 'http://libtec-ca.shptron.com/home/policies/4374.5.1.2#Returns');
-                $('#link-ordering').attr('href', 'http://libtec-ca.shptron.com/home/ordering/4374.5.1.2');
+                $('#link-safety').attr('href', 'http://libtec-ca.shptron.com/k/security');
+                $('#link-returns').attr('href', 'http://libtec-ca.shptron.com/k/policies#Returns');
+                $('#link-ordering').attr('href', 'http://libtec-ca.shptron.com/k/ordering');
                 // set my account in header for Canada
                 $('header .nav-utility .link-account a').attr('href', 'http://libtec-ca.shptron.com/account/?mfg_id=4374.5&language_id=1');
             } else if (lang === 'int') {
                 shopAPIKey = "95tuotu0"; // International key
                 // set shopatron footer links for International
-                $('#link-privacy').attr('href', 'http://libtec-int.shptron.com/home/privacy/4374.5.1.2');
-                $('#link-policies').attr('href', 'http://libtec-int.shptron.com/home/policies/4374.5.1.2');
+                $('#link-privacy').attr('href', 'http://libtec-int.shptron.com/k/privacy');
+                $('#link-policies').attr('href', 'http://libtec-int.shptron.com/k/policies');
                 $('#link-login').attr('href', 'http://libtec-int.shptron.com/account/?mfg_id=4374.5&language_id=1');
-                $('#link-safety').attr('href', 'http://libtec-int.shptron.com/home/security/4374.5.1.2');
-                $('#link-returns').attr('href', 'http://libtec-int.shptron.com/home/policies/4374.5.1.2#Returns');
-                $('#link-ordering').attr('href', 'http://libtec-int.shptron.com/home/ordering/4374.5.1.2');
+                $('#link-safety').attr('href', 'http://libtec-int.shptron.com/k/security');
+                $('#link-returns').attr('href', 'http://libtec-int.shptron.com/k/policies#Returns');
+                $('#link-ordering').attr('href', 'http://libtec-int.shptron.com/k/ordering');
                 // set my account in header for International
                 $('header .nav-utility .link-account a').attr('href', 'http://libtec-int.shptron.com/account/?mfg_id=4374.5&language_id=1');
             } else {
