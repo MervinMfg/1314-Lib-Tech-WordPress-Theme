@@ -758,6 +758,59 @@ LIBTECH.main = {
     },
     blogSingleInit: function () {
         $(".blog-post .entry-content").fitVids();
+        // check for gallery
+        if ($('.gallery')) {
+            // set up gallery slider for thumbnails
+            gallerySlider = $('.gallery .gallery-thumbnails').bxSlider({
+                slideWidth: 100,
+                minSlides: 2,
+                maxSlides: 20,
+                slideMargin: 10,
+                controls: true,
+                pager: false,
+                mode: 'horizontal',
+                moveSlides: 2,
+                infiniteLoop: false,
+                hideControlOnEnd: true,
+                onSliderLoad: function(currentIndex){
+                    var currentSlide = $('.gallery .gallery-thumbnails li').eq(currentIndex);
+                    loadGalleryImage(currentSlide.find('.gallery-icon a'));
+                }
+            });
+            // assign click events to gallery thumbnails
+            $('.gallery .gallery-thumbnails li .gallery-icon a').click(function (e) {
+                e.preventDefault();
+                e.stopPropagation(); // kill even from firing further
+                loadGalleryImage($(this));
+            });
+            // resize gallery based on new image height, it's responsive
+            $(window).on('resize.gallery', function() {
+                var imgHeight = $('.gallery .gallery-viewer .gallery-viewer-image img').height();
+                $('.gallery .gallery-viewer .gallery-viewer-image').clearQueue()
+                $('.gallery .gallery-viewer .gallery-viewer-image').animate({height: imgHeight}, 500);
+            });
+        }
+        // gallery functionality to load new images
+        function loadGalleryImage(imageLink) {
+            var largeImage, largeImageCaption;
+            // get the image src
+            largeImage = '<a href="' + $(imageLink).attr('href') + '" target="_blank"><img src="' + $(imageLink).attr('href') + '" /></a>';
+            $('.gallery .gallery-viewer .gallery-viewer-image').html(largeImage);
+            // get the image caption
+            largeImageCaption = $(imageLink).parent().parent().find('.gallery-caption').html();
+            if (largeImageCaption == undefined) {
+                largeImageCaption = $(imageLink).find('img').attr('alt');
+            }
+            largeImageCaption = '<p>' + largeImageCaption + '</p>';
+            $('.gallery .gallery-viewer .gallery-viewer-caption').html(largeImageCaption);
+            // wait for load and set the correct height
+            $(".gallery .gallery-viewer .gallery-viewer-image img").one('load', function() {
+                var imgHeight = $('.gallery .gallery-viewer .gallery-viewer-image img').height();
+                $('.gallery .gallery-viewer .gallery-viewer-image').animate({height: imgHeight}, 500);
+            }).each(function() {
+                if(this.complete) $(this).load();
+            });
+        }
     },
     teamDetailsInit: function () {
         var self = this;

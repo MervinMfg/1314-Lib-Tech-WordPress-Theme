@@ -2613,6 +2613,46 @@ footer {
 				p {
 					margin-bottom: 1.25em;
 				}
+				img {
+					max-width: 100%;
+					height: auto;
+				}
+				.gallery {
+					background: #000;
+					background: rgba(0, 0, 0, 0.5);
+					border-radius: 10px;
+					padding: 10px;
+					margin-bottom: 20px;
+
+					.gallery-viewer {
+						.gallery-viewer-image {
+							overflow: hidden;
+							text-align: center;
+							background: url(_/img/loader.gif) center center no-repeat;
+
+							img {
+								max-height: 600px;
+							}
+						}
+						.gallery-viewer-caption {
+							text-align: center;
+
+							p {
+								margin: 10px 0;
+							}
+						}
+					}
+					.gallery-thumbnails {
+						.gallery-item {
+							.gallery-caption {
+								display: none;
+							}
+						}
+					}
+					.bx-wrapper .bx-viewport {
+						background: none;
+					}
+				}
 			}
 			.entry-categories-tags {
 				.entry-categories {
