@@ -4,6 +4,7 @@ Template Name: Shopping Cart Template
 */
 get_header();
 ?>
+        <div class="bg2-top"></div>
         <section class="shopping-cart bg2">
             <div class="section-content">
 
