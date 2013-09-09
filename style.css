@@ -779,6 +779,7 @@ footer .footer-copy { font-size: .75em; /* 12 / 16 */ color: #333; font-weight: 
 /* Blog styles
 -------------------------------------------------------------------------------*/
 .blog-posts { padding-left: 20px; padding-right: 20px; }
+.blog-posts .section-content { padding-top: 20px; }
 .blog-posts h2 { padding-bottom: 20px; }
 .blog-posts .blog-post .post-wrapper { padding-bottom: 20px; }
 .blog-posts .blog-post .post-wrapper a, .blog-posts .blog-post .post-wrapper a:hover, .blog-posts .blog-post .post-wrapper a:focus { text-decoration: none; font-style: normal; }
