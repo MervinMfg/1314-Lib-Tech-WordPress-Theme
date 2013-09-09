@@ -7,6 +7,7 @@
 
 		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
+		<div class="bg3-top"></div>
 		<section class="bg3 blog-post">
         	<div class="section-content">
 				<article <?php post_class() ?> id="post-<?php the_ID(); ?>">
@@ -39,8 +40,8 @@
 							<?php the_tags('Tags: ', ', ', ''); ?>
 						</p>
 					</div>
-					
 				</article>
+				<div class="clearfix"></div>
 			</div><!-- END .section-content -->
         </section><!-- END .product-zoom -->
 

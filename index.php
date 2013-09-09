@@ -5,7 +5,8 @@
  */
  get_header(); ?>
 
-		<section class="homepage-posts bg3">
+ 		<div class="bg3-top"></div>
+		<section class="blog-posts bg3">
 			<div class="section-content">
 				<?php if (have_posts()) : ?>
 				<ul>
@@ -14,7 +15,7 @@
 							the_post();
 							$postImage = get_post_image('square-medium');
 					?>
-					<li <?php post_class('homepage-post'); ?> id="post-<?php the_ID(); ?>">
+					<li <?php post_class('blog-post'); ?> id="post-<?php the_ID(); ?>">
 						<div class="post-wrapper">
 							<a href="<?php the_permalink() ?>">
 								<img src="<?php echo $postImage[0]; ?>" alt="Image From <?php echo get_the_title(); ?>" />
