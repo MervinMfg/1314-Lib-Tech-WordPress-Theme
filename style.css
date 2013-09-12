@@ -814,12 +814,13 @@ footer .footer-copy { font-size: .75em; /* 12 / 16 */ color: #333; font-weight: 
 .blog-post .section-content .post .entry-header .entry-title { margin-bottom: .25em; }
 .blog-post .section-content .post .entry-header .entry-meta { margin-bottom: 1em; }
 .blog-post .section-content .post .entry-header .entry-share li { float: left; padding-bottom: 1em; }
+.blog-post .section-content .post .entry-header .entry-share li .fb-like { padding-right: 20px; }
 .blog-post .section-content .post .entry-content { clear: both; }
 .blog-post .section-content .post .entry-content p { margin-bottom: 1.25em; }
 .blog-post .section-content .post .entry-content img { max-width: 100%; height: auto; }
 .blog-post .section-content .post .entry-content .wp-caption { width: auto !important; }
 .blog-post .section-content .post .entry-content .wp-caption .wp-caption-text { font-weight: bold; }
-.blog-post .section-content .post .entry-content .gallery { background: #000; background: rgba(0, 0, 0, 0.5); border-radius: 10px; padding: 10px; }
+.blog-post .section-content .post .entry-content .gallery { margin-bottom: 20px; }
 .blog-post .section-content .post .entry-content .gallery .gallery-viewer .gallery-viewer-image { overflow: hidden; text-align: center; background: url(_/img/loader.gif) center center no-repeat; }
 .blog-post .section-content .post .entry-content .gallery .gallery-viewer .gallery-viewer-image img { max-height: 600px; }
 .blog-post .section-content .post .entry-content .gallery .gallery-viewer .gallery-viewer-caption { text-align: center; }

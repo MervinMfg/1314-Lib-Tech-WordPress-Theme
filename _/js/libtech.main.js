@@ -814,7 +814,10 @@ LIBTECH.main = {
             // wait for load and set the correct height
             $(".gallery .gallery-viewer .gallery-viewer-image img").one('load', function() {
                 var imgHeight = $('.gallery .gallery-viewer .gallery-viewer-image img').height();
-                $('.gallery .gallery-viewer .gallery-viewer-image').animate({height: imgHeight}, 500);
+                $('.gallery .gallery-viewer .gallery-viewer-image').animate({height: imgHeight}, 500, function() {
+                    checkPageWidth(); // fix break when taller image is loaded
+                });
+                checkPageWidth(); // fix break when taller image is loaded
             }).each(function() {
                 if(this.complete) $(this).load();
             });

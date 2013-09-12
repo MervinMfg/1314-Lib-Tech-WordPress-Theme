@@ -2684,6 +2684,10 @@ footer {
 					li {
 						float: left;
 						padding-bottom: 1em;
+
+						.fb-like {
+							padding-right: 20px;
+						}
 					}
 				}
 			}
@@ -2705,10 +2709,7 @@ footer {
 					}
 				}
 				.gallery {
-					background: #000;
-					background: rgba(0, 0, 0, 0.5);
-					border-radius: 10px;
-					padding: 10px;
+					margin-bottom: 20px;
 
 					.gallery-viewer {
 						.gallery-viewer-image {
