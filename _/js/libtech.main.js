@@ -946,7 +946,9 @@ LIBTECH.main = {
         $(window).on('resize.blogScroll', function() {
             checkPageWidth();
         });
-        checkPageWidth();
+        $(window).load(function(){
+            checkPageWidth();
+        });
     },
     teamDetailsInit: function () {
         var self = this;
