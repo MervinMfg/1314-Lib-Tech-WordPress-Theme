@@ -49,13 +49,43 @@
 			                <li><a href="#country-int" class="country-int">INTERNATIONAL</a></li>
 			            </ul>
 					</div>
+
+					<?php
+					// determine the correct social links for the sidebar
+					switch ($GLOBALS['sport']) {
+					    case "ski":
+					        $facebookUsername = "libtechNAS";
+					        $instagramUsername = "libtechnas";
+					        $vimeoUsername = "libtech";
+					        $twitterUsername = "libtechnas";
+					        break;
+					    case "surf":
+					        $facebookUsername = "waterboards";
+					        $instagramUsername = "waterboards";
+					        $vimeoUsername = "libtech";
+					        $twitterUsername = "waterboards";
+					        break;
+					    case "skate":
+					        $facebookUsername = "libtechskate";
+					        $instagramUsername = "libtechskate";
+					        $vimeoUsername = "libtech";
+					        $twitterUsername = "LibTechSkate";
+					        break;
+					    default:
+					        $facebookUsername = "libtech";
+					        $instagramUsername = "libtechnologies";
+					        $vimeoUsername = "libtech";
+					        $twitterUsername = "libtechnologies";
+					}
+					?>
+
 					<div class="social-links">
 						<p class="h2">Hit us up!</p>
 						<ul>
-							<li><a href="http://www.facebook.com/libtech" class="facebook" target="_blank">Facebook</a></li>
-							<li><a href="http://www.instagram.com/libtechnologies" class="instagram" target="_blank">Instagram</a></li>
-							<li><a href="http://www.vimeo.com/libtech" class="vimeo" target="_blank">Vimeo</a></li>
-							<li><a href="http://www.twitter.com/libtechnologies" class="twitter" target="_blank">Twitter</a></li>
+							<li><a href="http://www.facebook.com/<?php echo $facebookUsername; ?>" class="facebook" target="_blank">Facebook</a></li>
+							<li><a href="http://www.instagram.com/<?php echo $instagramUsername; ?>" class="instagram" target="_blank">Instagram</a></li>
+							<li><a href="http://www.vimeo.com/<?php echo $vimeoUsername; ?>" class="vimeo" target="_blank">Vimeo</a></li>
+							<li><a href="http://www.twitter.com/<?php echo $twitterUsername; ?>" class="twitter" target="_blank">Twitter</a></li>
 							<li><a href="/feed/" class="rss">RSS</a></li>
 						</ul>
 					</div>
