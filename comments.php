@@ -10,7 +10,20 @@
 	}
 ?>
 
-<?php if ( comments_open() ) : ?>
+<?php
+	if ( comments_open() ) :
+		if( is_singular('post') ) :
+?>
+        	<div class="discussion">
+				<h2>Discussion</h2>
+				<div class="discussion-thread">
+					<fb:comments href="<?php the_permalink(); ?>" width="940" colorscheme="dark" num_posts="5" mobile="false"></fb:comments>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+<?php 
+		else :
+?>
 		<div class="discussion-top bg1-top"></div>
         <section class="discussion bg1">
         	<div class="section-content">
@@ -21,4 +34,7 @@
 				<div class="clearfix"></div>
 			</div>
 		</section>
-<?php endif; ?>
+<?php
+		endif;
+	endif;
+?>

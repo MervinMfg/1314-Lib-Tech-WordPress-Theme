@@ -755,8 +755,16 @@ LIBTECH.main = {
         $(".enviro-video").fitVids();
     },
     blogInit: function () {
+        // CATEGORY TREE VIEW ON BLOG PAGES
+        $(".widget_mycategoryorder ul").treeview({
+            persist: "location",
+            collapsed: true,
+            unique: false,
+            animated: "fast"
+        });
     },
     blogSingleInit: function () {
+        var self = this;
         $(".blog-post .entry-content").fitVids();
         // check for gallery
         if ($('.gallery')) {
@@ -811,6 +819,134 @@ LIBTECH.main = {
                 if(this.complete) $(this).load();
             });
         }
+        // BEGIN CODE FOR 2 COLUMN LAYOUT THAT FIXES POSITIONS WHEN SCROLLED PAST
+        // check browser width and perform appropriate actions on 2 column layout
+        function checkPageWidth() {
+            if (self.utilities.getMediaWidth() < 980) {
+                // if we're less than 980 turn off scroll listener and reset dom
+                $(window).off('scroll.blogScroll');
+                // reset all css
+                $('#sidebar').css({
+                    position: 'static',
+                });
+                $('#sidebar .sidebar-wrapper').css({
+                    position: 'static',
+                    width: '100%'
+                });
+                $('article.post').css({
+                    position: 'static'
+                });
+                $('article.post .post-wrapper').css({
+                    position: 'static',
+                    width: '100%'
+                });
+            } else {
+                // if we're bigger than 980 listen for scroll and run check
+                $(window).off('scroll.blogScroll');
+                $(window).on('scroll.blogScroll', function() {
+                    checkScroll();
+                });
+                checkScroll();
+            }
+        }
+        // on page scroll check the positioning of elements
+        function checkScroll() {
+            // set up variables
+            var post, postHeight, sidebar, sidebarHeight, windowScrollTop, windowHeight;
+            post = $('article.post');
+            postHeight = post.height();
+            postWrapper = $('article.post .post-wrapper');
+            postWrapperHeight = postWrapper.height();
+            sidebar = $('#sidebar');
+            sidebarHeight = sidebar.height();
+            sidebarWrapper = $('#sidebar .sidebar-wrapper');
+            sidebarWrapperHeight = sidebarWrapper.height();
+            windowScrollTop = $(window).scrollTop();
+            windowHeight = $(window).height();
+            // check to see which column is longer
+            if(sidebarHeight < postHeight) {
+                // if sidebar is shorter, do this
+                if (windowScrollTop + windowHeight > post.offset().top + sidebarWrapperHeight) {
+                    // we've reached the bottom of the sidebar, so anchor it
+                    // find the appropriate position for the sidebar
+                    // var bottomPosition = post.offset().top + postHeight - windowScrollTop - windowHeight;
+                    // set the position
+                    sidebarWrapper.css({
+                        position: 'fixed',
+                        bottom: '0px',
+                        width: sidebar.width()
+                    });
+                    // if we can see the footer, fix the sidebar to bottom of section
+                    if (isInView('footer')) {
+                        sidebar.css({
+                            position: 'absolute',
+                            bottom: '-50px',
+                            right: '0px'
+                        });
+                        sidebarWrapper.css({
+                            position: 'static',
+                            width: '100%'
+                        });
+                    }
+                } else {
+                    // we're at the top
+                    sidebar.css({
+                        position: 'static',
+                    });
+                    sidebarWrapper.css({
+                        position: 'static',
+                        width: '100%'
+                    });
+                }
+            } else {
+                // if post is shorter, do this
+                if (windowScrollTop + windowHeight > sidebar.offset().top + postWrapperHeight) {
+                    // we've reached the bottom of the post, so anchor it
+                    // find the appropriate position for the post
+                    // var bottomPosition = sidebar.offset().top + sidebarHeight - windowScrollTop - windowHeight;
+                    // set the position
+                    postWrapper.css({
+                        position: 'fixed',
+                        bottom: '0px',
+                        width: post.width()
+                    });
+                    // if we can see the footer, fix the post to bottom of section
+                    if (isInView('footer')) {
+                        post.css({
+                            position: 'absolute',
+                            bottom: '-50px',
+                            left: '0px'
+                        });
+                        postWrapper.css({
+                            position: 'static',
+                            width: '100%'
+                        });
+                    }
+                } else {
+                    // we're at the top
+                    post.css({
+                        position: 'static'
+                    });
+                    postWrapper.css({
+                        position: 'static',
+                        width: '100%'
+                    });
+                }
+            }
+        }
+        // check if element is in view
+        function isInView(elem) {
+            var docViewTop = $(window).scrollTop(); //num of pixels hidden above current screen
+            var docViewBottom = docViewTop + $(window).height();
+            var elemTop = $(elem).offset().top; //num of pixels above the elem
+            var elemBottom = elemTop + $(elem).height();
+            return ((elemTop >= docViewTop && elemTop <= docViewBottom));
+        }
+        // on resize check what the width of the browser is
+        $(window).on('resize.blogScroll', function() {
+            checkPageWidth();
+        });
+        checkPageWidth();
     },
     teamDetailsInit: function () {
         var self = this;

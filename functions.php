@@ -56,8 +56,8 @@ if (function_exists('register_sidebar')) {
         'description'   => __( 'These are widgets for the sidebar.','libtech' ),
         'before_widget' => '<div id="%1$s" class="widget %2$s">',
         'after_widget'  => '</div>',
-        'before_title'  => '<h3>',
-        'after_title'   => '</h3>'
+        'before_title'  => '<h2>',
+        'after_title'   => '</h2>'
     ));
 }
 // customize what is searchable
