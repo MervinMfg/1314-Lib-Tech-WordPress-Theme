@@ -2697,15 +2697,46 @@ footer {
 				p {
 					margin-bottom: 1.25em;
 				}
+				& > p:first-of-type {
+					
+					font-weight: bold;
+
+					&:first-letter {
+						text-transform: uppercase;
+						float: left;
+						font-size: 4.65em;
+						color: #fff;
+						line-height: .8em;
+						padding-right: 8px;
+					}
+				}
 				img {
 					max-width: 100%;
 					height: auto;
+
+					&.alignleft,
+					&.alignright,
+					&.aligncenter {
+						text-align: center;
+					}
+				}
+				blockquote {
+					text-align: center;
+					font-size: 1.3em;
+					font-weight: bold;
+					font-style: italic;
+					color: #fff;
 				}
 				.wp-caption {
 					width: auto !important;
 
 					.wp-caption-text {
 						font-weight: bold;
+					}
+					&.alignleft,
+					&.alignright,
+					&.aligncenter {
+						text-align: center;
 					}
 				}
 				.gallery {
@@ -2739,6 +2770,12 @@ footer {
 					.bx-wrapper .bx-viewport {
 						background: none;
 					}
+				}
+				.fluid-width-video-wrapper {
+					clear: both;
+				}
+				iframe.strobbr {
+					width: 100%;
 				}
 			}
 			.entry-categories-tags {
@@ -3326,12 +3363,12 @@ footer {
 				img {
 					&.alignleft {
 						float: left;
-						padding: 0 20px 20px 0;
+						margin: 0 40px 20px 0;
 						max-width: 70%;
 					}
 					&.alignright {
 						float: right;
-						padding: 0 0 20px 20px;
+						margin: 0 0 20px 40px;
 						max-width: 70%;
 					}
 					&.aligncenter {
@@ -3343,12 +3380,12 @@ footer {
 
 					&.alignleft {
 						float: left;
-						padding-right: 20px;
+						padding-right: 40px;
 						max-width: 70%;
 					}
 					&.alignright {
 						float: right;
-						padding-left: 20px;
+						padding-left: 40px;
 						max-width: 70%;
 					}
 					&.aligncenter {
@@ -3568,6 +3605,14 @@ footer {
 	.blog-posts {
 		.blog-post {
 			width: 33%;
+		}
+	}
+	.blog-post .section-content .post .entry-content {
+		.strobbr-list {
+			li {
+				width: 50%;
+				float: left;
+			}
 		}
 	}
 }
