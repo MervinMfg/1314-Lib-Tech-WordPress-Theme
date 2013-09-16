@@ -136,15 +136,15 @@
             ,,,
 -->
 <head id="www-lib-tech-com" data-template-set="lib-tech-wordpress-theme">
-	<meta charset="<?php bloginfo('charset'); ?>">
-	<!--[if IE ]>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<![endif]-->
-	<?php if (is_search()) echo '<meta name="robots" content="noindex, nofollow" />'; ?>
-	<title><?php echo $GLOBALS['pageTitle']; ?></title>
-	<meta name="title" content="<?php echo $GLOBALS['pageTitle']; ?>" />
-	<meta name="description" content="<?php echo $pageDescription; ?>" />
-	<meta name="keywords" content="snowboards, skateboards, snowskates, waterboards, surfboards, NAS, Outerwear, Goggles, Clothing, Apparel, Accessories, Lib Tech, Lib Technologies, surf, skate, snow, skateboard, deck, skateboarding, p2, skate technology, tech" />
+    <meta charset="<?php bloginfo('charset'); ?>">
+    <!--[if IE ]>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <![endif]-->
+    <?php if (is_search()) echo '<meta name="robots" content="noindex, nofollow" />'; ?>
+<title><?php echo $GLOBALS['pageTitle']; ?></title>
+    <meta name="title" content="<?php echo $GLOBALS['pageTitle']; ?>" />
+    <meta name="description" content="<?php echo $pageDescription; ?>" />
+    <meta name="keywords" content="snowboards, skateboards, snowskates, waterboards, surfboards, NAS, Outerwear, Goggles, Clothing, Apparel, Accessories, Lib Tech, Lib Technologies, surf, skate, snow, skateboard, deck, skateboarding, p2, skate technology, tech" />
     <meta name="author" content="Lib Tech" />
     <meta name="Copyright" content="Copyright Lib Tech <?php echo date('Y'); ?>. All Rights Reserved." />
     <!-- Application-specific meta tags -->
@@ -161,15 +161,8 @@
     <meta itemprop="description" content="<?php echo $pageDescription; ?>" />
     <meta itemprop="image" content="<?php echo $GLOBALS['pageImage']; ?>" />
     <!-- Twitter -->
-	<meta name="twitter:card" content="">
-	<meta name="twitter:site" content="">
-	<meta name="twitter:title" content="">
-	<meta name="twitter:description" content="">
-	<meta name="twitter:url" content="">
-	<!-- Windows 8 -->
-	<meta name="application-name" content="" /> 
-	<meta name="msapplication-TileColor" content="" /> 
-	<meta name="msapplication-TileImage" content="" />
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@libtechnologies">
     <!-- RSS FEEDS -->
     <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="<?php bloginfo('rss2_url'); ?>" />
     <link rel="alternate" type="text/xml" title="RSS .92" href="<?php bloginfo('rss_url'); ?>" />
@@ -178,22 +171,21 @@
     <link rel="shortcut icon" href="<?php bloginfo('template_directory'); ?>/_/img/favicon.ico" />
     <!-- Styles -->
     <link href="<?php bloginfo('stylesheet_url'); ?>" rel="stylesheet" type="text/css" />
-    <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css' />
     <!--  Mobile Meta Info -->
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="apple-touch-icon" href="<?php bloginfo('template_directory'); ?>/_/img/apple-touch-icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" href="<?php bloginfo('template_directory'); ?>/_/img/apple-touch-icon.png">
     <!-- Misc. -->
     <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
     <link rel="profile" href="http://gmpg.org/xfn/11" />
     <!-- Google Site Verification -->
     <meta name="google-site-verification" content="wE_gDgt0-MYrOnCO0K7VH2HP7af_DuxpDK1EJFdohFc" />
     <!-- JavaScript Includes -->
-	<script src="<?php bloginfo('template_directory'); ?>/_/js/lib/modernizr-2.6.2.min.js"></script>
+    <script src="<?php bloginfo('template_directory'); ?>/_/js/lib/modernizr-2.6.2.min.js"></script>
     <!--[if lt IE 9]>
     <script src="<?php bloginfo('template_directory'); ?>/_/js/lib/respond.min.js"></script>
     <![endif]-->
     <!-- WordPress Head -->
-	<?php wp_head(); ?>
+    <?php wp_head(); ?>
 </head>
 <body <?php body_class($bodyClass); ?>>
 	<div class="wrapper">
