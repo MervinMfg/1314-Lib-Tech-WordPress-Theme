@@ -144,6 +144,10 @@ ol.commentlist li.parent { border-left: 5px solid #111; }
 -------------------------------------------------------------------------------*/
 @font-face { font-family: 'Duke Fill'; src: url("_/fonts/Duke-Fill/Duke-Fill.eot"); src: url("_/fonts/Duke-Fill/Duke-Fill.eot?#iefix") format("embedded-opentype"), url("_/fonts/Duke-Fill/Duke-Fill.woff") format("woff"), url("_/fonts/Duke-Fill/Duke-Fill.ttf") format("truetype"), url("_/fonts/Duke-Fill/Duke-Fill.svg#Duke-Fill") format("svg"); font-weight: normal; font-style: normal; }
 
+@font-face { font-family: 'PT Sans Narrow'; src: url("_/fonts/PT-Sans/PT-Sans-Narrow-Regular.eot"); src: url("_/fonts/PT-Sans/PT-Sans-Narrow-Regular.eot?#iefix") format("embedded-opentype"), url("_/fonts/PT-Sans/PT-Sans-Narrow-Regular.woff") format("woff"), url("_/fonts/PT-Sans/PT-Sans-Narrow-Regular.ttf") format("truetype"), url("_/fonts/PT-Sans/PT-Sans-Narrow-Regular.svg#PT-Sans-Narrow") format("svg"); font-weight: normal; font-style: normal; }
+
+@font-face { font-family: 'PT Sans Narrow'; src: url("_/fonts/PT-Sans/PT-Sans-Narrow-Bold.eot"); src: url("_/fonts/PT-Sans/PT-Sans-Narrow-Bold.eot?#iefix") format("embedded-opentype"), url("_/fonts/PT-Sans/PT-Sans-Narrow-Bold.woff") format("woff"), url("_/fonts/PT-Sans/PT-Sans-Narrow-Bold.ttf") format("truetype"), url("_/fonts/PT-Sans/PT-Sans-Narrow-Bold.svg#PT-Sans-Narrow") format("svg"); font-weight: bold; font-style: normal; }
+
 body, select, input, textarea { color: #333; }
 
 /*	j.mp/webkit-tap-highlight-color */
