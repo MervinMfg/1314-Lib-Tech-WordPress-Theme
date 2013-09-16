@@ -50,7 +50,7 @@
 					<div class="clearfix"></div>
 				</div><!-- END .section-content-wrapper -->
 			</div><!-- END .section-content -->
-        </section><!-- END .product-zoom -->
+        </section><!-- END .blog-post -->
 
 		<?php endwhile; endif; ?>
 

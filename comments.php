@@ -12,7 +12,7 @@
 
 <?php
 	if ( comments_open() ) :
-		if( is_singular('post') ) :
+		if( is_singular('post') || is_singular('page') ) :
 ?>
         	<div class="discussion">
 				<h2>Discussion</h2>

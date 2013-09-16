@@ -372,6 +372,13 @@ footer .footer-copy { font-size: .75em; /* 12 / 16 */ color: #333; font-weight: 
 .shopping-cart .section-content #shopping-cart { min-height: 250px; }
 .shopping-cart .section-content #shopping-cart > span { display: block; background: url(_/img/loader.gif) center center no-repeat black; width: 64px; height: 20px; }
 
+/* Default Page Styles
+-------------------------------------------------------------------------------*/
+.page-template-default .default-page .section-content { padding-left: 20px; padding-right: 20px; }
+.page-template-default .default-page .section-content h1 { margin-bottom: 20px; }
+.page-template-default .default-page .section-content p { margin-bottom: 10px; }
+.page-template-default .default-page .section-content ul { list-style: square; margin: 0 0 20px 25px; }
+
 /* Homepage Styles
 -------------------------------------------------------------------------------*/
 .featured-slider { padding-top: 60px; margin-top: -40px; }
