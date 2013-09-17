@@ -1002,6 +1002,18 @@ footer {
 			width: 140.597539543058%;
 			margin-left: -20.298769771529%;
 
+			.bxslider li:nth-child(n+2) {
+				display: none;
+			}
+			.bxslider li img {
+				opacity: 0;
+			}
+			.bx-wrapper .bxslider li:nth-child(n+2) {
+				display: block;
+			}
+			.bx-wrapper .bxslider li img {
+				opacity: 1;
+			}
 			.bx-controls {
 				margin-left: 20.298769771529%;
 			}
