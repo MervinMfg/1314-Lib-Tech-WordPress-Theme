@@ -182,36 +182,39 @@ LIBTECH.main = {
         // check language cookie on load
         var self, lang, regionCookie;
         self = this;
-
         regionCookie = self.utilities.cookie.getCookie('libtech_region');
-        
         if (regionCookie != null || regionCookie != "") {
             lang = regionCookie;
         }
-
         if (lang) {
             if (lang === 'ca') {
                 $(".country-ca").addClass("selected");
                 $("body").removeClass("international");
+                self.takeoverInit();
             } else if (lang === 'int') {
                 $("body").addClass("international");
                 $(".country-int").addClass("selected");
+                self.takeoverInit();
             } else {
                 $(".country-us").addClass("selected");
                 $("body").removeClass("international");
+                self.takeoverInit();
             }
         } else {
             if (navigator.cookieEnabled === true) {
                 // if no region cookie has been set, open selector if on product page
                 if ($('body').hasClass('page-template-page-snowboard-builder-php') || $('body').hasClass('page-template-page-shopping-cart-php') || $('body').hasClass('page-template-page-overview-products-php') || $('body').hasClass('single-libtech_snowboards') || $('body').hasClass('single-libtech_nas') || $('body').hasClass('single-libtech_skateboards') || $('body').hasClass('single-libtech_apparel') || $('body').hasClass('single-libtech_accessories') || $('body').hasClass('single-libtech_luggage') || $('body').hasClass('single-libtech_outerwear')) {
                     self.regionSelectorOverlayInit();
+                    self.takeoverInit(false);
+                } else {
+                    self.takeoverInit();
                 }
-                // pick us by default
-                self.utilities.cookie.setCookie('libtech_region', 'us', 60);
+                // pick us by default, but don't set cookie
                 $(".country-us").addClass("selected");
             } else {
                 // cookies are disabled
                 $(".country-us").addClass("selected");
+                self.takeoverInit();
             }
         }
         // add click events
@@ -285,6 +288,43 @@ LIBTECH.main = {
                 sport = "snow";
             }
             self.utilities.cookie.setCookie('libtech_sport', sport, 30);
+        }
+    },
+    takeoverInit: function (showTakeover) {
+        var self = this;
+        if(typeof(showTakeover)==='undefined') showTakeover = true;
+        // make sure we're not on an international page, we don't show it there
+        if($('body').hasClass('international') == false) {
+            // on click of takeover, check expansion / contraction
+            $('.takeover').on('click.takeover', function (e) {
+                var contracted, expanded;
+                contracted = $('.takeover .takeover-content .contracted');
+                expanded = $('.takeover .takeover-content .expanded');
+
+                if (contracted.hasClass('hide')) {
+                    $('.takeover').height(expanded.height());
+                    $('.takeover').animate({height: contracted.height()}, 500, function() {
+                        $('.takeover').height('auto');
+                    });
+                } else {
+                    $('.takeover').height(contracted.height());
+                    $('.takeover').animate({height: expanded.height()}, 500, function() {
+                        $('.takeover').height('auto');
+                    });
+                }
+                contracted.toggleClass('hide');
+                expanded.toggleClass('show');
+            });
+            // check if we should diplay the takeover or not based on cookies
+            if (navigator.cookieEnabled != false && showTakeover == true) {
+                var takeoverCookie = self.utilities.cookie.getCookie('libtech_takeover');
+                if (takeoverCookie == null || takeoverCookie == "") {
+                    self.utilities.cookie.setCookie('libtech_takeover', 'expanded', 7);
+                    setTimeout(function(){
+                        $('.takeover').click();
+                    }, 2000);
+                }
+            }   
         }
     },
     homeInit: function () {

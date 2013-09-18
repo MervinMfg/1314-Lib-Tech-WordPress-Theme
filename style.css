@@ -383,6 +383,22 @@ footer .footer-copy { font-size: .75em; /* 12 / 16 */ color: #333; font-weight: 
 .page-template-default .default-page .section-content p { margin-bottom: 10px; }
 .page-template-default .default-page .section-content ul { list-style: square; margin: 0 0 20px 25px; }
 
+/* Takeover Styles
+-------------------------------------------------------------------------------*/
+.takeover { max-width: 1640px; margin: 0 auto; padding: 0 20px; }
+.takeover .takeover-content { position: relative; cursor: pointer; }
+.takeover .takeover-content .expanded { text-align: center; white-space: nowrap; display: none; position: relative; overflow: hidden; }
+.takeover .takeover-content .expanded.show { display: block; }
+.takeover .takeover-content .expanded .close { display: block; float: right; width: 41px; height: 41px; background: url("_/img/sprite.png") no-repeat -265px -46px; text-indent: -9999px; padding: 5px; position: absolute; top: 0; right: 0; }
+.takeover .takeover-content .expanded .message img { height: auto; display: block; width: 140.597539543058%; margin-left: -20.298769771529%; max-width: none; }
+.takeover .takeover-content .contracted { text-align: center; width: 100%; background: #000; opacity: 1; transition: opacity 800ms ease-in-out; -webkit-transition: opacity 800ms ease-in-out; -moz-transition: opacity 800ms ease-in-out; -o-transition: opacity 800ms ease-in-out; }
+.takeover .takeover-content .contracted.hide { position: absolute; top: 0; opacity: 0; }
+.takeover .takeover-content .contracted a { font-style: normal; color: #fff; }
+.takeover .takeover-content .contracted a .message { font-weight: bold; padding: 10px 0; }
+.takeover .takeover-content .contracted a .view-more { display: block; float: right; width: 41px; height: 41px; background: url("_/img/sprite.png") no-repeat -214px -46px; text-indent: -9999px; padding: 5px; }
+
+.international .takeover { display: none; }
+
 /* Homepage Styles
 -------------------------------------------------------------------------------*/
 .featured-slider { padding-top: 60px; margin-top: -40px; }
@@ -945,6 +961,8 @@ footer .footer-copy { font-size: .75em; /* 12 / 16 */ color: #333; font-weight: 
   footer .search { display: none; }
   footer .subscribe { width: 50%; float: left; padding-bottom: 0; }
   footer .footer-copy { width: 50%; float: left; padding-top: 35px; text-align: right; }
+  /* Takeover Styles */
+  .takeover .takeover-content .expanded .message img { width: 100%; margin-left: 0; max-width: 100%; }
   /* Homepage Styles */
   .featured-slider .section-content { padding-left: 20px; padding-right: 20px; }
   .featured-slider .section-content .slider-wrapper { width: 100%; margin-left: 0; }

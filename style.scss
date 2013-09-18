@@ -987,7 +987,86 @@ footer {
 		}
 	}
 }
+/* Takeover Styles
+-------------------------------------------------------------------------------*/
+.takeover {
+	max-width: 1640px;
+	margin: 0 auto;
+	padding: 0 20px;
 
+	.takeover-content {
+		position: relative;
+		cursor: pointer;
+
+		.expanded {
+			text-align: center;
+			white-space: nowrap;
+			display: none;
+			position: relative;
+			overflow: hidden;
+
+			&.show {
+				display: block;
+			}
+			.close {
+				display: block;
+				float: right;
+				width: 41px;
+				height: 41px;
+				background: url('_/img/sprite.png') no-repeat -265px -46px;
+				text-indent: -9999px;
+				padding: 5px;
+				position: absolute;
+				top: 0;
+				right: 0;
+			}
+			.message {
+				img {
+					height: auto;
+					display: block;
+					width: 140.597539543058%;
+					margin-left: -20.298769771529%;
+					max-width: none;
+				}
+			}
+		}
+		.contracted {
+			text-align: center;
+			width: 100%;
+			background: #000;
+			opacity: 1;
+			@include fadeOpacity(800ms);
+
+			&.hide {
+				position: absolute;
+				top: 0;
+				opacity: 0;
+			}
+
+			a {
+				font-style: normal;
+				color: #fff;
+
+				.message {
+					font-weight: bold;
+					padding: 10px 0;
+				}
+				.view-more {
+					display: block;
+					float: right;
+					width: 41px;
+					height: 41px;
+					background: url('_/img/sprite.png') no-repeat -214px -46px;
+					text-indent: -9999px;
+					padding: 5px;
+				}
+			}
+		}
+	}	
+}
+.international .takeover {
+	display: none;
+}
 /* Homepage Styles
 -------------------------------------------------------------------------------*/
 .featured-slider {
@@ -3205,6 +3284,12 @@ footer {
 			padding-top: 35px;
 			text-align: right;
 		}
+	}
+	/* Takeover Styles */
+	.takeover .takeover-content .expanded .message img {
+		width: 100%;
+		margin-left: 0;
+		max-width: 100%;
 	}
 	/* Homepage Styles */
 	.featured-slider {
