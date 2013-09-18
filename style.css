@@ -523,6 +523,7 @@ footer .footer-copy { font-size: .75em; /* 12 / 16 */ color: #333; font-weight: 
 .featured-product-slider.outerwear .section-content ul.product-listing > li .product-copy .description { display: none; }
 
 .international .featured-product-slider .section-content ul.product-listing > li .product-copy .price, .international .featured-product-slider .section-content ul.product-listing > li .product-copy a.buy { display: none; }
+.international .featured-product-slider .section-content ul.product-listing > li .product-copy .price.build, .international .featured-product-slider .section-content ul.product-listing > li .product-copy a.buy.build { display: block; }
 
 .product-overview .section-content h1 { padding: 0 0 20px 20px; }
 .product-overview .section-content ul.product-listing li.product-item { width: 18%; float: left; overflow: hidden; text-align: center; padding-bottom: 40px; }

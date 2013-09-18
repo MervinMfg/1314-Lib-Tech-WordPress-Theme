@@ -1630,6 +1630,10 @@ footer {
 	.price,
 	a.buy {
 		display: none;
+
+		&.build {
+			display: block;
+		}
 	}
 }
 .product-overview  {

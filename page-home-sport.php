@@ -52,7 +52,19 @@ get_header();
 		<section class="product-slider bg-product-<?php echo $GLOBALS['sport']; ?>">
 			<div class="section-content">
 				<ul class="product-listing bxslider">
+					<?php if($GLOBALS['sport'] == "snow") : ?>
+					<li>
+		                <a href="/snowboarding/snowboard-builder/">
+		                    <img src="<?php bloginfo('template_directory'); ?>/_/img/diy-board-builder-300x300.png" width="300" height="300" alt="DIY Snowboard Builder" />
+		                    <div class="product-peek">
+		                    	<p class="product-title">DIY Board Builder</p>
+		                    	<p class="product-type">Build your own damn snowboard!</p>
+		                    </div>
+		                </a>
+		            </li>
 		            <?php
+		            	endif;
+
 		            	if ($GLOBALS['sport'] == "ski") {
 		            		$postType = "libtech_nas";
 		            	} else if ($GLOBALS['sport'] == "surf") {

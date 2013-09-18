@@ -13,7 +13,24 @@ get_header();
         <section class="featured-product-slider bg-product-<?php echo $GLOBALS['sport']; ?> <?php echo strtolower(get_the_title()); ?>">
             <div class="section-content">
                 <ul class="product-listing bxslider">
+                    <?php if($GLOBALS['sport'] == "snow") : ?>
+                    <li>
+                        <div class="product-image">
+                            <a href="/snowboarding/snowboard-builder/"><img src="<?php bloginfo('template_directory'); ?>/_/img/diy-board-builder-640x640.png" width="640" height="640" alt="DIY Snowboard Builder" /></a>
+                        </div>
+                        <div class="product-copy">
+                            <div class="title h2">DIY Board Builder</div>
+                            <p class="slogan h4">Build your own damn snowboard!</p>
+                            <div class="description">
+                                <p>This dream snowboard project is probably going to cause us some headaches, but you are going to be stoked! Lib Tech's DIY Board Builder offers you the opportunity to order a custom, one of a kind, dream snowboard that will be guided through our experiMENTAL Division’s prototyping process and handcrafted to your specifications in the USA.</p>
+                            </div>
+                            <div class="price"></div>
+                            <a href="/snowboarding/snowboard-builder/" class="buy build h4">Build Your Own!</a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </li>
                     <?php
+                    endif;
                     // get each related product
                     foreach( $post_objects as $post_object):
                         $postType = $post_object->post_type;
