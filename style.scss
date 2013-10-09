@@ -964,6 +964,20 @@ footer {
 				height: 20px;
 			}
 		}
+		.us-ca-cart-details {
+			display: block;
+		}
+		.int-cart-details {
+			display: none;
+		}
+	}
+}
+body.international .shopping-cart .section-content {
+	.us-ca-cart-details {
+		display: none;
+	}
+	.int-cart-details {
+		display: block;
 	}
 }
 /* Default Page Styles

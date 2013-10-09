@@ -49,8 +49,10 @@ LIBTECH.main = {
             self.blogSingleInit();
         } else if ($('body').hasClass('page-template-page-support-faq-php')) {
             self.faqInit();
-        } else if ($('body').hasClass('page-template-page-snowboard-builder-php') || $('body').hasClass('page-template-page-bb-cart-test-php')) {
+        } else if ($('body').hasClass('page-template-page-snowboard-builder-php')) {
             LIBTECH.snowboardbuilder.init();
+        } else if ($('body').hasClass('page-template-page-snowboard-builder-share-php')) {
+            LIBTECH.snowboardbuilder.shareInit();
         }
     },
     shopatronInit: function () {
@@ -203,7 +205,7 @@ LIBTECH.main = {
         } else {
             if (navigator.cookieEnabled === true) {
                 // if no region cookie has been set, open selector if on product page
-                if ($('body').hasClass('page-template-page-snowboard-builder-php') || $('body').hasClass('page-template-page-shopping-cart-php') || $('body').hasClass('page-template-page-overview-products-php') || $('body').hasClass('single-libtech_snowboards') || $('body').hasClass('single-libtech_nas') || $('body').hasClass('single-libtech_skateboards') || $('body').hasClass('single-libtech_apparel') || $('body').hasClass('single-libtech_accessories') || $('body').hasClass('single-libtech_luggage') || $('body').hasClass('single-libtech_outerwear')) {
+                if ($('body').hasClass('page-template-page-snowboard-builder-php') || $('body').hasClass('page-template-page-snowboard-builder-share-php') || $('body').hasClass('page-template-page-shopping-cart-php') || $('body').hasClass('page-template-page-overview-products-php') || $('body').hasClass('single-libtech_snowboards') || $('body').hasClass('single-libtech_nas') || $('body').hasClass('single-libtech_skateboards') || $('body').hasClass('single-libtech_apparel') || $('body').hasClass('single-libtech_accessories') || $('body').hasClass('single-libtech_luggage') || $('body').hasClass('single-libtech_outerwear')) {
                     self.regionSelectorOverlayInit();
                     self.takeoverInit(false);
                 } else {
@@ -1033,12 +1035,16 @@ LIBTECH.main = {
         }
         // update links on page
         if (lang === 'ca') {
-            $("a.link-ordering-info").prop("href", "http://libtec-ca.shptron.com/home/ordering/4374.5.1.2");
-            $("a.link-return-policy").prop("href", "http://libtec-ca.shptron.com/home/policies/4374.5.1.2#Returns");
+            $("a.link-ordering-info").prop("href", "http://libtech-ca.shptron.com/k/ordering");
+            $("a.link-return-policy").prop("href", "http://libtech-ca.shptron.com/k/policies#Returns");
+        } else if (lang === 'int') {
+            $("a.link-ordering-info").prop("href", "http://libtech-int.shptron.com/k/ordering");
+            $("a.link-return-policy").prop("href", "http://libtech-int.shptron.com/k/policies#Returns");
         } else {
-            $("a.link-ordering-info").prop("href", "http://lib-tech.shptron.com/home/ordering/4374.4.1.1");
-            $("a.link-return-policy").prop("href", "http://lib-tech.shptron.com/home/policies/4374.4.1.1#Returns");
+            $("a.link-ordering-info").prop("href", "http://checkout.lib-tech.com/k/ordering");
+            $("a.link-return-policy").prop("href", "http://checkout.lib-tech.com/k/policies#Returns");
         }
+
         // region selector trigger
         $('.link-region-selector').click(function (e) {
             e.preventDefault();

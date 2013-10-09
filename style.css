@@ -375,6 +375,11 @@ footer .footer-copy { font-size: .75em; /* 12 / 16 */ color: #333; font-weight: 
 .shopping-cart .section-content p { margin-bottom: 1em; }
 .shopping-cart .section-content #shopping-cart { min-height: 250px; }
 .shopping-cart .section-content #shopping-cart > span { display: block; background: url(_/img/loader.gif) center center no-repeat black; width: 64px; height: 20px; }
+.shopping-cart .section-content .us-ca-cart-details { display: block; }
+.shopping-cart .section-content .int-cart-details { display: none; }
+
+body.international .shopping-cart .section-content .us-ca-cart-details { display: none; }
+body.international .shopping-cart .section-content .int-cart-details { display: block; }
 
 /* Default Page Styles
 -------------------------------------------------------------------------------*/
