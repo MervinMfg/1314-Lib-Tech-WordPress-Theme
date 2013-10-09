@@ -20,7 +20,7 @@ get_header();
                         </div>
                         <div class="product-copy">
                             <div class="title h2">DIY Board Builder</div>
-                            <p class="slogan h4">Build your own damn snowboard!</p>
+                            <p class="slogan h4">Build your dream snowboard!</p>
                             <div class="description">
                                 <p>This dream snowboard project is probably going to cause us some headaches, but you are going to be stoked! Lib Tech's DIY Board Builder offers you the opportunity to order a custom, one of a kind, dream snowboard that will be guided through our experiMENTAL Division’s prototyping process and handcrafted to your specifications in the USA.</p>
                             </div>

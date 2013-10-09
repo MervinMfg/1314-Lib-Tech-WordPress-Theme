@@ -58,7 +58,7 @@ get_header();
 		                    <img src="<?php bloginfo('template_directory'); ?>/_/img/diy-board-builder-300x300.png" width="300" height="300" alt="DIY Snowboard Builder" />
 		                    <div class="product-peek">
 		                    	<p class="product-title">DIY Board Builder</p>
-		                    	<p class="product-type">Build your own damn snowboard!</p>
+		                    	<p class="product-type">Build your dream snowboard!</p>
 		                    </div>
 		                </a>
 		            </li>
