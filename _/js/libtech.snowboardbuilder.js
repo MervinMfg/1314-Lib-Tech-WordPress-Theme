@@ -387,10 +387,7 @@ LIBTECH.snowboardbuilder = {
 		numTopSheets: 16,
 		numSideWalls: 5,
 		numBoardBases: 13,
-		scrollItemWidth: 220,
-		$topSlider: "",
-		$mainSlider: "", // THE BXSLIDER THAT HOLDS ALL 7 STEPS
-		$mainShape: "", // THE BXSLIDER THAT HOLDS EACH BOARD SHAPE
+		$mainSlider: "",
 		defaultBadgeInput: "",
 		defaultBaseInput: ""
 	},
@@ -429,31 +426,6 @@ LIBTECH.snowboardbuilder = {
 		});
 		self.defaultBadgeInput = $('.board-badge-input-holder .board-badge-input').val();
 		self.defaultBaseInput = $('#knifecut-base-controls .knifecut-input #board-text').val();
-		// MOBILE RECIPETS??
-		/*$('.pOne').on("click", function () {
-			$(".miniReciept").css('height', $('#region-selector').height());
-			var a = $('#boardDisplay').html();
-			//boardDisplay
-			if ($('.miniReciept').html() != "") {
-				$('.miniReciept').html("");
-				$('.miniReciept').css('z-index', '-333');
-			} else {
-				$('.miniReciept').html("<div class=\"boardItemHolder\">" + a + "</div>");
-				$('.miniReciept').css('z-index', '333333');
-			}
-			//console.log($('.miniReciept').html().length)
-		});
-		$('.pTwo').on("click", function () {
-			$(".miniReciept").css('height', $('#region-selector').height());
-			var r = "<div class=\"\"><div class=\"boardItemHolder\"><div class=\"boardText1\">" + self.buildReciept() + "</div></div></div>";
-			if ($('.miniReciept').html() != "") {
-				$('.miniReciept').html("");
-				$('.miniReciept').css('z-index', '-333');
-			} else {
-				$('.miniReciept').html(r);
-				$('.miniReciept').css('z-index', '333333');
-			}
-		});*/
 		$('.boardShape1 .bx-wrapper .bx-controls').css("display", "none");
 		$('.boardShape1').css("left", "0px");
 		self.config.nPlaxVal = 0;
@@ -544,6 +516,11 @@ LIBTECH.snowboardbuilder = {
 		}
 		self.buildShare();
 		$(window).on('load', function () {
+			if (self.config.isMobile) {
+				self.resizeForMobile();
+			} else {
+				self.resizeForDesktop();
+			}
 			$('#divBlocker').delay(300).animate({
 				opacity: '0'
 			}, {
@@ -595,19 +572,19 @@ LIBTECH.snowboardbuilder = {
 		return self.config.bbKnifeCutDiff;
 	},
 	setBoardShape: function (oImg) {
-		var self = this;
+		var self, spanVal, boardNum, theContour, sShape;
+		self = this;
 		if (oImg == "" || oImg == undefined) {
-			var spanVal = 1;
-			var boardNum = self.config.globalNum;
+			spanVal = 1;
+			boardNum = self.config.globalNum;
 			self.setBoardSize('');
-
 			$(".boardShape1 ul li img").each(function () {
 				$(this).removeClass('selectedShape');
 				$(this).removeClass('confirmedShape');
 			});
 		} else {
-			var spanVal = self.config.globalNum;
-			var boardNum = spanVal;
+			spanVal = self.config.globalNum;
+			boardNum = spanVal;
 		}
 		self.config.iJSON = spanVal;
 		sNoDash = boardData[boardNum].Model;
@@ -621,11 +598,9 @@ LIBTECH.snowboardbuilder = {
 		$('.s2-sizes').html(self.calculateSizes(boardData[boardNum].Sizes));
 		$('#s2DetailTableData').html(self.printSizeInfo(boardData[boardNum].ContactLength, boardData[boardNum].Sidecut, boardData[boardNum].WaistWidth, boardData[boardNum].Flex) + "");
 		$('#s2DetailTableData').clone().wrap('<p>').parent().html();
-		var theContour = boardData[boardNum].Contour;
+		theContour = boardData[boardNum].Contour;
 		$('#s2contour').html(contourData[theContour].ContourTitle);
-		
 		$('#s2contourdetail').html(contourData[theContour].ContourDescription);
-
 		if (self.bbGetRegion() == "CA") {
 			self.setBoardPrice(boardData[boardNum].BasePriceCA);
 		} else {
@@ -635,7 +610,6 @@ LIBTECH.snowboardbuilder = {
 		sShape = boardData[boardNum].Model;
 		// clear board size
 		self.setBoardSize(''); 
-
 		if (sShape == "" || sShape == undefined) {
 			self.advanceArrowHide();
 			// unselect board shape image
@@ -714,13 +688,11 @@ LIBTECH.snowboardbuilder = {
 		self = this;
 		imgName = $(selectedTopImg).attr("artist");
 		imgDesc = $(selectedTopImg).attr("desc");
-
 		if (imgDesc == "" || imgDesc == undefined) {
 			self.advanceArrowHide();
 			self.setBoardArtist('');
 			self.setBoardDescription('');
 			self.config.bTop = "";
-
 			$(".boardTop3 ul li img").each(function () {
 				$(this).removeClass('selectedShape');
 				$(this).removeClass('confirmedShape');
@@ -729,13 +701,11 @@ LIBTECH.snowboardbuilder = {
 			self.setBoardArtist(imgName);
 			self.setBoardDescription(imgDesc);
 			self.config.bTop = imgDesc;
-
 			$('.boardTop3 .topInfo h2').html(imgName);
 			$('.boardTop3 .topInfo h3').html(imgDesc);
 			$('.menu3Title').addClass('menuTitleFull');
 			$('.menu3TitleX span').addClass('menuXVisible');
 			$('.menu3Title').html("" + "" + imgName + " " + imgDesc + "<b><br>+ $ 0.00 " + self.config.bbRegionCurrency + "</b>");
-
 			self.boardPreviewSet(2);
 		}
 		self.updateBoardDisplay();
@@ -773,13 +743,11 @@ LIBTECH.snowboardbuilder = {
 		self = this;
 		sColor = $(selectedSidewallImg).attr("color");
 		sDesc = $(selectedSidewallImg).attr("desc");
-
 		if (sColor == "" || sColor == undefined) {
 			self.advanceArrowHide();
 			self.config.bSidewall = "";
 			self.config.bSidewallDesc = "";
 			self.advanceArrowHide();
-
 			$(".boardSide4 ul li img").each(function () {
 				$(this).removeClass('selectedShape');
 				$(this).removeClass('confirmedShape');
@@ -808,7 +776,6 @@ LIBTECH.snowboardbuilder = {
 		self = this;
 		imgName = $(selectedBaseImg).attr("artist");
 		imgDesc = $(selectedBaseImg).attr("desc");
-
 		if (imgDesc == "" || imgDesc == undefined) {
 			self.advanceArrowHide();
 			self.setBoardBaseArtist('');
@@ -823,16 +790,12 @@ LIBTECH.snowboardbuilder = {
 			self.setBoardBaseArtist(imgName);
 			self.setBoardBaseDesc(imgDesc);
 			self.config.bBase = imgName;
-
 			$('.menu5Title').addClass('menuTitleFull');
 			$('.menu5TitleX span').addClass('menuXVisible');
-
 			if (imgName == 'Custom') {
 				// KNIFE CUT BASE
 				self.config.isKnifecut = true;
-
 				self.setBoardBaseDesc($('.board-text-custom').val());
-
 				if (self.bbGetRegion() == "CA") {
 					var kcPrice = boardData[self.config.globalNum].KnifecutPriceCA;
 					var nonKCPrice = boardData[self.config.globalNum].BasePriceCA;
@@ -842,7 +805,6 @@ LIBTECH.snowboardbuilder = {
 				}
 				var kcPriceDifference = parseFloat((kcPrice - nonKCPrice).toFixed(2));
 				self.setKnifeCutPrice(kcPriceDifference);
-
 				$('.menu5TitleX span').addClass('menuXVisible');
 				$('.menu5Title').html("" + "  " + "CUSTOMIZED TEXT" + "<br /><b>+ $ " + kcPriceDifference + " " + self.config.bbRegionCurrency + "</b>");
 			} else {
@@ -925,7 +887,6 @@ LIBTECH.snowboardbuilder = {
 		baseArist = self.getBoardBaseArtist().toUpperCase().split(' ').join('-');
 		baseDesc = self.getBoardBaseDesc().toUpperCase().split(' ').join('-');
 		sidewallColor = self.getBoardSidewallDesc().toUpperCase().split(' ').join('-');
-
 		// SET TOP GRAPHIC
 		if (topArist == "" || topArist == undefined || topDesc == undefined || topDesc == "") {
 			self.config.topGraphicImg = self.config.baseImgPath + "snowboard-top/default/" + boardShape + ".png";
@@ -933,7 +894,6 @@ LIBTECH.snowboardbuilder = {
 			self.config.topGraphicImg = self.config.baseImgPath + "snowboard-top/top/" + boardShape + "-" + topArist + "-" + topDesc + ".png";
 		}
 		$('#boardDisplay .boardPreview .boardViews .previewTop .board .bImage img').attr('src', self.config.topGraphicImg);
-
 		// SET SIDEWALL GRAPHIC
 		if(sidewallColor == "" || sidewallColor == undefined) {
 			//self.config.sidewallTopImg = self.config.baseImgPath + "snowboard-sidewall/sidewall/" + boardShape + "-YELLOW.png";
@@ -952,7 +912,6 @@ LIBTECH.snowboardbuilder = {
 		$('#boardDisplay .boardPreview .boardViews .preview34 .board .bImage img.sidewall-top').attr('src', self.config.sidewallTopImg);
 		$('#boardDisplay .boardPreview .boardViews .preview34 .board .bImage img.sidewall-bottom').attr('src', self.config.sidewallBottomImg);
 		// $('#boardDisplay .boardPreview .boardViews .preview34 .board .bImage img.sidewall-hidden').attr('src', self.config.topGraphicImg); // just a placeholder
-
 		// SET BASE GRAPHIC
 		if(self.config.isKnifecut) {
 			// KNIFE CUT BASE
@@ -1035,7 +994,6 @@ LIBTECH.snowboardbuilder = {
 	},
 	resetAll: function () {
 		var self = this;
-		//resetMenu()
 		$('.menu1Title').html("SHAPE & CONTOUR");
 		$('.menu1Title').removeClass('menuTitleFull');
 		$('.menu1TitleX span').removeClass('menuXVisible');
@@ -1051,10 +1009,6 @@ LIBTECH.snowboardbuilder = {
 		$('.menu5Title').html("Base Options");
 		$('.menu5Title').removeClass('menuTitleFull');
 		$('.menu5TitleX span').removeClass('menuXVisible');
-		/*
-		$('.menu6Title').html("");
-		$('.menu6Title').removeClass('menuTitleFull');
-		$('.menu6TitleX span').removeClass('menuXVisible');*/
 		$('.menu6Title').html("Personalized Badge");
 		$('.menu6Title').removeClass('menuTitleFull');
 		$('.menu6TitleX span').removeClass('menuXVisible');
@@ -1077,7 +1031,6 @@ LIBTECH.snowboardbuilder = {
 	},
 	buildShare: function () {
 		var self = this;
-
 		if(self.getParameterByName('shape') != "" && self.getParameterByName('size') != "" && self.getParameterByName('top') != "" && self.getParameterByName('sidewall') != "" && self.getParameterByName('badge') != "") {
 			// set shape
 			var shape = self.getParameterByName('shape');
@@ -1104,26 +1057,37 @@ LIBTECH.snowboardbuilder = {
 			// set badge
 			var badge = self.getParameterByName('badge');
 			self.setBoardBadge(badge);
-
 			if(self.getParameterByName('base') != "") {
 				// set graphic base
-				var base = self.getParameterByName('base');
-				var baseArtist = base.split(" ")[0];
-				var baseDesc = base.split(" ")[1];
+				var base, baseArtist, baseDesc;
+				base = self.getParameterByName('base');
+				baseArtist = base.split(" ")[0];
+				baseDesc = base.split(" ")[1];
 				self.setBoardBaseArtist(baseArtist);
 				self.setBoardBaseDesc(baseDesc);
 				self.config.bBase = baseArtist;
 				self.config.isKnifecut = false;
 			} else if (self.getParameterByName('kt') != "" && self.getParameterByName('kbc') != "" && self.getParameterByName('ktc') != "") {
 				// set knifecut base
-				var knifecutText = self.getParameterByName('kt');
-				var knifecutBaseColor = self.getParameterByName('kbc');
-				var knifecutTextColor = self.getParameterByName('ktc');
+				var knifecutText, knifecutBaseColor, knifecutTextColor, kcPriceDifference;
+				knifecutText = self.getParameterByName('kt');
+				knifecutBaseColor = self.getParameterByName('kbc');
+				knifecutTextColor = self.getParameterByName('ktc');
 				self.setBoardBaseArtist('Custom');
 				self.setBoardBaseDesc(knifecutText);
 				self.setCustomBaseColor(knifecutBaseColor);
 				self.setCustomTextColor(knifecutTextColor);
 				self.config.isKnifecut = true;
+				// set knifecut price
+				if (self.bbGetRegion() == "CA") {
+					var kcPrice = boardData[self.config.globalNum].KnifecutPriceCA;
+					var nonKCPrice = boardData[self.config.globalNum].BasePriceCA;
+				} else {
+					var kcPrice = boardData[self.config.globalNum].KnifecutPriceUS;
+					var nonKCPrice = boardData[self.config.globalNum].BasePriceUS;
+				}
+				kcPriceDifference = parseFloat((kcPrice - nonKCPrice).toFixed(2));
+				self.setKnifeCutPrice(kcPriceDifference);
 			} else {
 				// no base found
 				window.location.href = "/snowboarding/snowboard-builder/";
@@ -1136,11 +1100,6 @@ LIBTECH.snowboardbuilder = {
 		}
 		self.updateBoardDisplay();
 		self.step7Init();
-		/*console.log('-- SHAPE : ' + self.getBoardShape());
-		console.log('-- TOP : ' + self.getBoardArtist() + " : " + self.getBoardDescription());
-		console.log('-- SIDE : ' + self.getBoardSidewall());
-		console.log('-- BASE : ' + self.getBoardBaseArtist() + " : " + self.getBoardBaseDesc() + " kc: " + self.config.isKnifecut);
-		console.log('-- BADGE : ' + self.getBoardBadge());*/
 	},
 	flyOutMenuInit: function () {
 		var self = this;
@@ -1912,7 +1871,6 @@ LIBTECH.snowboardbuilder = {
 				$('#blackBoxInfo h3').text('Personalize your base for an additional $29.95 ' + self.config.bbRegionCurrency);
 				$('#blackBoxInfo h5').text('');
 			}
-
 			if (self.config.lockHover == true && !self.config.isIpad) return;
 			var nNum = $('.boardBase5 .carousel ul li.item img').index($(this)) + 1;
 			self.showInfoBox(nNum, self.config.numBoardBases);
@@ -1941,11 +1899,8 @@ LIBTECH.snowboardbuilder = {
 			self.config.bHasCustom = true;
 			self.config.$mainSlider.goToSlide(5);
 		});
-
 		self.config.lockHover = false;
-
 		self.setBackgroundImage('.boardBase5', '5a');
-
 		if (self.getBoardBase() == undefined || self.getBoardBase() == "") {
 			self.advanceArrowHide();
 		} else {
@@ -1960,9 +1915,7 @@ LIBTECH.snowboardbuilder = {
 	// STEP 5b - KNIFE CUT BASE
 	step5bInit: function () {
 		var self = this;
-
 		self.config.isKnifecut = true;
-
 		function setTextColor(sColor) {
 			if (sColor == self.getCustomBaseColor()) return;
 			self.boardPreviewSet(5);
@@ -1975,7 +1928,7 @@ LIBTECH.snowboardbuilder = {
 			self.setCustomBaseColor(sBaseColor);
 			self.updateBoardDisplay();
 		}
-
+		// letter color listeners
 		$('#knifecut-base-controls .letter-color .greyBox').on("click touch", function () {
 			setTextColor('Grey');
 		});
@@ -2000,7 +1953,7 @@ LIBTECH.snowboardbuilder = {
 		$('#knifecut-base-controls .letter-color .redBox').on("click touch", function () {
 			setTextColor('Red');
 		});
-
+		// base color listeners
 		$('#knifecut-base-controls .base-color .greyBox').on("click touch", function () {
 			setBaseColor('Grey');
 		});
@@ -2025,7 +1978,7 @@ LIBTECH.snowboardbuilder = {
 		$('#knifecut-base-controls .base-color .redBox').on("click touch", function () {
 			setBaseColor('Red');
 		});
-
+		// imput text listeners
 		$('#knifecut-base-controls .knifecut-input #board-text').on('input.step5b', function () {
 			self.setBoardBaseDesc(this.value);
 			self.updateBoardDisplay();
@@ -2078,7 +2031,7 @@ LIBTECH.snowboardbuilder = {
 	// STEP 6 - BADGE
 	step6Init: function () {
 		var self = this;
-
+		// input text listeners
 		$('.board-badge-input-holder .board-badge-input').on('input.step6', function () {
 			if (this.value.length <= 13) {
 				var maxFS = "200%";
@@ -2095,7 +2048,7 @@ LIBTECH.snowboardbuilder = {
 				var theLines = this.value;
 				$('.boardBadgeTextHolder .badge-text-wide').html(theLines);
 			}
-			
+			// set menu and display arrow if user begins to enter text
 			if (this.value.length == 1) {
 				self.advanceArrowShow();
 				$('.menu6TitleX span').addClass('menuXVisible');
@@ -2493,12 +2446,6 @@ LIBTECH.snowboardbuilder = {
 		setTimeout(function () {
 			window.scrollTo(0, 1);
 		}, 0);
-		/*console.log('-- SHAPE : ' + self.getBoardShape());
-		console.log('-- SIZE : ' + self.getBoardSize());
-		console.log('-- TOP : ' + self.getBoardArtist() + " : " + self.getBoardDescription());
-		console.log('-- SIDE : ' + self.getBoardSidewall());
-		console.log('-- BASE : ' + self.getBoardBaseArtist() + " : " + self.getBoardBaseDesc() + " kc: " + self.config.isKnifecut);
-		console.log('-- BADGE : ' + self.getBoardBadge());*/
 	}, // END setCurrentSection
 
 	resizeForDesktop: function () {
@@ -2523,8 +2470,8 @@ LIBTECH.snowboardbuilder = {
 			}
 			aspectRatio = boardDisplayWidth / boardDisplayHeight;
 			newHeight = windowHeight - headerHeight;
-			newWidth = newHeight * aspectRatio;
-			maxWidth = windowWidth * .2;
+			newWidth = Math.floor(newHeight * aspectRatio);
+			maxWidth = Math.floor(windowWidth * .2);
 			// make sure board display doesn't exceed max width
 			if(newWidth > maxWidth) {
 				newWidth = maxWidth;
@@ -2534,9 +2481,9 @@ LIBTECH.snowboardbuilder = {
 			if ($('#boardDisplay .boardPreview .boardViews .preview34').css('display') == 'block') {
 				arrowY = $('#boardDisplay .boardPreview .boardViews .preview34 .board .bImage .sidewall-bottom').height() / 2;
 			} else if ($('#boardDisplay .boardPreview .boardViews .previewBase').css('display') == 'block') {
-				arrowY = $('#boardDisplay .boardPreview .boardViews .previewBase .board .bImage .base').height() / 2 - 25;
+				arrowY = Math.floor($('#boardDisplay .boardPreview .boardViews .previewBase .board .bImage .base').height() / 2 - 25);
 			} else {
-				arrowY = $('#boardDisplay .boardPreview .boardViews .previewTop .board .bImage img').height() / 2 - 25;
+				arrowY = Math.floor($('#boardDisplay .boardPreview .boardViews .previewTop .board .bImage img').height() / 2 - 25);
 			}
 			// set arrow position
 			$('#boardDisplay .boardPreview .boardMenuLeftButton, #boardDisplay .boardPreview .boardMenuRightButton').css('top', arrowY);
@@ -2548,7 +2495,7 @@ LIBTECH.snowboardbuilder = {
 			} else {
 				// adjust positioning of other views
 				$('.boardViews div.preview34').css('left', $('.boardViews div.previewTop').width() - 40);
-				$('.boardViews div.previewBase').css('left', $('.boardViews div.previewTop').width() * 2 - 60);
+				$('.boardViews div.previewBase').css('left', Math.floor($('.boardViews div.previewTop').width() * 2 - 60));
 			}
 		}
 		if ($('body').hasClass('page-template-page-snowboard-builder-php')) {
@@ -2619,18 +2566,38 @@ LIBTECH.snowboardbuilder = {
 				// fix scroll
 				$('.thereciept-scroll').css('height', $(window).height());
 			}
+		} else {
+			// check to see if boards are rendering taller than the window is
+			var boardDisplay = $('#boardDisplay');
+			if(boardDisplay.height() > windowHeight) {
+				var boardDisplayWidth, boardDisplayHeight, aspectRatio, newHeight, newWidth, maxWidth;
+				boardDisplayWidth = $('#boardDisplay .boardPreview .boardViews .preview34 .board .bImage .sidewall-bottom').width();
+				boardDisplayHeight = $('#boardDisplay .boardPreview .boardViews .preview34 .board .bImage .sidewall-bottom').height();
+				aspectRatio = boardDisplayWidth / boardDisplayHeight;
+				newHeight = windowHeight - headerHeight;
+				newWidth = Math.floor(newHeight * aspectRatio);
+				maxWidth = Math.floor(windowWidth * .2);
+				// make sure board display doesn't exceed max width
+				if(newWidth > maxWidth) {
+					newWidth = maxWidth;
+				}
+				boardDisplay.width(newWidth);
+				if($('body.diy-share .wrapper #header-share').width() < windowWidth * .8) {
+					boardDisplay.css('left', 'auto');
+					boardDisplay.css('right', '30%');
+				} else {
+					boardDisplay.removeAttr('style');
+				}
+				// adjust positioning of other views
+				$('.boardViews div.preview34').css('left', $('.boardViews div.previewTop').width() - 40);
+				$('.boardViews div.previewBase').css('left', Math.floor($('.boardViews div.previewTop').width() * 2 - 60));
+			} else {
+				boardDisplay.removeAttr('style');
+				$('.boardViews div.preview34').removeAttr('style');
+				$('.boardViews div.previewBase').removeAttr('style');
+			}
 		}
-
 		self.updateBoardDisplay();
-
-		return false;
-
-		$('#divBlocker').animate({
-			opacity: '0'
-		}, {
-			duration: 100,
-			complete: function () {}
-		});
 	}, // END resizeForDesktop
 
 	resizeForMobile: function () {
@@ -2662,10 +2629,8 @@ LIBTECH.snowboardbuilder = {
 
 		}
 		if (self.config.$mainSlider.getCurrentSlide() == 6) {
-			//$('.boardBadge6').parent().delay(1000).css("width", $('.wrapper').width()); //"13%");
 			$(".boardBadge6").parent().css('width', $('#region-selector').width());
 			$(".boardBadge6").parent().css('height', $('#region-selector').height());
-			//console.log("66? " + $(window).width())
 		}
 		if (self.config.$mainSlider.getCurrentSlide() == 7) {
 			$('.boardBuy7').parent().delay(1).css("width", $('.wrapper').width()); //"13%");
@@ -2697,7 +2662,6 @@ var waitForFinalEvent = (function () {
 		timers[uniqueId] = setTimeout(callback, ms);
 	};
 })();
-
 window.addEventListener("load", function () {
 	setTimeout(function () {
 		window.scrollTo(0, 1);
