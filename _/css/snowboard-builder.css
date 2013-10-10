@@ -85,6 +85,8 @@ ul.bxslider { margin: 0; padding: 0; }
 
 #divBlocker { position: fixed; height: 100%; width: 100%; top: 0; left: 0; opacity: 1; z-index: 999999; background: black url("../img/loader.gif") no-repeat center center; }
 
+#divPreloader { display: none; }
+
 #blackBoxInfo h1 { font-family: "PT Sans Narrow", "Myriad Pro", Helvetica, Arial, sans-serif; }
 
 #blackBoxInfo h2 { font-family: "PT Sans Narrow", "Myriad Pro", Helvetica, Arial, sans-serif; }
@@ -146,6 +148,7 @@ ul.bxslider { margin: 0; padding: 0; }
 #header #topLogo { display: block !important; float: left; width: 100%; padding: 0 0 2px 14px; position: absolute; z-index: 999777; left: 0px; height: 40px; }
 #header #topFlag { float: left; position: absolute; z-index: 10; left: 233px; }
 #header #topSection { font-size: 28px; top: 3px; right: 20px; position: absolute; color: #fff; opacity: 0; width: 100%; text-align: right; z-index: 5; }
+#header #topSectionRight { float: left; text-align: center; display: none; z-index: 2; }
 
 #advance-arrow { cursor: pointer; display: block; position: fixed; height: 100%; width: 40px; right: -40px; top: 0px; text-align: center; z-index: 6868; background: yellow url("../img/bb/advance-arrow.gif") no-repeat center center; }
 
@@ -184,6 +187,7 @@ ul.bxslider { margin: 0; padding: 0; }
 #leftmenu .menu-options .menuTitles ul li.menuTitleFull { line-height: 17px !important; padding-top: 4px !important; visibility: visible; }
 #leftmenu .menu-options .menuButtons ul li { padding-left: 12px; line-height: 20px; height: 42px; }
 #leftmenu .menu-options .menuButtons ul li.menu7B { background-color: black; color: #ffff00; }
+#leftmenu .menu-options .menuButtons ul li.menu7B img { width: 16px; margin: auto; height: auto; margin-top: -1px; margin-left: 15%; padding-top: 0px; line-height: 30px; position: absolute; }
 
 #boardDisplay { position: absolute; z-index: 4444; color: white; display: none; }
 #boardDisplay .boardTechName { color: white; font-size: 20px; text-align: center; text-transform: uppercase; min-width: 180px; display: none; margin-left: -50%; font-family: "PT Sans Narrow", "Myriad Pro", Helvetica, Arial, sans-serif; font-weight: 700; }
@@ -224,44 +228,22 @@ width: 240px;*/ }
 .carousel ul li.item { display: inline-block; }
 
 /* STEP 2 - SIZE */
-.boardTech2 { /*#s2traction {
-	font-size: 18px;
-	font-weight: 700;
-	text-transform: uppercase;
-	margin: 1% 0px 2% 0px;
-	color: $globalFontColor;
-	font-family: $bodyFont;
-}
-#s2tractiondetail {
-	font-size: 18px;
-	font-weight: 400;
-	color: $globalFontColor;
-}*/ /*#s2traction h2 {
-	font-size: 16px;
-	font-weight: 700;
-}
-#s2HPTitle {
-	font-size: 16px;
-	font-weight: 700;
-	margin: 0 0px 6% 0px;
-	float: left;
-} 
-#s2HpDetail {
-	float: left;
-	margin-bottom: 6%;
-}*/ }
-.boardTech2 #boarditem:first-child { margin-left: 15%; }
-.boardTech2 .info-list { width: auto; float: left; }
-.boardTech2 .info-list .length-list, .boardTech2 .info-list .side-list, .boardTech2 .info-list .waist-list, .boardTech2 .info-list .flex-list { float: left; text-align: center; color: white; width: 100%; }
-.boardTech2 .info-list .length-list li, .boardTech2 .info-list .side-list li, .boardTech2 .info-list .waist-list li, .boardTech2 .info-list .flex-list li { padding: 5px 0px 5px 0px; }
-.boardTech2 .info-list .length-list li:first-child, .boardTech2 .info-list .side-list li:first-child, .boardTech2 .info-list .waist-list li:first-child, .boardTech2 .info-list .flex-list li:first-child { width: 100%; color: black; background-color: #666666; text-transform: uppercase; font-size: 80%; }
-.boardTech2 .s2shapedescription { font-size: 25px; font-weight: 700; text-transform: uppercase; margin: 1% 0px 1% 0px; }
-.boardTech2 .s2shapedescriptiondetail { font-size: 18px; font-weight: 400; margin: 1% 0px 2% 0px; }
-.boardTech2 #s2contour { font-size: 15px; font-weight: 700; color: white; margin: 11% 0 3% 0; }
-.boardTech2 #s2contourdetail { font-size: 18px; font-weight: 400; color: white; }
-.boardTech2 #s2-size-holder { position: relative; width: 100%; display: block; float: left; }
-.boardTech2 #s2-size-holder .s2-sizes .size-item { padding: 2%; position: relative; float: left; font-weight: 600; font-size: 18px; border: 1px solid black; text-align: center; color: black; background-color: white; cursor: pointer; margin: 0 6% 6% 0; }
-.boardTech2 #s2-size-holder .s2-sizes .size-item:hover { background-color: #ffff00; }
+.boardTech2 .boardItemHolder .boardText1 { text-shadow: 2px 2px 4px #000; width: 90%; }
+.boardTech2 .boardItemHolder .boardText1 .s2shapedescription { font-size: 25px; font-weight: 700; text-transform: uppercase; margin: 1% 0px 1% 0px; }
+.boardTech2 .boardItemHolder .boardText1 .s2shapedescriptiondetail { font-size: 18px; font-weight: 400; margin: 1% 0px 2% 0px; }
+.boardTech2 .boardItemHolder .boardText1 #s2contour { font-size: 15px; font-weight: 700; color: white; margin: 11% 0 3% 0; }
+.boardTech2 .boardItemHolder .boardText1 #s2contourdetail { font-size: 18px; font-weight: 400; color: white; }
+.boardTech2 .boardItemHolder .boardText2 { width: 90%; }
+.boardTech2 .boardItemHolder .boardText2 h3.size-cta { text-shadow: 2px 2px 4px #000; padding-bottom: 20px; }
+.boardTech2 .boardItemHolder .boardText2 #s2-size-holder { position: relative; width: 100%; display: block; float: left; }
+.boardTech2 .boardItemHolder .boardText2 #s2-size-holder .s2-sizes .size-item { padding: 10px; float: left; font-weight: 600; font-size: 18px; border: 1px solid black; text-align: center; color: black; background-color: white; cursor: pointer; margin: 0 20px 20px 0; }
+.boardTech2 .boardItemHolder .boardText2 #s2-size-holder .s2-sizes .size-item:hover { background-color: #ffff00; }
+.boardTech2 .boardItemHolder .boardText2 #s2DetailTable { margin: 2% 0px 4% 0px; float: left; width: auto; }
+.boardTech2 .boardItemHolder .boardText2 #s2DetailTable #s2DetailTableData { padding: 0px; color: white; height: 100%; overflow: auto; }
+.boardTech2 .boardItemHolder .boardText2 #s2DetailTable #s2DetailTableData .info-list { width: auto; float: left; }
+.boardTech2 .boardItemHolder .boardText2 #s2DetailTable #s2DetailTableData .info-list .length-list, .boardTech2 .boardItemHolder .boardText2 #s2DetailTable #s2DetailTableData .info-list .side-list, .boardTech2 .boardItemHolder .boardText2 #s2DetailTable #s2DetailTableData .info-list .waist-list, .boardTech2 .boardItemHolder .boardText2 #s2DetailTable #s2DetailTableData .info-list .flex-list { float: left; text-align: center; color: white; width: 100%; }
+.boardTech2 .boardItemHolder .boardText2 #s2DetailTable #s2DetailTableData .info-list .length-list li, .boardTech2 .boardItemHolder .boardText2 #s2DetailTable #s2DetailTableData .info-list .side-list li, .boardTech2 .boardItemHolder .boardText2 #s2DetailTable #s2DetailTableData .info-list .waist-list li, .boardTech2 .boardItemHolder .boardText2 #s2DetailTable #s2DetailTableData .info-list .flex-list li { padding: 5px 0px 5px 0px; }
+.boardTech2 .boardItemHolder .boardText2 #s2DetailTable #s2DetailTableData .info-list .length-list li:first-child, .boardTech2 .boardItemHolder .boardText2 #s2DetailTable #s2DetailTableData .info-list .side-list li:first-child, .boardTech2 .boardItemHolder .boardText2 #s2DetailTable #s2DetailTableData .info-list .waist-list li:first-child, .boardTech2 .boardItemHolder .boardText2 #s2DetailTable #s2DetailTableData .info-list .flex-list li:first-child { width: 100%; color: black; background-color: #666666; text-transform: uppercase; font-size: 80%; }
 
 /* STEP 3 - TOP */
 .boardTop3 { padding-left: 30%; }
@@ -303,7 +285,8 @@ width: 240px;*/ }
 
 /* STEP 7 - BUY */
 .boardBuy7 .thereciept-scroll { overflow-y: auto; }
-.boardBuy7 .thereciept { font-family: "PT Sans Narrow", "Myriad Pro", Helvetica, Arial, sans-serif; margin-left: 120px; width: 30%; padding-top: 166px; }
+.boardBuy7 .thereciept { font-family: "PT Sans Narrow", "Myriad Pro", Helvetica, Arial, sans-serif; margin-left: 120px; width: 30%; padding-top: 166px; max-width: 350px; }
+.boardBuy7 .thereciept .board-reciept { text-shadow: 2px 2px 4px #000; }
 .boardBuy7 .thereciept .board-reciept h1 { font-family: "PT Sans Narrow", "Myriad Pro", Helvetica, Arial, sans-serif; font-size: 28px; font-weight: 700; padding-bottom: 10px; }
 .boardBuy7 .thereciept .board-reciept h2 { font-size: 18px; font-weight: 700; line-height: 1.5; }
 .boardBuy7 .thereciept .board-reciept h2 span { font-weight: 400; }
@@ -316,7 +299,7 @@ width: 240px;*/ }
 .boardBuy7 .thereciept .terms, .boardBuy7 .thereciept .terms-international { display: none; }
 .boardBuy7 .thereciept .terms h1, .boardBuy7 .thereciept .terms-international h1 { font-family: "PT Sans Narrow", "Myriad Pro", Helvetica, Arial, sans-serif; font-size: 28px; font-weight: 700; padding-bottom: 10px; }
 .boardBuy7 .thereciept .cart-error { display: none; }
-.boardBuy7 .thereciept .buttonholder { float: left; width: 100%; text-align: center; margin-top: 5%; }
+.boardBuy7 .thereciept .buttonholder { float: left; width: 100%; text-align: center; padding: 20px 0; }
 .boardBuy7 .thereciept .buttonholder .buy-button, .boardBuy7 .thereciept .buttonholder .agree-button { width: 100%; background-color: #ffff00; color: #000000; padding: 10px; font-size: 28px; font-weight: 700; border: 1px solid #000; cursor: pointer; text-transform: uppercase; }
 .boardBuy7 .thereciept .buttonholder .buy-button:hover, .boardBuy7 .thereciept .buttonholder .agree-button:hover { background-color: #000000; color: #ffff00; border-color: #ffff00; }
 .boardBuy7 .thereciept .buttonholder .agree-button { display: none; }
@@ -366,9 +349,6 @@ width: 240px;*/ }
 
 /* The element to be centered, can also be of any width and height */
 .centered { display: inline-block; vertical-align: middle; width: 300px; }
-
-.boardTech2 .boardItemHolder .boardText1 { width: 90%; }
-.boardTech2 .boardItemHolder .boardText2 { width: 90%; }
 
 .boardTechName { margin-top: -20px; width: 100%; position: absolute; display: none; }
 
@@ -421,7 +401,7 @@ overflow-y: visible;*/ }
   .swipediv { position: relative; /*top: 0px !important;*/ padding-top: 0px; /*margin-left: -10%;*/ }
   .pagerLabel { display: none; }
   .bxDivShape { padding-top: 4%; margin-left: -12%; }
-  #blackBoxInfo { padding: 15px; }
+  #blackBoxInfo { box-shadow: 2px 2px 20px #000; padding: 15px; }
   #blackBoxInfo h2 { text-align: left; font-size: 25px; }
   #blackBoxInfo h3 { font-size: 14px; text-align: left; }
   #blackBoxInfo h4 { display: block; }

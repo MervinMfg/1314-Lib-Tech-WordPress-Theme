@@ -249,6 +249,9 @@ ul.bxslider {
 	z-index: 999999;
 	background: #000 url('../img/loader.gif') no-repeat center center;
 }
+#divPreloader {
+	display: none;
+}
 
 @for $index from 1 through 6 {
 	#blackBoxInfo h#{$index}{
@@ -376,6 +379,12 @@ ul.bxslider {
 		width: 100%;
 		text-align: right;
 		z-index: 5;
+	}
+	#topSectionRight {
+		float: left;
+		text-align: center;
+		display: none;
+		z-index: 2;
 	}
 }
 #advance-arrow {
@@ -586,6 +595,17 @@ ul.bxslider {
 			&.menu7B {
 				background-color: black;
 				color: #ffff00;
+
+				img {
+					width: 16px;
+					margin: auto;
+					height: auto;
+					margin-top: -1px;
+					margin-left: 15%;
+					padding-top: 0px;
+					line-height: 30px;
+					position: absolute;
+				}
 			}
 		}
 	}
@@ -775,112 +795,108 @@ ul.bxslider {
 	}
 }
 /* STEP 2 - SIZE */
-.boardTech2 {
-	#boarditem:first-child {
-		margin-left: 15%;
+.boardTech2 .boardItemHolder {
+	.boardText1 {
+		text-shadow: 2px 2px 4px #000;
+		width: 90%;
+
+		.s2shapedescription {
+			font-size: 25px;
+			font-weight: 700;
+			text-transform: uppercase;
+			margin: 1% 0px 1% 0px;
+		}
+		.s2shapedescriptiondetail {
+			font-size: 18px;
+			font-weight: 400;
+			margin: 1% 0px 2% 0px;
+		}
+		#s2contour {
+			font-size: 15px;
+			font-weight: 700;
+			color: $globalFontColor;
+			margin: 11% 0 3% 0;
+		} 
+		#s2contourdetail {
+			font-size: 18px;
+			font-weight: 400;
+			color: $globalFontColor;
+		}
 	}
-	.info-list {
-		width: auto;
-		float: left;
+	.boardText2 {
+		width: 90%;
 
-		.length-list,
-		.side-list,
-		.waist-list,
-		.flex-list {
-			float: left;
-			text-align: center;
-			color: white;
+		h3.size-cta {
+			text-shadow: 2px 2px 4px #000;
+			padding-bottom: 20px;
+		}
+		#s2-size-holder {
+			position: relative;
 			width: 100%;
+			display: block;
+			float: left;
 
-			li {
-				padding: 5px 0px 5px 0px;
-
-				&:first-child {
-					width: 100%;
+			.s2-sizes {
+				.size-item {
+					padding: 10px;
+					float: left;
+					font-weight: 600;
+					font-size: 18px;
+					border: 1px solid black;
+					text-align: center;
 					color: black;
-					background-color: #666666;
-					text-transform: uppercase;
-					font-size: 80%;
+					background-color: white;
+					cursor: pointer;
+					margin: 0 20px 20px 0;
+
+					&:hover {
+						background-color: #ffff00;
+					}
 				}
 			}
-		}	
-	}
-	.s2shapedescription {
-		font-size: 25px;
-		font-weight: 700;
-		text-transform: uppercase;
-		margin: 1% 0px 1% 0px;
-	}
-	.s2shapedescriptiondetail {
-		font-size: 18px;
-		font-weight: 400;
-		margin: 1% 0px 2% 0px;
-	}
-	/*#s2traction {
-		font-size: 18px;
-		font-weight: 700;
-		text-transform: uppercase;
-		margin: 1% 0px 2% 0px;
-		color: $globalFontColor;
-		font-family: $bodyFont;
-	}
-	#s2tractiondetail {
-		font-size: 18px;
-		font-weight: 400;
-		color: $globalFontColor;
-	}*/
-	#s2contour {
-		font-size: 15px;
-		font-weight: 700;
-		color: $globalFontColor;
-		margin: 11% 0 3% 0;
-	} 
-	#s2contourdetail {
-		font-size: 18px;
-		font-weight: 400;
-		color: $globalFontColor;
-	}
-	/*#s2traction h2 {
-		font-size: 16px;
-		font-weight: 700;
-	}
-	#s2HPTitle {
-		font-size: 16px;
-		font-weight: 700;
-		margin: 0 0px 6% 0px;
-		float: left;
-	} 
-	#s2HpDetail {
-		float: left;
-		margin-bottom: 6%;
-	}*/
-	#s2-size-holder {
-		position: relative;
-		width: 100%;
-		display: block;
-		float: left;
+		}
+		#s2DetailTable {
+			margin: 2% 0px 4% 0px;
+			float: left;
+			width: auto;
 
-		.s2-sizes {
-			.size-item {
-				padding: 2%;
-				position: relative;
-				float: left;
-				font-weight: 600;
-				font-size: 18px;
-				border: 1px solid black;
-				text-align: center;
-				color: black;
-				background-color: white;
-				cursor: pointer;
-				margin: 0 6% 6% 0;
+			#s2DetailTableData {
+				padding: 0px;
+				color: white;
+				height: 100%;
+				overflow:auto;
 
-				&:hover {
-					background-color: #ffff00;
+				.info-list {
+					width: auto;
+					float: left;
+
+					.length-list,
+					.side-list,
+					.waist-list,
+					.flex-list {
+						float: left;
+						text-align: center;
+						color: white;
+						width: 100%;
+
+						li {
+							padding: 5px 0px 5px 0px;
+
+							&:first-child {
+								width: 100%;
+								color: black;
+								background-color: #666666;
+								text-transform: uppercase;
+								font-size: 80%;
+							}
+						}
+					}	
 				}
 			}
 		}
 	}
 }
+
 /* STEP 3 - TOP */
 .boardTop3 {
 	padding-left: 30%;
@@ -1051,8 +1067,11 @@ ul.bxslider {
 		margin-left: 120px;
 		width: 30%;
 		padding-top: 166px;
+		max-width: 350px;
 
 		.board-reciept {
+			text-shadow: 2px 2px 4px #000;
+
 			h1 {
 				font-family: $bodyFont;
 				font-size: 28px;
@@ -1117,7 +1136,7 @@ ul.bxslider {
 			float: left;
 			width: 100%;
 			text-align: center;
-			margin-top: 5%;
+			padding: 20px 0;
 
 			.buy-button,
 			.agree-button {
@@ -1276,17 +1295,6 @@ ul.bxslider {
   vertical-align: middle;
   width: 300px;
 }
-
-.boardTech2 .boardItemHolder {
-	.boardText1 {
-		width: 90%;
-	}
-	.boardText2 {
-		width: 90%;
-	}
-}
-
-
 
 .boardTechName {
 	margin-top: -20px;
@@ -1916,6 +1924,7 @@ body.diy-share {
 		margin-left: -12%;
 	}
 	#blackBoxInfo {
+		box-shadow: 2px 2px 20px #000;
 		padding: 15px;
 
 		h2 {

@@ -471,29 +471,36 @@ LIBTECH.snowboardbuilder = {
 			} else {
 				//$('#blackBoxInfo').css('position','relative');
 			}
+			// listen for flag selection
+	        $("#topFlag a").on('click', function (e) {
+	            e.preventDefault();
+	            e.stopPropagation(); // kill even from firing further
+	            if (navigator.cookieEnabled === false) {
+	                alert('Enable cookies in your browser in order to select your region.');
+	            } else {
+	                LIBTECH.main.regionSelectorOverlayInit();
+	            }
+	        });
+			// set the first section
+			self.setCurrentSection();
+			// trigger resize
+	        if (self.config.isMobile) {
+				self.resizeForMobile();
+			} else {
+				self.resizeForDesktop();
+			}
+			// set region
+			if (LIBTECH.main.utilities.cookie.getCookie('libtech_region') != "" && LIBTECH.main.utilities.cookie.getCookie('libtech_region') != undefined) {
+				self.bbSetRegion(LIBTECH.main.utilities.cookie.getCookie('libtech_region'));
+			}
+			// hide the div blocker
 			$('#divBlocker').delay(300).animate({
 				opacity: '0'
 			}, {
 				duration: 700,
 				complete: function () {
-					$('#divBlocker').hide(); //$('#blackBoxInfo').css("display", "none");  
-					/*setTimeout(function () {
-						$("#leftmenu").stop().animate({
-							left: "-195px"
-						}, 273);
-					}, 4000);*/
+					$('#divBlocker').hide();  
 					$(".bxDivSlider ul.bxDivShape").parent().css('height', $(window).height());
-					//$("ul.bxDivShape").parent().css('height', "1000px");
-					if (self.config.isMobile) {
-						self.resizeForMobile();
-					} else {
-						self.resizeForDesktop();
-					}
-					self.setCurrentSection();
-
-					if (LIBTECH.main.utilities.cookie.getCookie('libtech_region') != "" && LIBTECH.main.utilities.cookie.getCookie('libtech_region') != undefined) {
-						self.bbSetRegion(LIBTECH.main.utilities.cookie.getCookie('libtech_region'));
-					}
 				}
 			});
 		}
@@ -1900,7 +1907,7 @@ LIBTECH.snowboardbuilder = {
 			self.config.$mainSlider.goToSlide(5);
 		});
 		self.config.lockHover = false;
-		self.setBackgroundImage('.boardBase5', '5a');
+		self.setBackgroundImage('.boardBase5', '5');
 		if (self.getBoardBase() == undefined || self.getBoardBase() == "") {
 			self.advanceArrowHide();
 		} else {
@@ -2006,7 +2013,7 @@ LIBTECH.snowboardbuilder = {
 				$(this).val(self.defaultBaseInput);
 			}
 		});
-		self.setBackgroundImage(".boardBase5b", "5a");
+		self.setBackgroundImage(".boardBase5b", "5");
 		self.advanceArrowHide();
 	},
 	step5bUninit: function () {
@@ -2547,7 +2554,7 @@ LIBTECH.snowboardbuilder = {
 				var carouselHeight = $(".boardSide4 .carousel").outerHeight();
 				$('.boardSide4 .carousel-container').css('height', carouselHeight);
 			} else if (self.config.$mainSlider.getCurrentSlide() == 4) {
-				self.setBackgroundImage('.boardBase5', '5a');
+				self.setBackgroundImage('.boardBase5', '5');
 				// resize carousel
 				var carouselWidth = 0;
 				$(".boardBase5 .carousel ul li.item").each(function (index) {
@@ -2558,7 +2565,7 @@ LIBTECH.snowboardbuilder = {
 				var carouselHeight = $(".boardBase5 .carousel").outerHeight();
 				$('.boardBase5 .carousel-container').css('height', carouselHeight);
 			} else if (self.config.$mainSlider.getCurrentSlide() == 5) {
-				self.setBackgroundImage(".boardBase5b", "5a");
+				self.setBackgroundImage(".boardBase5b", "5");
 			} else if (self.config.$mainSlider.getCurrentSlide() == 6) {
 				self.setBackgroundImage('.boardBadge6', 6);
 			} else if (self.config.$mainSlider.getCurrentSlide() == 7) {

@@ -63,10 +63,10 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 	<div class="wrapper">
 	    <div id="header">	
     		<div id="topTwo"><p class="pOne">1</p><p class="pTwo">2</p></div>
-    		<div id="topLogo"><img src="<?php bloginfo('template_directory'); ?>/_/img/bb/header-diy-logo.png" alt="Lib Tech DIY Board Builder" /></div>
-    		<div id="topFlag"><img src="<?php bloginfo('template_directory'); ?>/_/img/bb/header-flag.png" alt="Handcrafted in the USA" /></div>
+    		<div id="topLogo"><a href="/snowboarding/" target="_blank"><img src="<?php bloginfo('template_directory'); ?>/_/img/bb/header-diy-logo.png" alt="Lib Tech DIY Board Builder" /></a></div>
+    		<div id="topFlag"><a href="#region-selector"><img src="<?php bloginfo('template_directory'); ?>/_/img/bb/header-flag.png" alt="Handcrafted in the USA" /></a></div>
     		<div id="topSection">SELECT BOARD  -  SHAPE &amp; CONTOUR</div>
-    		<div id="topSectionRight" style="float:left; text-align: center; display:none; z-index:2"></div>
+    		<div id="topSectionRight"></div>
 	    </div>
 	    <div id="leftmenu">
 			<div id="menuClose">
@@ -106,7 +106,7 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 						<li class="menu4">sidewall</li>
 						<li class="menu5">base</li>
 						<li class="menu6">badge</li>
-						<li class="menu7B">buy &nbsp;&nbsp; <img src="<?php bloginfo('template_directory'); ?>/_/img/bb/bb-0-rightarrow.png" alt=">" style="WIDTH: 16px;margin: auto;height: Auto;margin-top: -1px;margin-left: 15%;padding-top: 0px;line-height: 30px;position: absolute;"/></li>					
+						<li class="menu7B">buy &nbsp;&nbsp; <img src="<?php bloginfo('template_directory'); ?>/_/img/bb/bb-0-rightarrow.png" alt=">" /></li>					
 					</ul>
 				</div>
 			</div>
@@ -191,21 +191,18 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 					<div class="boardItemHolder">
 						<div class="boardText1">
 							<div id="s2shapeTitle"></div>
-							<div class="s2shapedescription"><!-- High Performance For Skilled Aggressive Riders --></div>
+							<div class="s2shapedescription"></div>
 							<div class="s2shapedescriptiondetail"></div>
 							<div id="s2contour"></div>
 							<div id="s2contourdetail"></div>
 						</div>
 						<div class="boardText2">
-							<div>
-								<h3 style="margin-bottom: 2%;">SELECT SIZE</h3>
-								<span style="font-weight: 600;font-size: 20px;"></span>
-							</div>
+							<h3 class="size-cta">SELECT SIZE</h3>
 							<div id="s2-size-holder">
-								<div class="s2-sizes"><!--  === --></div>
+								<div class="s2-sizes"></div>
 							</div>
-							<div id="s2DetailTable" style="margin: 2% 0px 4% 0px;float: left;width: auto;">
-								<div id="s2DetailTableData" style="padding: 0px;color: white; height: 100%;overflow:auto; "></div>
+							<div id="s2DetailTable">
+								<div id="s2DetailTableData"></div>
 							</div>
 						</div>
 					</div>
@@ -440,12 +437,12 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 			<h3>In the meantime, please use it on your desktop at an appropriate size.</h3>
 	    </div>
 		<div id="divBlocker"></div>
-		<div id="divPreloader" style="display:none;">
+		<div id="divPreloader">
 			<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/BACKGROUND-01.jpg" />
 			<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/BACKGROUND-02.jpg" />
 			<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/BACKGROUND-03.jpg" />
 			<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/BACKGROUND-04.jpg" />
-			<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/BACKGROUND-05a.jpg" />
+			<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/BACKGROUND-05.jpg" />
 			<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/BACKGROUND-06.jpg" />
 			<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/BACKGROUND-07.jpg" />
 		</div>
