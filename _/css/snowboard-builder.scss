@@ -794,49 +794,62 @@ ul.bxslider {
 		}
 	}
 }
+
 /* STEP 2 - SIZE */
-.boardTech2 .boardItemHolder {
-	.boardText1 {
+.boardTech2 {
+	.board-info {
 		text-shadow: 2px 2px 4px #000;
 		width: 90%;
+		color: #fff;
 
-		.s2shapedescription {
+		.board {
+			font-size: 32px;
+			font-weight: 700;
+			text-transform: uppercase;
+			margin-bottom: 5px;
+			color: #FFFF00;
+		}
+		.shape-desc {
+
+		}
+		.board-tagline {
 			font-size: 25px;
 			font-weight: 700;
 			text-transform: uppercase;
 			margin: 1% 0px 1% 0px;
 		}
-		.s2shapedescriptiondetail {
+		.board-desc {
 			font-size: 18px;
 			font-weight: 400;
 			margin: 1% 0px 2% 0px;
 		}
-		#s2contour {
+		.contour-title {
 			font-size: 15px;
 			font-weight: 700;
 			color: $globalFontColor;
 			margin: 11% 0 3% 0;
 		} 
-		#s2contourdetail {
+		.contour-desc {
 			font-size: 18px;
 			font-weight: 400;
 			color: $globalFontColor;
 		}
 	}
-	.boardText2 {
+	.size-info {
 		width: 90%;
 
 		h3.size-cta {
 			text-shadow: 2px 2px 4px #000;
 			padding-bottom: 20px;
+			font-size: 20px;
 		}
-		#s2-size-holder {
+		.size-holder {
 			position: relative;
 			width: 100%;
 			display: block;
 			float: left;
 
-			.s2-sizes {
+			.sizes {
 				.size-item {
 					padding: 10px;
 					float: left;
@@ -855,12 +868,12 @@ ul.bxslider {
 				}
 			}
 		}
-		#s2DetailTable {
+		.size-detail-table {
 			margin: 2% 0px 4% 0px;
 			float: left;
 			width: auto;
 
-			#s2DetailTableData {
+			.table-data {
 				padding: 0px;
 				color: white;
 				height: 100%;
@@ -2005,21 +2018,21 @@ body.diy-share {
 		
 	}
 
-
 	/* STEP 2 - SIZE */
-	.boardTech2 .boardItemHolder {
+	.boardTech2 {
 		padding: 166px 0 0 30%;
 
-		.boardText1 {
+		.board-info {
 			padding-right: 5%;
 			width: 45%;
 			float: left;
 		}
-		.boardText2 {
+		.size-info {
 			width: 50%;
 			float: left;
+			padding-top: 40px;
 
-			.info-list {
+			.size-detail-table .table-data .info-list {
 				.side-list,
 				.waist-list,
 				.flex-list,
@@ -2034,7 +2047,6 @@ body.diy-share {
 			}
 		}
 	}
-
 	/* STEP 3 - TOP */
 	
 	/* STEP 5a - BASE */

@@ -39,7 +39,7 @@ var boardData = [{
 	"ShapeDescription": "True Twin",
 	"Sidewall Options": "",
 	"Custom KnifeCut Color Options": "",
-	"ContourImage": "bb-contour-btx.jpg",
+	"ContourImage": "bb-contour-btx.gif",
 	"HPDetail": ""
 }, {
 	"Model": "Attack Banana",
@@ -66,7 +66,7 @@ var boardData = [{
 	"ShapeDescription": "True Twin",
 	"Sidewall Options": "",
 	"Custom KnifeCut Color Options": "",
-	"ContourImage": "bb-contour-ec2btx.jpg",
+	"ContourImage": "bb-contour-ec2-btx.gif",
 	"HPDetail": ""
 }, {
 	"Model": "Travis Rice Pro Blunt",
@@ -93,7 +93,7 @@ var boardData = [{
 	"ShapeDescription": "Twin Blunt",
 	"Sidewall Options": "",
 	"Custom KnifeCut Color Options": "",
-	"ContourImage": "bb-contour-c2btx.jpg",
+	"ContourImage": "bb-contour-c2-btx.gif",
 	"HPDetail": ""
 }, {
 	"Model": "Travis Rice Pro Pointy",
@@ -120,7 +120,7 @@ var boardData = [{
 	"ShapeDescription": "Pointy Pow",
 	"Sidewall Options": "",
 	"Custom KnifeCut Color Options": "",
-	"ContourImage": "bb-contour-c2btx.jpg",
+	"ContourImage": "bb-contour-c2-btx.gif",
 	"HPDetail": ""
 }, {
 	"Model": "TRS",
@@ -147,7 +147,7 @@ var boardData = [{
 	"ShapeDescription": "True Twin",
 	"Sidewall Options": "",
 	"Custom KnifeCut Color Options": "",
-	"ContourImage": "bb-contour-xc2btx.jpg",
+	"ContourImage": "bb-contour-xc2-btx.gif",
 	"HPDetail": ""
 }, {
 	"Model": "Hot Knife",
@@ -174,7 +174,7 @@ var boardData = [{
 	"ShapeDescription": "Twin Freeride",
 	"Sidewall Options": "",
 	"Custom KnifeCut Color Options": "",
-	"ContourImage": "bb-contour-c3btx.jpg",
+	"ContourImage": "bb-contour-c3-btx.gif",
 	"HPDetail": ""
 }, {
 	"Model": "Skunk Ape",
@@ -201,7 +201,7 @@ var boardData = [{
 	"ShapeDescription": "Directional Twin",
 	"Sidewall Options": "",
 	"Custom KnifeCut Color Options": "",
-	"ContourImage": "bb-contour-c2btx.jpg",
+	"ContourImage": "bb-contour-c2-btx.gif",
 	"HPDetail": ""
 }, {
 	"Model": "Banana Blaster",
@@ -228,7 +228,7 @@ var boardData = [{
 	"ShapeDescription": "True Twin",
 	"Sidewall Options": "",
 	"Custom KnifeCut Color Options": "",
-	"ContourImage": "bb-contour-btx.jpg",
+	"ContourImage": "bb-contour-btx.gif",
 	"HPDetail": ""
 }];
 var contourData = {
@@ -595,19 +595,22 @@ LIBTECH.snowboardbuilder = {
 		}
 		self.config.iJSON = spanVal;
 		sNoDash = boardData[boardNum].Model;
-		$('.boardTechName').text(sNoDash);
-		$('#s2shapeTitle').html("<b style='margin'>SHAPE &nbsp;</b> " + boardData[boardNum].ShapeDescription);
-		$('.boardTech2 .s2shapedescription').text(boardData[boardNum].BoardTagline);
-		$('.boardTech2 .s2shapedescriptiondetail').text(boardData[boardNum].BoardDescription);
-		$('#s2traction').text(boardData[boardNum].Traction);
-		$('#s2tractiondetail').text(boardData[boardNum].TractionDetail);
-		$('.boardText2 div span').html(boardData[boardNum].AvailableSizes);
-		$('.s2-sizes').html(self.calculateSizes(boardData[boardNum].Sizes));
-		$('#s2DetailTableData').html(self.printSizeInfo(boardData[boardNum].ContactLength, boardData[boardNum].Sidecut, boardData[boardNum].WaistWidth, boardData[boardNum].Flex) + "");
-		$('#s2DetailTableData').clone().wrap('<p>').parent().html();
+		// updated board display
+		$('.boardTechName').text(sNoDash); // being hidden now
+		// Board Details
+		$('.boardTech2 .board-info .board').html(sNoDash); // being hidden now
+		$('.boardTech2 .board-info .shape-desc').html("<strong>SHAPE &nbsp;</strong> " + boardData[boardNum].ShapeDescription);
+		$('.boardTech2 .board-info .board-tagline').text(boardData[boardNum].BoardTagline);
+		$('.boardTech2 .board-info .board-desc').text(boardData[boardNum].BoardDescription);
+		// Contour Details
 		theContour = boardData[boardNum].Contour;
-		$('#s2contour').html(contourData[theContour].ContourTitle);
-		$('#s2contourdetail').html(contourData[theContour].ContourDescription);
+		$('.boardTech2 .board-info .contour-title').html(contourData[theContour].ContourTitle);
+		$('.boardTech2 .board-info .contour-desc').html(contourData[theContour].ContourDescription);
+		// Size Details
+		$('.boardTech2 .size-info .size-holder .sizes').html(self.calculateSizes(boardData[boardNum].Sizes));
+		$('.boardTech2 .size-info .size-detail-table .table-data').html(self.printSizeInfo(boardData[boardNum].ContactLength, boardData[boardNum].Sidecut, boardData[boardNum].WaistWidth, boardData[boardNum].Flex) + "");
+		$('.boardTech2 .size-info .size-detail-table .table-data').clone().wrap('<p>').parent().html();
+		// set price
 		if (self.bbGetRegion() == "CA") {
 			self.setBoardPrice(boardData[boardNum].BasePriceCA);
 		} else {
@@ -663,7 +666,7 @@ LIBTECH.snowboardbuilder = {
 			$('.menu2Title').html("Size");
 			$('.menu2Title').removeClass('menuTitleFull');
 			$('.menu2TitleX span').removeClass('menuXVisible')
-			$("#s2DetailTableData li").each(function (index) {
+			$(".size-detail-table .table-data li").each(function (index) {
 				$(this).removeClass("sizeYellow");
 			});
 			$(".size-item").each(function (index) {
@@ -1628,10 +1631,10 @@ LIBTECH.snowboardbuilder = {
 			//size-item click
 			var nDetailHighlight = $(this).attr('val').replace(".", "_");
 			var theSize = '#lengthList.' + nDetailHighlight
-			$("#s2DetailTableData li").each(function (index) {
+			$(".size-detail-table .table-data .info-list li").each(function (index) {
 				$(this).removeClass("sizeYellow");
 			});
-			if ($('#infoLists li').hasClass(nDetailHighlight)) {
+			if ($('.size-detail-table .table-data .info-list li').hasClass(nDetailHighlight)) {
 				$(this).addClass("sizeYellow");
 			}
 			$('.' + nDetailHighlight).addClass("sizeYellow");

@@ -228,22 +228,23 @@ width: 240px;*/ }
 .carousel ul li.item { display: inline-block; }
 
 /* STEP 2 - SIZE */
-.boardTech2 .boardItemHolder .boardText1 { text-shadow: 2px 2px 4px #000; width: 90%; }
-.boardTech2 .boardItemHolder .boardText1 .s2shapedescription { font-size: 25px; font-weight: 700; text-transform: uppercase; margin: 1% 0px 1% 0px; }
-.boardTech2 .boardItemHolder .boardText1 .s2shapedescriptiondetail { font-size: 18px; font-weight: 400; margin: 1% 0px 2% 0px; }
-.boardTech2 .boardItemHolder .boardText1 #s2contour { font-size: 15px; font-weight: 700; color: white; margin: 11% 0 3% 0; }
-.boardTech2 .boardItemHolder .boardText1 #s2contourdetail { font-size: 18px; font-weight: 400; color: white; }
-.boardTech2 .boardItemHolder .boardText2 { width: 90%; }
-.boardTech2 .boardItemHolder .boardText2 h3.size-cta { text-shadow: 2px 2px 4px #000; padding-bottom: 20px; }
-.boardTech2 .boardItemHolder .boardText2 #s2-size-holder { position: relative; width: 100%; display: block; float: left; }
-.boardTech2 .boardItemHolder .boardText2 #s2-size-holder .s2-sizes .size-item { padding: 10px; float: left; font-weight: 600; font-size: 18px; border: 1px solid black; text-align: center; color: black; background-color: white; cursor: pointer; margin: 0 20px 20px 0; }
-.boardTech2 .boardItemHolder .boardText2 #s2-size-holder .s2-sizes .size-item:hover { background-color: #ffff00; }
-.boardTech2 .boardItemHolder .boardText2 #s2DetailTable { margin: 2% 0px 4% 0px; float: left; width: auto; }
-.boardTech2 .boardItemHolder .boardText2 #s2DetailTable #s2DetailTableData { padding: 0px; color: white; height: 100%; overflow: auto; }
-.boardTech2 .boardItemHolder .boardText2 #s2DetailTable #s2DetailTableData .info-list { width: auto; float: left; }
-.boardTech2 .boardItemHolder .boardText2 #s2DetailTable #s2DetailTableData .info-list .length-list, .boardTech2 .boardItemHolder .boardText2 #s2DetailTable #s2DetailTableData .info-list .side-list, .boardTech2 .boardItemHolder .boardText2 #s2DetailTable #s2DetailTableData .info-list .waist-list, .boardTech2 .boardItemHolder .boardText2 #s2DetailTable #s2DetailTableData .info-list .flex-list { float: left; text-align: center; color: white; width: 100%; }
-.boardTech2 .boardItemHolder .boardText2 #s2DetailTable #s2DetailTableData .info-list .length-list li, .boardTech2 .boardItemHolder .boardText2 #s2DetailTable #s2DetailTableData .info-list .side-list li, .boardTech2 .boardItemHolder .boardText2 #s2DetailTable #s2DetailTableData .info-list .waist-list li, .boardTech2 .boardItemHolder .boardText2 #s2DetailTable #s2DetailTableData .info-list .flex-list li { padding: 5px 0px 5px 0px; }
-.boardTech2 .boardItemHolder .boardText2 #s2DetailTable #s2DetailTableData .info-list .length-list li:first-child, .boardTech2 .boardItemHolder .boardText2 #s2DetailTable #s2DetailTableData .info-list .side-list li:first-child, .boardTech2 .boardItemHolder .boardText2 #s2DetailTable #s2DetailTableData .info-list .waist-list li:first-child, .boardTech2 .boardItemHolder .boardText2 #s2DetailTable #s2DetailTableData .info-list .flex-list li:first-child { width: 100%; color: black; background-color: #666666; text-transform: uppercase; font-size: 80%; }
+.boardTech2 .board-info { text-shadow: 2px 2px 4px #000; width: 90%; color: #fff; }
+.boardTech2 .board-info .board { font-size: 32px; font-weight: 700; text-transform: uppercase; margin-bottom: 5px; color: #FFFF00; }
+.boardTech2 .board-info .board-tagline { font-size: 25px; font-weight: 700; text-transform: uppercase; margin: 1% 0px 1% 0px; }
+.boardTech2 .board-info .board-desc { font-size: 18px; font-weight: 400; margin: 1% 0px 2% 0px; }
+.boardTech2 .board-info .contour-title { font-size: 15px; font-weight: 700; color: white; margin: 11% 0 3% 0; }
+.boardTech2 .board-info .contour-desc { font-size: 18px; font-weight: 400; color: white; }
+.boardTech2 .size-info { width: 90%; }
+.boardTech2 .size-info h3.size-cta { text-shadow: 2px 2px 4px #000; padding-bottom: 20px; font-size: 20px; }
+.boardTech2 .size-info .size-holder { position: relative; width: 100%; display: block; float: left; }
+.boardTech2 .size-info .size-holder .sizes .size-item { padding: 10px; float: left; font-weight: 600; font-size: 18px; border: 1px solid black; text-align: center; color: black; background-color: white; cursor: pointer; margin: 0 20px 20px 0; }
+.boardTech2 .size-info .size-holder .sizes .size-item:hover { background-color: #ffff00; }
+.boardTech2 .size-info .size-detail-table { margin: 2% 0px 4% 0px; float: left; width: auto; }
+.boardTech2 .size-info .size-detail-table .table-data { padding: 0px; color: white; height: 100%; overflow: auto; }
+.boardTech2 .size-info .size-detail-table .table-data .info-list { width: auto; float: left; }
+.boardTech2 .size-info .size-detail-table .table-data .info-list .length-list, .boardTech2 .size-info .size-detail-table .table-data .info-list .side-list, .boardTech2 .size-info .size-detail-table .table-data .info-list .waist-list, .boardTech2 .size-info .size-detail-table .table-data .info-list .flex-list { float: left; text-align: center; color: white; width: 100%; }
+.boardTech2 .size-info .size-detail-table .table-data .info-list .length-list li, .boardTech2 .size-info .size-detail-table .table-data .info-list .side-list li, .boardTech2 .size-info .size-detail-table .table-data .info-list .waist-list li, .boardTech2 .size-info .size-detail-table .table-data .info-list .flex-list li { padding: 5px 0px 5px 0px; }
+.boardTech2 .size-info .size-detail-table .table-data .info-list .length-list li:first-child, .boardTech2 .size-info .size-detail-table .table-data .info-list .side-list li:first-child, .boardTech2 .size-info .size-detail-table .table-data .info-list .waist-list li:first-child, .boardTech2 .size-info .size-detail-table .table-data .info-list .flex-list li:first-child { width: 100%; color: black; background-color: #666666; text-transform: uppercase; font-size: 80%; }
 
 /* STEP 3 - TOP */
 .boardTop3 { padding-left: 30%; }
@@ -421,11 +422,11 @@ overflow-y: visible;*/ }
   .carousel .item img { cursor: pointer; }
   /* STEP 1 - SHAPE */
   /* STEP 2 - SIZE */
-  .boardTech2 .boardItemHolder { padding: 166px 0 0 30%; }
-  .boardTech2 .boardItemHolder .boardText1 { padding-right: 5%; width: 45%; float: left; }
-  .boardTech2 .boardItemHolder .boardText2 { width: 50%; float: left; }
-  .boardTech2 .boardItemHolder .boardText2 .info-list .side-list, .boardTech2 .boardItemHolder .boardText2 .info-list .waist-list, .boardTech2 .boardItemHolder .boardText2 .info-list .flex-list, .boardTech2 .boardItemHolder .boardText2 .info-list .length-list { min-width: 65px; background-color: black; }
-  .boardTech2 .boardItemHolder .boardText2 .info-list .side-list li:first-child, .boardTech2 .boardItemHolder .boardText2 .info-list .waist-list li:first-child, .boardTech2 .boardItemHolder .boardText2 .info-list .flex-list li:first-child, .boardTech2 .boardItemHolder .boardText2 .info-list .length-list li:first-child { font-size: 100%; }
+  .boardTech2 { padding: 166px 0 0 30%; }
+  .boardTech2 .board-info { padding-right: 5%; width: 45%; float: left; }
+  .boardTech2 .size-info { width: 50%; float: left; padding-top: 40px; }
+  .boardTech2 .size-info .size-detail-table .table-data .info-list .side-list, .boardTech2 .size-info .size-detail-table .table-data .info-list .waist-list, .boardTech2 .size-info .size-detail-table .table-data .info-list .flex-list, .boardTech2 .size-info .size-detail-table .table-data .info-list .length-list { min-width: 65px; background-color: black; }
+  .boardTech2 .size-info .size-detail-table .table-data .info-list .side-list li:first-child, .boardTech2 .size-info .size-detail-table .table-data .info-list .waist-list li:first-child, .boardTech2 .size-info .size-detail-table .table-data .info-list .flex-list li:first-child, .boardTech2 .size-info .size-detail-table .table-data .info-list .length-list li:first-child { font-size: 100%; }
   /* STEP 3 - TOP */
   /* STEP 5a - BASE */
   .boardBase5 #boardBaseItems img { width: 100%; cursor: pointer; -webkit-transform: translateZ(0); transform: translateZ(0); }

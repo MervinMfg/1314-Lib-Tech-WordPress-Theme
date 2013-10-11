@@ -188,6 +188,24 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 			<!-- STEP 2 - SIZE -->
 			<li>
 				<div class="boardTech2">
+					<div class="board-info">
+						<div class="board">BTX - Skate Banana</div>
+						<div class="shape-desc"></div>
+						<div class="board-tagline"></div>
+						<div class="board-desc"></div>
+						<div class="contour-title"></div>
+						<div class="contour-desc"></div>
+					</div>
+					<div class="size-info">
+						<h3 class="size-cta">SELECT SIZE</h3>
+						<div class="size-holder">
+							<div class="sizes"></div>
+						</div>
+						<div class="size-detail-table">
+							<div class="table-data"></div>
+						</div>
+					</div>
+					<!--
 					<div class="boardItemHolder">
 						<div class="boardText1">
 							<div id="s2shapeTitle"></div>
@@ -206,6 +224,7 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 							</div>
 						</div>
 					</div>
+					-->
 				</div>
 			</li>
 			<!-- STEP 3 - TOP SHEET -->
