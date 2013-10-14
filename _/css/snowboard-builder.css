@@ -387,7 +387,6 @@ overflow-y: visible;*/ }
   #topSectionRight { display: block !important; } }
 /*MEDIUM - 746 */
 @media screen and (min-width: 768px) { html, body { overflow: hidden; height: 100%; }
-  /*html, body { 	overflow: hidden; } html { 	overflow-y: auto; }*/
   #topSection { display: block; }
   #topSectionRight { width: 10%; }
   #topTwo, #topSectionRight { display: none !important; }
@@ -436,7 +435,6 @@ overflow-y: visible;*/ }
   /* STEP 7 - BUY */
   .boardReciept hr { margin: 0.25em 0; padding: 0; }
   .bx-wrapper .bx-pager { display: none; }
-  .recieptError { color: white !important; }
   /* SHARE STYLES */
   html.diy-share { overflow: visible; height: auto; }
   body.diy-share { overflow: visible; height: auto; }

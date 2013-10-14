@@ -2168,23 +2168,18 @@ LIBTECH.snowboardbuilder = {
 			}
 			if (self.getBoardSize() == "" || self.getBoardSize() == undefined) {
 				highlightRed(2);
-				$("body").find('.recieptSize').addClass('recieptError');
 			}
 			if (self.getBoardTop() == "" || self.getBoardTop() == undefined) {
 				highlightRed(3);
-				$("body").find('.recieptTop').addClass('recieptError');
 			}
 			if (self.getBoardSidewall() == "" || self.getBoardSidewall() == undefined) {
 				highlightRed(4);
-				$("body").find('.recieptSidewall').addClass('recieptError');
 			}
 			if (self.getBoardBase() == "" || self.getBoardBase() == undefined) {
 				highlightRed(5);
-				$("body").find('.recieptBase').addClass('recieptError');
 			}
 			if (self.getBoardBadge() == "" || self.getBoardBadge() == undefined) {
 				highlightRed(6);
-				$("body").find('.recieptBadge').addClass('recieptError');
 			}
 		}
 		function highlightRed(nNum) {
