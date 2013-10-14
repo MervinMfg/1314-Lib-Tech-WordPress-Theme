@@ -324,7 +324,7 @@ header .nav-utility #quick-cart a:hover span, header .nav-utility #quick-cart a:
 
 /* Footer Styles
 -------------------------------------------------------------------------------*/
-footer { background: #999999 url("_/img/bg-footer.jpg") center top; }
+footer { background: #999999 url("_/img/bg-footer.jpg") center top; clear: both; }
 footer .footer-top { background: #333333 url("_/img/bg-footer-top.jpg") repeat-x center top; width: 100%; height: 10px; }
 footer .footer-wrapper { padding: 20px; position: relative; }
 footer .h2 { color: #000; font-size: 1.375em; /* 22 / 16 */ padding-bottom: 10px; }
