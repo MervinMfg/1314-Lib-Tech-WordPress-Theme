@@ -1990,16 +1990,15 @@ LIBTECH.snowboardbuilder = {
 		});
 		// imput text listeners
 		$('#knifecut-base-controls .knifecut-input #board-text').on('input.step5b', function () {
-			self.setBoardBaseDesc(this.value);
-			self.updateBoardDisplay();
-			self.boardPreviewSet(5);
-			
-			if(this.value == "") {
+			var inputValue = this.value.toUpperCase();
+			if(inputValue == "") {
 				self.advanceArrowHide(); // on removal of text, hide arrow
 			} else {
 				self.advanceArrowShow(); // on update of text, show arrow
 			}
-			self.setBoardBaseDesc(this.value);
+			self.setBoardBaseDesc(inputValue);
+			self.updateBoardDisplay();
+			self.boardPreviewSet(5);
 		}).on( "keyup.step5b", function (e) {
 			var code = (e.keyCode ? e.keyCode : e.which);
 			if (code == 13) { // Enter keycode
@@ -2043,31 +2042,30 @@ LIBTECH.snowboardbuilder = {
 		var self = this;
 		// input text listeners
 		$('.board-badge-input-holder .board-badge-input').on('input.step6', function () {
-			if (this.value.length <= 13) {
+			var inputValue = this.value.toUpperCase();
+			if (inputValue.length <= 13) {
 				var maxFS = "200%";
 				$('.boardBadgeTextHolder .badge-text-wide').css('font-size', maxFS);
-				var the1Line = this.value.slice(0, 13);
+				var the1Line = inputValue.slice(0, 13);
 				$('.boardBadgeTextHolder .badge-text-wide').html(the1Line);
-			} else if (this.value.length > 13) {
-				//var line1 = this.value; 
-				var maxFS = "175%"; //240 - (this.value.length * 4) + "%";
+			} else if (inputValue.length > 13) {
+				var maxFS = "175%";
 				$('.boardBadgeTextHolder .badge-text-wide').css('font-size', maxFS);
-				var the1Line = this.value.slice(0, 13);
-				var the2Line = this.value.slice(13);
-				//var theLines = the1Line + "<br>" + the2Line;
-				var theLines = this.value;
-				$('.boardBadgeTextHolder .badge-text-wide').html(theLines);
+				//var the1Line = this.value.slice(0, 13);
+				//var the2Line = this.value.slice(13);
+				//var theLines = the1Line + "<br />" + the2Line;
+				$('.boardBadgeTextHolder .badge-text-wide').html(inputValue);
 			}
 			// set menu and display arrow if user begins to enter text
-			if (this.value.length == 1) {
+			if (inputValue.length == 1) {
 				self.advanceArrowShow();
 				$('.menu6TitleX span').addClass('menuXVisible');
 				$('.menu6Title').addClass('menuTitleFull');
 				$('.menu6Title').html("Personalized Badge<br><b>+ $ 0.00 " + self.config.bbRegionCurrency + "</b>");
-			} else if (this.value.length == 0) {
+			} else if (inputValue.length == 0) {
 				self.advanceArrowHide();
 			}
-			self.setBoardBadge(this.value);
+			self.setBoardBadge(inputValue);
 		}).on('keyup.step6', function (e) {
 			// on enter press, advance to next step
 			var code = (e.keyCode ? e.keyCode : e.which);
