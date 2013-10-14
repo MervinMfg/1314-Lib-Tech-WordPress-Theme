@@ -1413,7 +1413,7 @@ LIBTECH.snowboardbuilder = {
 	updateHeaderLabel: function (nSection) {
 		switch (nSection) {
 			case 0:
-				$('#topSection').html("SELECT BOARD - SHAPE & CONTOUR");
+				$('#topSection').html("SELECT BOARD - SHAPE &amp; CONTOUR");
 				$('.pagerLabel').html("SHAPE");
 				break;
 			case 1:
@@ -1421,23 +1421,23 @@ LIBTECH.snowboardbuilder = {
 				$('.pagerLabel').html("SIZE");
 				break;
 			case 2:
-				$('#topSection').html("SELECT ART  -  TOP SHEET ART");
+				$('#topSection').html("SELECT TOP - TOP SHEET ART");
 				$('.pagerLabel').html("TOP");
 				break;
 			case 3:
-				$('#topSection').html("SELECT SIDE  -  SIDEWALL COLOR");
+				$('#topSection').html("SELECT SIDE - SIDEWALL COLOR");
 				$('.pagerLabel').html("SIDE");
 				break;
 			case 4:
-				$('#topSection').html("SELECT BASE  -  BASE ART");
+				$('#topSection').html("SELECT BASE - BASE ART");
 				$('.pagerLabel').html("BASE");
 				break;
 			case 5:
-				$('#topSection').html("SELECT BASE  -  CUSOMIZED KNIFECUT");
+				$('#topSection').html("SELECT BASE - CUSOMIZED KNIFECUT");
 				$('.pagerLabel').html("BASE");
 				break;
 			case 6:
-				$('#topSection').html("SELECT BADGE  -  PERSONALIZE YOUR BADGE");
+				$('#topSection').html("SELECT BADGE - PERSONALIZE YOUR BADGE");
 				$('.pagerLabel').html("BADGE");
 				break;
 			case 7:

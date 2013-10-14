@@ -65,7 +65,7 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
     		<div id="topTwo"><p class="pOne">1</p><p class="pTwo">2</p></div>
     		<div id="topLogo"><a href="/snowboarding/" target="_blank"><img src="<?php bloginfo('template_directory'); ?>/_/img/bb/header-diy-logo.png" alt="Lib Tech DIY Board Builder" /></a></div>
     		<div id="topFlag"><a href="#region-selector"><img src="<?php bloginfo('template_directory'); ?>/_/img/bb/header-flag.png" alt="Handcrafted in the USA" /></a></div>
-    		<div id="topSection">SELECT BOARD  -  SHAPE &amp; CONTOUR</div>
+    		<div id="topSection">SELECT BOARD - SHAPE &amp; CONTOUR</div>
     		<div id="topSectionRight"></div>
 	    </div>
 	    <div id="leftmenu">
