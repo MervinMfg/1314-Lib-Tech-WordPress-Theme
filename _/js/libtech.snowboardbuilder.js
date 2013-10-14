@@ -1565,7 +1565,7 @@ LIBTECH.snowboardbuilder = {
 			}*/
 			$('.topInfo h2').text(boardData[nNum].Model);
 			$('.topInfo h3').text(boardData[nNum].BoardTagline);
-			$('#blackBoxInfo h2').text(boardData[nNum].Contour + " - " + boardData[nNum].Model);
+			$('#blackBoxInfo h2').text(boardData[nNum].Model + " - " + boardData[nNum].Contour);
 			$('#blackBoxInfo h3').text(boardData[nNum].BoardTagline);
 			$('#blackBoxInfo p span').text(boardData[nNum].Sizes);
 			theContour = boardData[nNum].Contour;
