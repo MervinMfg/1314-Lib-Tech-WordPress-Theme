@@ -417,9 +417,10 @@ overflow-y: visible;*/ }
   .boardShape1 #boarditem:first-child { margin-left: 12% !important; }
   .boardText1 #boardTech2 { width: 31% !important; margin-left: 2%; }
   /* CAROUSEL */
-  .carousel { padding-top: 166px; }
+  .carousel { padding-top: 166px; -webkit-transform: translateZ(0); /* triggers GPU, sometimes fixes the issue */ transform: translateZ(0); /* non-webkit specific */ }
   .carousel .item { padding: 0 20px; }
   .carousel .item img { cursor: pointer; }
+  .carousel .item img.confirmedShape, .carousel .item img .confirmedShape:hover { -webkit-transform: matrix(1.1, 0, 0, 1.1, 0, 0) !important; transform: scale(1.1, 1.1) !important; -ms-transform: scale(1.1, 1.1) !important; transition-duration: .2s; -webkit-transition-duration: .2s; }
   /* STEP 1 - SHAPE */
   /* STEP 2 - SIZE */
   .boardTech2 { padding: 166px 0 0 30%; }
@@ -436,19 +437,6 @@ overflow-y: visible;*/ }
   .boardReciept hr { margin: 0.25em 0; padding: 0; }
   .bx-wrapper .bx-pager { display: none; }
   .recieptError { color: white !important; }
-  .selectedShape { /*transform: scale(2, 2);rotateY(45deg) translate3d(10px, 0px, -200px)*/ /*  -webkit-transform: matrix(1.10, 0, 0, 1.10, 0, 0);
-transform: scale(1.10,1.10);
--ms-transform: scale(1.10,1.10); */ /* IE 9 */ }
-  .deselectedShape { -webkit-transform: matrix(1, 0, 0, 1, 0, 0); transform: scale(1, 1); -ms-transform: scale(1, 1); /* IE 9 */ transition-duration: .15s; -webkit-transition-duration: .15s; /* Safari */ }
-  .bxDivShape li > img { /*
--webkit-transform: matrix(1.0, 0, 0, 1.0, 0, 0);
-transform: scale(1.0,1.0);
--ms-transform: scale(1.0,1.0);
-*/ /* IE 9 */ }
-  .bxDivShape li > img.selectedShape { -webkit-transform: matrix(1, 0, 0, 1, 0, 0); transform: scale(1, 1); -ms-transform: scale(1, 1); /* IE 9 */ transition-duration: .15s; -webkit-transition-duration: .15s; /* Safari */ }
-  .bxDivShape li > img.selectedShape:hover { -webkit-transform: matrix(1.1, 0, 0, 1.1, 0, 0); transform: scale(1.1, 1.1); -ms-transform: scale(1.1, 1.1); /* IE 9 */ transition-duration: .15s; -webkit-transition-duration: .15s; /* Safari */ }
-  .bxDivShape li > img.selectedShape:hover:not(.confirmedShape) { -webkit-transform: matrix(1.1, 0, 0, 1.1, 0, 0); transform: scale(1.1, 1.1); -ms-transform: scale(1.1, 1.1); /* IE 9 */ transition-duration: .15s; -webkit-transition-duration: .15s; /* Safari */ }
-  .confirmedShape, .confirmedShape:hover { -webkit-transform: matrix(1.1, 0, 0, 1.1, 0, 0) !important; transform: scale(1.1, 1.1) !important; -ms-transform: scale(1.1, 1.1) !important; /* IE 9 */ transition-duration: .15s; -webkit-transition-duration: .15s; /* Safari */ -webkit-transform: translateZ(0); /* triggers GPU, sometimes fixes the issue */ transform: translateZ(0); /* non-webkit specific */ }
   /* SHARE STYLES */
   html.diy-share { overflow: visible; height: auto; }
   body.diy-share { overflow: visible; height: auto; }
