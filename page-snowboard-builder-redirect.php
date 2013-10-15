@@ -61,7 +61,7 @@ if( isset($_GET['shape']) && isset($_GET['size']) && isset($_GET['top']) && isse
     <link rel="shortcut icon" href="<?php bloginfo('template_directory'); ?>/_/img/favicon.ico" />
     <!-- Misc. -->
     <link rel="profile" href="http://gmpg.org/xfn/11" />
-    <meta http-equiv="refresh" content="0;URL='<?php echo $redirect_url; ?>'" />
+    <meta http-equiv="refresh" content="0;URL=<?php echo stripslashes($redirect_url); ?>" />
     <!-- Google Site Verification -->
     <meta name="google-site-verification" content="wE_gDgt0-MYrOnCO0K7VH2HP7af_DuxpDK1EJFdohFc" />
     <!-- JavaScript Includes -->
