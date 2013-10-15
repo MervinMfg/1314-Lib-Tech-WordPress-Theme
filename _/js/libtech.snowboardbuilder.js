@@ -868,7 +868,7 @@ LIBTECH.snowboardbuilder = {
 		var self = this;
 		//TODO: SET DEFAULTS TO GREY!!!
 		if (self.config.bBaseDesc == '' || self.config.bBaseDesc == undefined) {
-			self.config.bBaseDesc = ""
+			self.config.bBaseDesc = "";
 		}
 		return self.config.bBaseDesc;
 	},
@@ -2165,7 +2165,7 @@ LIBTECH.snowboardbuilder = {
 				self.getBoardSize() != "" && self.getBoardSize() != undefined &&
 				self.getBoardTop() != "" && self.getBoardTop() != undefined &&
 				self.getBoardSidewall() != "" && self.getBoardSidewall() != undefined &&
-				self.getBoardBase() != "" && self.getBoardBase() != undefined &&
+				self.getBoardBase() != "" && self.getBoardBase() != undefined && self.getBoardBaseDesc() != "" && self.getBoardBaseDesc() != undefined &&
 				self.getBoardBadge() != "" && self.getBoardBadge() != undefined) {
 				return true;
 			} else {
@@ -2192,7 +2192,7 @@ LIBTECH.snowboardbuilder = {
 			if (self.getBoardSidewall() == "" || self.getBoardSidewall() == undefined) {
 				highlightRed(4);
 			}
-			if (self.getBoardBase() == "" || self.getBoardBase() == undefined) {
+			if (self.getBoardBase() == "" || self.getBoardBase() == undefined || self.getBoardBaseDesc() == "" || self.getBoardBaseDesc() == undefined) {
 				highlightRed(5);
 			}
 			if (self.getBoardBadge() == "" || self.getBoardBadge() == undefined) {
