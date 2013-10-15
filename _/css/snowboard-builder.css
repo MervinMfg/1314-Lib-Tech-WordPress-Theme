@@ -370,9 +370,10 @@ width: 240px;*/ }
 /* SHARE STYLES */
 body.diy-share { min-width: 0; }
 body.diy-share .wrapper { padding: 0 20px; background-attachment: fixed; }
-body.diy-share .wrapper #header-share { padding-top: 20px; text-align: center; }
+body.diy-share .wrapper #header-share { padding-top: 20px; text-align: center; max-width: 350px; margin: 0 auto; }
 body.diy-share .wrapper #header-share img { max-width: 100%; height: auto; }
-body.diy-share .wrapper .boardBuy7 .thereciept { margin: 0; width: 100%; padding: 0; }
+body.diy-share .wrapper #header-share-print { display: none; }
+body.diy-share .wrapper .boardBuy7 .thereciept { margin: 0 auto; width: 100%; padding: 0; }
 body.diy-share .wrapper .boardBuy7 .thereciept .buttonholder .build-button { width: 100%; background-color: #000000; color: #ffff00; padding: 10px; font-size: 28px; font-weight: 700; border: 1px solid #ffff00; cursor: pointer; text-transform: uppercase; text-decoration: none; font-style: normal; display: block; }
 body.diy-share .wrapper .boardBuy7 .thereciept .buttonholder .build-button:hover { background-color: #ffff00; color: #000000; border-color: #000; }
 body.diy-share .wrapper .boardBuy7 .thereciept .buttonholder p.or { margin: 5px 0; }
@@ -381,6 +382,7 @@ body.diy-share .wrapper #boardDisplay { display: block; position: relative; widt
 body.diy-share .wrapper #boardDisplay .previewTop { position: relative; }
 body.diy-share .wrapper #boardDisplay .preview34 { left: 100%; }
 body.diy-share .wrapper #boardDisplay .previewBase { left: 200%; }
+body.diy-share .wrapper .print-disclaimer { display: none; }
 
 /*TINY - ?? */
 @media screen and (max-width: 100px) { .boardShape1 .bx-wrapper img { max-width: 100% !important; } }
@@ -462,8 +464,8 @@ overflow-y: visible;*/ }
   html.diy-share { overflow: visible; height: auto; }
   body.diy-share { overflow: visible; height: auto; }
   body.diy-share .wrapper { max-width: 1600px; margin: 0 auto; position: relative; }
-  body.diy-share .wrapper #header-share { width: 40%; }
-  body.diy-share .wrapper .boardBuy7 .thereciept { width: 40%; }
+  body.diy-share .wrapper #header-share { width: 40%; margin: 0; }
+  body.diy-share .wrapper .boardBuy7 .thereciept { width: 40%; margin: 0; }
   body.diy-share .wrapper #boardDisplay { display: block; position: fixed; width: 18%; max-width: 250px; left: 45%; bottom: 0px; top: auto; }
   body.diy-share .wrapper #boardDisplay .previewTop { position: relative; }
   body.diy-share .wrapper #boardDisplay .preview34 { left: 90%; }
@@ -489,3 +491,16 @@ overflow-y: visible;*/ }
   .bxDivShape li > img:hover:not(.confirmedShape) { transition-duration: 0; -webkit-transition-duration: 0; -webkit-transform: matrix(1, 0, 0, 1, 0, 0); transform: scale(1, 1); -ms-transform: scale(1, 1); /* IE 9 */ }
   .confirmedShape, .confirmedShape:hover { transition-duration: 0; -webkit-transition-duration: 0; -webkit-transform: matrix(1, 0, 0, 1, 0, 0); transform: scale(1, 1); -ms-transform: scale(1, 1); /* IE 9 */ /* IE 9 */ }
   .bText { font-size: 320%; line-height: 78%; text-transform: uppercase; font-family: "PT Sans Narrow", "Myriad Pro", Helvetica, Arial, sans-serif; font-weight: 700; overflow: hidden; top: 90%; } }
+@media print { /* DIY SHARE PRINT */
+  body.diy-share .wrapper #header-share { display: none; }
+  body.diy-share .wrapper #header-share-print { display: block; padding-top: 10%; text-align: center; }
+  body.diy-share .wrapper .boardBuy7 .thereciept { padding-top: 10%; color: #000; margin: 0 auto; }
+  body.diy-share .wrapper .boardBuy7 .thereciept h1, body.diy-share .wrapper .boardBuy7 .thereciept h2, body.diy-share .wrapper .boardBuy7 .thereciept h3, body.diy-share .wrapper .boardBuy7 .thereciept p { color: #000; }
+  body.diy-share .wrapper .boardBuy7 .thereciept .buttonholder { display: none; }
+  body.diy-share .wrapper #boardDisplay { display: block; position: relative; margin-left: 5%; }
+  body.diy-share .wrapper #boardDisplay .previewTop { position: relative; }
+  body.diy-share .wrapper #boardDisplay .preview34 { left: 90%; }
+  body.diy-share .wrapper #boardDisplay .previewBase { left: 180%; }
+  body.diy-share .wrapper #boardDisplay .previewBase .board .bImage .bText { margin-left: -7%; }
+  body.diy-share .wrapper .print-disclaimer { display: block; color: #000; text-align: center; padding-top: 40px; }
+  body.diy-share .wrapper .region-selector { display: none; } }

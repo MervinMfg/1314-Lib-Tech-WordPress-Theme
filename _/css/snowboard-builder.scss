@@ -1390,15 +1390,20 @@ body.diy-share {
 		#header-share {
 			padding-top: 20px;
 			text-align: center;
+			max-width: 350px;
+			margin: 0 auto;
 
 			img {
 				max-width: 100%;
 				height: auto;
 			}
 		}
+		#header-share-print {
+			display: none;
+		}
 		.boardBuy7 {
 			.thereciept {
-				margin: 0;
+				margin: 0 auto;
 				width: 100%;
 				padding: 0;
 
@@ -1447,6 +1452,9 @@ body.diy-share {
 			.previewBase {
 				left: 200%;
 			}
+		}
+		.print-disclaimer {
+			display: none;
 		}
 	}
 }
@@ -2214,10 +2222,12 @@ body.diy-share {
 
 			#header-share {
 				width: 40%;
+				margin: 0;
 			}
 			.boardBuy7 {
 				.thereciept {
 					width: 40%;
+					margin: 0;
 				}
 			}
 			#boardDisplay {
@@ -2334,5 +2344,66 @@ body.diy-share {
 		font-weight: 700;
 		overflow: hidden;
 		top:90%;
+	}
+}
+
+
+
+@media print {
+	/* DIY SHARE PRINT */
+	body.diy-share {
+		.wrapper {
+			#header-share {
+				display: none;
+			}
+			#header-share-print {
+				display: block;
+				padding-top: 10%;
+				text-align: center;
+			}
+			.boardBuy7 {
+				.thereciept {
+					padding-top: 10%;
+					color: #000;
+					margin: 0 auto;
+
+					h1, h2, h3, p {
+						color: #000;
+					}
+
+					.buttonholder {
+						display: none;
+					}
+				}
+			}
+			#boardDisplay {
+				display: block;
+				position: relative;
+				margin-left: 5%;
+
+				.previewTop {
+					position: relative;
+				}
+				.preview34 {
+					left: 90%;
+				}
+				.previewBase {
+					left: 180%;
+
+					.board .bImage .bText {
+						margin-left: -7%;
+					}
+				}
+			}
+			.print-disclaimer {
+				display: block;
+				color: #000;
+				text-align: center;
+				padding-top: 40px;
+			}
+			.region-selector {
+				display: none;
+			}
+		}
 	}
 }

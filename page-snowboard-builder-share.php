@@ -62,6 +62,9 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/share/";
 	    <div id="header-share">	
     		<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/bb-0-share.png" alt="Lib Tech DIY Board Builder" />
 	    </div>
+	    <div id="header-share-print">	
+    		<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/logo-diy-print.png" alt="Lib Tech DIY Board Builder" />
+	    </div>
 		<div class="boardBuy7">
 			<div class="boardText1 thereciept">
 				<div class="board-reciept">
@@ -152,6 +155,7 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/share/";
 				</div>
 			</div>
 		</div>
+		<p class="print-disclaimer">* The finished board may not appear exactly as it is shown on the screen.</p>
 		<div class="clearfix"></div>
 		<div id="region-selector">
 			<div class="width-fix">
