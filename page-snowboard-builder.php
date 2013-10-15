@@ -74,7 +74,7 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 						<li><strong>Sidewall Colors:</strong> 6 sidewall color options.</li>
 						<li><strong>Base Options:</strong> Pick a classic graphic - or - Create a custom 10 Letter knife-cut base. Keep it classy!</li>
 						<li><strong>Personalized Badge:</strong> Customize and claim your board with a 26 character custom laser cut badge.</li>
-						<li><strong>Buy:</strong> Lib Tech’s Bitchin’ Board Builders will hand build your dream board and ship it to you! Order through your local core retailer and receive $25 off! See retailer for details and applicable codes.</li>
+						<li><strong>Buy:</strong> Lib Tech’s Bitchin’ Board Builders will hand build your dream board and ship it to you! Order through your local dealer and receive $25 off! See dealer for details and applicable codes.</li>
 					</ul>
 					<p>* The finished board may not appear exactly as it is shown on the screen. DIY board orders take 3-6 weeks to build and ship for United States/Canada, 6-9 weeks for all other countries, for a list of countries we ship DIY boards <a href="/snowboarding/snowboard-builder/international-countries/" target="_blank">click here</a>. DIY board orders will be charged upon order confirmation. No returns or refunds on customized boards will be accepted or given.</p>
 				</div>
