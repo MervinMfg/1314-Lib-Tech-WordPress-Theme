@@ -237,7 +237,7 @@ var contourData = {
 		"ContourDescription": "Revolutionary all terrain freestyle banana blend. Rocker between your feet with flat to mild camber to contact points. Mild tip pressure for unreal float and jibbing, solid pressure between your feet for easy turning and great ice edge hold."
 	},
 	"EC2 BTX": {
-		"ContourTitle": "Eliptical Camber/Banana & Magne-Traction",
+		"ContourTitle": "Eliptical Camber/Banana & Magne-Traction .5",
 		"ContourDescription": "Quiver killing freestyle blend halfway between original Banana Tech and C2. Medium tip and tail pressure for end-to end-stability and pop combined with a medium amount of pressure between your feet for unreal carving and float in pow."
 	},
 	"C2 BTX": {
@@ -249,7 +249,7 @@ var contourData = {
 		"ContourDescription": "A new formula of C2 with a shorter but, aggressive banana rocker combined with cambers that sit more underfoot. Extra solid tip and tail pressure for power, pop, precision and end-to-end stability combined with a medium amount of pressure between your feet for carving, edge hold on ice and float in pow."
 	},
 	"C3 BTX": {
-		"ContourTitle": "Camber Dominant Banana & Magne-Traction",
+		"ContourTitle": "Camber Dominant Banana & Magne-Traction .5",
 		"ContourDescription": "Camber made better with the addition of mild Banana Tech rocker between your feet. Mild pressure between your feet for carving, edge grip, float in powder and our maximum tip and tail pressure for precise control, power stability and pop. The world’s best camber is a banana!"
 	},
 	"!BTX!": {
