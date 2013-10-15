@@ -274,7 +274,7 @@ width: 240px;*/ }
 
 /* STEP 5b - CUSTOM BASE */
 .boardBase5b .boardItemHolder { position: relative; }
-.boardBase5b .boardItemHolder #knifecut-base-controls p { margin-bottom: 10px; font-weight: 700; font-size: 1.125em; text-transform: uppercase; color: white; clear: both; }
+.boardBase5b .boardItemHolder #knifecut-base-controls p { margin-bottom: 10px; font-weight: 700; font-size: 1.125em; text-transform: uppercase; color: white; clear: both; text-shadow: 2px 2px 4px #000; }
 .boardBase5b .boardItemHolder #knifecut-base-controls .knifecut-input { margin-bottom: 40px; }
 .boardBase5b .boardItemHolder #knifecut-base-controls .knifecut-input #board-text { font-family: 'Altehaas Grotesk Bold'; background: #fff; width: 188px; }
 .boardBase5b .boardItemHolder #knifecut-base-controls .letter-color, .boardBase5b .boardItemHolder #knifecut-base-controls .base-color { padding-bottom: 40px; }
