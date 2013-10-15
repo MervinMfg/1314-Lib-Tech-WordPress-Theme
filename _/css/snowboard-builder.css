@@ -319,9 +319,9 @@ width: 240px;*/ }
 .boardBuy7 .thereciept .buttonholder .buy-button:hover, .boardBuy7 .thereciept .buttonholder .agree-button:hover { background-color: #000000; color: #ffff00; border-color: #ffff00; }
 .boardBuy7 .thereciept .buttonholder .agree-button { display: none; }
 .boardBuy7 .thereciept .buttonholder .social-icons { width: 100%; margin: 0 auto; text-align: center; }
-.boardBuy7 .thereciept .buttonholder .social-icons p { padding: 10px 0; text-transform: uppercase; font-weight: 700; clear: both; }
+.boardBuy7 .thereciept .buttonholder .social-icons p { padding: 10px 0; text-transform: uppercase; font-weight: 700; clear: both; text-shadow: 2px 2px 4px #000; }
 .boardBuy7 .thereciept .buttonholder .social-icons a { display: inline-block; width: 51px; height: 31px; padding: 0 10px; }
-.boardBuy7 .thereciept .buttonholder .share-url p { padding: 10px 0; text-align: center; text-transform: uppercase; font-weight: 700; clear: both; }
+.boardBuy7 .thereciept .buttonholder .share-url p { padding: 10px 0; text-align: center; text-transform: uppercase; font-weight: 700; clear: both; text-shadow: 2px 2px 4px #000; }
 .boardBuy7 .thereciept .buttonholder .share-url #share-url-input { width: 100%; text-transform: none; margin-bottom: 20px; }
 
 .sharebutton { width: 100%; }
