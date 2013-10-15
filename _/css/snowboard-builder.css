@@ -141,6 +141,20 @@ ul.bxslider { margin: 0; padding: 0; }
 
 .nohighlight { -moz-transition: none; -webkit-transition: none; -o-transition: color 0 ease-in; transition: none; }
 
+/* OVERVIEW */
+#overview { position: fixed; height: 100%; width: 100%; top: 0; left: 0; opacity: 1; z-index: 9998; background: black url("../img/bb/bg-overview.jpg") no-repeat top center; }
+#overview .overview-content h1 { text-align: center; padding: 20px 0; }
+#overview .overview-content h3 { text-shadow: 2px 2px 4px #000; padding: 0 20px 20px; }
+#overview .overview-content h3 span { color: #FFFF00; font-size: 1.2em; }
+#overview .overview-content .left-column { padding: 0 20px; }
+#overview .overview-content .left-column h4 { text-shadow: 2px 2px 4px #000; margin-bottom: 5px; display: none; }
+#overview .overview-content .left-column ul { display: none; }
+#overview .overview-content .left-column ul li { text-shadow: 2px 2px 4px #000; margin-bottom: 10px; }
+#overview .overview-content .left-column p { padding-bottom: 20px; }
+#overview .overview-content .right-column { text-align: center; padding: 20px; }
+#overview .overview-content .right-column a { background: #FFFF00; padding: 10px 20px; color: #000; display: inline-block; font-size: 3em; }
+#overview .overview-content .right-column .overview-video { padding-top: 20px; }
+
 /* GLOBAL ELEMENTS */
 #header { background: url("../img/bb/header-bar-bg.png") repeat-x; position: absolute; height: 63px; z-index: 8886; width: 100%; font-weight: bold; }
 #header #topTwo { position: absolute; float: left; width: 20%; display: none; z-index: 2; }
@@ -387,6 +401,15 @@ overflow-y: visible;*/ }
   #topSectionRight { display: block !important; } }
 /*MEDIUM - 746 */
 @media screen and (min-width: 768px) { html, body { overflow: hidden; height: 100%; }
+  /* OVERVIEW */
+  #overview { background: black url("../img/bb/bg-overview.jpg") no-repeat top right; overflow-y: auto; }
+  #overview .overview-content { max-width: 1200px; margin: 0 auto; }
+  #overview .overview-content h1 { text-align: left; padding: 20px; }
+  #overview .overview-content .left-column { width: 50%; padding: 0 10px 0 20px; float: left; }
+  #overview .overview-content .left-column h4 { display: block; }
+  #overview .overview-content .left-column ul { display: block; }
+  #overview .overview-content .left-column p { font-size: .8em; padding-top: 10px; }
+  #overview .overview-content .right-column { width: 50%; padding: 60px 20px 0 10px; float: left; }
   #topSection { display: block; }
   #topSectionRight { width: 10%; }
   #topTwo, #topSectionRight { display: none !important; }

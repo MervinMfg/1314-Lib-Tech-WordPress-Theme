@@ -61,13 +61,38 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 </head>
 <body <?php body_class(); ?>>
 	<div class="wrapper">
+		<div id="overview">
+			<div class="overview-content">
+				<h1><img src="<?php bloginfo('template_directory'); ?>/_/img/bb/logo-diy.png" alt="Lib Tech DIY Board Builder" /></h1>
+				<h3><span>Welcome to Lib Tech’s DIY Board Builder!</span> Order a custom one of a kind dream snowboard, and Lib Tech’s Bitchin’ Board Builders will handcraft it to your specifications!</h3>
+				<div class="left-column">
+					<h4>CHOOSE:</h4>
+					<ul>
+						<li><strong>Board Shape &amp; Contour:</strong> From a selection of 8 different Lib Tech board model chassis including 5 distinct bottom contours.</li>
+						<li><strong>Board Size:</strong> Skunk Ape to Banana Blaster, each board model chassis has a range of available sizes to choose from.</li>
+						<li><strong>Top Sheet Art:</strong> A collection of classic graphics from longtime Lib artists, now unique to the DIY program.</li>
+						<li><strong>Sidewall Colors:</strong> 6 sidewall color options.</li>
+						<li><strong>Base Options:</strong> Pick a classic graphic - or - Create a custom 10 Letter knife-cut base. Keep it classy!</li>
+						<li><strong>Personalized Badge:</strong> Customize and claim your board with a 26 character custom laser cut badge.</li>
+						<li><strong>Buy:</strong> Lib Tech’s Bitchin’ Board Builders will hand build your dream board and ship it to you! Order through your local core retailer and receive $25 off! See retailer for details and applicable codes.</li>
+					</ul>
+					<p>* The finished board may not appear exactly as it is shown on the screen. DIY board orders take 3-6 weeks to build and ship for United States/Canada, 6-9 weeks for all other countries, for a list of countries we ship DIY boards <a href="/snowboarding/snowboard-builder/international-countries/" target="_blank">click here</a>. DIY board orders will be charged upon order confirmation. No returns or refunds on customized boards will be accepted or given.</p>
+				</div>
+				<div class="right-column">
+					<a href="#get-started" class="h3">Get Started</a>
+					<div class="overview-video">
+						<iframe src="http://player.vimeo.com/video/74484020?title=0&amp;byline=0&amp;portrait=0&amp;color=fff100" width="500" height="281" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+					</div>
+				</div>
+			</div>
+		</div><!-- END #overview -->
 	    <div id="header">	
     		<div id="topTwo"><p class="pOne">1</p><p class="pTwo">2</p></div>
     		<div id="topLogo"><a href="/snowboarding/" target="_blank"><img src="<?php bloginfo('template_directory'); ?>/_/img/bb/header-diy-logo.png" alt="Lib Tech DIY Board Builder" /></a></div>
     		<div id="topFlag"><a href="#region-selector"><img src="<?php bloginfo('template_directory'); ?>/_/img/bb/header-flag.png" alt="Handcrafted in the USA" /></a></div>
     		<div id="topSection">SELECT BOARD - SHAPE &amp; CONTOUR</div>
     		<div id="topSectionRight"></div>
-	    </div>
+	    </div><!-- END #header -->
 	    <div id="leftmenu">
 			<div id="menuClose">
 				<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/X-button.png">
@@ -479,6 +504,7 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 	<!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if necessary -->
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery-1.10.2.min.js"><\/script>')</script>
+	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery.fitvids.js"></script>
 	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery.bxslider.min.js"></script>
 	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/TweenMax.min.js"></script>
  	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/libtech.main.js"></script>

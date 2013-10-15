@@ -481,18 +481,35 @@ LIBTECH.snowboardbuilder = {
 	                LIBTECH.main.regionSelectorOverlayInit();
 	            }
 	        });
-			// set the first section
-			self.setCurrentSection();
-			// trigger resize
-	        if (self.config.isMobile) {
-				self.resizeForMobile();
-			} else {
-				self.resizeForDesktop();
-			}
-			// set region
-			if (LIBTECH.main.utilities.cookie.getCookie('libtech_region') != "" && LIBTECH.main.utilities.cookie.getCookie('libtech_region') != undefined) {
-				self.bbSetRegion(LIBTECH.main.utilities.cookie.getCookie('libtech_region'));
-			}
+	        // init the overview
+	        $('#overview .overview-content .right-column a').on('click', function (e) {
+	        	e.preventDefault();
+	        	// hide overview
+	        	$('#overview').animate({
+					opacity: '0'
+				}, {
+					duration: 700,
+					complete: function () {
+						$('#overview').hide();
+						$('#overview .overview-content .right-column a').off('click');
+					}
+				});
+				// set the first section
+				self.setCurrentSection();
+				// trigger resize
+		        if (self.config.isMobile) {
+					self.resizeForMobile();
+				} else {
+					self.resizeForDesktop();
+				}
+				// set region
+				if (LIBTECH.main.utilities.cookie.getCookie('libtech_region') != "" && LIBTECH.main.utilities.cookie.getCookie('libtech_region') != undefined) {
+					self.bbSetRegion(LIBTECH.main.utilities.cookie.getCookie('libtech_region'));
+				}
+	        });
+	        // make sure overview video fits
+	        $('#overview .overview-content .right-column .overview-video').fitVids();
+
 			// hide the div blocker
 			$('#divBlocker').delay(300).animate({
 				opacity: '0'
