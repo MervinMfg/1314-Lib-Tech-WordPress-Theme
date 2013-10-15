@@ -230,26 +230,6 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 							<div class="table-data"></div>
 						</div>
 					</div>
-					<!--
-					<div class="boardItemHolder">
-						<div class="boardText1">
-							<div id="s2shapeTitle"></div>
-							<div class="s2shapedescription"></div>
-							<div class="s2shapedescriptiondetail"></div>
-							<div id="s2contour"></div>
-							<div id="s2contourdetail"></div>
-						</div>
-						<div class="boardText2">
-							<h3 class="size-cta">SELECT SIZE</h3>
-							<div id="s2-size-holder">
-								<div class="s2-sizes"></div>
-							</div>
-							<div id="s2DetailTable">
-								<div id="s2DetailTableData"></div>
-							</div>
-						</div>
-					</div>
-					-->
 				</div>
 			</li>
 			<!-- STEP 3 - TOP SHEET -->
@@ -258,15 +238,15 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 		  			<div class="carousel-container">
 						<div class="carousel">
 							<ul>
-								<li class="item"><img data-count="1" artist="Parillo" desc="Red" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/art/PARILLO-RED.png" class="responsive-image board-top-image" /></li>
-								<li class="item"><img data-count="1" artist="Parillo" desc="Blue" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/art/PARILLO-BLUE.png" class="responsive-image board-top-image" /></li>
-								<li class="item"><img data-count="1" artist="Parillo" desc="Pink" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/art/PARILLO-PINK.png" class="responsive-image board-top-image" /></li>
+								<li class="item"><img data-count="1" artist="Tetons" desc="Red" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/art/TETONS-RED.png" class="responsive-image board-top-image" /></li>
+								<li class="item"><img data-count="1" artist="Tetons" desc="Blue" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/art/TETONS-BLUE.png" class="responsive-image board-top-image" /></li>
+								<li class="item"><img data-count="1" artist="Tetons" desc="Pink" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/art/TETONS-PINK.png" class="responsive-image board-top-image" /></li>
 								<li class="item"><img data-count="2" artist="Jamie" desc="Girl" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/art/JAMIE-GIRL.png" class="responsive-image board-top-image" /></li>
 								<li class="item"><img data-count="3" artist="Jamie" desc="Wave" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/art/JAMIE-WAVE.png" class="responsive-image board-top-image" /></li>
-								<li class="item"><img data-count="4" artist="Russian" desc="Red" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/art/RUSSIAN-RED.png" class="responsive-image board-top-image" /></li>
-								<li class="item"><img data-count="5" artist="Quigg" desc="Guitar"src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/art/QUIGG-GUITAR.png" class="responsive-image board-top-image" /></li>
-								<li class="item"><img data-count="6" artist="Davis" desc="Green" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/art/DAVIS-GREEN.png" class="responsive-image board-top-image" /></li>
-								<li class="item"><img data-count="6" artist="Davis" desc="Blue" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/art/DAVIS-BLUE.png" class="responsive-image board-top-image" /></li>
+								<li class="item"><img data-count="4" artist="Hummingbird" desc="Red" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/art/HUMMINGBIRD-RED.png" class="responsive-image board-top-image" /></li>
+								<li class="item"><img data-count="5" artist="Guitar" desc="Skull" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/art/GUITAR-SKULL.png" class="responsive-image board-top-image" /></li>
+								<li class="item"><img data-count="6" artist="Poly" desc="Green" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/art/POLY-GREEN.png" class="responsive-image board-top-image" /></li>
+								<li class="item"><img data-count="6" artist="Poly" desc="Blue" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/art/POLY-BLUE.png" class="responsive-image board-top-image" /></li>
 								<li class="item"><img data-count="7" artist="Skeleton" desc="Yellow" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/art/SKELETON-YELLOW.png" class="responsive-image board-top-image" /></li>
 								<li class="item"><img data-count="7" artist="Skeleton" desc="Blue" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/art/SKELETON-BLUE.png" class="responsive-image board-top-image" /></li>
 								<li class="item"><img data-count="7" artist="Skeleton" desc="Pink" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/art/SKELETON-PINK.png" class="responsive-image board-top-image" /></li>
@@ -302,15 +282,15 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 						<div class="carousel">
 							<ul>
 								<li class="item"><img data-count="0" artist="Custom" desc="Custom" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-base/art/KNIFE-CUT.png" class="responsive-image board-base-image" id="customBase" /></li>
-								<li class="item"><img data-count="1" artist="Parillo" desc="Red" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-base/art/PARILLO-RED.png" class="responsive-image board-base-image" /></li>
-								<li class="item"><img data-count="1" artist="Parillo" desc="Blue"  src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-base/art/PARILLO-BLUE.png" class="responsive-image board-base-image" /></li>
-								<li class="item"><img data-count="1" artist="Parillo" desc="Pink"  src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-base/art/PARILLO-PINK.png" class="responsive-image board-base-image" /></li>
+								<li class="item"><img data-count="1" artist="Tetons" desc="Red" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-base/art/TETONS-RED.png" class="responsive-image board-base-image" /></li>
+								<li class="item"><img data-count="1" artist="Tetons" desc="Blue"  src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-base/art/TETONS-BLUE.png" class="responsive-image board-base-image" /></li>
+								<li class="item"><img data-count="1" artist="Tetons" desc="Pink"  src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-base/art/TETONS-PINK.png" class="responsive-image board-base-image" /></li>
 								<li class="item"><img data-count="2" artist="Jamie" desc="Girl"  src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-base/art/JAMIE-GIRL.png" class="responsive-image board-base-image" /></li>
 								<li class="item"><img data-count="2" artist="Jamie" desc="Wave"  src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-base/art/JAMIE-WAVE.png" class="responsive-image board-base-image"/></li>
-								<li class="item"><img data-count="4" artist="Russian" desc="Red"  src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-base/art/RUSSIAN-RED.png" class="responsive-image board-base-image" /></li>
-								<li class="item"><img data-count="5" artist="Quigg" desc="Guitar" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-base/art/QUIGG-GUITAR.png" class="responsive-image board-base-image" /></li>
-								<li class="item"><img data-count="6" artist="Davis" desc="Green"  src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-base/art/DAVIS-GREEN.png" class="responsive-image board-base-image" /></li>
-								<li class="item"><img data-count="6" artist="Davis" desc="Blue"  src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-base/art/DAVIS-BLUE.png" class="responsive-image board-base-image" /></li>
+								<li class="item"><img data-count="4" artist="Hummingbird" desc="Red"  src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-base/art/HUMMINGBIRD-RED.png" class="responsive-image board-base-image" /></li>
+								<li class="item"><img data-count="5" artist="Guitar" desc="Skull" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-base/art/GUITAR-SKULL.png" class="responsive-image board-base-image" /></li>
+								<li class="item"><img data-count="6" artist="Poly" desc="Green"  src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-base/art/POLY-GREEN.png" class="responsive-image board-base-image" /></li>
+								<li class="item"><img data-count="6" artist="Poly" desc="Blue"  src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-base/art/POLY-BLUE.png" class="responsive-image board-base-image" /></li>
 								<li class="item"><img data-count="7" artist="Skeleton" desc="Grey"  src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-base/art/SKELETON-GREY.png" class="responsive-image board-base-image" /></li>
 								<li class="item"><img data-count="8" artist="Logo" desc="Black"  src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-base/art/LOGO-BLACK.png" class="responsive-image board-base-image" /></li>
 								<li class="item"><img data-count="8" artist="Logo" desc="White"  src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-base/art/LOGO-WHITE.png" class="responsive-image board-base-image" /></li>
