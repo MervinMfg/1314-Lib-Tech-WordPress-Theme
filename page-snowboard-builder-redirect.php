@@ -16,7 +16,7 @@ if( isset($_GET['shape']) && isset($_GET['size']) && isset($_GET['top']) && isse
 		$redirect_url .= "&top=" . $_GET['top'];
 		$redirect_url .= "&sidewall=" . $_GET['sidewall'];
 		$redirect_url .= "&base=" . $_GET['base'];
-		$redirect_url .= "&badge=" . $_GET['badge'];
+		$redirect_url .= "&badge=" . urlencode($_GET['badge']);
 	} else if ( isset($_GET['kt']) && isset($_GET['kbc']) && isset($_GET['ktc']) ) {
 		// change to share title
 		$page_title = "I built my own Lib Tech Snowboard with the DIY Board Builder! - Build your dream snowboard!";
@@ -25,10 +25,10 @@ if( isset($_GET['shape']) && isset($_GET['size']) && isset($_GET['top']) && isse
 		$redirect_url .= "&size=" . $_GET['size'];
 		$redirect_url .= "&top=" . $_GET['top'];
 		$redirect_url .= "&sidewall=" . $_GET['sidewall'];
-		$redirect_url .= "&kt=" . $_GET['kt'];
+		$redirect_url .= "&kt=" . urlencode($_GET['kt']);
 		$redirect_url .= "&kbc=" . $_GET['kbc'];
 		$redirect_url .= "&ktc=" . $_GET['ktc'];
-		$redirect_url .= "&badge=" . $_GET['badge'];
+		$redirect_url .= "&badge=" . urlencode($_GET['badge']);
 	}
 }
 ?>
