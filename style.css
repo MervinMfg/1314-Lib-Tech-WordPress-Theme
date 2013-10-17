@@ -256,7 +256,7 @@ a:hover, a:focus, a.selected { color: #fff; text-decoration: underline; }
 
 /* Header Styles
 -------------------------------------------------------------------------------*/
-header { position: relative; border-top: solid 1px #999; overflow: hidden; }
+header { position: relative; border-top: solid 1px #999; overflow: hidden; -webkit-transform: translateZ(0); /* fix Safari 5.x issue where elements get hidden because of css transitions */ }
 header a, header .snow a, header .ski a, header .surf a, header .skate a { color: #fff; }
 header a:hover, header a:focus, header .current-menu-item a { color: yellow; text-decoration: none; }
 header .snow a:hover, header .snow a:focus, header .snow.current-menu-item a, header .snow .current-menu-item a { color: yellow; }
@@ -316,7 +316,7 @@ header .nav-utility #quick-cart a:hover span, header .nav-utility #quick-cart a:
 .skate header .nav-utility a:hover { color: #66cc00; }
 
 .region-selector { float: left; padding-right: 10px; display: none; }
-.region-selector li a { display: block; width: 38px; height: 20px; text-indent: -999999px; background: url("_/img/sprite.png"); display: none; }
+.region-selector li a { display: block; width: 38px; height: 20px; background: url("_/img/sprite.png"); display: none; text-indent: 100%; white-space: nowrap; overflow: hidden; }
 .region-selector .country-us { background-position: 0px 0px; }
 .region-selector .country-ca { background-position: 0px -40px; }
 .region-selector .country-int { background-position: 0px -80px; }
@@ -324,9 +324,10 @@ header .nav-utility #quick-cart a:hover span, header .nav-utility #quick-cart a:
 
 /* Footer Styles
 -------------------------------------------------------------------------------*/
-footer { background: #999999 url("_/img/bg-footer.jpg") center top; clear: both; }
+footer { background: #999999 url("_/img/bg-footer.jpg") center top; clear: both; -webkit-backface-visibility: hidden; }
 footer .footer-top { background: #333333 url("_/img/bg-footer-top.jpg") repeat-x center top; width: 100%; height: 10px; }
 footer .footer-wrapper { padding: 20px; position: relative; }
+footer .footer-wrapper * { -webkit-transform: translateZ(0); /* fix Safari 5.x issue where elements get hidden because of css transitions */ }
 footer .h2 { color: #000; font-size: 1.375em; /* 22 / 16 */ padding-bottom: 10px; }
 footer a { color: #333 !important; font-style: normal; font-weight: 700; text-transform: uppercase; font-size: .875em; /* 14 / 16 */ }
 footer a:hover { color: #fff !important; }
@@ -345,7 +346,7 @@ footer .footer-copy { font-size: .75em; /* 12 / 16 */ color: #333; font-weight: 
 .ski footer .h2, .surf footer .h2, .skate footer .h2 { color: #000; }
 
 .social-links li { padding: 0 5px 5px 0; float: left; }
-.social-links li a { background: url("_/img/sprite.png"); width: 31px; height: 31px; display: block; text-indent: -999999px; }
+.social-links li a { background: url("_/img/sprite.png"); width: 31px; height: 31px; display: block; text-indent: 100%; white-space: nowrap; overflow: hidden; }
 .social-links li a:hover, .social-links li a:focus { opacity: 0.8; filter: alpha(opacity=80); }
 .social-links li a.facebook { background-position: -219px 0; }
 .social-links li a.twitter { background-position: -254px 0; }
