@@ -370,8 +370,10 @@ LIBTECH.main = {
             pager: false,
             mode: 'horizontal',
             adaptiveHeight: false,
+            infiniteLoop: false,
+            hideControlOnEnd: true,
             onSliderLoad: function (currentIndex) {
-                $('.featured-product-slider .bxslider > li').eq(currentIndex+1).addClass('active');
+                $('.featured-product-slider .bxslider > li').eq(currentIndex).addClass('active');
             },
             onSlideBefore: function (slideElement, oldIndex, newIndex){
                 $('.featured-product-slider .bxslider > li').removeClass('active');

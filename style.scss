@@ -1571,6 +1571,10 @@ body.international .shopping-cart .section-content {
 			}
 			.bx-viewport {
 				background: none;
+
+				* {
+					-webkit-transform: translateZ(0); /* fix Safari flicker on css transitions */
+				}
 			}
 		}
 

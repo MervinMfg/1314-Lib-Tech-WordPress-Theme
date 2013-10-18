@@ -512,6 +512,7 @@ body.international .shopping-cart .section-content .int-cart-details { display: 
 .featured-product-slider .section-content .bx-wrapper { padding: 20px; }
 .featured-product-slider .section-content .bx-wrapper .bx-loading { background: none; }
 .featured-product-slider .section-content .bx-wrapper .bx-viewport { background: none; }
+.featured-product-slider .section-content .bx-wrapper .bx-viewport * { -webkit-transform: translateZ(0); /* fix Safari flicker on css transitions */ }
 .featured-product-slider .section-content ul.product-listing > li { opacity: .2; transition: opacity 1000ms ease-in-out; -webkit-transition: opacity 1000ms ease-in-out; -moz-transition: opacity 1000ms ease-in-out; -o-transition: opacity 1000ms ease-in-out; }
 .featured-product-slider .section-content ul.product-listing > li.active { opacity: 1; }
 .featured-product-slider .section-content ul.product-listing > li .product-image { width: 30%; float: left; overflow: hidden; }
