@@ -256,7 +256,7 @@ a:hover, a:focus, a.selected { color: #fff; text-decoration: underline; }
 
 /* Header Styles
 -------------------------------------------------------------------------------*/
-header { position: relative; border-top: solid 1px #999; overflow: hidden; -webkit-transform: translateZ(0); /* fix Safari 5.x issue where elements get hidden because of css transitions */ }
+header { position: relative; border-top: solid 1px #999; overflow: hidden; }
 header a, header .snow a, header .ski a, header .surf a, header .skate a { color: #fff; }
 header a:hover, header a:focus, header .current-menu-item a { color: yellow; text-decoration: none; }
 header .snow a:hover, header .snow a:focus, header .snow.current-menu-item a, header .snow .current-menu-item a { color: yellow; }
@@ -287,11 +287,11 @@ header .nav-sub-wrapper.skate .mobile-btn { background-position: -176px -123px; 
 header .nav-utility { position: absolute; z-index: 100; top: 0; right: 0; padding: 30px 10px 0 0; }
 header .nav-utility a { font-size: 1em; /* 16 */ font-weight: bold; font-style: normal; text-transform: uppercase; }
 header .nav-utility .search { display: none; padding: 3px 0 0 10px; }
-header .nav-utility .search a { display: block; width: 26px; height: 17px; text-indent: -999999px; background: url("_/img/sprite.png") -130px 0px; }
+header .nav-utility .search a { display: block; width: 26px; height: 17px; background: url("_/img/sprite.png") -130px 0px; text-indent: 100%; white-space: nowrap; overflow: hidden; }
 header .nav-utility .search #header-search { position: absolute; top: 4px; right: 0px; width: 25%; visibility: hidden; opacity: 0; transition: opacity 300ms ease-in-out; -webkit-transition: opacity 300ms ease-in-out; -moz-transition: opacity 300ms ease-in-out; -o-transition: opacity 300ms ease-in-out; }
 header .nav-utility .search #header-search.visible { visibility: visible; opacity: 1; }
 header .nav-utility .search #header-search .text-input { width: 100%; position: absolute; top: 0px; right: -5px; padding-right: 35px; }
-header .nav-utility .search #header-search .submit { width: 26px; height: 17px; text-indent: -999999px; background: url("_/img/sprite.png") -130px -37px; position: absolute; top: 8px; right: 0px; }
+header .nav-utility .search #header-search .submit { width: 26px; height: 17px; background: url("_/img/sprite.png") -130px -37px; position: absolute; top: 8px; right: 0px; text-indent: 100%; white-space: nowrap; overflow: hidden; }
 header .nav-utility .link-dealer { display: none; }
 header .nav-utility .link-account { display: none; padding-right: 10px; }
 header .nav-utility #quick-cart { width: 61px; height: 22px; background: url("_/img/sprite.png") -49px 0px; float: left; }
@@ -324,10 +324,9 @@ header .nav-utility #quick-cart a:hover span, header .nav-utility #quick-cart a:
 
 /* Footer Styles
 -------------------------------------------------------------------------------*/
-footer { background: #999999 url("_/img/bg-footer.jpg") center top; clear: both; -webkit-backface-visibility: hidden; }
+footer { background: #999999 url("_/img/bg-footer.jpg") center top; clear: both; }
 footer .footer-top { background: #333333 url("_/img/bg-footer-top.jpg") repeat-x center top; width: 100%; height: 10px; }
 footer .footer-wrapper { padding: 20px; position: relative; }
-footer .footer-wrapper * { -webkit-transform: translateZ(0); /* fix Safari 5.x issue where elements get hidden because of css transitions */ }
 footer .h2 { color: #000; font-size: 1.375em; /* 22 / 16 */ padding-bottom: 10px; }
 footer a { color: #333 !important; font-style: normal; font-weight: 700; text-transform: uppercase; font-size: .875em; /* 14 / 16 */ }
 footer a:hover { color: #fff !important; }
