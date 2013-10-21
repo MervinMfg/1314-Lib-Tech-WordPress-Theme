@@ -2220,7 +2220,7 @@ LIBTECH.snowboardbuilder = {
 			$('.boardBuy7 .thereciept .board-reciept .sidewall-cost').html("+ $0.00 " + self.config.bbRegionCurrency);
 			// set base
 			if (self.config.isKnifecut) {
-				$('.boardBuy7 .thereciept .board-reciept .base').html("KNIFECUT BASE - <span>" + self.getBoardBaseDesc() + "</span><div class=\"text-color\">TEXT COLOR - <span>" + self.getCustomBaseColor() + "</span></div><div class=\"base-color\">BASE COLOR - <span>" + self.getCustomTextColor() + "</span></div>");
+				$('.boardBuy7 .thereciept .board-reciept .base').html("KNIFECUT BASE - <span>" + self.getBoardBaseDesc() + "</span><div class=\"text-color\">TEXT COLOR - <span>" + self.getCustomTextColor() + "</span></div><div class=\"base-color\">BASE COLOR - <span>" + self.getCustomBaseColor() + "</span></div>");
 				$('.boardBuy7 .thereciept .board-reciept .base-cost').html("+ $" + self.getKnifeCutPrice() + " " + self.config.bbRegionCurrency);
 			} else {
 				$('.boardBuy7 .thereciept .board-reciept .base').html("BASE - <span>" + self.getBoardBase() + " " + self.getBoardBaseDesc() + "</span>");
