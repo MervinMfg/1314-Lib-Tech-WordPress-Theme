@@ -814,6 +814,22 @@ body.international .shopping-cart .section-content .int-cart-details { display: 
 
 .dealer-locator-map { width: 920px; margin: 0 auto; }
 
+/* Gallery styles
+-------------------------------------------------------------------------------*/
+.gallery { margin-bottom: 20px; }
+.gallery .gallery-viewer { position: relative; }
+.gallery .gallery-viewer .gallery-viewer-image { overflow: hidden; text-align: center; background: url(_/img/loader.gif) center center no-repeat; }
+.gallery .gallery-viewer .gallery-viewer-image img { max-height: 600px; }
+.gallery .gallery-viewer .gallery-viewer-caption { text-align: center; }
+.gallery .gallery-viewer .gallery-viewer-caption p { margin: 10px 0; }
+.gallery .gallery-viewer .gallery-viewer-prev, .gallery .gallery-viewer .gallery-viewer-next { position: absolute; top: 50%; margin-top: -36px; outline: 0; width: 42px; height: 32px; text-indent: -9999px; z-index: 9998; cursor: pointer; transition: background 100ms ease-in-out; -webkit-transition: background 100ms ease-in-out; -moz-transition: background 100ms ease-in-out; -o-transition: background 100ms ease-in-out; }
+.gallery .gallery-viewer .gallery-viewer-prev { left: 10px; background: url(_/img/sprite.png) no-repeat 10px -120px; }
+.gallery .gallery-viewer .gallery-viewer-prev:hover, .gallery .gallery-viewer .gallery-viewer-prev:focus { background-position: 0px -120px; }
+.gallery .gallery-viewer .gallery-viewer-next { right: 10px; background: url(_/img/sprite.png) no-repeat -52px -120px; }
+.gallery .gallery-viewer .gallery-viewer-next:hover, .gallery .gallery-viewer .gallery-viewer-next:focus { background-position: -42px -120px; }
+.gallery .gallery-thumbnails .gallery-item .gallery-caption { display: none; }
+.gallery .bx-wrapper .bx-viewport { background: none; }
+
 /* Blog styles
 -------------------------------------------------------------------------------*/
 .blog-posts, .related-posts { padding-left: 20px; padding-right: 20px; }
@@ -863,13 +879,6 @@ body.international .shopping-cart .section-content .int-cart-details { display: 
 .blog-post .section-content .post .entry-content .wp-caption { width: auto !important; }
 .blog-post .section-content .post .entry-content .wp-caption .wp-caption-text { font-weight: bold; }
 .blog-post .section-content .post .entry-content .wp-caption.alignleft, .blog-post .section-content .post .entry-content .wp-caption.alignright, .blog-post .section-content .post .entry-content .wp-caption.aligncenter { text-align: center; }
-.blog-post .section-content .post .entry-content .gallery { margin-bottom: 20px; }
-.blog-post .section-content .post .entry-content .gallery .gallery-viewer .gallery-viewer-image { overflow: hidden; text-align: center; background: url(_/img/loader.gif) center center no-repeat; }
-.blog-post .section-content .post .entry-content .gallery .gallery-viewer .gallery-viewer-image img { max-height: 600px; }
-.blog-post .section-content .post .entry-content .gallery .gallery-viewer .gallery-viewer-caption { text-align: center; }
-.blog-post .section-content .post .entry-content .gallery .gallery-viewer .gallery-viewer-caption p { margin: 10px 0; }
-.blog-post .section-content .post .entry-content .gallery .gallery-thumbnails .gallery-item .gallery-caption { display: none; }
-.blog-post .section-content .post .entry-content .gallery .bx-wrapper .bx-viewport { background: none; }
 .blog-post .section-content .post .entry-content .fluid-width-video-wrapper { clear: both; }
 .blog-post .section-content .post .entry-content iframe.strobbr { width: 100%; }
 .blog-post .section-content .post .entry-categories-tags { margin-bottom: 20px; }
@@ -1331,15 +1340,15 @@ body.international .shopping-cart-wrapper { display: none; }
 .skate .bx-wrapper .bx-pager.bx-default-pager a:hover, .skate .bx-wrapper .bx-pager.bx-default-pager a:focus, .skate .bx-wrapper .bx-pager.bx-default-pager a.active { background: #66cc00; }
 
 /* DIRECTION CONTROLS (NEXT / PREV) */
-.bx-wrapper .bx-prev { left: 10px; background: url(_/img/sprite.png) no-repeat -171px -158px; transition: background 100ms ease-in-out; -webkit-transition: background 100ms ease-in-out; -moz-transition: background 100ms ease-in-out; -o-transition: background 100ms ease-in-out; }
+.bx-wrapper .bx-prev { left: 10px; background: url(_/img/sprite.png) no-repeat 10px -120px; transition: background 100ms ease-in-out; -webkit-transition: background 100ms ease-in-out; -moz-transition: background 100ms ease-in-out; -o-transition: background 100ms ease-in-out; }
 
-.bx-wrapper .bx-next { right: 10px; background: url(_/img/sprite.png) no-repeat -171px -158px; transition: background 100ms ease-in-out; -webkit-transition: background 100ms ease-in-out; -moz-transition: background 100ms ease-in-out; -o-transition: background 100ms ease-in-out; }
+.bx-wrapper .bx-next { right: 10px; background: url(_/img/sprite.png) no-repeat -52px -120px; transition: background 100ms ease-in-out; -webkit-transition: background 100ms ease-in-out; -moz-transition: background 100ms ease-in-out; -o-transition: background 100ms ease-in-out; }
 
-.bx-wrapper .bx-prev:hover, .bx-wrapper .bx-prev:focus { background-position: -176px -158px; }
+.bx-wrapper .bx-prev:hover, .bx-wrapper .bx-prev:focus { background-position: 0px -120px; }
 
-.bx-wrapper .bx-next:hover, .bx-wrapper .bx-next:focus { background-position: -166px -158px; }
+.bx-wrapper .bx-next:hover, .bx-wrapper .bx-next:focus { background-position: -42px -120px; }
 
-.bx-wrapper .bx-controls-direction a { position: absolute; top: 50%; margin-top: -16px; outline: 0; width: 32px; height: 32px; text-indent: -9999px; z-index: 9998; }
+.bx-wrapper .bx-controls-direction a { position: absolute; top: 50%; margin-top: -16px; outline: 0; width: 42px; height: 32px; text-indent: -9999px; z-index: 9998; }
 
 .bx-wrapper .bx-controls-direction a.disabled { display: none; }
 

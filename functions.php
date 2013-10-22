@@ -366,7 +366,7 @@ function lib_gallery_shortcode($attr) {
         return $output;
     }
     $selector = "gallery-{$instance}";
-    $output = "<div id=\"$selector\" class=\"gallery galleryid-{$id}\">\n\t<div class=\"gallery-viewer\">\n\t\t<div class=\"gallery-viewer-image\"></div>\n\t\t<div class=\"gallery-viewer-caption\"></div>\n\t</div>\n\t<ul class=\"gallery-thumbnails\">\n";
+    $output = "<div id=\"$selector\" class=\"gallery galleryid-{$id}\">\n\t<div class=\"gallery-viewer\">\n\t\t<div class=\"gallery-viewer-image\"></div>\n\t\t<div class=\"gallery-viewer-caption\"></div>\n\t\t<div class=\"gallery-viewer-prev\"></div>\n\t\t<div class=\"gallery-viewer-next\"></div>\n\t</div>\n\t<ul class=\"gallery-thumbnails\">\n";
     $i = 0;
     foreach ( $attachments as $id => $attachment ) {
         // always make it grab the link to the file
