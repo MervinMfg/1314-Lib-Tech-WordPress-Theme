@@ -809,15 +809,6 @@ LIBTECH.main = {
     },
     blogSingleInit: function () {
         var self = this;
-        $(".blog-post .entry-content").fitVids();
-        // init gallery
-        if ($('.gallery')) {
-            self.utilities.galleryInit();
-            // listen for update and fix break when taller image is loaded
-            $( ".gallery" ).on( "galleryUpdate", function( e ) {
-                checkPageWidth();
-            });
-        }
         // BEGIN CODE FOR 2 COLUMN LAYOUT THAT FIXES POSITIONS WHEN SCROLLED PAST
         // check browser width and perform appropriate actions on 2 column layout
         function checkPageWidth() {
@@ -961,6 +952,22 @@ LIBTECH.main = {
         $(window).on('resize load', function () {
             adjustStrobbr();
             checkPageWidth(); // on resize check what the width of the browser is for fixed scroll elements
+        });
+        $(".blog-post .entry-content").fitVids();
+        // init gallery
+        if ($('.gallery')) {
+            self.utilities.galleryInit();
+            // listen for update and fix break when taller image is loaded
+            $( ".gallery" ).on( "galleryUpdate", function( e ) {
+                checkPageWidth();
+            });
+        }
+        // check for facebook plugin loads, such as facebook embeds
+        $(window).on('load', function () {
+            FB.Event.subscribe('xfbml.render', function() {
+                // facebook content has been rendered
+                checkPageWidth(); // listen for update and fix break when taller content is loaded
+            });
         });
     },
     teamDetailsInit: function () {
