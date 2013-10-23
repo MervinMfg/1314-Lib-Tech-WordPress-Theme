@@ -1349,7 +1349,7 @@ LIBTECH.main = {
                     // wait for load and set the correct height
                     $(".gallery .gallery-viewer .gallery-viewer-image img").one('load', function() {
                         var imgHeight = $('.gallery .gallery-viewer .gallery-viewer-image img').height();
-                        $('.gallery .gallery-viewer .gallery-viewer-image').animate({height: imgHeight}, 500, function() {
+                        $('.gallery .gallery-viewer .gallery-viewer-image').stop().animate({height: imgHeight}, 500, function() {
                             $( ".gallery").trigger( "galleryUpdate" ); // let anything listening know the gallery has been updated
                         });
                         $( ".gallery").trigger( "galleryUpdate" ); // let anything listening know the gallery has been updated

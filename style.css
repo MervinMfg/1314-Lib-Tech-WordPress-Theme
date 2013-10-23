@@ -817,7 +817,7 @@ body.international .shopping-cart .section-content .int-cart-details { display: 
 /* Gallery styles
 -------------------------------------------------------------------------------*/
 .gallery { margin-bottom: 20px; }
-.gallery .gallery-viewer { position: relative; }
+.gallery .gallery-viewer { position: relative; min-height: 100px; }
 .gallery .gallery-viewer .gallery-viewer-image { overflow: hidden; text-align: center; background: url(_/img/loader.gif) center center no-repeat; }
 .gallery .gallery-viewer .gallery-viewer-image img { max-height: 600px; }
 .gallery .gallery-viewer .gallery-viewer-caption { text-align: center; }
