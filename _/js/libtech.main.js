@@ -1228,8 +1228,6 @@ LIBTECH.main = {
             if ($('.gallery')) {
                 // determine total items in gallery
                 totalItems = $('.gallery .gallery-thumbnails li').length;
-                // determine max slide index you can advance to based on visible width of gallery
-                maxSlideIndex = Math.floor( ((110*totalItems - 10) - $('.gallery').width()) / 220 );
                 // set up gallery slider for thumbnails
                 gallerySlider = $('.gallery .gallery-thumbnails').bxSlider({
                     slideWidth: 100,
@@ -1287,7 +1285,7 @@ LIBTECH.main = {
                     $('.gallery .gallery-viewer .gallery-viewer-image').animate({height: imgHeight}, 500);
                 });
                 function showNext () {
-                    var currentIndex, newIndex;
+                    var currentIndex, newIndex, maxSlideIndex;
                     // find current item
                     currentIndex = $('.gallery .gallery-thumbnails li .gallery-icon a.selected').parent().parent().index();
                     // determine next index
@@ -1299,6 +1297,8 @@ LIBTECH.main = {
                     $('.gallery .gallery-thumbnails li').eq(newIndex).find('.gallery-icon a').click();
                     // determine slider index
                     slideIndex = Math.ceil((newIndex + 1) / 2) -1;
+                    // determine max slide index you can advance to based on visible width of gallery
+                    maxSlideIndex = Math.floor( ((110*totalItems - 10) - $('.gallery').width()) / 220 );
                     // don't let slide index exceed max index based on browser width, we move 2 at a time
                     if (slideIndex > maxSlideIndex) {
                         slideIndex = maxSlideIndex;
@@ -1307,7 +1307,7 @@ LIBTECH.main = {
                     gallerySlider.goToSlide(slideIndex);
                 }
                 function showPrevious () {
-                    var currentIndex, newIndex;
+                    var currentIndex, newIndex, maxSlideIndex;
                     // find current item
                     currentIndex = $('.gallery .gallery-thumbnails li .gallery-icon a.selected').parent().parent().index();
                     // determine next index
@@ -1319,6 +1319,8 @@ LIBTECH.main = {
                     $('.gallery .gallery-thumbnails li').eq(newIndex).find('.gallery-icon a').click();
                     // determine slider index
                     slideIndex = Math.ceil((newIndex + 1) / 2) -1;
+                    // determine max slide index you can advance to based on visible width of gallery
+                    maxSlideIndex = Math.floor( ((110*totalItems - 10) - $('.gallery').width()) / 220 );
                     // don't let slide index exceed max index based on browser width, we move 2 at a time
                     if (slideIndex > maxSlideIndex) {
                         slideIndex = maxSlideIndex;
