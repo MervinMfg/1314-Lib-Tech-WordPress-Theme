@@ -881,6 +881,8 @@ body.international .shopping-cart .section-content .int-cart-details { display: 
 .blog-post .section-content .post .entry-content .wp-caption.alignleft, .blog-post .section-content .post .entry-content .wp-caption.alignright, .blog-post .section-content .post .entry-content .wp-caption.aligncenter { text-align: center; }
 .blog-post .section-content .post .entry-content .fluid-width-video-wrapper { clear: both; }
 .blog-post .section-content .post .entry-content iframe.strobbr { width: 100%; }
+.blog-post .section-content .post .entry-content ol, .blog-post .section-content .post .entry-content ul { padding: 0 0 20px 20px; }
+.blog-post .section-content .post .entry-content .strobbr-list { padding: 0 0 20px 0; }
 .blog-post .section-content .post .entry-categories-tags { margin-bottom: 20px; }
 .blog-post .section-content .post .discussion { padding-left: 0; padding-right: 0; clear: both; }
 .blog-post .section-content #sidebar .social-links { padding-top: 40px; }
