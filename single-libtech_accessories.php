@@ -66,9 +66,19 @@ Template Name: Accessories Detail
 					<h3><?php the_field('libtech_product_slogan'); ?></h3>
 					<div class="image-list-thumbs <?php if(count($thumbnailImages) < 2){ echo 'hidden'; }?>">
 						<ul id="image-list-thumbs">
-							<?php if($thumbnailImages): $i = 0; foreach ($thumbnailImages as $thumbnail) { ?>
+							<?php
+							if($thumbnailImages):
+								$i = 0;
+								foreach ($thumbnailImages as $thumbnail) {
+									$imageAlt = "";
+									if(get_the_title() == $thumbnail[2] || $thumbnail[2] == "N/A") {
+										$imageAlt = get_the_title();
+									} else {
+										$imageAlt = get_the_title() . " - " . $thumbnail[2];
+									}
+							?>
 
-							<li><a href="<?php echo $thumbnail[1][0]; ?>" title="<?php the_title(); ?> - <?php echo $thumbnail[2]; ?>" data-sku="<?php echo $thumbnail[2]; ?>" data-slide-index="<?php echo $i; ?>"><img src="<?php echo $thumbnail[0][0]; ?>" alt="<?php the_title(); ?> - <?php echo $thumbnail[2]; ?>" width="<?php echo $thumbnail[0][1]; ?>" height="<?php echo $thumbnail[0][2]; ?>" /></a></li>
+							<li><a href="<?php echo $thumbnail[1][0]; ?>" title="<?php the_title(); ?> - <?php echo $thumbnail[2]; ?>" data-sku="<?php echo $thumbnail[2]; ?>" data-slide-index="<?php echo $i; ?>"><img src="<?php echo $thumbnail[0][0]; ?>" alt="<?php echo $imageAlt; ?>" width="<?php echo $thumbnail[0][1]; ?>" height="<?php echo $thumbnail[0][2]; ?>" /></a></li>
 							
 							<?php $i ++; }; endif; ?>
 						</ul>
@@ -170,7 +180,7 @@ Template Name: Accessories Detail
 		</section>
 		<section class="product-zoom bg-product-details">
         	<div class="section-content">
-        		<div class="zoom-title h2"></div>
+        		<div class="zoom-title"></div>
         		<div class="zoom-image">
         			<img src="" />
         		</div>

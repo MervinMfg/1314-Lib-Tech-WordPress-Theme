@@ -2132,6 +2132,10 @@ body.international .shopping-cart .section-content {
 			text-align: center;
 			max-width: 45%;
 			margin: 0 auto;
+
+			.h5 {
+				color: #fff;
+			}
 		}
 		.zoom-image {
 			img {
@@ -2155,6 +2159,10 @@ body.international .shopping-cart .section-content {
 			}
 			ul {
 				clear: both;
+
+				&.hidden {
+					display: none;
+				}
 				li {
 					float: left;
 					padding: 0 0 10px;

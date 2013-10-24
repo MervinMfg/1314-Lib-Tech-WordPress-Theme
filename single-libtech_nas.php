@@ -46,6 +46,25 @@ Template Name: NAS Detail
 									$productSkus .= ", ";
 								}
 							}
+							// build array of sizes
+							$variationSizes = Array();
+							if(get_field('libtech_nas_variations')):
+								while(the_repeater_field('libtech_nas_variations')):
+									$variationLength = get_sub_field('libtech_nas_variations_length');
+									// add size to array
+									array_push($variationSizes, $variationLength);
+								endwhile;
+							endif;
+							// sort sizes
+							array_multisort($variationSizes, SORT_ASC);
+							// setup sizes text display
+							$sizes = "";
+							for ($i = 0; $i < count($variationSizes); $i++) {
+								$sizes .= $variationSizes[$i];
+								if($i < count($variationSizes)-1){
+									$sizes .= ", ";
+								}
+							}
 			       		?>
 			       		<li><a href="<?php echo $productImageFull[0]; ?>" title="<?php the_title(); ?>"><img src="<?php echo $productImageMedium[0]; ?>" alt="<?php the_title(); ?>" width="<?php echo $productImageMedium[1]; ?>" height="<?php echo $productImageMedium[2]; ?>" /></a></li>
 					</ul>
@@ -55,7 +74,7 @@ Template Name: NAS Detail
 					<h3><?php the_field('libtech_product_slogan'); ?></h3>
 					<div class="image-list-thumbs hidden">
 						<ul id="image-list-thumbs">
-							<li><a href="<?php echo $productImageFull[0]; ?>" title="<?php the_title(); ?>" data-sku="<?php echo $productSkus; ?>" data-slide-index="<?php echo $i; ?>"><img src="<?php echo $productImageThumb[0]; ?>" alt="<?php the_title(); ?>" width="<?php echo $productImageThumb[1]; ?>" height="<?php echo $productImageThumb[2]; ?>" /></a></li>
+							<li><a href="<?php echo $productImageFull[0]; ?>" title="<?php the_title(); ?>" data-sku="<?php echo $productSkus; ?>" data-slide-index="<?php echo $i; ?>"><img src="<?php echo $productImageThumb[0]; ?>" alt="<?php the_title(); ?>" data-sub-alt="Sizes: <?php echo $sizes; ?>" width="<?php echo $productImageThumb[1]; ?>" height="<?php echo $productImageThumb[2]; ?>" /></a></li>
 						</ul>
 					</div>
 					<div class="product-price">
@@ -92,27 +111,6 @@ Template Name: NAS Detail
 					<ul class="product-quick-specs">
 						<li><span>Shape</span> <?php the_field('libtech_nas_shape'); ?></li>
 						<li><span>Contour</span> <?php the_field('libtech_nas_contour'); ?></li>
-						<?php
-							// build array of sizes
-							$variationSizes = Array();
-							if(get_field('libtech_nas_variations')):
-								while(the_repeater_field('libtech_nas_variations')):
-									$variationLength = get_sub_field('libtech_nas_variations_length');
-									// add size to array
-									array_push($variationSizes, $variationLength);
-								endwhile;
-							endif;
-							// sort sizes
-							array_multisort($variationSizes, SORT_ASC);
-							// setup sizes text display
-							$sizes = "";
-							for ($i = 0; $i < count($variationSizes); $i++) {
-								$sizes .= $variationSizes[$i];
-								if($i < count($variationSizes)-1){
-									$sizes .= ", ";
-								}
-							}
-						?>
 						<li><span>Sizes:</span> <?php echo $sizes; ?></li>
 					</ul>
 					<ul class="product-share">
@@ -127,7 +125,7 @@ Template Name: NAS Detail
 		</section>
 		<section class="product-zoom bg-product-details">
         	<div class="section-content">
-        		<div class="zoom-title h2"></div>
+        		<div class="zoom-title"></div>
         		<div class="zoom-image">
         			<img src="" />
         		</div>

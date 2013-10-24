@@ -583,9 +583,14 @@ LIBTECH.main = {
             // reset style and classes on thumbnails
             $('#zoom-thumbnails li').attr('style', '');
             $('#zoom-thumbnails li a').attr('class', '');
+            // determine if there is only 1 thumbnail, if so hide
+            if($('#image-list-thumbs li').length == 1){
+                $('#zoom-thumbnails').addClass('hidden');
+            }
             // listen for clicks on thumbnails to load proper image
             $('#zoom-thumbnails li a').on('click.productZoom', function (e) {
                 e.preventDefault();
+                var zoomTitle, zoomAlt, zoomSubAlt;
                 // change source of zoom image
                 $('.product-zoom .zoom-image img').attr('src', $(this).attr('href'));
                 // remove active class from all and add to selected
@@ -594,7 +599,15 @@ LIBTECH.main = {
                 });
                 $(this).addClass('active');
                 // update title above product
-                $('.product-zoom .zoom-title').html($(this).children('img').attr('alt'));
+                zoomTitle = "";
+                zoomAlt = $(this).children('img').attr('alt');
+                zoomSubAlt = $(this).children('img').attr('data-sub-alt');
+                if(zoomSubAlt == "" || zoomSubAlt == undefined) {
+                    zoomTitle = "<div class=\"h2\">" + zoomAlt + "</div>";
+                } else {
+                    zoomTitle = "<div class=\"h2\">" + zoomAlt + "</div>" + "<div class=\"h5\">" + zoomSubAlt + "</div>";
+                }
+                $('.product-zoom .zoom-title').html(zoomTitle);
             });
             // trigger click of correct indexed image
             $('#zoom-thumbnails li a:eq(' + clickIndex + ')').click();

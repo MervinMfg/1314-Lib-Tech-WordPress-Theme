@@ -658,10 +658,12 @@ body.international .shopping-cart .section-content .int-cart-details { display: 
 .product-zoom { display: none; }
 .product-zoom .section-content { position: relative; min-height: 250px; }
 .product-zoom .section-content .zoom-title { text-align: center; max-width: 45%; margin: 0 auto; }
+.product-zoom .section-content .zoom-title .h5 { color: #fff; }
 .product-zoom .section-content .zoom-image img { width: 100%; }
 .product-zoom .section-content .zoom-controls { position: absolute; top: 0; right: 20px; width: 200px; text-align: center; }
 .product-zoom .section-content .zoom-controls .zoom-close { padding: 5px 10px; color: #000; background: yellow; display: inline-block; clear: both; margin-bottom: 40px; }
 .product-zoom .section-content .zoom-controls ul { clear: both; }
+.product-zoom .section-content .zoom-controls ul.hidden { display: none; }
 .product-zoom .section-content .zoom-controls ul li { float: left; padding: 0 0 10px; }
 .product-zoom .section-content .zoom-controls ul li a img { opacity: .65; transition: opacity 200ms ease-in-out; -webkit-transition: opacity 200ms ease-in-out; -moz-transition: opacity 200ms ease-in-out; -o-transition: opacity 200ms ease-in-out; }
 .product-zoom .section-content .zoom-controls ul li a:hover img, .product-zoom .section-content .zoom-controls ul li a:focus img, .product-zoom .section-content .zoom-controls ul li a.active img { opacity: 1; }

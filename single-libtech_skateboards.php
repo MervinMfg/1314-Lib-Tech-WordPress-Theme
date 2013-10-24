@@ -130,7 +130,7 @@ Template Name: Skateboard Detail
 		</section>
 		<section class="product-zoom bg-product-details">
         	<div class="section-content">
-        		<div class="zoom-title h2"></div>
+        		<div class="zoom-title"></div>
         		<div class="zoom-image">
         			<img src="" />
         		</div>
