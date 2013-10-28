@@ -154,6 +154,16 @@ Template Name: Apparel Detail
 						}
 						?>
 						<li><span>Sizes</span> <?php echo $sizes; ?></li>
+
+						<?php
+						$postTitle = get_the_title();
+						if (strpos($postTitle,'Tee') !== false) :
+						?>
+
+						<li><a href="/t-shirt-specifications/" class="specs-link">View t-shirt specs</a></li>
+						
+						<?php endif; ?>
+
 					</ul>
 					<div class="product-description">
 						<?php the_content(); ?>
