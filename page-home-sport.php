@@ -126,6 +126,8 @@ get_header();
 		                    $postType = $post->post_type;
 		                    $imageID = get_field('libtech_product_image');
 		                    $imageFile = wp_get_attachment_image_src($imageID, 'square-medium');
+
+							if (get_the_title() != "superBANANA") :
 		            ?>
 
 		            <li>
@@ -139,6 +141,7 @@ get_header();
 		            </li>
 
 		            <?
+		                	endif;
 		                endwhile;
 		                wp_reset_query();
 		            ?>

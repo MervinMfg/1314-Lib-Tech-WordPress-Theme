@@ -585,15 +585,19 @@ get_header();
                 <ul class="product-listing <?php echo strtolower(get_the_title()); ?>">
                     <?php
                     foreach ($productsArray as $product):
+                    	if ($GLOBALS['language'] != "us" &&  $product['title'] == "superBANANA") :
+                    		// do nothing, hide board from CA and INT
+                    	else:
                     ?>
                     <li class="product-item<?php echo $product['filterList']; ?>">
                         <a href="<? echo $product['link']; ?>">
-                            <img src="<?php echo $product['imageFile'][0]; ?>" width="<?php echo $product['imageFile'][1]; ?>" height="<?php echo $product['imageFile'][2]; ?>" alt="<?php the_title(); ?> Image" />
+                            <img src="<?php echo $product['imageFile'][0]; ?>" width="<?php echo $product['imageFile'][1]; ?>" height="<?php echo $product['imageFile'][2]; ?>" alt="<?php echo $product['title']; ?> Image" />
                             <h5><?php echo $product['title']; ?></h5>
                             <div class="price"><?php echo $product['price']; ?></div>
                         </a>
                     </li>
                     <?php
+                    	endif;
                     endforeach;
                     ?>
                 </ul>
