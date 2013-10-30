@@ -12,28 +12,87 @@ get_header();
 
 						<?php
 							if(get_field('libtech_homepage_banners')):
+								$featuresArray = array();
+								$promosArray = array();
+								$snowArray = array();
+								$skiArray = array();
+								$surfArray = array();
+								$skateArray = array();
+
+								function renderBanner($banner) {
+									if (strpos($banner['link'],'vimeo.com') !== false) : // display vimeo image/video
+										echo '<li><a href="' . $banner['link'] . '" class="video-link"><div class="video-image"><img src="' . $banner['image'][0] . '" alt="' . $banner['altText'] . '" /></div></a></li>';
+									else: // display standard image
+										echo '<li><a href="' . $banner['link'] . '"><img src="' . $banner['image'][0] . '" alt="' . $banner['altText'] . '" /></a></li>';
+									endif;
+								}
+
 								while(the_repeater_field('libtech_homepage_banners')):
 									$bannerImage = get_sub_field('libtech_homepage_banners_image');
 		       						$bannerImage = wp_get_attachment_image_src($bannerImage, 'full', false);
 		       						$bannerlink = get_sub_field('libtech_homepage_banners_link_url');
 		       						$bannerAltText = get_sub_field('libtech_homepage_banners_alt_text');
+		       						$bannerCategory = get_sub_field('libtech_homepage_banners_cat');
 
-		       						if (strpos($bannerlink,'vimeo.com') !== false) :
-						?>
+		       						$banner = array(
+										"image" => $bannerImage,
+										"link" => $bannerlink,
+										"altText" => $bannerAltText,
+										"category" => $bannerCategory
+									);
 
-						<li><a href="<?php echo $bannerlink; ?>" class="video-link"><div class="video-image"><img src="<?php echo $bannerImage[0]; ?>" alt="<?php echo $bannerAltText; ?>" /></div></a></li>
-						
-						<?php
-									else:
-
-						?>
-
-						<li><a href="<?php echo $bannerlink; ?>"><img src="<?php echo $bannerImage[0]; ?>" alt="<?php echo $bannerAltText; ?>" /></a></li>
-						
-						<?php
-
-									endif;
+									switch ($banner['category']) {
+										case 'features':
+											array_push($featuresArray, $banner);
+											break;
+										case 'promos':
+											array_push($promosArray, $banner);
+											break;
+										case 'snow':
+											array_push($snowArray, $banner);
+											break;
+										case 'ski':
+											array_push($skiArray, $banner);
+											break;
+										case 'surf':
+											array_push($surfArray, $banner);
+											break;
+										case 'skate':
+											array_push($skateArray, $banner);
+											break;
+									}
 								endwhile;
+								// display featured banners
+								if(!empty($featuresArray)):
+									foreach( $featuresArray as $banner):
+			       						renderBanner($banner);
+									endforeach;
+								endif;
+								// display promos
+								if(!empty($promosArray)):
+									shuffle($promosArray);
+									renderBanner($promosArray[0]);
+								endif;
+								// display snow
+								if(!empty($snowArray)):
+									shuffle($snowArray);
+									renderBanner($snowArray[0]);
+								endif;
+								// display ski
+								if(!empty($skiArray)):
+									shuffle($skiArray);
+									renderBanner($skiArray[0]);
+								endif;
+								// display surf
+								if(!empty($surfArray)):
+									shuffle($surfArray);
+									renderBanner($surfArray[0]);
+								endif;
+								// display skate
+								if(!empty($skateArray)):
+									shuffle($skateArray);
+									renderBanner($skateArray[0]);
+								endif;
 							else:
 						?>
 
