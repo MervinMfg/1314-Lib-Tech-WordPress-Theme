@@ -27,7 +27,6 @@ get_header();
                             <div class="price"></div>
                             <a href="/snowboarding/snowboard-builder/" class="buy build h4">Build Your Own!</a>
                         </div>
-                        <div class="clearfix"></div>
                     </li>
                     <?php
                     endif;
@@ -58,7 +57,6 @@ get_header();
                             <div class="price"><?php echo $productPrice; ?></div>
                             <a href="<?php echo $productLink; ?>" class="buy h4">Buy Now!</a>
                         </div>
-                        <div class="clearfix"></div>
                     </li>
                     <?php endforeach; ?>
                 </ul>
