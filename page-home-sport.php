@@ -232,6 +232,7 @@ get_header();
 		            		$postType = "libtech_team_snow";
 		            	}
 						// GET TEAM MEMBERS
+						remove_all_filters('posts_orderby'); // make sure you can order random - fix regarding Post Types Order plugin
 	                    $args = array(
 	                        'post_type' => $postType,
 	                        'posts_per_page' => 3,
@@ -261,6 +262,9 @@ get_header();
 
 		                <?php
 		                	$i++;
+		                	if($i == 3) {
+		                		break;
+		                	}
 	                    endwhile;
 	                    wp_reset_query(); // Reset Post Data
 
