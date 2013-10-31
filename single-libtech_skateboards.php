@@ -6,6 +6,21 @@ Template Name: Skateboard Detail
 	if (have_posts()) : while (have_posts()) : the_post();
 		$thePostID = $post->ID;
 		$slug = $post->post_name;
+		// build array of specs
+		$specsArray = Array();
+		if(get_field('libtech_skateboard_variations')):
+			while(the_repeater_field('libtech_skateboard_variations')):
+				$variationSpec = array(
+					'width' => get_sub_field('libtech_skateboard_variations_width'),
+					'length' => get_sub_field('libtech_skateboard_variations_length'),
+					'wheelbase' => get_sub_field('libtech_skateboard_variations_wheelbase'),
+					'nose' => get_sub_field('libtech_skateboard_variations_nose_length'),
+					'tail' => get_sub_field('libtech_skateboard_variations_tail_length'),
+					'concave' => get_sub_field('libtech_skateboard_variations_concave')
+				);
+				array_push($specsArray, $variationSpec);
+			endwhile;
+		endif;
 ?>
         <div class="bg-product-details-top"></div>
         <section class="product-details bg-product-details <?php echo $slug; ?>">
@@ -14,60 +29,127 @@ Template Name: Skateboard Detail
 				<div class="product-images">
 					<ul id="image-list">
 			       		<?php
-							// get product image
-							$productImageID = get_field('libtech_product_image');
-							$productImageThumb = wp_get_attachment_image_src($productImageID, 'thumbnail', false);
-			       			$productImageMedium = wp_get_attachment_image_src($productImageID, 'square-xlarge', false);
-			       			$productImageFull = wp_get_attachment_image_src($productImageID, 'full', false);
-			       			// set up variations
-			       			$variations = Array();
-							$isProductAvailable = "No";
-							if(get_field('libtech_skateboard_variations')):
-								while(the_repeater_field('libtech_skateboard_variations')):
-									$variationWidth = get_sub_field('libtech_skateboard_variations_width');
-									$variationLength = get_sub_field('libtech_skateboard_variations_length');
-									$variationWheelbase = get_sub_field('libtech_skateboard_variations_wheelbase');
-									$variationName = $variationWidth . '" x ' . $variationLength . '" x ' . $variationWheelbase . '"';
-									$variationSKU = get_sub_field('libtech_skateboard_variations_sku');
-									if ($GLOBALS['language'] == "ca") {
-										$variationAvailable = get_sub_field('libtech_skateboard_variations_availability_ca');
-									} else {
-										$variationAvailable = get_sub_field('libtech_skateboard_variations_availability_us');
+			       			$thumbnailImages = Array();
+							if(get_field('libtech_skateboard_options')):
+								while(the_repeater_field('libtech_skateboard_options')):
+									$optionName = get_sub_field('libtech_skateboard_options_name');
+									// get variations
+									$optionVariations = get_sub_field('libtech_skateboard_options_variations');
+									$optionVariationSizes = "";
+									$optionVariationSKUs = "";
+									// loop through variations
+									for ($i = 0; $i < count($optionVariations); $i++) {
+										$variationWidth = $optionVariations[$i]['libtech_skateboard_options_variations_width'];
+										$variationSKU = $optionVariations[$i]['libtech_skateboard_options_variations_sku'];
+										// get additional specs
+										if(!empty($specsArray)){
+											foreach ($specsArray as $specs) {
+												if($variationWidth == $specs['width']) {
+													$variationWidth = $variationWidth . "&quot; x " . $specs['length'] . "&quot;";
+													break;
+												}
+											}
+										}
+										$optionVariationSizes .= $variationWidth;
+										$optionVariationSKUs .= $variationSKU;
+										// add comas except last item
+										if($i < count($optionVariations)-1){
+											$optionVariationSizes .= ", ";
+											$optionVariationSKUs .= ", ";
+										}
 									}
-									// set overall availability
-									if($variationAvailable == "Yes"){
-										$isProductAvailable = "Yes";
-									}
-									array_push($variations, Array($variationName, $variationSKU, $variationAvailable));
+									if(get_sub_field('libtech_skateboard_options_images')):
+										while(the_repeater_field('libtech_skateboard_options_images')):
+											$optionImage = get_sub_field('libtech_skateboard_options_images_img');
+											$optionImageThumb = wp_get_attachment_image_src($optionImage, 'thumbnail', false);
+				       						$optionImageMedium = wp_get_attachment_image_src($optionImage, 'square-xlarge', false);
+				       						$optionImageFull = wp_get_attachment_image_src($optionImage, 'full', false);
+				       						array_push($thumbnailImages, Array($optionImageThumb, $optionImageFull, $optionName, $optionVariationSizes, $optionVariationSKUs));
+						?>
+						<li><a href="<?php echo $optionImageFull[0]; ?>" title="<?php the_title(); ?> - <?php echo $optionVariationSizes; ?>"><img src="<?php echo $optionImageMedium[0]; ?>" alt="<?php the_title(); ?> - <?php echo $optionVariationSizes; ?>" width="<?php echo $optionImageMedium[1]; ?>" height="<?php echo $optionImageMedium[2]; ?>" /></a></li>
+						<?php
+										endwhile;
+				       				endif;
 								endwhile;
 							endif;
-							// set up sku list
-							$productSkus = "";
-							for ($i = 0; $i < count($variations); $i++) {
-								$productSkus .= $variations[$i][1];
-								if($i < count($variations)-1){
-									$productSkus .= ", ";
-								}
-							}
-			       		?>
-			       		<li><a href="<?php echo $productImageFull[0]; ?>" title="<?php the_title(); ?>"><img src="<?php echo $productImageMedium[0]; ?>" alt="<?php the_title(); ?>" width="<?php echo $productImageMedium[1]; ?>" height="<?php echo $productImageMedium[2]; ?>" /></a></li>
+						?>
 					</ul>
 				</div><!-- END .product-images -->
 				<div class="product-details-right">
 					<h3><?php the_field('libtech_product_slogan'); ?></h3>
-					<div class="image-list-thumbs hidden">
+
+					<div class="image-list-thumbs <?php if(count($thumbnailImages) < 2){ echo 'hidden'; }?>">
 						<ul id="image-list-thumbs">
-							<li><a href="<?php echo $productImageFull[0]; ?>" title="<?php the_title(); ?>" data-sku="<?php echo $productSkus; ?>" data-slide-index="<?php echo $i; ?>"><img src="<?php echo $productImageThumb[0]; ?>" alt="<?php the_title(); ?>" width="<?php echo $productImageThumb[1]; ?>" height="<?php echo $productImageThumb[2]; ?>" /></a></li>
+							<?php
+							if($thumbnailImages):
+								$i = 0;
+								foreach ($thumbnailImages as $thumbnail) {
+									$imageAlt = "";
+									if(get_the_title() == $thumbnail[2]) {
+										$imageAlt = get_the_title();
+									} else {
+										$imageAlt = get_the_title() . " - " . $thumbnail[2];
+									}
+							?>
+
+							<li><a href="<?php echo $thumbnail[1][0]; ?>" title="<?php echo $thumbnail[2]; ?> - <?php echo $thumbnail[3]; ?>" data-sku="<?php echo $thumbnail[4]; ?>" data-slide-index="<?php echo $i; ?>"><img src="<?php echo $thumbnail[0][0]; ?>" alt="<?php echo $imageAlt; ?>" data-sub-alt="Sizes: <?php echo $thumbnail[3]; ?>" width="<?php echo $thumbnail[0][1]; ?>" height="<?php echo $thumbnail[0][2]; ?>" /></a></li>
+							
+							<?php
+									$i ++;
+								};
+							endif;
+							?>
 						</ul>
 					</div>
 					<div class="product-price">
 						<?php echo getPrice( get_field('libtech_product_price_us'), get_field('libtech_product_price_ca'), get_field('libtech_product_on_sale'), get_field('libtech_product_sale_percentage') ); ?>
 					</div>
+					<?php
+						$variations = Array();
+						$isProductAvailable = "No";
+						if(get_field('libtech_skateboard_options')):
+							while(the_repeater_field('libtech_skateboard_options')):
+								$optionName = get_sub_field('libtech_skateboard_options_name');
+								// get variations
+								$optionVariations = get_sub_field('libtech_skateboard_options_variations');
+								// loop through variations
+								for ($i = 0; $i < count($optionVariations); $i++) {
+									$variationWidth = $optionVariations[$i]['libtech_skateboard_options_variations_width'];
+									// get additional specs
+									if(!empty($specsArray)){
+										foreach ($specsArray as $specs) {
+											if($variationWidth == $specs['width']) {
+												$variationWidth = $variationWidth . "&quot; x " . $specs['length'] . "&quot;";
+												break;
+											}
+										}
+									}
+									$variationSKU = $optionVariations[$i]['libtech_skateboard_options_variations_sku'];
+									if ($GLOBALS['language'] == "ca") {
+										$variationAvailable = $optionVariations[$i]['libtech_skateboard_options_variations_availability_ca'];
+									} else {
+										$variationAvailable = $optionVariations[$i]['libtech_skateboard_options_variations_availability_us'];
+									}
+									// set overall availability
+									if($variationAvailable == "Yes"){
+										$isProductAvailable = "Yes";
+									}
+									// setup variation name
+									if($optionName != ""){
+										$variationName = $variationWidth . " - " . $optionName;
+									}else{
+										$variationName = $variationWidth;
+									}
+									array_push($variations, Array($variationName, $variationSKU, $variationAvailable));
+								}
+							endwhile;
+						endif;
+					?>
 					<div class="product-variations <?php if($isProductAvailable == "No"){echo 'hidden';} ?>">
 						<select id="product-variation">
 							<option value="-1">Select a Size</option>
 							<?php
-								// sort by variation length
+								// sort by variation name
 								asort($variations);
 								// render out variation dropdown
 								foreach ($variations as $variation) {
@@ -95,16 +177,12 @@ Template Name: Skateboard Detail
 						<?php
 							// build array of sizes
 							$variationSizes = Array();
-							if(get_field('libtech_skateboard_variations')):
-								while(the_repeater_field('libtech_skateboard_variations')):
-									$variationWidth = get_sub_field('libtech_skateboard_variations_width');
-									$variationLength = get_sub_field('libtech_skateboard_variations_length');
-									$variationWheelbase = get_sub_field('libtech_skateboard_variations_wheelbase');
-									$variationName = $variationWidth . '" x ' . $variationLength . '" x ' . $variationWheelbase . '"';
-									// add size to array
+							if(!empty($specsArray)){
+								foreach ($specsArray as $specs) {
+									$variationName = $specs['width'] . "&quot; x " . $specs['length'] . "&quot;";
 									array_push($variationSizes, $variationName);
-								endwhile;
-							endif;
+								}
+							}
 							// sort sizes
 							array_multisort($variationSizes, SORT_ASC);
 							// setup sizes text display
@@ -190,22 +268,23 @@ Template Name: Skateboard Detail
 							</thead>
 							<tbody>
 								<?php
-								if(get_field('libtech_skateboard_variations')):
-									while(the_repeater_field('libtech_skateboard_variations')):
+								// build array of sizes
+								if(!empty($specsArray)) :
+									foreach ($specsArray as $specs) :
 								?>
 
 								<tr>
-									<td><?php the_sub_field('libtech_skateboard_variations_width'); ?>"</td>
-									<td><?php the_sub_field('libtech_skateboard_variations_length'); ?>"</td>
-									<td><?php the_sub_field('libtech_skateboard_variations_wheelbase'); ?>"</td>
-									<td><?php the_sub_field('libtech_skateboard_variations_nose_length'); ?>"</td>
-									<td><?php the_sub_field('libtech_skateboard_variations_tail_length'); ?>"</td>
-									<td><?php the_sub_field('libtech_skateboard_variations_concave'); ?></td>
+									<td><?php echo $specs['width']; ?>"</td>
+									<td><?php echo $specs['length']; ?>"</td>
+									<td><?php echo $specs['wheelbase']; ?>"</td>
+									<td><?php echo $specs['nose']; ?>"</td>
+									<td><?php echo $specs['tail']; ?>"</td>
+									<td><?php echo $specs['concave']; ?></td>
 								</tr>
 
 								<?php
-										endwhile;
-									endif;
+									endforeach;
+								endif;
 								?>
 							</tbody>
 							<tfoot>
