@@ -217,23 +217,28 @@ get_header();
                 case "libtech_skateboards":
                     // build array of skateboard widths
                     $productWidth = Array();
-                    if(get_field('libtech_skateboard_variations')):
-                        while(the_repeater_field('libtech_skateboard_variations')):
-                            $variationWidth = str_replace('.', '_', get_sub_field('libtech_skateboard_variations_width'));
-                            // get skateboard availability
-                            if ($GLOBALS['language'] == "ca") {
-                                $variationAvailable = get_sub_field('libtech_skateboard_variations_availability_ca');
-                            } else {
-                                $variationAvailable = get_sub_field('libtech_skateboard_variations_availability_us');
+                    if(get_field('libtech_skateboard_options')):
+                        while(the_repeater_field('libtech_skateboard_options')):
+                            // get variations
+                            $optionVariations = get_sub_field('libtech_skateboard_options_variations');
+                            // loop through variations
+                            for ($i = 0; $i < count($optionVariations); $i++) {
+                                $variationWidth = str_replace('.', '_', $optionVariations[$i]['libtech_skateboard_options_variations_width']);
+                                // get skateboard availability
+                                if ($GLOBALS['language'] == "ca") {
+                                    $variationAvailable = $optionVariations[$i]['libtech_skateboard_options_variations_availability_ca'];
+                                } else {
+                                    $variationAvailable = $optionVariations[$i]['libtech_skateboard_options_variations_availability_us'];
+                                }
+                                // set overall availability
+                                if($variationAvailable == "Yes"){
+                                    $productArray['available'] = "Yes";
+                                }
+                                // add wodth to array
+                                array_push($productWidth, $variationWidth);
+                                // add width to filter list
+                                $filterList .= " " . $variationWidth;
                             }
-                            // set overall availability
-                            if($variationAvailable == "Yes"){
-                                $productArray['available'] = "Yes";
-                            }
-                            // add wodth to array
-                            array_push($productWidth, $variationWidth);
-                            // add width to filter list
-                            $filterList .= " " . $variationWidth;
                         endwhile;
                     endif;
                     // sort sizes
