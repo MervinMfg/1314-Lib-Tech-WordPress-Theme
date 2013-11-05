@@ -1761,8 +1761,12 @@ body.international .shopping-cart .section-content {
 		&.ripper > ul > li {
 			width: 5em;
 		}
-		&.categories > ul > li {
-			width: 7em;
+		&.categories > ul {
+			left: -110px;
+
+			& > li {
+				width: 9.22em;
+			}
 		}
 		&.skate-categories > ul {
 			right: -92px;

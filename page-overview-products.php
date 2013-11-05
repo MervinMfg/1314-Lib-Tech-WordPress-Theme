@@ -389,6 +389,9 @@ get_header();
                             <li data-filter=".splitboards">Splitboards</li>
                             <li data-filter=".snowskates">Snowskates</li>
                             <li data-filter=".fundamentals">fundaMENTALS</li>
+                            <li data-filter=".travis-rice-collection">T. Rice Collection</li>
+                            <li data-filter=".early-release">Early Release</li>
+                            <li data-filter=".libited">Libited</li>
                         </ul>
                     </li>
                     <li class="filters contours">

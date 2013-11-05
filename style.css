@@ -549,7 +549,8 @@ body.international .shopping-cart .section-content .int-cart-details { display: 
 .product-filtering > li > ul li:hover, .product-filtering > li > ul li:focus { background: #333; color: yellow; }
 .product-filtering > li > ul li.selected { background: #000; color: yellow; }
 .product-filtering > li.ripper > ul > li { width: 5em; }
-.product-filtering > li.categories > ul > li { width: 7em; }
+.product-filtering > li.categories > ul { left: -110px; }
+.product-filtering > li.categories > ul > li { width: 9.22em; }
 .product-filtering > li.skate-categories > ul { right: -92px; }
 .product-filtering > li.skate-categories > ul > li { width: 7.1em; }
 .product-filtering > li.outerwear-categories > ul { right: -78px; }
