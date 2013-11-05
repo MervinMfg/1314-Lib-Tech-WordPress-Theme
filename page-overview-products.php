@@ -13,7 +13,7 @@ get_header();
         <section class="featured-product-slider bg-product-<?php echo $GLOBALS['sport']; ?> <?php echo strtolower(get_the_title()); ?>">
             <div class="section-content">
                 <ul class="product-listing bxslider">
-                    <?php if($GLOBALS['sport'] == "snow") : ?>
+                    <?php if($post_objects[0]->post_type == 'libtech_snowboards') : ?>
                     <li>
                         <div class="product-image">
                             <a href="/snowboarding/snowboard-builder/"><img src="<?php bloginfo('template_directory'); ?>/_/img/diy-board-builder-640x640.png" width="640" height="640" alt="DIY Snowboard Builder" /></a>
