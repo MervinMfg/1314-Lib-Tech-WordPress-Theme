@@ -1994,6 +1994,9 @@ body.international .shopping-cart .section-content {
 			&.alert {
 				color: #cc0000;
 			}
+			&.hidden {
+				display: none;
+			}
 		}
 	}
 	.product-buy {

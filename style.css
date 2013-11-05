@@ -613,6 +613,7 @@ body.international .shopping-cart .section-content .int-cart-details { display: 
 .product-details .product-variations.hidden { display: none; }
 .product-details .product-variations select { font-family: "PT Sans Narrow", "Myriad Pro", Helvetica, Arial, sans-serif; font-size: 1.25em; font-style: italic; text-transform: uppercase; background: #fff; width: 100%; padding: 10px; line-height: 1; border: 0; border-radius: 0; -webkit-appearance: none; margin-bottom: 10px; }
 .product-details .product-variations select.alert { color: #cc0000; }
+.product-details .product-variations select.hidden { display: none; }
 .product-details .product-buy { margin-bottom: 40px; }
 .product-details .product-buy ul li.loading { background: url(_/img/loader.gif) center center no-repeat black; width: 64px; height: 20px; margin-bottom: 20px; }
 .product-details .product-buy ul li.loading.hidden { display: none; }

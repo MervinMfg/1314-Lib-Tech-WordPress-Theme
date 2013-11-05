@@ -68,7 +68,7 @@ Template Name: Apparel Detail
 						<ul id="image-list-thumbs">
 							<?php if($thumbnailImages): $i = 0; foreach ($thumbnailImages as $thumbnail) { ?>
 
-							<li><a href="<?php echo $thumbnail[1][0]; ?>" title="<?php the_title(); ?> - <?php echo $thumbnail[2]; ?>" data-sku="<?php echo $thumbnail[2]; ?>" data-slide-index="<?php echo $i; ?>"><img src="<?php echo $thumbnail[0][0]; ?>" alt="<?php the_title(); ?> - <?php echo $thumbnail[2]; ?>" width="<?php echo $thumbnail[0][1]; ?>" height="<?php echo $thumbnail[0][2]; ?>" /></a></li>
+							<li><a href="<?php echo $thumbnail[1][0]; ?>" title="<?php the_title(); ?> - <?php echo $thumbnail[2]; ?>" data-color="<?php echo $thumbnail[2]; ?>" data-slide-index="<?php echo $i; ?>"><img src="<?php echo $thumbnail[0][0]; ?>" alt="<?php the_title(); ?> - <?php echo $thumbnail[2]; ?>" width="<?php echo $thumbnail[0][1]; ?>" height="<?php echo $thumbnail[0][2]; ?>" /></a></li>
 							
 							<?php $i ++; }; endif; ?>
 						</ul>
@@ -77,7 +77,13 @@ Template Name: Apparel Detail
 						<?php echo getPrice( get_field('libtech_product_price_us'), get_field('libtech_product_price_ca'), get_field('libtech_product_on_sale'), get_field('libtech_product_sale_percentage') ); ?>
 					</div>
 					<div class="product-variations <?php if($isProductAvailable == "No"){echo 'hidden';} ?>">
-						<select id="product-variation-size">
+						<?php
+						$apparelSizeCheck = "";
+						foreach ($productArray as $product) :
+								$apparelSizeCheck = $product['size'];
+						endforeach;
+						?>
+						<select id="product-variation-size" class="<?php if($apparelSizeCheck == 'OSFA'){echo 'hidden';} ?>">
 							<option value="-1">Select Size</option>
 							<?php
 							$sizeArray = array();
