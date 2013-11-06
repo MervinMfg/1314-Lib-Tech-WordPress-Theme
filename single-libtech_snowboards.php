@@ -34,6 +34,8 @@ Template Name: Snowboard Detail
 											$variationLength = $variationLength . "N";
 										}else if($variationWidth == "Wide"){
 											$variationLength = $variationLength . "W";
+										}else if($variationWidth == "Ultra Wide"){
+											$variationLength = $variationLength . "UW";
 										}
 										$optionVariationSizes .= $variationLength;
 										$optionVariationSKUs .= $variationSKU;
@@ -119,6 +121,8 @@ Template Name: Snowboard Detail
 										$variationLength = $variationLength . "N";
 									}else if($variationWidth == "Wide"){
 										$variationLength = $variationLength . "W";
+									}else if($variationWidth == "Ultra Wide"){
+										$variationLength = $variationLength . "UW";
 									}
 									// setup variation name
 									if($optionName != ""){
@@ -176,6 +180,8 @@ Template Name: Snowboard Detail
 										$snowboardLength = $snowboardLength . "N";
 									}else if($snowboardWidth == "Wide"){
 										$snowboardLength = $snowboardLength . "W";
+									}else if($snowboardWidth == "Ultra Wide"){
+										$snowboardLength = $snowboardLength . "UW";
 									}
 									// add size to array
 									array_push($snowboardSizes, $snowboardLength);
