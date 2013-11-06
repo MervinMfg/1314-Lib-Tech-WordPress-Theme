@@ -366,7 +366,7 @@ get_header();
         <section class="product-overview bg3">
             <div class="section-content">
                 <h1><?php the_title(); ?></h1>
-                <ul class="product-filtering">
+                <ul class="product-filtering <?php echo strtolower(get_the_title()); ?>">
                     <li class="details">
                         <p>Product Filter</p>
                         <p>Show Products By</p>
@@ -438,6 +438,15 @@ get_header();
                             <li data-filter=".Wide">Wide</li>
                         </ul>
                     </li>
+                    <li class="filters pricing">
+                        <p class="select-title">Pricing</p>
+                        <p class="selected-items">Select</p>
+                        <ul>
+                            <li data-sort="price" data-sort-asc="true">Low - High</li>
+                            <li data-sort="price" data-sort-asc="false">High - Low</li>
+                            <li data-filter=".available">Availabile</li>
+                        </ul>
+                    </li>
                     <?php elseif (get_the_title() == "Skis"): ?>
                     <li class="filters nas-size">
                         <p class="select-title">Size</p>
@@ -470,6 +479,15 @@ get_header();
                             <li data-filter=".Wide">Wide</li>
                         </ul>
                     </li>
+                    <li class="filters pricing">
+                        <p class="select-title">Pricing</p>
+                        <p class="selected-items">Select</p>
+                        <ul>
+                            <li data-sort="price" data-sort-asc="true">Low - High</li>
+                            <li data-sort="price" data-sort-asc="false">High - Low</li>
+                            <li data-filter=".available">Availabile</li>
+                        </ul>
+                    </li>
                     <?php elseif (get_the_title() == "Surfboards"): ?>
                     <li class="filters size">
                         <p class="select-title">Size</p>
@@ -478,6 +496,15 @@ get_header();
                             <li data-filter=".150">150</li>
                             <li data-filter=".151">151</li>
                             <li data-filter=".152">152</li>
+                        </ul>
+                    </li>
+                    <li class="filters pricing">
+                        <p class="select-title">Pricing</p>
+                        <p class="selected-items">Select</p>
+                        <ul>
+                            <li data-sort="price" data-sort-asc="true">Low - High</li>
+                            <li data-sort="price" data-sort-asc="false">High - Low</li>
+                            <li data-filter=".available">Availabile</li>
                         </ul>
                     </li>
                     <?php elseif (get_the_title() == "Skateboards"): ?>
@@ -512,6 +539,15 @@ get_header();
                             <li data-filter=".semi-slicks">Semi Slicks</li>
                         </ul>
                     </li>
+                    <li class="filters pricing">
+                        <p class="select-title">Pricing</p>
+                        <p class="selected-items">Select</p>
+                        <ul>
+                            <li data-sort="price" data-sort-asc="true">Low - High</li>
+                            <li data-sort="price" data-sort-asc="false">High - Low</li>
+                            <li data-filter=".available">Availabile</li>
+                        </ul>
+                    </li>
                     <?php elseif (get_the_title() == "Outerwear"): ?>
                     <li class="filters outerwear-size">
                         <p class="select-title">Size</p>
@@ -531,6 +567,15 @@ get_header();
                             <li data-filter=".jackets">Jackets</li>
                             <li data-filter=".pants">Pants</li>
                             <li data-filter=".layers">Layers</li>
+                        </ul>
+                    </li>
+                    <li class="filters pricing">
+                        <p class="select-title">Pricing</p>
+                        <p class="selected-items">Select</p>
+                        <ul>
+                            <li data-sort="price" data-sort-asc="true">Low - High</li>
+                            <li data-sort="price" data-sort-asc="false">High - Low</li>
+                            <li data-filter=".available">Availabile</li>
                         </ul>
                     </li>
                     <?php elseif (get_the_title() == "Apparel"): ?>
@@ -556,6 +601,15 @@ get_header();
                             <li data-filter=".socks">Socks</li>
                         </ul>
                     </li>
+                    <li class="filters pricing">
+                        <p class="select-title">Pricing</p>
+                        <p class="selected-items">Select</p>
+                        <ul>
+                            <li data-sort="price" data-sort-asc="true">Low - High</li>
+                            <li data-sort="price" data-sort-asc="false">High - Low</li>
+                            <li data-filter=".available">Availabile</li>
+                        </ul>
+                    </li>
                     <?php elseif (get_the_title() == "Accessories"): ?>
                     <li class="filters accessory-categories">
                         <p class="select-title">Categories</p>
@@ -567,8 +621,17 @@ get_header();
                             <li data-filter=".stickers">Stickers</li>
                         </ul>
                     </li>
+                    <li class="filters accessories-pricing">
+                        <p class="select-title">Pricing</p>
+                        <p class="selected-items">Select</p>
+                        <ul>
+                            <li data-sort="price" data-sort-asc="true">Low - High</li>
+                            <li data-sort="price" data-sort-asc="false">High - Low</li>
+                            <li data-filter=".available">Availabile</li>
+                        </ul>
+                    </li>
                     <?php elseif (get_the_title() == "Luggage"): ?>
-                    <li class="filters categories">
+                    <li class="filters luggage-categories">
                         <p class="select-title">Categories</p>
                         <p class="selected-items">Select</p>
                         <ul>
@@ -578,8 +641,7 @@ get_header();
                             <li data-filter=".skate-luggage">Skate</li>
                         </ul>
                     </li>
-                    <?php endif; ?>
-                    <li class="filters pricing">
+                    <li class="filters luggage-pricing">
                         <p class="select-title">Pricing</p>
                         <p class="selected-items">Select</p>
                         <ul>
@@ -588,6 +650,17 @@ get_header();
                             <li data-filter=".available">Availabile</li>
                         </ul>
                     </li>
+                    <?php elseif (get_the_title() == "Bindings"): ?>
+                    <li class="filters bindings-pricing">
+                        <p class="select-title">Pricing</p>
+                        <p class="selected-items">Select</p>
+                        <ul>
+                            <li data-sort="price" data-sort-asc="true">Low - High</li>
+                            <li data-sort="price" data-sort-asc="false">High - Low</li>
+                            <li data-filter=".available">Availabile</li>
+                        </ul>
+                    </li>
+                    <?php endif; ?>
                 </ul>
                 <div class="clearfix"></div>
                 <ul class="product-listing <?php echo strtolower(get_the_title()); ?>">

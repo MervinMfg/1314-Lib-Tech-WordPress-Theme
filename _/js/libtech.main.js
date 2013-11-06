@@ -408,12 +408,26 @@ LIBTECH.main = {
                 $(this).find('ul > li').each( function () {
                     widthTotal += $(this).outerWidth();
                 });
+                // max width for filter dropdowns
                 if(widthTotal > 646) {
                     widthTotal = 646;
                 }
-                if($('body').hasClass('ski') || $('body').hasClass('skate')) {
+                // max width for 3 filter sets
+                if($('.product-filtering').hasClass('skis') || $('.product-filtering').hasClass('skateboards') || $('.product-filtering').hasClass('apparel') || $('.product-filtering').hasClass('outerwear')) {
                     if(widthTotal > 316) {
                         widthTotal = 316;
+                    }
+                }
+                // max width for 2 filter sets
+                if($('.product-filtering').hasClass('accessories') || $('.product-filtering').hasClass('luggage')) {
+                    if(widthTotal > 206) {
+                        widthTotal = 206;
+                    }
+                }
+                // max width for 1 filter set
+                if($('.product-filtering').hasClass('bindings')) {
+                    if(widthTotal > 96) {
+                        widthTotal = 96;
                     }
                 }
                 $(this).find('ul').width(widthTotal);

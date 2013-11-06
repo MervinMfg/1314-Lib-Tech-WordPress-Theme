@@ -558,12 +558,14 @@ body.international .shopping-cart .section-content .int-cart-details { display: 
 .product-filtering > li.apparel-categories > ul { right: -110px; }
 .product-filtering > li.apparel-categories > ul > li { width: 5.64em; }
 .product-filtering > li.accessory-categories > ul { right: -110px; }
-.product-filtering > li.accessory-categories > ul > li { width: 11.25em; }
+.product-filtering > li.accessory-categories > ul > li { width: 14.7em; }
+.product-filtering > li.luggage-categories > ul { right: -110px; }
+.product-filtering > li.luggage-categories > ul > li { width: 7.35em; }
 .product-filtering > li.contours > ul > li { width: 4em; }
 .product-filtering > li.size > ul { left: -330px; }
 .product-filtering > li.size > ul > li { width: 2.4em; }
 .product-filtering > li.nas-size > ul { left: 0; }
-.product-filtering > li.nas-size > ul > li { width: 4em; }
+.product-filtering > li.nas-size > ul > li { width: 3.76em; }
 .product-filtering > li.outerwear-size > ul { left: 0; }
 .product-filtering > li.outerwear-size > ul > li { width: 4.5em; }
 .product-filtering > li.apparel-size > ul { left: 0; }
@@ -576,6 +578,10 @@ body.international .shopping-cart .section-content .int-cart-details { display: 
 .product-filtering > li.nas-width > ul > li { width: 6em; }
 .product-filtering > li.pricing > ul { right: 0; }
 .product-filtering > li.pricing > ul > li { width: 6em; }
+.product-filtering > li.bindings-pricing > ul { right: 0; }
+.product-filtering > li.bindings-pricing > ul > li { width: 6.82em; }
+.product-filtering > li.accessories-pricing > ul, .product-filtering > li.luggage-pricing > ul { right: 0; }
+.product-filtering > li.accessories-pricing > ul > li, .product-filtering > li.luggage-pricing > ul > li { width: 7.35em; }
 .product-filtering > li:hover > p.selected-items, .product-filtering > li:focus > p.selected-items { padding-bottom: 14px; margin-bottom: 0; }
 .product-filtering > li:hover > ul, .product-filtering > li:focus > ul { display: block; background: yellow; }
 .product-filtering > li.details { text-align: left; }
