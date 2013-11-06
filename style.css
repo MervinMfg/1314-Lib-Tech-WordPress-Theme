@@ -551,8 +551,8 @@ body.international .shopping-cart .section-content .int-cart-details { display: 
 .product-filtering > li.ripper > ul > li { width: 5em; }
 .product-filtering > li.categories > ul { left: -110px; }
 .product-filtering > li.categories > ul > li { width: 9.22em; }
-.product-filtering > li.skate-categories > ul { right: -92px; }
-.product-filtering > li.skate-categories > ul > li { width: 7.1em; }
+.product-filtering > li.skate-categories > ul { right: -110px; }
+.product-filtering > li.skate-categories > ul > li { width: 11.27em; }
 .product-filtering > li.outerwear-categories > ul { right: -78px; }
 .product-filtering > li.outerwear-categories > ul > li { width: 6em; }
 .product-filtering > li.apparel-categories > ul { right: -110px; }

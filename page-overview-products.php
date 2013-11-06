@@ -537,6 +537,7 @@ get_header();
                             <li data-filter=".hesho-disposable-standards">Hesho</li>
                             <li data-filter=".maple-bottoms">Maple Bottoms</li>
                             <li data-filter=".semi-slicks">Semi Slicks</li>
+                            <li data-filter=".completes">Completes</li>
                         </ul>
                     </li>
                     <li class="filters pricing">
