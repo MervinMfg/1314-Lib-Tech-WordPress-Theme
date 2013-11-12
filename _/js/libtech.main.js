@@ -1196,8 +1196,18 @@ LIBTECH.main = {
                         var postData, listItem;
                         postData = postsData[i];
                         if (postData.type != "status") {
+                            // process date stamp
+                            var postDate, monthArray;
+                            postDate = postData.created_time;
+                            monthArray = {Jan:"January", Feb:"February", Mar:"March", Apr:"April", May:"May", Jun:"June", Jul:"July", Aug:"August", Sep:"September", Oct:"October", Nov:"November", Dec:"December"}
+                            postDate = String(new Date(postDate)).replace(
+                                /\w{3} (\w{3}) (\d{2}) (\d{4}) (\d{2}):(\d{2}):[^(]+\(([A-Z]{3})\)/,
+                                function ($0, $1, $2, $3, $4, $5, $6) {
+                                    return monthArray[$1] + " " + $2 + ", " + $3; //+ " - " + $4%12 + ":" + $5 + ( + $4 > 12 ? "PM" : "AM") + " " + $6 hide time and date
+                                }
+                            );
                             // set up facebook list item
-                            listItem = '<li class="grid-item facebook item-' + totalItems + '"><div class="grid-item-wrapper"><a href="' + postData.link + '" target="_blank"><div class="facebook-wrapper"><div class="facebook-header"><div class="facebook-profile"><img src="https://graph.facebook.com/' + facebookUsername + '/picture" /></div><p class="facebook-name">' + postData.from.name + '</p><p class="facebook-time">' + postData.created_time + '</p><div class="clearfix"></div></div><div class="facebook-photo"><img src="' + postData.picture + '" /></div><p class="facebook-likes">' + postData.likes.count + ' people <span>like this</span></p><p class="facebook-excerpt">' + postData.message + '</p></div><div class="facebook-aspect-ratio"><img src="/wp-content/themes/libtech_2/_/img/square.gif" /></div><div class="clearfix"></div></a></div></li>';
+                            listItem = '<li class="grid-item facebook item-' + totalItems + '"><div class="grid-item-wrapper"><a href="' + postData.link + '" target="_blank"><div class="facebook-wrapper"><div class="facebook-header"><div class="facebook-profile"><img src="https://graph.facebook.com/' + facebookUsername + '/picture" /></div><p class="facebook-name">' + postData.from.name + '</p><p class="facebook-time">' + postDate + '</p><div class="clearfix"></div></div><div class="facebook-photo"><img src="' + postData.picture + '" /></div><p class="facebook-excerpt">' + postData.message + '</p></div><div class="facebook-aspect-ratio"><img src="/wp-content/themes/libtech_2/_/img/square.gif" /></div><div class="clearfix"></div></a></div></li>';
                             // add list item to content grid
                             $('.content-grid ul').append(listItem);
                             totalItems ++;
