@@ -491,10 +491,8 @@ body.international .shopping-cart .section-content .int-cart-details { display: 
 .content-grid .grid-item.facebook a .facebook-header .facebook-profile img { float: left; padding-right: 10px; }
 .content-grid .grid-item.facebook a .facebook-header .facebook-name { width: 75%; float: right; color: #3b5998; font-weight: 900; }
 .content-grid .grid-item.facebook a .facebook-header .facebook-time { width: 75%; float: right; color: #89919c; }
-.content-grid .grid-item.facebook a .facebook-photo { clear: both; max-height: 100px; overflow: hidden; }
-.content-grid .grid-item.facebook a .facebook-photo img { width: 100%; }
-.content-grid .grid-item.facebook a .facebook-likes { color: #3b5998; font-size: .75em; padding: 10px 0; }
-.content-grid .grid-item.facebook a .facebook-likes span { color: #4e5665; }
+.content-grid .grid-item.facebook a .facebook-photo { clear: both; max-height: 100px; overflow: hidden; margin-bottom: 10px; }
+.content-grid .grid-item.facebook a .facebook-photo img { width: 100%; margin-top: -20%; }
 .content-grid .grid-item.facebook a .facebook-excerpt { color: #000; font-size: .875em; }
 .content-grid .grid-item.facebook a:hover, .content-grid .grid-item.facebook a:focus { text-decoration: none; }
 .content-grid .grid-item.instagram a { background: #000; background: rgba(0, 0, 0, 0.8); }
