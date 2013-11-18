@@ -1340,7 +1340,7 @@ body.international .shopping-cart .section-content {
 
 	.grid-item {
 		width: 100%;
-		float: left;
+		display: inline-block;
 
 		.grid-item-wrapper {
 			padding: 10px;
@@ -1431,7 +1431,7 @@ body.international .shopping-cart .section-content {
 			a {
 				font-style: normal;
 				background: #fff;
-				display: block;
+				display: inline-block;
 
 				.facebook-aspect-ratio img {
 					width: 100%;
@@ -3462,7 +3462,7 @@ body.international .shopping-cart .section-content {
 			&.blog.item-1,
 			&.facebook.item-1,
 			&.instagram.item-1 {
-				display: block;
+				display: inline-block;
 			}
 		}
 	}
@@ -3714,7 +3714,7 @@ body.international .shopping-cart .section-content {
 			width: 33.3333%;
 
 			&.product.item-1 {
-				display: block;
+				display: inline-block;
 			}
 		}
 	}
@@ -3959,7 +3959,7 @@ body.international .shopping-cart .section-content {
 			&.blog.item-2,
 			&.facebook.item-2,
 			&.team.item-1 {
-				display: block;
+				display: inline-block;
 			}
 		}
 	}
@@ -4190,7 +4190,7 @@ body.international .shopping-cart .section-content {
 			&.instagram.item-2,
 			&.product.item-2,
 			&.team.item-2 {
-				display: block;
+				display: inline-block;
 			}
 		}
 	}
