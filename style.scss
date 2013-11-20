@@ -3191,6 +3191,9 @@ body.international .shopping-cart .section-content {
 		h1, .ripper-gallery {
 			margin-bottom: 10px;
 		}
+		.ripper-gallery .profile-photo {
+			height: auto;
+		}
 		.ripper-right {
 			.ripper-meta {
 				margin-bottom: 20px;
@@ -3667,7 +3670,8 @@ body.international .shopping-cart .section-content {
 			width: 60%;
 			float: left;
 
-			.gallery {
+			.gallery,
+			.profile-photo {
 				padding-right: 20px;
 			}
 		}

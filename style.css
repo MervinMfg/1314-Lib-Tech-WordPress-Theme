@@ -934,6 +934,7 @@ body.international .shopping-cart .section-content .int-cart-details { display: 
 .ripper-details { padding-top: 60px; margin-top: -40px; }
 .ripper-details .section-content { padding: 0 20px; }
 .ripper-details .section-content h1, .ripper-details .section-content .ripper-gallery { margin-bottom: 10px; }
+.ripper-details .section-content .ripper-gallery .profile-photo { height: auto; }
 .ripper-details .section-content .ripper-right .ripper-meta { margin-bottom: 20px; }
 .ripper-details .section-content .ripper-right .ripper-meta .ripper-home, .ripper-details .section-content .ripper-right .ripper-meta .ripper-sponsors { margin-bottom: 5px; }
 .ripper-details .section-content .ripper-right .ripper-meta .ripper-home span, .ripper-details .section-content .ripper-right .ripper-meta .ripper-sponsors span { font-weight: bold; text-transform: uppercase; }
@@ -1046,7 +1047,7 @@ body.international .shopping-cart .section-content .int-cart-details { display: 
   .team-members .section-content ul li { width: 49.7%; display: inline-block; vertical-align: top; }
   .ripper-details .section-content h1 { width: 40%; float: right; }
   .ripper-details .section-content .ripper-gallery { width: 60%; float: left; }
-  .ripper-details .section-content .ripper-gallery .gallery { padding-right: 20px; }
+  .ripper-details .section-content .ripper-gallery .gallery, .ripper-details .section-content .ripper-gallery .profile-photo { padding-right: 20px; }
   .ripper-details .section-content .ripper-right { width: 40%; float: right; }
   .whats-new.ripper .content-grid .grid-item.product.item-1 { display: inline-block; }
   /* Blog styles */

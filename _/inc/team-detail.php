@@ -18,7 +18,7 @@
 	        				the_field('libtech_team_gallery');
 	        			else:
 	        		?>
-	        		<img src="<?php echo $profilePhoto[0]; ?>" alt="<?php the_title(); ?> Team Photo" width="<?php echo $profilePhoto[1]; ?>" height="<?php echo $profilePhoto[1]; ?>" />
+	        		<img src="<?php echo $profilePhoto[0]; ?>" alt="<?php the_title(); ?> Team Photo" width="<?php echo $profilePhoto[1]; ?>" height="<?php echo $profilePhoto[1]; ?>" class="profile-photo" />
 	        		<?php
 	        			endif;
 	        		?>
