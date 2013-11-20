@@ -501,7 +501,7 @@ body.international .shopping-cart .section-content .int-cart-details { display: 
 .content-grid .grid-item.product .grid-item-wrapper a:after { -moz-box-shadow: inset 0 0 10em #000; -webkit-box-shadow: inset 0 0 10em #000; box-shadow: inset 0 0 10em #000; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; content: ""; }
 .content-grid .grid-item.product:nth-child(even) .grid-item-wrapper a { background-image: url("_/img/bg-grid-item-wood.jpg"); }
 .content-grid .grid-item.team .grid-item-wrapper a img { float: left; width: 100%; }
-.content-grid .grid-item.blog.item-1, .content-grid .grid-item.blog.item-2, .content-grid .grid-item.facebook.item-1, .content-grid .grid-item.facebook.item-2, .content-grid .grid-item.instagram.item-1, .content-grid .grid-item.instagram.item-2, .content-grid .grid-item.product.item-1, .content-grid .grid-item.product.item-2, .content-grid .grid-item.team.item-1, .content-grid .grid-item.team.item-2 { display: none; }
+.content-grid .grid-item.blog.item-1, .content-grid .grid-item.blog.item-2, .content-grid .grid-item.blog.item-3, .content-grid .grid-item.blog.item-4, .content-grid .grid-item.blog.item-5, .content-grid .grid-item.facebook.item-1, .content-grid .grid-item.facebook.item-2, .content-grid .grid-item.instagram.item-1, .content-grid .grid-item.instagram.item-2, .content-grid .grid-item.product.item-1, .content-grid .grid-item.product.item-2, .content-grid .grid-item.team.item-1, .content-grid .grid-item.team.item-2 { display: none; }
 
 /* Product Overview Styles
 -------------------------------------------------------------------------------*/
@@ -933,8 +933,7 @@ body.international .shopping-cart .section-content .int-cart-details { display: 
 
 .ripper-details { padding-top: 60px; margin-top: -40px; }
 .ripper-details .section-content { padding: 0 20px; }
-.ripper-details .section-content h1, .ripper-details .section-content .ripper-photo { margin-bottom: 10px; }
-.ripper-details .section-content .ripper-photo img { height: auto; }
+.ripper-details .section-content h1, .ripper-details .section-content .ripper-gallery { margin-bottom: 10px; }
 .ripper-details .section-content .ripper-right .ripper-meta { margin-bottom: 20px; }
 .ripper-details .section-content .ripper-right .ripper-meta .ripper-home, .ripper-details .section-content .ripper-right .ripper-meta .ripper-sponsors { margin-bottom: 5px; }
 .ripper-details .section-content .ripper-right .ripper-meta .ripper-home span, .ripper-details .section-content .ripper-right .ripper-meta .ripper-sponsors span { font-weight: bold; text-transform: uppercase; }
@@ -942,6 +941,20 @@ body.international .shopping-cart .section-content .int-cart-details { display: 
 .ripper-details .section-content .ripper-right .ripper-bio { display: none; margin-bottom: 20px; }
 .ripper-details .section-content .ripper-right .ripper-bio p { margin-bottom: 10px; }
 .ripper-details .section-content .ripper-right .personal-site { padding-top: 10px; clear: both; }
+
+.ripper-videos .section-content { padding: 0 10px; }
+.ripper-videos .section-content .featured-videos h2 { padding: 0 10px; }
+.ripper-videos .section-content .featured-videos .video-player { padding: 10px 10px 0; }
+.ripper-videos .section-content .featured-videos .video-player .frame-wrapper { margin-bottom: 10px; width: 100%; background: black url("_/img/loading.gif") no-repeat center center; }
+.ripper-videos .section-content .featured-videos .video-player .video-info { display: none; }
+.ripper-videos .section-content .featured-videos .video-player .video-info.selected { display: block; }
+.ripper-videos .section-content .featured-videos .video-player .video-info h3 { color: #000; background: #fff100; padding: 3px 5px; display: inline-block; margin-bottom: 10px; }
+.ripper-videos .section-content .featured-videos .video-player .video-info p { padding-bottom: 10px; }
+.ripper-videos .section-content .featured-videos .video-thumbnails li { display: block; width: 50%; float: left; padding: 10px; }
+.ripper-videos .section-content .featured-videos .video-thumbnails li a { display: block; width: 100%; height: 100%; position: relative; background-size: 140%; background-position: center center; background-repeat: no-repeat; }
+.ripper-videos .section-content .featured-videos .video-thumbnails li a img { width: 100%; height: auto; }
+.ripper-videos .section-content .featured-videos .video-thumbnails li a p { width: 100%; position: absolute; bottom: 0; left: 0; display: block; background: #000; background: rgba(0, 0, 0, 0.7); color: #fff100; padding: 3px 5px; text-transform: uppercase; font-weight: bold; transition: background 100ms ease-in-out, color 200ms ease-in-out; -webkit-transition: background 100ms ease-in-out, color 200ms ease-in-out; -moz-transition: background 100ms ease-in-out, color 200ms ease-in-out; -o-transition: background 100ms ease-in-out, color 200ms ease-in-out; }
+.ripper-videos .section-content .featured-videos .video-thumbnails li a:hover p, .ripper-videos .section-content .featured-videos .video-thumbnails li a:focus p, .ripper-videos .section-content .featured-videos .video-thumbnails li a.selected p { background: #fff100; background: rgba(255, 255, 0, 0.7); color: #000; }
 
 /* Print Styles
 -------------------------------------------------------------------------------*/
@@ -1031,10 +1044,11 @@ body.international .shopping-cart .section-content .int-cart-details { display: 
   .tech-overview .section-content .tech-sport .tech-copy p { padding-left: 20px; }
   /* Ripper styles */
   .team-members .section-content ul li { width: 49.7%; display: inline-block; vertical-align: top; }
-  .ripper-details .section-content h1 { width: 60%; float: right; }
-  .ripper-details .section-content .ripper-photo { width: 40%; float: left; }
-  .ripper-details .section-content .ripper-photo img { padding-right: 40px; }
-  .ripper-details .section-content .ripper-right { width: 60%; float: right; }
+  .ripper-details .section-content h1 { width: 40%; float: right; }
+  .ripper-details .section-content .ripper-gallery { width: 60%; float: left; }
+  .ripper-details .section-content .ripper-gallery .gallery { padding-right: 20px; }
+  .ripper-details .section-content .ripper-right { width: 40%; float: right; }
+  .whats-new.ripper .content-grid .grid-item.product.item-1 { display: inline-block; }
   /* Blog styles */
   .blog-posts { padding-left: 10px; padding-right: 10px; }
   .blog-posts h2 { padding-left: 10px; }
@@ -1101,6 +1115,8 @@ body.international .shopping-cart .section-content .int-cart-details { display: 
   /* Ripper styles */
   .team-members .section-content ul li { width: 33%; }
   .ripper-details .section-content .ripper-right .ripper-meta, .ripper-details .section-content .ripper-right h4, .ripper-details .section-content .ripper-right .ripper-bio { display: block; max-width: 600px; }
+  .ripper-videos .section-content .featured-videos .video-thumbnails li { width: 33.3333%; }
+  .whats-new.ripper .content-grid .grid-item.blog.item-2 { display: inline-block; }
   /* Blog styles -------------------------------------------------------------------------------*/
   .blog-posts .blog-post { width: 33%; }
   .blog-post .section-content .post .entry-content .strobbr-list li { width: 50%; float: left; } }
@@ -1171,6 +1187,9 @@ body.international .shopping-cart .section-content .int-cart-details { display: 
   .dealer-locator .section-content .iframe-fallback { display: none; }
   /* Ripper styles */
   .team-members .section-content ul li { width: 24.7%; }
+  .ripper-videos .section-content .featured-videos .video-player { width: 50%; float: left; }
+  .ripper-videos .section-content .featured-videos .video-thumbnails { width: 50%; float: left; }
+  .whats-new.ripper .content-grid .grid-item.instagram.item-2, .whats-new.ripper .content-grid .grid-item.product.item-2 { display: inline-block; }
   /* Blog styles -------------------------------------------------------------------------------*/
   .blog-posts .blog-post { width: 24.7%; }
   .blog-post .section-content .post { width: 75%; float: left; }
@@ -1195,7 +1214,8 @@ body.international .shopping-cart .section-content .int-cart-details { display: 
   .dealer-locator .section-content .dealer-copy { float: right; width: 20%; }
   .dealer-locator .section-content iframe { width: 79%; margin-top: 0; }
   /* Ripper styles */
-  .team-members .section-content ul li { width: 19.7%; } }
+  .team-members .section-content ul li { width: 19.7%; }
+  .whats-new.ripper .content-grid .grid-item.blog.item-3, .whats-new.ripper .content-grid .grid-item.blog.item-4, .whats-new.ripper .content-grid .grid-item.blog.item-5 { display: inline-block; } }
 @media screen and (min-width: 1400px) { .section-content { max-width: 1640px; margin: 0 auto; }
   /* homepage styles */
   .homepage-posts .section-content { max-width: 1620px; }
