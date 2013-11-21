@@ -3149,8 +3149,17 @@ body.international .shopping-cart .section-content {
 		padding-left: 20px;
 		padding-right: 20px;
 
+		h1 {
+			padding-bottom: 10px;
+			color: #000;
+		}
+		.video-player {
+			padding-bottom: 10px;
+		}
 		p {
 			max-width: 900px;
+			color: #000;
+			font-size: 1em;
 		}
 	}
 }
@@ -4229,6 +4238,28 @@ body.international .shopping-cart .section-content {
 	.team-members .section-content ul li {
 		width: 24.7%;
 	}
+
+	.team-header.video .section-content {
+		h1,
+		p {
+			width: 40%;
+			float: right;
+		}
+		.video-player {
+			width: 60%;
+			float: left;
+			padding-top: 5px;
+
+			.video-wrapper {
+				padding-right: 20px;
+			}
+		}
+		p {
+			font-size: 1.125em;
+		}
+	}
+
+
 	.ripper-videos .section-content .featured-videos {
 		.video-player {
 			width: 50%;

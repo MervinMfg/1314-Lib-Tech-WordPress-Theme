@@ -922,7 +922,9 @@ body.international .shopping-cart .section-content .int-cart-details { display: 
 /* Ripper styles
 -------------------------------------------------------------------------------*/
 .team-header .section-content { padding-left: 20px; padding-right: 20px; }
-.team-header .section-content p { max-width: 900px; }
+.team-header .section-content h1 { padding-bottom: 10px; color: #000; }
+.team-header .section-content .video-player { padding-bottom: 10px; }
+.team-header .section-content p { max-width: 900px; color: #000; font-size: 1em; }
 
 .team-members .section-content { padding-left: 10px; padding-right: 10px; }
 .team-members .section-content h2 { margin: 10px 0 20px 10px; }
@@ -1188,6 +1190,10 @@ body.international .shopping-cart .section-content .int-cart-details { display: 
   .dealer-locator .section-content .iframe-fallback { display: none; }
   /* Ripper styles */
   .team-members .section-content ul li { width: 24.7%; }
+  .team-header.video .section-content h1, .team-header.video .section-content p { width: 40%; float: right; }
+  .team-header.video .section-content .video-player { width: 60%; float: left; padding-top: 5px; }
+  .team-header.video .section-content .video-player .video-wrapper { padding-right: 20px; }
+  .team-header.video .section-content p { font-size: 1.125em; }
   .ripper-videos .section-content .featured-videos .video-player { width: 50%; float: left; }
   .ripper-videos .section-content .featured-videos .video-thumbnails { width: 50%; float: left; }
   .whats-new.ripper .content-grid .grid-item.instagram.item-2, .whats-new.ripper .content-grid .grid-item.product.item-2 { display: inline-block; }
