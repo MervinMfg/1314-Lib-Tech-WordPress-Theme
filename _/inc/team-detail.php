@@ -60,6 +60,7 @@
 						$posts_query = get_posts($args);
 						$i = 0;
 						foreach($posts_query as $post) :
+							setup_postdata($post);
 							$post_thumbnail = get_post_image('square-medium');
 						?>
 
@@ -82,7 +83,7 @@
 						<?php
 							$i++;
 						endforeach;
-						wp_reset_query(); // Reset Post Data
+						wp_reset_postdata(); // Reset Post Data
 						// GET FEATURED PRODUCTS
 						$post_objects = get_field('libtech_team_related_products');
 						if( $post_objects ):
