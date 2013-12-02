@@ -2613,7 +2613,10 @@ body.international .shopping-cart .section-content {
 	h2 {
 		margin-bottom: 10px;
 	}
-	ul > li {
+}
+.tech-minor,
+.tech-minor .section-content {
+	& > ul > li {
 		padding-bottom: 20px;
 
 		h4 {
@@ -3692,14 +3695,17 @@ body.skate .ripper-videos .section-content .featured-videos {
 		padding: 0 20px 10px 0;
 		float: left;
 	}
-	.tech-minor ul > li {
-		width: 48%;
-		display: inline-block;
-		vertical-align: top;
-		text-align: left;
+	.tech-minor,
+	.tech-minor .section-content {
+		& > ul > li {
+			width: 48%;
+			display: inline-block;
+			vertical-align: top;
+			text-align: left;
 
-		.tech-pad {
-			padding: 10px;
+			.tech-pad {
+				padding: 10px;
+			}
 		}
 	}
 	.tech-overview .section-content .tech-sport {
@@ -4270,11 +4276,14 @@ body.skate .ripper-videos .section-content .featured-videos {
 			}
 		}
 	}
-	.tech-minor ul > li {
-		width: 33%;
-		display: inline-block;
-		vertical-align: top;
-		text-align: left;
+	.tech-minor,
+	.tech-minor .section-content {
+		& > ul > li {
+			width: 33%;
+			display: inline-block;
+			vertical-align: top;
+			text-align: left;
+		}
 	}
 	/* Dealer Locator */
 	.dealer-locator .section-content {
@@ -4544,11 +4553,14 @@ body.skate .ripper-videos .section-content .featured-videos {
 		}
 	}
 	/* Technology styles */
-	.tech-minor ul > li {
-		width: 24%;
-		display: inline-block;
-		vertical-align: top;
-		text-align: left;
+	.tech-minor,
+	.tech-minor .section-content {
+		& > ul > li {
+			width: 24%;
+			display: inline-block;
+			vertical-align: top;
+			text-align: left;
+		}
 	}
 	/* Dealer Locator */
 	.dealer-locator .section-content {

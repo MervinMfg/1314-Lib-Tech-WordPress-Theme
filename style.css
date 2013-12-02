@@ -781,11 +781,12 @@ body.international .shopping-cart .section-content .int-cart-details { display: 
 .tech-minor { clear: both; }
 .tech-minor .section-content { padding: 0 20px; }
 .tech-minor h2 { margin-bottom: 10px; }
-.tech-minor ul > li { padding-bottom: 20px; }
-.tech-minor ul > li h4 img { width: 25%; height: auto; vertical-align: middle; display: inline-block; padding-bottom: 10px; }
-.tech-minor ul > li h4 > span { width: 75%; padding-left: 20px; display: inline-block; }
-.tech-minor ul > li .tech-copy { clear: both; }
-.tech-minor ul > li .tech-copy ul { margin-left: 25px; list-style: square; }
+
+.tech-minor > ul > li, .tech-minor .section-content > ul > li { padding-bottom: 20px; }
+.tech-minor > ul > li h4 img, .tech-minor .section-content > ul > li h4 img { width: 25%; height: auto; vertical-align: middle; display: inline-block; padding-bottom: 10px; }
+.tech-minor > ul > li h4 > span, .tech-minor .section-content > ul > li h4 > span { width: 75%; padding-left: 20px; display: inline-block; }
+.tech-minor > ul > li .tech-copy, .tech-minor .section-content > ul > li .tech-copy { clear: both; }
+.tech-minor > ul > li .tech-copy ul, .tech-minor .section-content > ul > li .tech-copy ul { margin-left: 25px; list-style: square; }
 
 .tech-overview .section-content { padding: 0 20px; }
 .tech-overview .section-content .tech-header { margin-bottom: 40px; }
@@ -1052,8 +1053,8 @@ body.skate .ripper-videos .section-content .featured-videos .video-thumbnails li
   .discussion-top, .discussion { display: block; }
   /* Technology styles */
   .tech-major .tech-header img { padding: 0 20px 10px 0; float: left; }
-  .tech-minor ul > li { width: 48%; display: inline-block; vertical-align: top; text-align: left; }
-  .tech-minor ul > li .tech-pad { padding: 10px; }
+  .tech-minor > ul > li, .tech-minor .section-content > ul > li { width: 48%; display: inline-block; vertical-align: top; text-align: left; }
+  .tech-minor > ul > li .tech-pad, .tech-minor .section-content > ul > li .tech-pad { padding: 10px; }
   .tech-overview .section-content .tech-sport img { width: 50%; float: left; }
   .tech-overview .section-content .tech-sport .tech-copy { width: 50%; float: right; }
   .tech-overview .section-content .tech-sport .tech-copy p { padding-left: 20px; }
@@ -1196,7 +1197,7 @@ body.skate .ripper-videos .section-content .featured-videos .video-thumbnails li
   .tech-major .section-content ul li .tech-copy { width: 100%; float: none; }
   .tech-major .section-content ul li .tech-copy h4, .tech-major .section-content ul li .tech-copy h5, .tech-major .section-content ul li .tech-copy p { margin-left: 20px; }
   .tech-major .section-content ul li .tech-copy .tech-found-on { display: block; }
-  .tech-minor ul > li { width: 33%; display: inline-block; vertical-align: top; text-align: left; }
+  .tech-minor > ul > li, .tech-minor .section-content > ul > li { width: 33%; display: inline-block; vertical-align: top; text-align: left; }
   /* Dealer Locator */
   .dealer-locator .section-content iframe { display: block; }
   .dealer-locator .section-content .iframe-fallback { display: none; }
@@ -1263,7 +1264,7 @@ body.skate .ripper-videos .section-content .featured-videos .video-thumbnails li
   .product-related ul li { width: 16.66%; }
   .product-related ul li:nth-child(6) { display: block; }
   /* Technology styles */
-  .tech-minor ul > li { width: 24%; display: inline-block; vertical-align: top; text-align: left; }
+  .tech-minor > ul > li, .tech-minor .section-content > ul > li { width: 24%; display: inline-block; vertical-align: top; text-align: left; }
   /* Dealer Locator */
   .dealer-locator .section-content .dealer-copy { width: 30%; }
   .dealer-locator .section-content iframe { width: 70%; }
