@@ -2,7 +2,7 @@
 
     Lib Tech DIY Builder - lib-tech.com
     VERSION 1.0
-    AUTHOR brian.behrens@mervin.com & a freelancer we care not to mention
+    AUTHOR brian.behrens@mervin.com
 
     DEPENDENCIES:
     - jQuery v1.10.2

@@ -76,7 +76,7 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 						<li><strong>Personalized Badge:</strong> Customize and claim your board with a 26 character custom laser cut badge.</li>
 						<li><strong>Buy:</strong> Lib Tech’s Bitchin’ Board Builders will hand build your dream board and ship it to you! Order through your local dealer and receive $25 off! See dealer for details and applicable codes.</li>
 					</ul>
-					<p>* The finished board may not appear exactly as it is shown on the screen. DIY board orders take 3-6 weeks to build and ship for United States/Canada, 6-9 weeks for all other countries, for a list of countries we ship DIY boards <a href="/snowboarding/snowboard-builder/international-countries/" target="_blank">click here</a>. DIY board orders will be charged upon order confirmation. No returns or refunds on customized boards will be accepted or given.</p>
+					<p>* The finished board may not appear exactly as it is shown on the screen. <strong>DIY board orders take 3-6 weeks to build and ship for United States/Canada, 6-9 weeks for all other countries</strong>, for a list of countries we ship DIY boards <a href="/snowboarding/snowboard-builder/international-countries/" target="_blank">click here</a>. DIY board orders will be charged upon order confirmation. No returns or refunds on customized boards will be accepted or given.</p>
 				</div>
 				<div class="right-column">
 					<a href="#get-started" class="h3">Get Started</a>
@@ -386,11 +386,11 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 							</div>
 							<div class="terms">
 								<h1>Lib Tech DIY Program Policy</h1>
-								<p>The finished board may not appear exactly as it is shown on the screen. DIY board orders take 3-6 weeks to build and ship for United States/Canada. DIY board orders will be charged upon order confirmation. No returns or refunds on customized boards will be accepted or given.</p>
+								<p>The finished board may not appear exactly as it is shown on the screen. <strong>DIY board orders take 3-6 weeks to build and ship for United States/Canada.</strong> DIY board orders will be charged upon order confirmation. No returns or refunds on customized boards will be accepted or given.</p>
 							</div>
 							<div class="terms-international">
 								<h1>Lib Tech DIY Program Policy</h1>
-								<p>The finished board may not appear exactly as it is shown on the screen. DIY board orders take 6-9 weeks for countries outside of United States/Canada. For a list of countries we ship DIY boards to <a href='/snowboarding/snowboard-builder/international-countries/' target='_blank'>click here</a>. DIY board orders will be charged upon order confirmation. No returns or refunds on customized boards will be accepted or given.</p>
+								<p>The finished board may not appear exactly as it is shown on the screen. <strong>DIY board orders take 6-9 weeks for countries outside of United States/Canada.</strong> For a list of countries we ship DIY boards to <a href='/snowboarding/snowboard-builder/international-countries/' target='_blank'>click here</a>. DIY board orders will be charged upon order confirmation. No returns or refunds on customized boards will be accepted or given.</p>
 							</div>
 							<div class="cart-error">
 								<p>An error has occured. Verify your snowboard is complete and try again. If the problem persists <a href=”http://www.mervin.com/contact/” target=”_blank”>let us know</a>.</p>

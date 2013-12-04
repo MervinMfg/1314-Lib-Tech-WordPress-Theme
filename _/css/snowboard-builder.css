@@ -1,4 +1,4 @@
-/** Lib Tech Custom Snowboard Builder v1.0 http://lib-tech.com Author: Simon Silverio <simon.silverio@gmail.com> & Brian Behrens <brian.behrens@mervin.com> */
+/** Lib Tech Custom Snowboard Builder v1.0 http://lib-tech.com Author: brian.behrens@mervin.com */
 @font-face { font-family: 'Altehaas Grotesk Bold'; src: url("../fonts/Altehaas-Grotesk-Bold/Altehaas-Grotesk-Bold.eot"); src: url("../fonts/Altehaas-Grotesk-Bold/Altehaas-Grotesk-Bold.eot?#iefix") format("embedded-opentype"), url("../fonts/Altehaas-Grotesk-Bold/Altehaas-Grotesk-Bold.woff") format("woff"), url("../fonts/Altehaas-Grotesk-Bold/Altehaas-Grotesk-Bold.ttf") format("truetype"), url("../fonts/Altehaas-Grotesk-Bold/Altehaas-Grotesk-Bold.svg#Altehaas-Grotesk-Bold") format("svg"); font-weight: normal; font-style: normal; }
 
 /* DOM Styles */
@@ -150,7 +150,9 @@ ul.bxslider { margin: 0; padding: 0; }
 #overview .overview-content .left-column h4 { text-shadow: 2px 2px 4px #000; margin-bottom: 5px; display: none; }
 #overview .overview-content .left-column ul { display: none; }
 #overview .overview-content .left-column ul li { text-shadow: 2px 2px 4px #000; margin-bottom: 10px; }
+#overview .overview-content .left-column ul li strong { color: #FFFF00; }
 #overview .overview-content .left-column p { padding-bottom: 20px; }
+#overview .overview-content .left-column p strong { color: #FFFF00; }
 #overview .overview-content .right-column { text-align: center; padding: 20px; }
 #overview .overview-content .right-column a { background: #FFFF00; padding: 10px 20px; color: #000; display: inline-block; font-size: 3em; }
 #overview .overview-content .right-column .overview-video { padding-top: 20px; }
@@ -311,8 +313,9 @@ width: 240px;*/ }
 .boardBuy7 .thereciept .board-reciept h3 { float: left; font-size: 24px; width: 40%; }
 .boardBuy7 .thereciept .board-reciept h3.subtotal-cost { float: right; width: 60%; text-align: right; }
 .boardBuy7 .thereciept .board-reciept h4 { font-size: 18px; font-weight: 700; margin: 10px; }
-.boardBuy7 .thereciept .terms, .boardBuy7 .thereciept .terms-international { display: none; }
+.boardBuy7 .thereciept .terms, .boardBuy7 .thereciept .terms-international { display: none; text-shadow: 2px 2px 4px #000; }
 .boardBuy7 .thereciept .terms h1, .boardBuy7 .thereciept .terms-international h1 { font-family: "PT Sans Narrow", "Myriad Pro", Helvetica, Arial, sans-serif; font-size: 28px; font-weight: 700; padding-bottom: 10px; }
+.boardBuy7 .thereciept .terms p strong, .boardBuy7 .thereciept .terms-international p strong { color: #FFFF00; }
 .boardBuy7 .thereciept .cart-error { display: none; }
 .boardBuy7 .thereciept .buttonholder { float: left; width: 100%; text-align: center; padding: 20px 0; }
 .boardBuy7 .thereciept .buttonholder .buy-button, .boardBuy7 .thereciept .buttonholder .agree-button { width: 100%; background-color: #ffff00; color: #000000; padding: 10px; font-size: 28px; font-weight: 700; border: 1px solid #000; cursor: pointer; text-transform: uppercase; }

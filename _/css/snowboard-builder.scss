@@ -3,14 +3,13 @@
  * Lib Tech
  * Custom Snowboard Builder v1.0
  * http://lib-tech.com
- * Author: Simon Silverio <simon.silverio@gmail.com> & Brian Behrens <brian.behrens@mervin.com>
+ * Author: brian.behrens@mervin.com
  */
 
 $numElements: 10;
-$numSizes: 8;
-$numTopSheets: 16;
 $numSidewalls: 7;
 $numBases: 12;
+
 $globalFontColor: #fff;
 
 $break-tiny: 100px;
@@ -363,10 +362,18 @@ ul.bxslider {
 				li {
 					text-shadow: 2px 2px 4px #000;
 					margin-bottom: 10px;
+
+					strong {
+						color: #FFFF00;
+					}
 				}
 			}
 			p {
 				padding-bottom: 20px;
+
+				strong {
+					color: #FFFF00;
+				}
 			}
 		}
 		.right-column {
@@ -1196,12 +1203,16 @@ ul.bxslider {
 		.terms,
 		.terms-international {
 			display: none;
+			text-shadow: 2px 2px 4px #000;
 
 			h1 {
 				font-family: $bodyFont;
 				font-size: 28px;
 				font-weight: 700;
 				padding-bottom: 10px;
+			}
+			p strong {
+				color: #FFFF00;
 			}
 		}
 		.cart-error {
