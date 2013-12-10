@@ -193,7 +193,7 @@
             <div class="takeover-content">
                 <div class="expanded">
                     <a href="#close-takeover" class="close">Close</a>
-                    <a href="/shopping-cart/#holiday-shipping" class="message"><img src="<?php bloginfo('template_directory'); ?>/_/img/takeovers/lib-tech-holiday-shipping.jpg" alt="Lib Tech 2013 Holiday Shipping Schedule - Order before 12pm PST to recieve order by December 25th" /></a>
+                    <a href="/shopping-cart/#holiday-shipping-info" class="message"><img src="<?php bloginfo('template_directory'); ?>/_/img/takeovers/lib-tech-holiday-shipping.jpg" alt="Lib Tech 2013 Holiday Shipping Schedule - Order before 12pm PST to recieve order by December 25th" /></a>
                 </div>
                 <div class="contracted">
                     <a href="#holiday-shipping">
