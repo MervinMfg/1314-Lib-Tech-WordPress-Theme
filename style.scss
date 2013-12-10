@@ -1060,12 +1060,14 @@ body.international .shopping-cart .section-content {
 			width: 100%;
 			background: #000;
 			opacity: 1;
+			filter: alpha(opacity=100);
 			@include fadeOpacity(800ms);
 
 			&.hide {
 				position: absolute;
 				top: 0;
 				opacity: 0;
+				filter: alpha(opacity=0);
 			}
 
 			a {
@@ -1075,6 +1077,13 @@ body.international .shopping-cart .section-content {
 				.message {
 					font-weight: bold;
 					padding: 10px 0;
+
+					span.red {
+						color: #CC0000;
+					}
+					span.green {
+						color: #009900;
+					}
 				}
 				.view-more {
 					display: block;

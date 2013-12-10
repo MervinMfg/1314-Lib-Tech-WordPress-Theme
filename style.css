@@ -396,10 +396,12 @@ body.international .shopping-cart .section-content .int-cart-details { display: 
 .takeover .takeover-content .expanded.show { display: block; }
 .takeover .takeover-content .expanded .close { display: block; float: right; width: 41px; height: 41px; background: url("_/img/sprite.png") no-repeat -265px -46px; text-indent: -9999px; padding: 5px; position: absolute; top: 0; right: 0; }
 .takeover .takeover-content .expanded .message img { height: auto; display: block; width: 140.597539543058%; margin-left: -20.298769771529%; max-width: none; }
-.takeover .takeover-content .contracted { text-align: center; width: 100%; background: #000; opacity: 1; transition: opacity 800ms ease-in-out; -webkit-transition: opacity 800ms ease-in-out; -moz-transition: opacity 800ms ease-in-out; -o-transition: opacity 800ms ease-in-out; }
-.takeover .takeover-content .contracted.hide { position: absolute; top: 0; opacity: 0; }
+.takeover .takeover-content .contracted { text-align: center; width: 100%; background: #000; opacity: 1; filter: alpha(opacity=100); transition: opacity 800ms ease-in-out; -webkit-transition: opacity 800ms ease-in-out; -moz-transition: opacity 800ms ease-in-out; -o-transition: opacity 800ms ease-in-out; }
+.takeover .takeover-content .contracted.hide { position: absolute; top: 0; opacity: 0; filter: alpha(opacity=0); }
 .takeover .takeover-content .contracted a { font-style: normal; color: #fff; }
 .takeover .takeover-content .contracted a .message { font-weight: bold; padding: 10px 0; }
+.takeover .takeover-content .contracted a .message span.red { color: #CC0000; }
+.takeover .takeover-content .contracted a .message span.green { color: #009900; }
 .takeover .takeover-content .contracted a .view-more { display: block; float: right; width: 41px; height: 41px; background: url("_/img/sprite.png") no-repeat -214px -46px; text-indent: -9999px; padding: 5px; }
 
 .international .takeover { display: none; }

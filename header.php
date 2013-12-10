@@ -189,39 +189,21 @@
 </head>
 <body <?php body_class($bodyClass); ?>>
 	<div class="wrapper">
-        <?php
-            // determine the correct takeover link
-            switch ($GLOBALS['sport']) {
-                case "ski":
-                    $takeoverLink = "/skis/";
-                    break;
-                case "surf":
-                    $takeoverLink = "/surfboards/";
-                    break;
-                case "skate":
-                    $takeoverLink = "/skateboards/";
-                    break;
-                default:
-                    $takeoverLink = "/snowboards/";
-            }
-        ?>
-        <?
-        /*<div class="takeover">
+        <div class="takeover">
             <div class="takeover-content">
                 <div class="expanded">
                     <a href="#close-takeover" class="close">Close</a>
-                    <a href="<?php echo $takeoverLink; ?>" class="message"><img src="<?php bloginfo('template_directory'); ?>/_/img/takeovers/lib-tech-free-shipping.jpg" alt="Lib Tech Now Offering Free Shipping For A Limited Time Only!" /></a>
+                    <a href="/shopping-cart/#holiday-shipping" class="message"><img src="<?php bloginfo('template_directory'); ?>/_/img/takeovers/lib-tech-holiday-shipping.jpg" alt="Lib Tech 2013 Holiday Shipping Schedule - Order before 12pm PST to recieve order by December 25th" /></a>
                 </div>
                 <div class="contracted">
-                    <a href="#free-shipping">
+                    <a href="#holiday-shipping">
                         <p class="view-more">View More</p>
-                        <p class="message">Lib Tech now offering free shipping for a limited time only!</p>
+                        <p class="message">Lib Tech <span class="red">Holiday Shipping Schedule!</span> - <span class="green">view more</span></p>
                         <div class="clearfix"></div>
                     </a>
                 </div>
             </div>
-        </div><!-- END .takeover -->*/
-        ?>
+        </div><!-- END .takeover -->
 		<header>
 			<div class="logo-wrapper">
 				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" id="logo"><img src="<?php echo $logo; ?>" alt="<?php bloginfo( 'name' ); ?> – <?php bloginfo( 'description' ); ?>" /></a>
