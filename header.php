@@ -189,7 +189,7 @@
 </head>
 <body <?php body_class($bodyClass); ?>>
 	<div class="wrapper">
-        <div class="takeover">
+        <?php /* <div class="takeover">
             <div class="takeover-content">
                 <div class="expanded">
                     <a href="#close-takeover" class="close">Close</a>
@@ -203,7 +203,7 @@
                     </a>
                 </div>
             </div>
-        </div><!-- END .takeover -->
+        </div><!-- END .takeover -->*/ ?>
 		<header>
 			<div class="logo-wrapper">
 				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" id="logo"><img src="<?php echo $logo; ?>" alt="<?php bloginfo( 'name' ); ?> – <?php bloginfo( 'description' ); ?>" /></a>
