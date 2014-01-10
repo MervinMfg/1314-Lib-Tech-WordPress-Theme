@@ -42,7 +42,7 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
     <link rel="shortcut icon" href="<?php bloginfo('template_directory'); ?>/_/img/favicon.ico" />
     <!-- Styles -->
     <link href="<?php bloginfo('stylesheet_url'); ?>" rel="stylesheet" type="text/css" />
-    <link href="<?php bloginfo('template_directory'); ?>/_/css/snowboard-builder.css" rel="stylesheet" type="text/css" />
+    <link href="<?php bloginfo('template_directory'); ?>/_/css/snowboard-builder.css" rel="stylesheet" type="text/css" /><!-- http://172.21.44.83/~bbehrens/mervin-sites/Lib-Tech-1314/_/css/snowboard-builder.css -->
 	<meta name="viewport" content="user-scalable=1.0,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="format-detection" content="telephone=no">
@@ -60,6 +60,7 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 	<?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
+	<!-- <div class="center-line"></div> -->
 	<div class="wrapper">
 		<div id="overview">
 			<div class="overview-content">
@@ -87,98 +88,115 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 			</div>
 		</div><!-- END #overview -->
 	    <div id="header">	
-    		<div id="topTwo"><p class="pOne">1</p><p class="pTwo">2</p></div>
-    		<div id="topLogo"><a href="/snowboarding/" target="_blank"><img src="<?php bloginfo('template_directory'); ?>/_/img/bb/header-diy-logo.png" alt="Lib Tech DIY Board Builder" /></a></div>
-    		<div id="topFlag"><a href="#region-selector"><img src="<?php bloginfo('template_directory'); ?>/_/img/bb/header-flag.png" alt="Handcrafted in the USA" /></a></div>
-    		<div id="topSection">SELECT BOARD - SHAPE &amp; CONTOUR</div>
-    		<div id="topSectionRight"></div>
+    		<div class="top-two">
+    			<p class="p-one">1</p>
+    			<p class="p-two">2</p>
+    		</div>
+    		<div class="top-logo">
+    			<a href="/snowboarding/" target="_blank"><img src="<?php bloginfo('template_directory'); ?>/_/img/bb/header-diy-logo.png" alt="Lib Tech DIY Board Builder" /></a>
+    		</div>
+    		<div class="top-flag">
+    			<a href="#region-selector"><img src="<?php bloginfo('template_directory'); ?>/_/img/bb/header-flag.png" alt="Handcrafted in the USA" /></a>
+    		</div>
+    		<div class="top-section">SELECT BOARD - SHAPE &amp; CONTOUR</div>
+    		<div class="top-section-right"></div>
 	    </div><!-- END #header -->
-	    <div id="leftmenu">
-			<div id="menuClose">
-				<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/X-button.png">
+	    <div id="left-menu">
+	    	<h1 class="menu-header">Choose Your</h1>
+			<div class="menu-close">
+				<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/menu-close-button.png" width="20" height="20" alt="Close Menu" />
 			</div>
-			<div id="menuHeader">
-				<h1>Choose Your</h1>
-			</div>
-			<div class="menu-options">
-				<div class="menuXs">
-					<ul>
-						<li class="menu1TitleX"><span>X</span></li>
-						<li class="menu2TitleX"><span>X</span></li>
-						<li class="menu3TitleX"><span>X</span></li>
-						<li class="menu4TitleX"><span>X</span></li>
-						<li class="menu5TitleX"><span>X</span></li>
-						<li class="menu6TitleX"><span>X</span></li>
-						<li class="menu7TitleXB"><span></span></li>
-					</ul>
-				</div>
-				<div class="menuTitles">
-					<ul>
-						<li class="menu1Title">Shape &amp; Contour</li>
-						<li class="menu2Title">Size</li>
-						<li class="menu3Title">Top Sheet Art</li>
-						<li class="menu4Title">Sidewall Color</li>
-						<li class="menu5Title">Base Options</li>
-						<li class="menu6Title">Personalized Badge</li>
-						<li class="menu7TitleB">Your Custom Board</li>
-					</ul>
-				</div>
-				<div class="menuButtons">
-					<ul>
-						<li class="menu1">board</li>
-						<li class="menu2">size</li>
-						<li class="menu3">top</li>
-						<li class="menu4">sidewall</li>
-						<li class="menu5">base</li>
-						<li class="menu6">badge</li>
-						<li class="menu7B">buy &nbsp;&nbsp; <img src="<?php bloginfo('template_directory'); ?>/_/img/bb/bb-0-rightarrow.png" alt=">" /></li>					
-					</ul>
-				</div>
-			</div>
+			<ul class="menu-options">
+				<li class="menu1">
+					<div class="menu-x">X</div>
+					<div class="menu-title">Shape &amp; Contour</div>
+					<div class="menu-label">board</div>
+				</li>
+				<li class="menu2">
+					<div class="menu-x">X</div>
+					<div class="menu-title">Size</div>
+					<div class="menu-label">size</div>
+				</li>
+				<li class="menu3">
+					<div class="menu-x">X</div>
+					<div class="menu-title">Top Sheet Art</div>
+					<div class="menu-label">top</div>
+				</li>
+				<li class="menu4">
+					<div class="menu-x">X</div>
+					<div class="menu-title">Sidewall Color</div>
+					<div class="menu-label">sidewall</div>
+				</li>
+				<li class="menu5">
+					<div class="menu-x">X</div>
+					<div class="menu-title">Base Options</div>
+					<div class="menu-label">base</div>
+				</li>
+				<li class="menu5b">
+					<div class="menu-x">X</div>
+					<div class="menu-title">Text</div>
+					<div class="menu-label">knifecut</div>
+				</li>
+				<li class="menu6">
+					<div class="menu-x">X</div>
+					<div class="menu-title">Personalized Badge</div>
+					<div class="menu-label">badge</div>
+				</li>
+				<li class="menu7">
+					<div class="menu-x"></div>
+					<div class="menu-title">Your Custom Board</div>
+					<div class="menu-label">buy &nbsp;&nbsp; <img src="<?php bloginfo('template_directory'); ?>/_/img/bb/bb-0-rightarrow.png" alt=">" /></div>
+				</li>
+			</ul>
 		</div><!-- END #leftmenu" -->
 		<div id="advance-arrow"></div>
 	    <div class="pagerLabel">SHAPE</div>
 	   	<div class="pagerTop" id="topPager"></div>
 	   	<div class="miniReciept"></div>
-	   	<div id="blackBoxInfo">
-			<div class="blackBoxDiamondL"></div>
-			<h2>BTX Skate Banana - Board</h2>
-			<h3>DESC</h3>
-			<div><img class="contourImg" src="<?php bloginfo('template_directory'); ?>/_/img/bb/bb-contour-none.jpg" /></div>
-			<h4>POWER</h4>
-			<div class="sizeInfo"><p>AVAILABLE SIZES:  <span></span></p></div>
-			<h5></h5>
-			<div class="blackBoxDiamondR"></div>
-		</div>
-		<div id="boardDisplay">
-			<div class="boardTechName"></div>
-			<div class="boardPreview">
-				<div class="boardMenuLeftButton">
-					<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/bb-left-w.png" class="menuLeft" />
+	   	<div id="info-box">
+			<div class="diamond"></div>
+			<div class="box">
+				<h2>BTX Skate Banana - Board</h2>
+				<h3>DESC</h3>
+				<div class="contour">
+					<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/bb-contour-none.jpg" />
+				</div>
+				<h4>POWER</h4>
+				<div class="sizes">
+					<p>SIZES: <span></span></p>
+				</div>
+				<h5></h5>
+			</div>
+		</div><!-- END #info-box -->
+		<div id="board-display">
+			<div class="board-tech-name"></div>
+			<div class="board-preview">
+				<div class="board-menu-left-button">
+					<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/bb-left-w.png" class="menu-left" />
 				</div>								
-				<div class="boardViews">
-					<div class="previewTop">
+				<div class="board-views">
+					<div class="preview-top">
 						<div class="board">						 
-							<div class="bImage">
-								<div class="bText"></div>
+							<div class="board-image">
+								<div class="board-text"></div>
 								<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/default/SKATE-BANANA.png" class="responsive-image" />
 							</div>
 						</div>
 					</div>
-					<div class="preview34">
+					<div class="preview-side">
 						<div class="board">
-							<div class="bImage">
-								<div class="bText"></div>
+							<div class="board-image">
+								<div class="board-text"></div>
 								<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-sidewall/sidewall/SKATE-BANANA-YELLOW.png" class="responsive-image sidewall-top" />
 								<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-sidewall/default/SKATE-BANANA.png" class="responsive-image sidewall-bottom" />
 								<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-sidewall/default/SKATE-BANANA.png" class="responsive-image sidewall-hidden" />
 							</div>	
 						</div>
 					</div>
-					<div class="previewBase">
+					<div class="preview-base">
 						<div class="board">
-							<div class="bImage">
-								<div class="bText">
+							<div class="board-image">
+								<div class="board-text">
 									<p class="rotate-one">
 										<span class="board-text-custom">DIY BOARD!</span>
 									</p>
@@ -189,30 +207,34 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 						</div>
 					</div>
 				</div>
-				<div class="boardMenuRightButton">
-					<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/bb-right-w.png" class="menuRight" />
+				<div class="board-menu-right-button">
+					<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/bb-right-w.png" class="menu-right" />
 				</div>
 			</div>
 		</div>
-		<ul class="bxDivSlider">
-			<!-- STEP 1 - SHAPE -->
+		<ul class="bx-div-slider">
+			<!-- STEP 1 - BOARD -->
 			<li>
-				<div class="boardShape1 carousel">
-					<ul>
-						<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/default/SKATE-BANANA.png" shapenum="1" id="defaultShapeImage" /></li>
-						<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/default/ATTACK-BANANA.png" shapenum="2" /></li>
-						<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/default/TRAVIS-RICE-PRO-BLUNT.png" shapenum="3" /></li>
-						<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/default/TRAVIS-RICE-PRO-POINTY.png" shapenum="4" /></li>
-						<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/default/TRS.png" shapenum="5" /></li>
-						<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/default/HOT-KNIFE.png" shapenum="6" /></li>
-						<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/default/SKUNK-APE.png" shapenum="7" /></li>
-						<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/default/BANANA-BLASTER.png" shapenum="8" /></li>
-					</ul>
+				<div class="step1-board">
+					<div class="carousel-container">
+						<div class="carousel">
+							<ul>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/default/SKATE-BANANA.png" shapenum="1" id="defaultShapeImage" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/default/ATTACK-BANANA.png" shapenum="2" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/default/TRAVIS-RICE-PRO-BLUNT.png" shapenum="3" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/default/TRAVIS-RICE-PRO-POINTY.png" shapenum="4" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/default/TRS.png" shapenum="5" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/default/HOT-KNIFE.png" shapenum="6" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/default/SKUNK-APE.png" shapenum="7" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/default/BANANA-BLASTER.png" shapenum="8" /></li>
+							</ul>
+						</div>
+					</div>
 				</div>
 			</li>
 			<!-- STEP 2 - SIZE -->
 			<li>
-				<div class="boardTech2">
+				<div class="step2-size">
 					<div class="board-info">
 						<div class="board">BTX - Skate Banana</div>
 						<div class="shape-desc"></div>
@@ -234,7 +256,7 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 			</li>
 			<!-- STEP 3 - TOP SHEET -->
 			<li>
-		  		<div class="boardTop3">
+		  		<div class="step3-top">
 		  			<div class="carousel-container">
 						<div class="carousel">
 							<ul>
@@ -260,7 +282,7 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 			</li>
 			<!-- STEP 4 - SIDEWALL -->
 			<li>
-				<div class="boardSide4">
+				<div class="step4-sidewall">
 					<div class="carousel-container">
 						<div class="carousel">
 							<ul>
@@ -277,7 +299,7 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 			</li>
 			<!-- STEP 5 - BASE -->
 			<li>
-				<div class="boardBase5">
+				<div class="step5-base">
 					<div class="carousel-container">
 						<div class="carousel">
 							<ul>
@@ -302,67 +324,54 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 			</li>
 			<!-- STEP 5b - BASE TEXT -->
 			<li>
-				<div class="boardBase5b">
-					<div class="boardItemHolder">
-						<div id="knifecut-base-controls">
-							<p>Base Text</p>
-							<div class="knifecut-input">
-								<input type="text" id="board-text" value="10 CHARACTER MAX" name="board" maxlength="10" />
-							</div>
-							<div class="letter-color">
-								<p>Letter Color</p>
-								<div class="greyBox color"></div>
-								<div class="orangeBox color"></div>
-								<div class="yellowBox color"></div>
-								<div class="blackBox color"></div>
-								<div class="whiteBox color"></div>
-								<div class="greenBox color"></div>
-								<div class="blueBox color"></div>
-								<div class="redBox color"></div>
-								<div class="clearfix"></div>
-							</div>
-							<div class="base-color">
-								<p>Base Color</p>
-								<div class="greyBox color"></div>
-								<div class="orangeBox color"></div>
-								<div class="yellowBox color"></div>
-								<div class="blackBox color"></div>
-								<div class="whiteBox color"></div>
-								<div class="greenBox color"></div>
-								<div class="blueBox color"></div>
-								<div class="redBox color"></div>
-								<div class="clearfix"></div>
-							</div>
+				<div class="step5b-base-text">
+					<div id="knifecut-base-controls">
+						<p>Base Text</p>
+						<div class="knifecut-input">
+							<input type="text" id="board-text" value="10 CHARACTER MAX" name="board" maxlength="10" />
+						</div>
+						<div class="letter-color">
+							<p>Letter Color</p>
+							<div class="box-grey color"></div>
+							<div class="box-orange color"></div>
+							<div class="box-yellow color"></div>
+							<div class="box-black color"></div>
+							<div class="box-white color"></div>
+							<div class="box-green color"></div>
+							<div class="box-blue color"></div>
+							<div class="box-red color"></div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="base-color">
+							<p>Base Color</p>
+							<div class="box-grey color"></div>
+							<div class="box-orange color"></div>
+							<div class="box-yellow color"></div>
+							<div class="box-black color"></div>
+							<div class="box-white color"></div>
+							<div class="box-green color"></div>
+							<div class="box-blue color"></div>
+							<div class="box-red color"></div>
+							<div class="clearfix"></div>
 						</div>
 					</div>
 				</div>
 			</li>
 			<!-- STEP 6 - BADGE TEXT -->
 			<li>
-				<div class="boardBadge6">
-					<div class="boardItemHolder">
-						<div class="boardTopInfo1">
-							<div id="boardBadgeItems">
-								<div id="boardBadgeIcon1">
-									<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/bb-6-badgelrg.png" class="responsive-image board-badge" />
-									<div class="boardBadgeTextHolder">
-										<div class="board-badge-text">
-											<span class="badge-text-wide"></span>
-										</div>
-									</div>
-									<div class="boardBadgeSize">151</div>
-									<div class="board-badge-input-holder">
-										<input type="text" class="board-badge-input" value="26 CHARACTER MAX" name="badge" maxlength="26" />
-									</div>
-								</div>
-							</div>
-						</div>
+				<div class="step6-badge">
+					<div class="board-badge">
+						<div class="badge-text"></div>
+						<div class="badge-size"></div>
+					</div>
+					<div class="board-badge-input-holder">
+						<input type="text" class="board-badge-input" value="26 CHARACTER MAX" name="badge" maxlength="26" />
 					</div>
 				</div>
 			</li>
 			<!-- STEP 7 - BUY -->
 			<li>
-				<div class="boardBuy7">
+				<div class="step7-buy">
 					<div class="thereciept-scroll">
 						<div class="boardText1 thereciept">
 							<div class="board-reciept">
@@ -455,13 +464,13 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 		        </div>
 		    </div>
 	    </div>
-	    <div id="mobileblocker">
+	    <div id="mobile-blocker">
 			<h2>WHOA. SLOW DOWN!</h2>
 			<h3>Our Mobile/Tablet DIY Snowboard Builder is not quite ready, but we are busy working on it.</h3>
 			<h3>In the meantime, please use it on your desktop at an appropriate size.</h3>
 	    </div>
-		<div id="divBlocker"></div>
-		<div id="divPreloader">
+		<div id="div-blocker"></div>
+		<div id="div-preloader">
 			<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/BACKGROUND-01.jpg" />
 			<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/BACKGROUND-02.jpg" />
 			<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/BACKGROUND-03.jpg" />
@@ -486,9 +495,11 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
     <script>window.jQuery || document.write('<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery-1.10.2.min.js"><\/script>')</script>
 	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery.fitvids.js"></script>
 	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery.bxslider.min.js"></script>
-	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/TweenMax.min.js"></script>
+	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/GSAP/utils/Draggable.min.js"></script>
+	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/GSAP/plugins/ThrowPropsPlugin.min.js"></script>
+	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/GSAP/TweenMax.min.js"></script>
  	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/libtech.main.js"></script>
-	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/libtech.snowboardbuilder.js"></script>
+	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/libtech.snowboardbuilder.js"></script><!-- http://172.21.44.83/~bbehrens/mervin-sites/Lib-Tech-1314/_/js/libtech.snowboardbuilder.js -->
 	<!-- Init the main JS -->
 	<script type="text/javascript">
 	    $(document).ready(function(){

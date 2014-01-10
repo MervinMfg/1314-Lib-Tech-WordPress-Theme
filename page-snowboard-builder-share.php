@@ -65,7 +65,7 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/share/";
 	    <div id="header-share-print">	
     		<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/logo-diy-print.png" alt="Lib Tech DIY Board Builder" />
 	    </div>
-		<div class="boardBuy7">
+		<div class="step7-buy">
 			<div class="boardText1 thereciept">
 				<div class="board-reciept">
 					<h1>EXPENSE</h1>
@@ -117,32 +117,32 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/share/";
 				<div class="clearfix"></div>
 			</div>
 		</div>
-		<div id="boardDisplay">
-			<div class="boardTechName"></div>
-			<div class="boardPreview">							
-				<div class="boardViews">
-					<div class="previewTop">
+		<div id="board-display">
+			<div class="board-tech-name"></div>
+			<div class="board-preview">							
+				<div class="board-views">
+					<div class="preview-top">
 						<div class="board">						 
-							<div class="bImage">
-								<div class="bText"></div>
+							<div class="board-image">
+								<div class="board-text"></div>
 								<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/default/SKATE-BANANA.png" class="responsive-image" />
 							</div>
 						</div>
 					</div>
-					<div class="preview34">
+					<div class="preview-side">
 						<div class="board">
-							<div class="bImage">
-								<div class="bText"></div>
+							<div class="board-image">
+								<div class="board-text"></div>
 								<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-sidewall/sidewall/SKATE-BANANA-YELLOW.png" class="responsive-image sidewall-top" />
 								<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-sidewall/default/SKATE-BANANA.png" class="responsive-image sidewall-bottom" />
 								<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-sidewall/default/SKATE-BANANA.png" class="responsive-image sidewall-hidden" />
 							</div>	
 						</div>
 					</div>
-					<div class="previewBase">
+					<div class="preview-base">
 						<div class="board">
-							<div class="bImage">
-								<div class="bText">
+							<div class="board-image">
+								<div class="board-text">
 									<p class="rotate-one">
 										<span class="board-text-custom">DIY BOARD!</span>
 									</p>
@@ -196,7 +196,7 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/share/";
 		        </div>
 		    </div>
 	    </div>
-	    <div id="divBlocker"></div>
+	    <div id="div-blocker"></div>
 	</div><!-- END .wrapper -->
 
 	<?php wp_footer(); ?>

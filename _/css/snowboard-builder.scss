@@ -1,29 +1,33 @@
-
-/**
- * Lib Tech
- * Custom Snowboard Builder v1.0
- * http://lib-tech.com
- * Author: brian.behrens@mervin.com
+/*!
+ * Lib Tech Custom Snowboard Builder
+ * http://lib-tech.com/diy
+ * Copyright 2013 Mervin Mfg.
+ * Author: brian.behrens@mervin.com - http://www.mervin.com
+ * Version: 1.1
  */
 
 $numElements: 10;
 $numSidewalls: 7;
 $numBases: 12;
-
 $globalFontColor: #fff;
-
 $break-tiny: 100px;
 $break-xsmall: 767px;
 $break-medium: 768px;
 $break-large: 1920px;
-
 $bodyFont: "PT Sans Narrow", "Myriad Pro", Helvetica, Arial, sans-serif;
 $knifecutFont: "Altehaas Grotesk Bold", Impact, Arial, sans-serif;
 
+@mixin fadeOpacity($time: 300ms) {
+	transition: opacity $time ease-in-out;
+	-webkit-transition: opacity $time ease-in-out;
+	-moz-transition: opacity $time ease-in-out;
+	-o-transition: opacity $time ease-in-out;
+}
 @mixin nologo {
-	#topLogo { display: none !important; }
+	#header .top-logo { display: none !important; }
 }
 
+/* Custom Fonts */
 @font-face {
 	font-family: 'Altehaas Grotesk Bold';
 	src: url('../fonts/Altehaas-Grotesk-Bold/Altehaas-Grotesk-Bold.eot');
@@ -34,6 +38,17 @@ $knifecutFont: "Altehaas Grotesk Bold", Impact, Arial, sans-serif;
 	font-weight: normal;
 	font-style: normal;
 }
+
+.center-line {
+	width: 2px;
+	height: 200px;
+	background: #00ff00;
+	position: absolute;
+	z-index: 99999;
+	left: 65%;
+}
+
+
 /* DOM Styles */
 body {
 	-moz-background-size: cover;
@@ -211,7 +226,7 @@ input {
 .wrapper #region-selector .width-fix div {
 	background: inherit !important;
 }
-ul.bxDivSlider {
+ul.bx-div-slider {
 	li {
 		background-size: 100% 100%;
 	}
@@ -222,7 +237,7 @@ ul.bxDivSlider {
 .boardShape {
 	position: relative;
 }
-.bxDivSlider {
+.bx-div-slider {
 	-webkit-backface-visibility: hidden;
 }
 ul.bxslider {
@@ -238,7 +253,7 @@ ul.bxslider {
 .bxDivShape li {
 	opacity: 0;
 }
-#divBlocker {
+#div-blocker {
 	position: fixed;
 	height: 100%;
 	width: 100%;
@@ -248,14 +263,8 @@ ul.bxslider {
 	z-index: 999999;
 	background: #000 url('../img/loader.gif') no-repeat center center;
 }
-#divPreloader {
+#div-preloader {
 	display: none;
-}
-
-@for $index from 1 through 6 {
-	#blackBoxInfo h#{$index}{
-		font-family: $bodyFont;
-	}
 }
 
 @for $index from 1 through 6 {
@@ -294,20 +303,7 @@ ul.bxslider {
 		font-weight: 400;
 	}
 }
-#sizeItemYellow {
-	background-color: yellow;
-}
-#sizeItemWhite {
-	background-color: yellow;
-}
-.sizeYellow {
-	color: yellow;
-	font-weight: 700;
-}
-.sizeWhite {
-	color: white;
-	font-weight: 400;
-}
+
 .highlight {
 	background-color:yellow;
 	-moz-transition: none;
@@ -402,7 +398,7 @@ ul.bxslider {
 	width: 100%;
 	font-weight: bold;
 
-	#topTwo {
+	.top-two {
 		position: absolute;
 		float:left;
 		width: 20%;
@@ -421,7 +417,7 @@ ul.bxslider {
 			color: black;
 		}
 	}
-	#topLogo {
+	.top-logo {
 		display: block !important;
 		float: left;
 		width: 100%;
@@ -431,24 +427,23 @@ ul.bxslider {
 		left: 0px;
 		height: 40px;
 	}
-	#topFlag {
+	.top-flag {
 		float:left;
 		position:absolute;
 		z-index: 10;
 		left:233px;
 	}
-	#topSection {
+	.top-section {
 		font-size: 28px;
 		top: 3px;
 		right: 20px;
 		position: absolute;
 		color: #fff;
-		opacity: 0;
 		width: 100%;
 		text-align: right;
 		z-index: 5;
 	}
-	#topSectionRight {
+	.top-section-right {
 		float: left;
 		text-align: center;
 		display: none;
@@ -467,224 +462,108 @@ ul.bxslider {
 	z-index: 6868;
 	background: #FFFF00 url('../img/bb/advance-arrow.gif') no-repeat center center;
 }
-#blackBoxInfo {
+#info-box {
 	min-width: 250px;
-	max-width: 300px; //250px
+	max-width: 300px;
+	visibility: hidden;
+	opacity: 0;
+	filter:alpha(opacity=0);
 	position: absolute;
-	float: left;
-	background-color: #000;
-	margin-top: -10px;
-	padding: 15px;
-	display: none;
-	margin-bottom: 12% !important;
-	z-index: 99987 !important;
+	top: 50%;
+	left: 50%;
+	z-index: 99987;
+	margin-left: -50px;
 
-	.blackBoxDiamondL {
-		left: -20px;
-		position: absolute;
-		background: url(../img/bb/bb-0-diamond.png);
-		height: 45px !important;
-		width: 45px !important;
-		top: 10px;
-	} 
-	.blackBoxDiamondR {
-		right: -20px;
-		position: absolute;
-		background: url(../img/bb/bb-0-diamond.png);
-		height: 45px !important;
-		width: 45px !important;
-		top: 10px;
-	}
-	h2 {
-		font-size: 25px;
-		font-weight: 700;
-		z-index: 10;
-		position: relative;
-	}
-	h3 {
-		text-align: center;
-		font-size: 16px;
-		z-index: 11;
-		position: relative;
-		margin: 2% 0 2% 0;
-	}
-	.contourImg {
-		max-width: 100%;
-	}
-	p {
-		color: white;
-		text-align: center;
-		font-size: 14px;
-		font-weight: normal;
-		margin: 4% 0 2% 0;
+	-webkit-transform: matrix(0.8, 0, 0, 0.8, 0, 0);
+	-ms-transform: scale(0.8, 0.8);
+	transform: scale(0.8, 0.8);
+	transition-duration: .2s;
+	-webkit-transition-duration: .2s;
 
-		span {
+	&.offset {
+		left: 65%;
+	}
+	&.show {
+		visibility: visible;
+		opacity: 1;
+		filter:alpha(opacity=100);
+		margin-left: 50px;
+
+		-webkit-transform: matrix(1.0, 0, 0, 1.0, 0, 0);
+		-ms-transform: scale(1.0, 1.0);
+		transform: scale(1.0, 1.0);
+	}
+	.diamond {
+		height: 45px;
+		width: 45px;
+		background: url(../img/bb/bb-0-diamond.png);
+		position: absolute;
+		left: -22px;
+		top: 10px;
+	}
+	.box {
+		background: #000;
+		padding: 15px;
+		box-shadow: 2px 2px 20px #000;
+
+		h2 {
+			font-size: 25px;
 			font-weight: 700;
+			z-index: 10;
+			position: relative;
 		}
-	}
-	h4 {
-		font-size: 14px;
-		font-weight: normal;
-		margin: 4% 0 2% 0;
-	}
-	h5 {
-		font-weight: 400;
-		font-size: 16px;
-		font-family: $bodyFont;
-		color: white;
-		text-transform: none;
-		margin: 4% 0 2% 0;
-	}
-	span {
-		font-size: 18px;
-		font-weight: 700;
-		margin: 4% 0 2% 4%; 
-	}
-}
-#leftmenu {
-	width: 276px;
-	background: yellow;
-	position: absolute;
-	left: -195px;
-	color: #000;
-	padding: 16px 0 16px 0px;
-	margin: 0px;
-	text-transform: uppercase;
-	box-shadow: 1px 1px 8px #666666;
-	top: 25%;
-	background: url(../img/bb/bb-0-leftmenubg.gif);
-	display: none;
-	z-index: 5555;
-
-	#menuClose {
-		position: absolute !important;
-		right: 11px;
-		top: 10px;
-		float: right !important;
-		z-index: 1561;
-		display: none;
-	} 
-	#menuHeader {
-		width: 100%;
-		text-align: center;
-	}
-
-	ul {
-		padding-left: 0%;
-
-		li {
-			cursor: pointer;
-			border-bottom: 1px solid #000;
-			padding: 10px 0 10px 0;
-			height: 42px;
-
-			&:first-child {
-				border-top: 1px solid #000;
-			}
-		}
-	}
-	div {
-		float: left;
-		position: relative;
-	}
-	h1 {
-		color: black;
-		font-size: 30px;
-		text-transform: uppercase;
-		margin-left: -65px;
-		font-family: $bodyFont;
-		font-weight: 700;
-	}
-
-	.menu-options {
-		width: 100%;
-
-		div:first-child {
-			width: 10%;
-		}
-		div:nth-child(2){
-			width: 60%;
-		}
-		div:nth-child(3) {
-			width: 30%;
-		}
-		.menuXs li {
+		h3 {
 			text-align: center;
-
-			&.menu1TitleX span,
-			&.menu2TitleX span,
-			&.menu3TitleX span,
-			&.menu4TitleX span,
-			&.menu5TitleX span,
-			&.menu6TitleX span {
-				visibility: hidden;
-			}
-			&.menu7TitleXB {
-				height: 42px;
-				display: block;
-				background-color: black;
-				color: #ffff00;
-			}
-			span.menuXVisible {
-				visibility: visible !important;
-				font-weight: 700;
+			font-size: 16px;
+			z-index: 11;
+			position: relative;
+			margin: 2% 0 2% 0;
+		}
+		.contour {
+			img {
+				max-width: 100%;
 			}
 		}
-		.menuTitles {
-			text-align: right;
+		.sizes {
+			p {
+				color: white;
+				text-align: center;
+				font-size: 14px;
+				font-weight: normal;
+				margin: 4% 0 2% 0;
 
-			ul li {
-				padding-right: 3%;
-				height: 42px;
-
-				&.menu1Title {
-					background-image: none;
-					font-size: 17px;
-					height: 42px;
+				span {
+					font-size: 18px;
+					font-weight: 700;
+					margin: 4% 0 2% 4%; 
 				}
-				&.menu7TitleB {
-					background-color: black;
-					color: #ffff00;
-				}
-
-				&.menuTitleFull {
-					line-height: 17px !important;
-					padding-top : 4px !important;
-					visibility: visible;
-				}
-
 			}
 		}
-		.menuButtons ul li {
-			padding-left: 12px;
-			line-height: 20px;
-			height: 42px;
-
-			&.menu7B {
-				background-color: black;
-				color: #ffff00;
-
-				img {
-					width: 16px;
-					margin: auto;
-					height: auto;
-					margin-top: -1px;
-					margin-left: 15%;
-					padding-top: 0px;
-					line-height: 30px;
-					position: absolute;
-				}
-			}
+		h4 {
+			font-size: 14px;
+			font-weight: normal;
+			margin: 4% 0 2% 0;
+		}
+		h5 {
+			font-weight: 400;
+			font-size: 16px;
+			font-family: $bodyFont;
+			color: white;
+			text-transform: none;
+			margin: 4% 0 2% 0;
 		}
 	}
 }
-#boardDisplay {
+#left-menu {
+	display: none;
+}
+#board-display {
 	position: absolute;
 	z-index: 4444;
 	color: $globalFontColor;
 	display: none;
 
-	.boardTechName {
+	.board-tech-name {
 		color: $globalFontColor;
 		font-size: 20px;
 		text-align: center;
@@ -695,22 +574,22 @@ ul.bxslider {
 		font-family: $bodyFont;
 		font-weight: 700;
 	}
-	.boardPreview {
-		.boardMenuLeftButton,
-		.boardMenuRightButton {
+	.board-preview {
+		.board-menu-left-button,
+		.board-menu-right-button {
 			width: 38px;
 			height: 49px;
 			display: block;
 
-			.menuLeft,
-			.menuRight { 
+			.menu-left,
+			.menu-right { 
 			   cursor: pointer;
 			}
 		}
-		.boardViews {
-			.previewTop,
-			.preview34,
-			.previewBase {
+		.board-views {
+			.preview-top,
+			.preview-side,
+			.preview-base {
 				position: absolute;
 				width: 100%;
 				height: 100%;
@@ -726,11 +605,11 @@ ul.bxslider {
 					text-align: center;
 					margin: 0 0 0 0;
 
-					.bImage {
+					.board-image {
 						position: relative;
 						cursor:  pointer;
 
-						.bText {
+						.board-text {
 							position: absolute;
 							display: block;
 							top: 80%;
@@ -778,7 +657,7 @@ ul.bxslider {
 					}
 				}
 			}
-			.preview34 {
+			.preview-side {
 				.sidewall-top {
 					position: absolute;
 					z-index: 2;
@@ -791,7 +670,7 @@ ul.bxslider {
 					position: relative;
 				}
 			}
-			.previewBase {
+			.preview-base {
 				.custom-base-logo {
 					display: none;
 					position: absolute;
@@ -808,7 +687,7 @@ ul.bxslider {
 	padding-left: 1.3%;
 	z-index: 9998;
 }
-#mobileblocker,
+#mobile-blocker,
 #ie-blocker {
 	background: rgb(0, 0, 0);
 	background: rgba(0, 0, 0, .95);
@@ -848,23 +727,12 @@ ul.bxslider {
 	background-size: 100% 100%;
 }
 /* STEP 1 - SHAPE */
-.boardShape1 {
+.step1-board {
 	background-size: 100% 100%;
-}
-.carousel {
-	position: absolute;
-
-	ul {
-		float: left;
-
-		li.item {
-			display: inline-block;
-		}
-	}
 }
 
 /* STEP 2 - SIZE */
-.boardTech2 {
+.step2-size {
 	.board-info {
 		text-shadow: 2px 2px 4px #000;
 		width: 90%;
@@ -878,27 +746,33 @@ ul.bxslider {
 			color: #FFFF00;
 		}
 		.shape-desc {
+			font-size: 1.25em;
 
+			span {
+				font-weight: 900;
+				color: #ffff00;
+			}
 		}
 		.board-tagline {
-			font-size: 25px;
+			font-size: 1.75em;
 			font-weight: 700;
 			text-transform: uppercase;
 			margin: 1% 0px 1% 0px;
 		}
 		.board-desc {
-			font-size: 18px;
+			font-size: 1.125em;
 			font-weight: 400;
 			margin: 1% 0px 2% 0px;
 		}
 		.contour-title {
-			font-size: 15px;
+			font-size: 1.125em;
+			text-transform: uppercase;
 			font-weight: 700;
-			color: $globalFontColor;
+			color: #ffff00;
 			margin: 11% 0 3% 0;
 		} 
 		.contour-desc {
-			font-size: 18px;
+			font-size: 1.125em;
 			font-weight: 400;
 			color: $globalFontColor;
 		}
@@ -909,7 +783,7 @@ ul.bxslider {
 		h3.size-cta {
 			text-shadow: 2px 2px 4px #000;
 			padding-bottom: 20px;
-			font-size: 20px;
+			font-size: 1.125em;
 		}
 		.size-holder {
 			position: relative;
@@ -919,19 +793,24 @@ ul.bxslider {
 
 			.sizes {
 				.size-item {
-					padding: 10px;
-					float: left;
 					font-weight: 600;
 					font-size: 18px;
-					border: 1px solid black;
 					text-align: center;
-					color: black;
-					background-color: white;
+					color: #fff;
+					text-shadow: 2px 2px 4px #000;
+					border: 1px solid #fff;
+					background-color: rgba(0, 0, 0, .3);
 					cursor: pointer;
 					margin: 0 20px 20px 0;
+					padding: 10px;
+					float: left;
 
+					&.selected,
 					&:hover {
 						background-color: #ffff00;
+						color: #000;
+						border-color: #000;
+						text-shadow: none;
 					}
 				}
 			}
@@ -970,6 +849,10 @@ ul.bxslider {
 								text-transform: uppercase;
 								font-size: 80%;
 							}
+							&.selected {
+								color: yellow;
+								font-weight: 700;
+							}
 						}
 					}	
 				}
@@ -979,7 +862,7 @@ ul.bxslider {
 }
 
 /* STEP 3 - TOP */
-.boardTop3 {
+.step3-top {
 	padding-left: 30%;
 
 	.carousel-container {
@@ -989,7 +872,7 @@ ul.bxslider {
 	}
 }
 /* STEP 4 - SIDEWALL */
-.boardSide4 {
+.step4-sidewall {
 	padding-left: 30%;
 
 	.carousel-container {
@@ -999,7 +882,7 @@ ul.bxslider {
 	}
 }
 /* STEP 5 - BASE */
-.boardBase5 {
+.step5-base {
 	padding-left: 30%;
 
 	.carousel-container {
@@ -1009,7 +892,7 @@ ul.bxslider {
 	}
 }
 /* STEP 5b - CUSTOM BASE */
-.boardBase5b .boardItemHolder {
+.step5b-base-text {
 	position: relative;
 
 	#knifecut-base-controls {
@@ -1046,29 +929,29 @@ ul.bxslider {
 				margin-right: 10px;
 				border: 1px solid white;
 
-				&.greyBox {
+				&.box-grey {
 					background-color: #999999;
 				}
-				&.orangeBox {
+				&.box-orange {
 					background-color: #FF6600;
 				}
-				&.yellowBox {
+				&.box-yellow {
 					background-color: #FFCC00;
 				}
-				&.blackBox {
+				&.box-black {
 					background-color: #000000;
 				}
-				&.whiteBox {
+				&.box-white {
 					background-color: #FFFFFF;
 					border: 1px solid black;
 				}
-				&.greenBox {
+				&.box-green {
 					background-color: #99CC00;
 				}
-				&.blueBox {
+				&.box-blue {
 					background-color: #0099FF;
 				}
-				&.redBox {
+				&.box-red {
 					background-color: #CC3333;
 				}
 			}
@@ -1076,60 +959,35 @@ ul.bxslider {
 	}
 }
 /* STEP 6 - BADGE */
-.boardBadge6 {
-	#boardBadgeIcon1 {
-		width: 62%;
-		margin-left: auto;
-		margin-right: auto;
-		margin-top: 150px;
-		position: relative;
+.step6-badge {
+	.board-badge {
+		margin: 0 auto 40px;
+		background: url('../img/bb/bb-6-badgelrg.png');
 		width: 350px;
+		height: 350px;
+		position: relative;
 
-		img.board-badge {
-			position:relative;
-			margin-left: auto;
-			margin-right: auto;
-		}
-
-		.boardBadgeTextHolder {
+		.badge-text {
 			position: absolute;
-			top: 39%;
+			top: 45%;
 			left: 20%;
 			width: 60%;
+			margin: 0 auto;
 			text-align: center;
+			word-wrap: break-word;
 
-			.board-badge-text {
-				word-wrap: break-word;
-
-				.badge-text-wide {
-					line-height: 100%;
-					color: white;
-					max-height: 60px;
-					overflow: hidden;
-					margin: auto;
-					display: block;
-					text-align: center;
-					font-family: $bodyFont;
-					text-transform: uppercase;
-					font-weight: 700;
-				}
-			}
+			line-height: 100%;
+			color: white;
+			max-height: 60px;
+			overflow: hidden;
+			font-family: $bodyFont;
+			text-transform: uppercase;
+			font-weight: 700;
 		}
-		.board-badge-input-holder {
-			position: relative;
-			text-align: center;
-
-			.board-badge-input {
-				width: 320px;
-				font-weight: 700;
-				text-align: center;
-			}
-		}
-		.boardBadgeSize {
+		.badge-size {
 			width: 60%;
 			position: absolute;
-			z-index: 5555;
-			top: 52%;
+			top: 60%;
 			left: 20%;
 			font-size: 320%;
 			font-weight: 700;
@@ -1137,10 +995,19 @@ ul.bxslider {
 			text-align: center;
 		}
 	}
+	.board-badge-input-holder {
+		text-align: center;
+
+		.board-badge-input {
+			width: 320px;
+			font-weight: 700;
+			text-align: center;
+		}
+	} 
 }
 
 /* STEP 7 - BUY */
-.boardBuy7 {
+.step7-buy {
 	.thereciept-scroll {
 		overflow-y: auto;
 	}
@@ -1289,15 +1156,6 @@ ul.bxslider {
 .sharebutton { width: 100%; }
 
 
-
-
-
-
-
-.boardItemHolder {
-	position: relative;
-}
-
 .boardText1,
 .boardText2 {
 	color: $globalFontColor;
@@ -1384,7 +1242,7 @@ ul.bxslider {
   width: 300px;
 }
 
-.boardTechName {
+.board-tech-name {
 	margin-top: -20px;
 	width: 100%;
 	position: absolute;
@@ -1415,7 +1273,7 @@ body.diy-share {
 		#header-share-print {
 			display: none;
 		}
-		.boardBuy7 {
+		.step7-buy {
 			.thereciept {
 				margin: 0 auto;
 				width: 100%;
@@ -1451,19 +1309,19 @@ body.diy-share {
 				}
 			}
 		}
-		#boardDisplay {
+		#board-display {
 			display: block;
 			position: relative;
 			width: 33%;
 
-			.previewTop {
+			.preview-top {
 				position: relative;
 			}
 
-			.preview34 {
+			.preview-side {
 				left: 100%;
 			}
-			.previewBase {
+			.preview-base {
 				left: 200%;
 			}
 		}
@@ -1477,9 +1335,9 @@ body.diy-share {
 
 /*TINY - ?? */
 @media screen and (max-width: $break-tiny) {
-	.boardShape1 .bx-wrapper img {
+/*	.step1-board .bx-wrapper img {
 		max-width: 100% !important;
-	}
+	}*/
 }
 .boardReciept {
 	margin-bottom: 10px;
@@ -1500,9 +1358,9 @@ body.diy-share {
 	///@include nologo;
 	/*
 
-	#topSection,
-	#blackBoxInfo,
-	#topFlag {
+	#header .top-section,
+	#info-box,
+	#header .top-flag {
 		display: none !important;
 	}
 	.pagerTop {
@@ -1522,7 +1380,7 @@ body.diy-share {
 		top: -20px;
 		z-index: 9997;
 	}
-	.bxDivSlider {
+	.bx-div-slider {
 		top: 80px;
 	}
 	.swipediv {
@@ -1533,7 +1391,7 @@ body.diy-share {
 		max-width: 280px;
 		width: 160px;
 	}
-	#topTwo {
+	.top-two {
 		display: none;
 		z-index: 12345678;
 	}
@@ -1556,7 +1414,7 @@ body.diy-share {
 		div {
 			width: 100%;
 		}
-		.boardBuy7 .boardText1 {
+		.step7-buy .boardText1 {
 			max-width: 99% !important;
 		}
 		p {
@@ -1574,19 +1432,16 @@ body.diy-share {
 		hr {
 			border-top: 1px solid black !important;
 		}
-		.boardTechName {
+		.board-tech-name {
 			display: none;
 		}
-		.boardItemHolder {
-			width: 90%;
-		}
-		.boardPreview {
+		.board-preview {
 			width: 30% !important;
 		}
 	}
-	.boardBuy7right,
-	.boardBuy7left,
-	.boardBuy7side {  }
+	.step7-buyright,
+	.step7-buyleft,
+	.step7-buyside {  }
 	.bx-pager .bx-pager-item {
 		margin-right: 10px;
 		margin-left: 10px;
@@ -1607,20 +1462,20 @@ body.diy-share {
 	.bxDivShape {
 		padding-top: 8%;
 	}
-	#blackBoxInfo div,
-	#blackBoxInfo h4 {
+	#info-box div,
+	#info-box h4 {
 		display: none;
 	}
-	#blackBoxInfo h2 {
+	#info-box h2 {
 		text-align: center;
 	}
-	.boardShape1 {
+	.step1-board {
 		margin-top: 10%;
 	}
-	ul.bxDivSlider > li {
+	ul.bx-div-slider > li {
 		padding-top: 0px;
 	}
-	.bxDivSlider > li:nth-child(2) {
+	.bx-div-slider > li:nth-child(2) {
 		overflow: hidden !important;
 		min-height: 928px;
 	}
@@ -1631,8 +1486,8 @@ body.diy-share {
 		background-color: black;
 	}
 	// STEP 2 - SIZE
-	.boardTech2 #boarditem:first-child,
-	.boardTop3 #boarditem:first-child,
+	.step2-size #boarditem:first-child,
+	.step3-top #boarditem:first-child,
 	.boardBase4 #boarditem:first-child,
 	.boardBadge5 #boarditem:first-child,
 	.boardBuy6 #boarditem:first-child {
@@ -1645,7 +1500,7 @@ body.diy-share {
 	#s2shapeTitle {
 		display: none;
 	}
-	.boardTechName {
+	.board-tech-name {
 		color: black;
 		font-size: 20px;
 		text-align: left;
@@ -1672,7 +1527,7 @@ body.diy-share {
 		font-weight: 400;
 		color: $globalFontColor;
 	}
-	.boardTech2 .boardItemHolder {
+	.step2-size {
 		.boardText1 {
 			width: 90%;
 			margin-left: 4%;
@@ -1760,28 +1615,28 @@ body.diy-share {
 		}
 	}
 	//STEP 3
-	.boardTop3 .boardTechName {
+	.step3-top .board-tech-name {
 		display: none;
 	}
-	.boardSide4 .boardTechName {
+	.step4-sidewall .board-tech-name {
 		display: none;
 	}
-	.boardBase5 .boardTechName {
+	.step5-base .board-tech-name {
 		display: none;
 	}
-	.boardBase5b .boardTechName {
+	.step5b-base-text .board-tech-name {
 		display: none;
 	}
-	.boardBadge6 .boardTechName {
+	.step6-badge .board-tech-name {
 		display: none;
 	}
 	.bxSliderTop {
 		margin-left: 0% !important;
 	}
-	.boardTop3 .bxSliderTop {
+	.step3-top .bxSliderTop {
 		margin-left: 0% !important;
 	}
-	.boardTop3 .bx-controls-direction, .bx-pager {
+	.step3-top .bx-controls-direction, .bx-pager {
 		display: block !important;
 	}
 	#boardTopItems {
@@ -1793,14 +1648,14 @@ body.diy-share {
 	.boardSideItems {
 		width: 100%;
 	}
-	.boardBase5 #boardBaseItems {
+	.step5-base #boardBaseItems {
 		img {
 			width: 100%; 
 			-webkit-transform: translateZ(0);
 			transform: translateZ(0);
 		}
 	}
-	.boardBase5 .bxSliderBase li {
+	.step5-base .bxSliderBase li {
 		width: percentage( (10/$numBases)/10 );
 		float: left;
 	}
@@ -1809,7 +1664,7 @@ body.diy-share {
 		font-weight: 400;
 		color: $globalFontColor;
 	}
-	.boardSide4 {
+	.step4-sidewall {
 		.boardSideInfo1 {
 			float: left;
 			width: 100%;
@@ -1820,12 +1675,12 @@ body.diy-share {
 			width: 100% !important;
 		}
 	}
-	.boardBuy7 {
+	.step7-buy {
 		.boardText1 {
 			max-width: 40% !important;
 			margin-left: 5% !important;
 		}
-		.boardItemHolder .boardText1 {
+		.boardText1 {
 			h1 {
 				font-size: 26px;
 				margin-bottom: 10%;
@@ -1838,7 +1693,7 @@ body.diy-share {
 			}
 		}
 	}
-	.boardMenuRightButton {
+	.board-menu-right-button {
 		float:left;
 		margin-left: 150px !important;
 		position: absolute;
@@ -1853,30 +1708,24 @@ body.diy-share {
 			// width: 90%;
 		}
 	}
-	#leftmenu,
+	#left-menu,
 	.bx-prev,
 	.bx-next {
 		display: none;
 	}
-	.boardShape1 {
+	.step1-board {
 		#boarditem:first-child {
 			margin-left: 10% !important;
 		}
 	}
-	.boardBuy7 .boardText1 {
+	.step7-buy .boardText1 {
 		margin-left: 1%;
 	}
 	.rotate-one span {
 		font-size: 250% !important;
 		font-weight: 700;
 	}
-	#boardBadgeIcon1 {
-		margin-top: 16%;
-		width: 350px;
-	}
-	#boardBadgeIcon1 img {
-		width: 375px !important;
-	} 
+	 
 	.buybutton,
 	.buildbutton {
 		font-size: 16px
@@ -1887,7 +1736,7 @@ body.diy-share {
 	.buildbutton {
 		display: none;
 	}
-	.boardTechName {
+	.board-tech-name {
 		font-size: 25px;
 		min-width: 120px;
 		line-height: 25px;
@@ -1896,15 +1745,15 @@ body.diy-share {
 		display: block;
 		margin-left: 0 !important;
 	}
-	.boardBuy7right,
-	.boardBuy7left,
-	.boardBuy7side {
+	.step7-buyright,
+	.step7-buyleft,
+	.step7-buyside {
 		max-width: 120px !important;
 	}
 	.recieptError {
 		color: red !important;
 	}
-	#mobileblocker {
+	#mobile-blocker {
 		display: block;
 		position:absolute;
 		width:100%;
@@ -1938,25 +1787,25 @@ body.diy-share {
 }
 /*SMALL - 560px */
 @media screen and (max-width: $break-xsmall) {
-	#topSection {
-		display: none;
-	}
-	#topSectionRight {
-		width: 10%;
-		opacity: 0;
-	}
-	#topSectionRight {
-		cursor: pointer;
-		padding: 2%;
-		right: 2%;
-		position: absolute;
+	#header {
+		.top-section {
+			display: none;
+		}
+		.top-section-right {
+			width: 10%;
+			opacity: 0;
+			cursor: pointer;
+			padding: 2%;
+			right: 2%;
+			position: absolute;
+		}
 	}
 	@include mobile-version;
-	#blackBoxInfo,
-	#topLogo {
+	#info-box,
+	#header .top-logo {
 		display: none;
 	}
-	#topSectionRight {
+	#header .top-section-right {
 		display: block !important;
 	}
 }
@@ -1966,10 +1815,6 @@ body.diy-share {
 		overflow: hidden;
 		height: 100%;
 	}
-
-
-
-
 	/* OVERVIEW */
 	#overview {
 		background: #000 url('../img/bb/bg-overview.jpg') no-repeat top right;
@@ -2010,36 +1855,26 @@ body.diy-share {
 			}
 		}
 	}
-
-
-
-
-
-
-
-
-
-
-	#topSection {
-		display: block;
-	} 
-	#topSectionRight {
-		width: 10%;
+	#header {
+		.top-two,
+		.top-section-right {
+			display: none !important;
+		}
+		.top-logo {
+			display: block !important;
+		}
+		.top-section-right {
+			width: 10%;
+		}
+		.top-section {
+			display: block;
+		}
 	}
-	#topTwo, #topSectionRight {
-		display: none !important;
-	}
-	#topLogo {
-		display: block !important;
-	}
-	#mobileblocker {
+	#mobile-blocker {
 		display: none;
 	}
 	.miniReciept {
 		display: none !important;
-	}
-	#topLogo {
-		display: block !important;
 	}
 	.bx-controls-direction,
 	.bx-pager {
@@ -2067,30 +1902,175 @@ body.diy-share {
 		padding-top: 4%;
 		margin-left: -12%;
 	}
-	#blackBoxInfo {
-		box-shadow: 2px 2px 20px #000;
-		padding: 15px;
-
-		h2 {
-			text-align: left;
-			font-size: 25px;
+	#info-box {
+		.box {
+			h2 {
+				text-align: left;
+				font-size: 25px;
+			}
+			h3 {
+				font-size: 14px;
+				text-align: left;
+			}
+			h4 {
+				display: block;
+			}
+			div {
+				max-width: 300px;
+			}
+			.sizes p {
+				font-size: 18px;
+				text-align: left;
+			}
 		}
-		h3 {
-	    	font-size: 14px;
-	    	text-align: left;
-	    }
-		h4 {
-			display: block;
-		}
-		div {
-			max-width: 300px;
-		}
-	    p {
-	    	font-size: 18px;
-	    	text-align: left;
-	    }
 	}
-    .boardTechName {
+	#left-menu {
+		width: 276px;
+		background: yellow;
+		position: absolute;
+		left: -195px;
+		color: #000;
+		padding: 10px 0 16px 0px;
+		margin: 0px;
+		text-transform: uppercase;
+		box-shadow: 1px 1px 8px #666666;
+		top: 25%;
+		background: url(../img/bb/bb-0-leftmenubg.gif);
+		display: none;
+		z-index: 5555;
+
+		-webkit-transform: translateZ(0); // triggers GPU, sometimes fixes the issue 
+		transform: translateZ(0); // non-webkit specific
+		// transition elements
+		transition: left 200ms ease-in-out;
+		-webkit-transition: left 200ms ease-in-out;
+		-moz-transition: left 200ms ease-in-out;
+		-o-transition: left 200ms ease-in-out;
+
+		&.open {
+			left: 0px;
+		}
+		.menu-close {
+			position: absolute !important;
+			right: 13px;
+			top: 13px;
+			float: right !important;
+			z-index: 1561;
+			display: none;
+		} 
+		.menu-header {
+			padding: 0 0 6px 30px;
+			color: black;
+			font-size: 30px;
+			text-transform: uppercase;
+			font-family: $bodyFont;
+			font-weight: 700;
+		}
+		ul.menu-options {
+			width: 100%;
+
+			li {
+				cursor: pointer;
+				border-bottom: 1px solid #000;
+				padding: 10px 0 10px 0;
+				height: 42px;
+
+				&:first-child {
+					border-top: 1px solid #000;
+				}
+				div {
+					float: left;
+					position: relative;
+
+					&.menu-x {
+						width: 10%;
+						text-align: center;
+						visibility: hidden;
+					}
+					&.menu-title {
+						width: 60%;
+						text-align: right;
+						padding-right: 3%;
+					}
+					&.menu-label {
+						width: 30%;
+						padding-left: 12px;
+						line-height: 20px;
+					}
+				}
+				&.selected {
+					background: url('../img/bb/bb-greyback-b0b0b0.png');
+
+					div.menu-label {
+						font-weight: 700;
+					}
+				}
+				&.complete {
+					div {
+						&.menu-x {
+							visibility: visible;
+							font-weight: 700;
+						}
+						&.menu-title {
+							line-height: 17px;
+							margin-top: -6px;
+						}
+					}
+				}
+				&.alert {
+					background: url('../img/bb/bb-redback.png');
+					font-weight: 600;
+				}
+				&.menu5b {
+					height: 0px;
+					padding: 0px;
+					border-bottom: 0px;
+					overflow: hidden;
+
+					transition: all 200ms ease-in-out;
+					-webkit-transition: all 200ms ease-in-out;
+					-moz-transition: all 200ms ease-in-out;
+					-o-transition: all 200ms ease-in-out;
+
+					&.show {
+						height: 42px;
+						padding: 10px 0 10px 0;
+						border-bottom: 1px solid #000;
+					}
+					&.complete {
+						div.menu-title {
+							line-height: 1.3em;
+							margin-top: 0px;
+						}
+					}
+				}
+				&.menu7 {
+					background-color: black;
+					color: #ffff00;
+
+					div {
+						&.menu-x {
+							height: 42px;
+							display: block;
+						}
+						&.menu-label {
+							img {
+								width: 16px;
+								margin: auto;
+								height: auto;
+								margin-top: -1px;
+								margin-left: 15%;
+								padding-top: 0px;
+								line-height: 30px;
+								position: absolute;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+    .board-tech-name {
 		font-size: 25px;
 		min-width: 120px;
 		line-height: 25px;
@@ -2099,31 +2079,28 @@ body.diy-share {
 		display: none;
 		margin-left: 0 !important;
     }
-	#boardDisplay {
+	#board-display {
 		width: 15%;
 		left: 90px;
 		top: 166px;
 
-		.boardMenuLeftButton,
-		.boardMenuRightButton {
+		.board-menu-left-button,
+		.board-menu-right-button {
 			display: block;
 			position: absolute;
 			z-index: 1000;
 		}
-		.boardMenuLeftButton {
+		.board-menu-left-button {
 			left: -10px;
 		}
-		.boardMenuRightButton {
+		.board-menu-right-button {
 			right: -10px;
 		}
 	}
-	#leftmenu,
+	#left-menu,
 	.bx-prev,
 	.bx-next {
 		display: block;
-	}
-	.boardShape1 #boarditem:first-child {
-		margin-left: 12% !important;
 	}
 	.boardText1 #boardTech2 {
 		width: 31% !important;
@@ -2133,34 +2110,45 @@ body.diy-share {
 	/* CAROUSEL */
 	.carousel {
 		padding-top: 166px;
-		-webkit-transform: translateZ(0);  /* triggers GPU, sometimes fixes the issue */
-		transform: translateZ(0);  /* non-webkit specific */
+		-webkit-transform: translateZ(0); // triggers GPU, sometimes fixes the issue 
+		transform: translateZ(0); // non-webkit specific
+		position: relative;
 
-		.item {
-			padding: 0 20px;
+		ul {
+			position: absolute;
+			cursor: ew-resize !important;
+			cursor: -webkit-grab !important;
+			cursor: -moz-grab !important;
 
-			img {
-				cursor: pointer;
-
-				&.confirmedShape,
-				.confirmedShape:hover {
-					-webkit-transform: matrix(1.10, 0, 0, 1.10, 0, 0) !important;
-					transform: scale(1.10, 1.10) !important;
-					-ms-transform: scale(1.10, 1.10) !important;
-					transition-duration: .2s;
-					-webkit-transition-duration: .2s;
+			&.dragging {
+				cursor: -webkit-grabbing !important;
+				cursor: -moz-grabbing !important;
+			}
+			li.item {
+				padding: 0 20px;
+				float: left;
+				-webkit-transform: translateZ(0); /* fix Safari flicker on css transitions */
+				
+				img {
+					&.selectedShape {
+						-webkit-transform: matrix(1.10, 0, 0, 1.10, 0, 0) !important;
+						-ms-transform: scale(1.10, 1.10) !important;
+						transform: scale(1.10, 1.10) !important;
+						transition-duration: .2s;
+						-webkit-transition-duration: .2s;
+					}
 				}
 			}
 		}
 	}
 
 	/* STEP 1 - SHAPE */
-	.boardShape1 {
+	.step1-board {
 		
 	}
 
 	/* STEP 2 - SIZE */
-	.boardTech2 {
+	.step2-size {
 		padding: 166px 0 0 30%;
 
 		.board-info {
@@ -2171,7 +2159,7 @@ body.diy-share {
 		.size-info {
 			width: 50%;
 			float: left;
-			padding-top: 40px;
+			padding-top: 46px;
 
 			.size-detail-table .table-data .info-list {
 				.side-list,
@@ -2191,35 +2179,28 @@ body.diy-share {
 	/* STEP 3 - TOP */
 	
 	/* STEP 5a - BASE */
-	.boardBase5 #boardBaseItems img {
+	.step5-base #boardBaseItems img {
     	width: 100%;
     	cursor: pointer;
     	-webkit-transform: translateZ(0);
     	transform: translateZ(0);
     }
     /* STEP 5b - KNIFECUT BASE */
-    .boardBase5b {
-    	.boardItemHolder {
-    		padding: 166px 0 0 30%;
-
-	    	#knifecut-base-controls {
-				// width: 48%;
-			}
-		}
+    .step5b-base-text {
+    	padding: 166px 0 0 30%;
     }
+    .step6-badge {
+    	padding: 166px 0 0 30%;
+    }
+
 	/* STEP 7 - BUY */
 	.boardReciept hr {
 		margin: 0.25em 0;
 		padding: 0;
 	}
-	
-	
 	.bx-wrapper .bx-pager {
 		display: none;
 	}
-	
-
-
 	/* SHARE STYLES */
 	html.diy-share {
 		overflow: visible;
@@ -2238,13 +2219,13 @@ body.diy-share {
 				width: 40%;
 				margin: 0;
 			}
-			.boardBuy7 {
+			.step7-buy {
 				.thereciept {
 					width: 40%;
 					margin: 0;
 				}
 			}
-			#boardDisplay {
+			#board-display {
 				display: block;
 				position: fixed;
 				width: 18%;
@@ -2253,14 +2234,14 @@ body.diy-share {
 				bottom: 0px;
 				top: auto;
 
-				.previewTop {
+				.preview-top {
 					position: relative;
 				}
 
-				.preview34 {
+				.preview-side {
 					left: 90%;
 				}
-				.previewBase {
+				.preview-base {
 					left: 180%;
 				}
 			}
@@ -2268,17 +2249,17 @@ body.diy-share {
 	}
 }
 @media screen and (max-device-width: 748px) {
-	.boardShape1 {
+	.step1-board-bg {
 		background-image: url('../img/bb/BACKGROUND-01.jpg');
 	}
 }
 /*LARGE - 1200 */
 @media screen and (min-width: $break-large) {
 	/* 
-	#blackBoxInfo { display: block; } 
-	#leftmenu, .bx-prev, .bx-next { display: block; }
-	.boardMenuLeftButton { margin-left: 10% !important; } 
-	#boardDisplay { max-width: 11% !important; }
+	#info-box { display: block; } 
+	#left-menu, .bx-prev, .bx-next { display: block; }
+	.board-menu-left-button { margin-left: 10% !important; } 
+	#board-display { max-width: 11% !important; }
 	.rotate-one span { font-size: 300%  !important; }*/
 	/*.rotate-one span { font-size: 2.5em; }*/
 }
@@ -2291,66 +2272,41 @@ body.diy-share {
 	}
 }
 /*iPad*/
-@media screen and (device-aspect-ratio: 3/4) {
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
 	//ADD/REMOVE THIS TO TOGGLE LANDSCAPE ON IPAD
 	//@include nologo;
-	.item {
+	/*.item {
 		max-width: 280px;
 		padding-left: 2%;
 		width: 150px;
 		margin-top: 4.8%
-	}
-	.bxDivSlider > li,
-	.boardShape1 {
+	}*/
+	.bx-div-slider > li,
+	.step1-board {
 		-webkit-transform: translateZ(0);
 	}
 	.bxDivShape {
 		margin-left: 0;
 	}
-	ul.bxDivSlider > li {
+	ul.bx-div-slider > li {
 		-webkit-transform: translateZ(0);
 	}
-	#menuClose {
+	#left-menu.open .menu-close {
 		display: block;
 	} 
 	.contourImg {
 		width: 300px !important;
 		height: 75px;
 	}
-	#blackBoxInfo {
+	#info-box {
 		position: absolute !important;
-		width: 300px !important;
+		width: 200px !important;
 	}
-	#blackBoxInfo { }
+	#info-box { }
 	.bxDivShape li {
 		opacity: none !important;
 	}
-	.bxDivShape li > img.selectedShape {
-		transition-duration: 0; -webkit-transition-duration: 0;
-		-webkit-transform: matrix(1.0, 0, 0, 1.0, 0, 0);
-		transform: scale(1.0,1.0);
-		-ms-transform: scale(1.0,1.0); /* IE 9 */
-	}
-	.bxDivShape li > img.selectedShape:hover {
-		transition-duration: 0; -webkit-transition-duration: 0;
-		-webkit-transform: matrix(1.0, 0, 0, 1.0, 0, 0);
-		transform: scale(1.0,1.0);
-		-ms-transform: scale(1.0,1.0); /* IE 9 */
-	}
-	.bxDivShape li > img:hover:not(.confirmedShape) {
-		transition-duration: 0; -webkit-transition-duration: 0;
-		-webkit-transform: matrix(1.0, 0, 0, 1.0, 0, 0);
-		transform: scale(1.0,1.0);
-		-ms-transform: scale(1.0,1.0); /* IE 9 */
-	}
-	.confirmedShape, .confirmedShape:hover {
-		transition-duration: 0; -webkit-transition-duration: 0;
-		-webkit-transform: matrix(1.0, 0, 0, 1.0, 0, 0);
-		transform: scale(1.0,1.0);
-		-ms-transform: scale(1.0,1.0); /* IE 9 */
-		/* IE 9 */
-	}
-	.bText { 
+	.board-text { 
 		font-size: 320%;
 		line-height: 78%;
 		text-transform: uppercase;
@@ -2375,7 +2331,7 @@ body.diy-share {
 				padding-top: 10%;
 				text-align: center;
 			}
-			.boardBuy7 {
+			.step7-buy {
 				.thereciept {
 					padding-top: 10%;
 					color: #000;
@@ -2390,21 +2346,21 @@ body.diy-share {
 					}
 				}
 			}
-			#boardDisplay {
+			#board-display {
 				display: block;
 				position: relative;
 				margin-left: 5%;
 
-				.previewTop {
+				.preview-top {
 					position: relative;
 				}
-				.preview34 {
+				.preview-side {
 					left: 90%;
 				}
-				.previewBase {
+				.preview-base {
 					left: 180%;
 
-					.board .bImage .bText {
+					.board .board-image .board-text {
 						margin-left: -7%;
 					}
 				}

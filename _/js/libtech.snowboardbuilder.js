@@ -1,7 +1,7 @@
 /*
 
     Lib Tech DIY Builder - lib-tech.com
-    VERSION 1.0
+    VERSION 1.1
     AUTHOR brian.behrens@mervin.com
 
     DEPENDENCIES:
@@ -370,9 +370,6 @@ LIBTECH.snowboardbuilder = {
 		bBadge: "",
 		nPreviewNum: 0,
 		bFirstPlay: true,
-		nPlaxVal: $(window).width() / 10,
-		nShapePlax: $(window).width() / 1.52,
-		oImgShape: "",
 		lockHover: false,
 		confirmedShapeSelection: false,
 		globalNum: 0,
@@ -389,17 +386,19 @@ LIBTECH.snowboardbuilder = {
 		numBoardBases: 13,
 		$mainSlider: "",
 		defaultBadgeInput: "",
-		defaultBaseInput: ""
+		defaultBaseInput: "",
+		currentCarousel: "",
+		showLeftMenu: true,
+		carouselItemWidth: 0
 	},
 	init: function () {
 		var self = this;
-		self.flyOutMenuInit();
-		self.boardPreviewInit();
+		
 		// set base default colors
 		self.setCustomTextColor('White');
 		self.setCustomBaseColor('Black');
 
-		self.config.$mainSlider = $('.bxDivSlider').bxSlider({
+		self.config.$mainSlider = $('.bx-div-slider').bxSlider({
 			slideMargin: 0,
 			speed: 231,
 			touchEnabled: false,
@@ -414,21 +413,18 @@ LIBTECH.snowboardbuilder = {
 			onSlideLoad: function () {},
 			onSlideBefore: function () {
 				self.advanceArrowHide();
-				$('.menuButtons li').css("font-weight", "400");
-				$('.bxDivSlider > li').css('background-image', 'none');
+				$('.bx-div-slider > li').css('background-image', 'none');
 			},
 			onSlideAfter: function () {
 				// don't run first time, wait for delayed load
-				if(self.config.bFirstPlay == false) {
+				if(self.config.bFirstPlay === false) {
 					self.setCurrentSection();
 				}
 			}
 		});
 		self.defaultBadgeInput = $('.board-badge-input-holder .board-badge-input').val();
 		self.defaultBaseInput = $('#knifecut-base-controls .knifecut-input #board-text').val();
-		$('.boardShape1 .bx-wrapper .bx-controls').css("display", "none");
-		$('.boardShape1').css("left", "0px");
-		self.config.nPlaxVal = 0;
+		$('.step1-board').css("left", "0px");
 		
 		$(window).on('load', function () {
 			delayLoad();
@@ -436,7 +432,7 @@ LIBTECH.snowboardbuilder = {
 		$(window).on('resize', function () {
 			waitForFinalEvent(function () {
 				self.config.aspectRatio = $(window).height() / $(window).width();
-				if ($('#topSection').css('display') == 'none') {
+				if ($('#header .top-section').css('display') == 'none') {
 					self.config.isMobile = true;
 				} else {
 					self.config.isMobile = false;
@@ -451,81 +447,69 @@ LIBTECH.snowboardbuilder = {
 			}, 500, "mervinsbb");
 		});
 		function delayLoad() {
-			// topSection
-			// PRELOAD AS MANY IMAGES AS WE CAN
+			// SET CONFIG SETTINGS
 			if ($('.bx-pager').css('display') == 'block') {
 				self.config.isMobile = true;
 			} else {
 				self.config.isMobile = false;
 			}
 			self.config.aspectRatio = $(window).width() / $(window).height();
+			// check for Safari
 			if (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1) {
 				self.config.isSafari = true;
 			}
-			$('#topSection').delay(59).animate({
-				opacity: 1
-			}, 200);
-			if ($("#menuClose").css("display") === "block") {
-				self.config.isIpad = true;
-				//$('#blackBoxInfo').css('position','absolute');
-			} else {
-				//$('#blackBoxInfo').css('position','relative');
-			}
+			// check if device is an iPad
+			//var iPad = /(iPad|iPhone|iPod)/g.test(navigator.userAgent);
+			self.config.isIpad = /(iPad)/g.test(navigator.userAgent);
+
 			// listen for flag selection
-	        $("#topFlag a").on('click', function (e) {
-	            e.preventDefault();
-	            e.stopPropagation(); // kill even from firing further
-	            if (navigator.cookieEnabled === false) {
-	                alert('Enable cookies in your browser in order to select your region.');
-	            } else {
-	                LIBTECH.main.regionSelectorOverlayInit();
-	            }
-	        });
-	        // init the overview
-	        $('#overview .overview-content .right-column a').on('click', function (e) {
-	        	e.preventDefault();
-	        	// hide overview
-	        	$('#overview').animate({
-					opacity: '0'
-				}, {
-					duration: 700,
-					complete: function () {
-						$('#overview').hide();
-						$('#overview .overview-content .right-column a').off('click');
-					}
-				});
+			$("#header .top-flag a").on('click', function (e) {
+				e.preventDefault();
+				e.stopPropagation(); // kill even from firing further
+				if (navigator.cookieEnabled === false) {
+					alert('Enable cookies in your browser in order to select your region.');
+				} else {
+					LIBTECH.main.regionSelectorOverlayInit();
+				}
+			});
+			// init the overview
+			$('#overview .overview-content .right-column a').on('click', function (e) {
+				e.preventDefault();
+				// hide overview
+				TweenMax.to($('#overview'), 0.5, {opacity:0, onComplete:hideOverview});
+				function hideOverview () {
+					$('#overview').hide();
+					$('#overview .overview-content .right-column a').off('click');
+				}
 				// set the first section
 				self.setCurrentSection();
 				// trigger resize
-		        if (self.config.isMobile) {
+				if (self.config.isMobile) {
 					self.resizeForMobile();
 				} else {
 					self.resizeForDesktop();
 				}
 				// set region
-				if (LIBTECH.main.utilities.cookie.getCookie('libtech_region') != "" && LIBTECH.main.utilities.cookie.getCookie('libtech_region') != undefined) {
+				if (LIBTECH.main.utilities.cookie.getCookie('libtech_region') !== "" && LIBTECH.main.utilities.cookie.getCookie('libtech_region') !== undefined) {
 					self.bbSetRegion(LIBTECH.main.utilities.cookie.getCookie('libtech_region'));
 				}
-	        });
-	        // make sure overview video fits
-	        $('#overview .overview-content .right-column .overview-video').fitVids();
-
-			// hide the div blocker
-			$('#divBlocker').delay(300).animate({
-				opacity: '0'
-			}, {
-				duration: 700,
-				complete: function () {
-					$('#divBlocker').hide();  
-					$(".bxDivSlider ul.bxDivShape").parent().css('height', $(window).height());
-				}
 			});
+			// make sure overview video fits
+			$('#overview .overview-content .right-column .overview-video').fitVids();
+			// hide the div blocker
+			TweenMax.to($('#div-blocker'), 0.5, {opacity: 0, onComplete: hideDivBlocker});
+			function hideDivBlocker () {
+				$('#div-blocker').hide();
+				$(".bx-div-slider ul.bxDivShape").parent().css('height', $(window).height());
+			}
+			self.flyOutMenuInit();
+			self.boardPreviewInit();
 		}
 		/// this pulls the preview from the buy
-		if (self.config.nCurSlide != 0 || self.config.nCurSlide != 7) {
-			$(".boardShape1").parent().css('overflow', 'hidden');
-			$(".boardTop3").parent().css('overflow', 'hidden');
-			$(".boardBase5").parent().css('overflow', 'hidden');
+		if (self.config.nCurSlide !== 0 || self.config.nCurSlide != 7) {
+			$(".step1-board").parent().css('overflow', 'hidden');
+			$(".step3-top").parent().css('overflow', 'hidden');
+			$(".step5-base").parent().css('overflow', 'hidden');
 			$('.miniReciept').css('z-index', '-333');
 		}
 		// TODO INCREASE MAIN SLIDER HITBOXXXXX
@@ -535,7 +519,7 @@ LIBTECH.snowboardbuilder = {
 	},
 	shareInit: function () {
 		var self = this;
-		if (LIBTECH.main.utilities.cookie.getCookie('libtech_region') != "" && LIBTECH.main.utilities.cookie.getCookie('libtech_region') != undefined) {
+		if (LIBTECH.main.utilities.cookie.getCookie('libtech_region') !== "" && LIBTECH.main.utilities.cookie.getCookie('libtech_region') !== undefined) {
 			self.bbSetRegion(LIBTECH.main.utilities.cookie.getCookie('libtech_region'));
 		}
 		self.buildShare();
@@ -545,19 +529,19 @@ LIBTECH.snowboardbuilder = {
 			} else {
 				self.resizeForDesktop();
 			}
-			$('#divBlocker').delay(300).animate({
+			$('#div-blocker').delay(300).animate({
 				opacity: '0'
 			}, {
 				duration: 700,
 				complete: function () {
-					$('#divBlocker').hide();
+					$('#div-blocker').hide();
 				}
 			});
 		});
 		$(window).on('resize', function () {
 			waitForFinalEvent(function () {
 				self.config.aspectRatio = $(window).height() / $(window).width();
-				if ($('#topSection').css('display') == 'none') {
+				if ($('#header .top-section').css('display') == 'none') {
 					self.config.isMobile = true;
 				} else {
 					self.config.isMobile = false;
@@ -572,12 +556,12 @@ LIBTECH.snowboardbuilder = {
 	},
 	bbSetRegion: function (sReg) {
 		var self = this;
-		(sReg != 'ca') ? self.config.bbRegionCurrency = "USD" : self.config.bbRegionCurrency = "CAD";
+		self.config.bbRegionCurrency = (sReg != 'ca') ? "USD" : "CAD";
 		self.config.bbRegion = sReg;
 	},
 	bbGetRegion: function () {
 		var self = this;
-		if (self.config.bbRegion == '' || self.config.bbRegion == undefined) {
+		if (self.config.bbRegion === '' || self.config.bbRegion === undefined) {
 			self.config.bbRegion = "US";
 		}
 		self.config.bbRegion = self.config.bbRegion.toUpperCase();
@@ -585,12 +569,12 @@ LIBTECH.snowboardbuilder = {
 	},
 	setKnifeCutPrice: function (nKC) {
 		var self = this;
-		(nKC == '' || nKC == undefined) ? self.config.bbKnifeCutDiff = "0.00" : self.config.bbKnifeCutDiff = nKC;
+		self.config.bbKnifeCutDiff = (nKC === '' || nKC === undefined) ? "0.00" : nKC;
 		self.config.bbKnifeCutDiff = nKC;
 	},
 	getKnifeCutPrice: function () {
 		var self = this;
-		if (self.config.bbKnifeCutDiff == '' || self.config.bbKnifeCutDiff == undefined) {
+		if (self.config.bbKnifeCutDiff === '' || self.config.bbKnifeCutDiff === undefined) {
 			self.config.bbKnifeCutDiff = "0.00";
 		}
 		return self.config.bbKnifeCutDiff;
@@ -598,11 +582,11 @@ LIBTECH.snowboardbuilder = {
 	setBoardShape: function (oImg) {
 		var self, spanVal, boardNum, theContour, sShape;
 		self = this;
-		if (oImg == "" || oImg == undefined) {
+		if (oImg === "" || oImg === undefined) {
 			spanVal = 1;
 			boardNum = self.config.globalNum;
 			self.setBoardSize('');
-			$(".boardShape1 ul li img").each(function () {
+			$(".step1-board .carousel ul li img").each(function () {
 				$(this).removeClass('selectedShape');
 				$(this).removeClass('confirmedShape');
 			});
@@ -613,20 +597,20 @@ LIBTECH.snowboardbuilder = {
 		self.config.iJSON = spanVal;
 		sNoDash = boardData[boardNum].Model;
 		// updated board display
-		$('.boardTechName').text(sNoDash); // being hidden now
+		$('.board-tech-name').text(sNoDash); // being hidden now
 		// Board Details
-		$('.boardTech2 .board-info .board').html(sNoDash); // being hidden now
-		$('.boardTech2 .board-info .shape-desc').html("<strong>SHAPE &nbsp;</strong> " + boardData[boardNum].ShapeDescription);
-		$('.boardTech2 .board-info .board-tagline').text(boardData[boardNum].BoardTagline);
-		$('.boardTech2 .board-info .board-desc').text(boardData[boardNum].BoardDescription);
+		$('.step2-size .board-info .board').html(sNoDash); // being hidden now
+		$('.step2-size .board-info .shape-desc').html("<span>SHAPE</span> " + boardData[boardNum].ShapeDescription);
+		$('.step2-size .board-info .board-tagline').text(boardData[boardNum].BoardTagline);
+		$('.step2-size .board-info .board-desc').text(boardData[boardNum].BoardDescription);
 		// Contour Details
 		theContour = boardData[boardNum].Contour;
-		$('.boardTech2 .board-info .contour-title').html(contourData[theContour].ContourTitle);
-		$('.boardTech2 .board-info .contour-desc').html(contourData[theContour].ContourDescription);
+		$('.step2-size .board-info .contour-title').html(contourData[theContour].ContourTitle);
+		$('.step2-size .board-info .contour-desc').html(contourData[theContour].ContourDescription);
 		// Size Details
-		$('.boardTech2 .size-info .size-holder .sizes').html(self.calculateSizes(boardData[boardNum].Sizes));
-		$('.boardTech2 .size-info .size-detail-table .table-data').html(self.printSizeInfo(boardData[boardNum].ContactLength, boardData[boardNum].Sidecut, boardData[boardNum].WaistWidth, boardData[boardNum].Flex) + "");
-		$('.boardTech2 .size-info .size-detail-table .table-data').clone().wrap('<p>').parent().html();
+		$('.step2-size .size-info .size-holder .sizes').html(self.calculateSizes(boardData[boardNum].Sizes));
+		$('.step2-size .size-info .size-detail-table .table-data').html(self.printSizeInfo(boardData[boardNum].ContactLength, boardData[boardNum].Sidecut, boardData[boardNum].WaistWidth, boardData[boardNum].Flex) + "");
+		$('.step2-size .size-info .size-detail-table .table-data').clone().wrap('<p>').parent().html();
 		// set price
 		if (self.bbGetRegion() == "CA") {
 			self.setBoardPrice(boardData[boardNum].BasePriceCA);
@@ -636,11 +620,11 @@ LIBTECH.snowboardbuilder = {
 		// var that is carried over
 		sShape = boardData[boardNum].Model;
 		// clear board size
-		self.setBoardSize(''); 
-		if (sShape == "" || sShape == undefined) {
+		self.setBoardSize('');
+		if (sShape === "" || sShape === undefined) {
 			self.advanceArrowHide();
 			// unselect board shape image
-			$(".boardShape1 ul li img").each(function () {
+			$(".step1-board .carousel ul li img").each(function () {
 				$(this).removeClass('selectedShape');
 				$(this).removeClass('confirmedShape');
 			});
@@ -648,7 +632,7 @@ LIBTECH.snowboardbuilder = {
 			self.setBoardSize('');
 		}
 		// show arrow if shape a selected
-		if (oImg != "" && oImg != undefined) {
+		if (oImg !== "" && oImg !== undefined) {
 			self.advanceArrowShow();
 		}
 		self.config.bBoardShape = sShape;
@@ -679,15 +663,14 @@ LIBTECH.snowboardbuilder = {
 	},
 	setBoardSize: function (sSize) {
 		var self = this;
-		if (sSize == '' || sSize == undefined) {
-			$('.menu2Title').html("Size");
-			$('.menu2Title').removeClass('menuTitleFull');
-			$('.menu2TitleX span').removeClass('menuXVisible')
-			$(".size-detail-table .table-data li").each(function (index) {
-				$(this).removeClass("sizeYellow");
+		if (sSize === '' || sSize === undefined) {
+			$('#left-menu .menu2 .menu-title').html("Size");
+			$('#left-menu .menu2').removeClass('complete');
+			$(".step2-size .size-info .size-detail-table .table-data li").each(function (index) {
+				$(this).removeClass("selected");
 			});
-			$(".size-item").each(function (index) {
-				$(this).css('background-color', '#ffffff');
+			$(".step2-size .size-info .size-holder .sizes .size-item").each(function (index) {
+				$(this).removeClass('selected');
 			});
 			self.advanceArrowHide();
 		}
@@ -695,7 +678,7 @@ LIBTECH.snowboardbuilder = {
 	},
 	getBoardSize: function () {
 		var self = this;
-		if (self.config.bSize != null && self.config.bSize != undefined && self.config.bSize) {
+		if (self.config.bSize !== null && self.config.bSize !== undefined && self.config.bSize) {
 			return self.config.bSize;
 		} else {
 			return "";
@@ -715,12 +698,12 @@ LIBTECH.snowboardbuilder = {
 		self = this;
 		imgName = $(selectedTopImg).attr("artist");
 		imgDesc = $(selectedTopImg).attr("desc");
-		if (imgDesc == "" || imgDesc == undefined) {
+		if (imgDesc === "" || imgDesc === undefined) {
 			self.advanceArrowHide();
 			self.setBoardArtist('');
 			self.setBoardDescription('');
 			self.config.bTop = "";
-			$(".boardTop3 ul li img").each(function () {
+			$(".step3-top ul li img").each(function () {
 				$(this).removeClass('selectedShape');
 				$(this).removeClass('confirmedShape');
 			});
@@ -728,14 +711,17 @@ LIBTECH.snowboardbuilder = {
 			self.setBoardArtist(imgName);
 			self.setBoardDescription(imgDesc);
 			self.config.bTop = imgDesc;
-			$('.boardTop3 .topInfo h2').html(imgName);
-			$('.boardTop3 .topInfo h3').html(imgDesc);
-			$('.menu3Title').addClass('menuTitleFull');
-			$('.menu3TitleX span').addClass('menuXVisible');
-			$('.menu3Title').html("" + "" + imgName + " " + imgDesc + "<b><br>+ $ 0.00 " + self.config.bbRegionCurrency + "</b>");
+			$('.step3-top .topInfo h2').html(imgName);
+			$('.step3-top .topInfo h3').html(imgDesc);
+			$('#left-menu .menu3').addClass('complete');
+			$('#left-menu .menu3 .menu-title').html("" + "" + imgName + " " + imgDesc + "<b><br>+ $ 0.00 " + self.config.bbRegionCurrency + "</b>");
 			self.boardPreviewSet(2);
 		}
 		self.updateBoardDisplay();
+		// show arrow if shape a selected
+		if (selectedTopImg !== "" && selectedTopImg !== undefined) {
+			self.advanceArrowShow();
+		}
 	},
 	getBoardTop: function () {
 		var self = this;
@@ -748,7 +734,7 @@ LIBTECH.snowboardbuilder = {
 	getBoardDescription: function () {
 		var self = this;
 		//TODO: SET DEFAULTS TO GREY!!!
-		if (self.config.bDesc == '' || self.config.bDesc == undefined) {
+		if (self.config.bDesc === '' || self.config.bDesc === undefined) {
 			self.config.bDesc = "";
 		}
 		return self.config.bDesc;
@@ -759,7 +745,7 @@ LIBTECH.snowboardbuilder = {
 	},
 	getBoardArtist: function () {
 		var self = this;
-		if (self.config.bArtist == '' || self.config.bArtist == undefined) {
+		if (self.config.bArtist === '' || self.config.bArtist === undefined) {
 			self.config.bArtist = "";
 		}
 		return self.config.bArtist;
@@ -770,24 +756,26 @@ LIBTECH.snowboardbuilder = {
 		self = this;
 		sColor = $(selectedSidewallImg).attr("color");
 		sDesc = $(selectedSidewallImg).attr("desc");
-		if (sColor == "" || sColor == undefined) {
+		if (sColor === "" || sColor === undefined) {
 			self.advanceArrowHide();
 			self.config.bSidewall = "";
 			self.config.bSidewallDesc = "";
 			self.advanceArrowHide();
-			$(".boardSide4 ul li img").each(function () {
+			$(".step4-sidewall ul li img").each(function () {
 				$(this).removeClass('selectedShape');
 				$(this).removeClass('confirmedShape');
 			});
 		} else {
 			self.config.bSidewall = sColor;
 			self.config.bSidewallDesc = sDesc;
-
-			$('.menu4Title').html("" + " " + self.getBoardSidewall() + " " + "" + "<br><b>+ $ 0.00</b>");
-			$('.menu4Title').addClass('menuTitleFull');
-			$('.menu4TitleX span').addClass('menuXVisible');
+			$('#left-menu .menu4 .menu-title').html("" + " " + self.getBoardSidewall() + " " + "" + "<br><b>+ $ 0.00</b>");
+			$('#left-menu .menu4').addClass('complete');
 		}
 		self.updateBoardDisplay();
+		// show arrow if shape a selected
+		if (selectedSidewallImg !== "" && selectedSidewallImg !== undefined) {
+			self.advanceArrowShow();
+		}
 	},
 	getBoardSidewall: function () {
 		var self = this;
@@ -803,49 +791,56 @@ LIBTECH.snowboardbuilder = {
 		self = this;
 		imgName = $(selectedBaseImg).attr("artist");
 		imgDesc = $(selectedBaseImg).attr("desc");
-		if (imgDesc == "" || imgDesc == undefined) {
+		if (imgDesc === "" || imgDesc === undefined) {
 			self.advanceArrowHide();
 			self.setBoardBaseArtist('');
 			self.setBoardBaseDesc('');
 			self.config.bBase = "";
 			self.config.isKnifecut = false;
-			$(".boardBase5 ul li img").each(function () {
+			$(".step5-base ul li img").each(function () {
 				$(this).removeClass('selectedShape');
 				$(this).removeClass('confirmedShape');
 			});
 		} else {
 			self.setBoardBaseArtist(imgName);
-			self.setBoardBaseDesc(imgDesc);
 			self.config.bBase = imgName;
-			$('.menu5Title').addClass('menuTitleFull');
-			$('.menu5TitleX span').addClass('menuXVisible');
 			if (imgName == 'Custom') {
+				var kcPrice, nonKCPrice, kcPriceDifference;
 				// KNIFE CUT BASE
 				self.config.isKnifecut = true;
 				self.setBoardBaseDesc($('.board-text-custom').val());
 				if (self.bbGetRegion() == "CA") {
-					var kcPrice = boardData[self.config.globalNum].KnifecutPriceCA;
-					var nonKCPrice = boardData[self.config.globalNum].BasePriceCA;
+					kcPrice = boardData[self.config.globalNum].KnifecutPriceCA;
+					nonKCPrice = boardData[self.config.globalNum].BasePriceCA;
 				} else {
-					var kcPrice = boardData[self.config.globalNum].KnifecutPriceUS;
-					var nonKCPrice = boardData[self.config.globalNum].BasePriceUS;
+					kcPrice = boardData[self.config.globalNum].KnifecutPriceUS;
+					nonKCPrice = boardData[self.config.globalNum].BasePriceUS;
 				}
-				var kcPriceDifference = parseFloat((kcPrice - nonKCPrice).toFixed(2));
+				kcPriceDifference = parseFloat((kcPrice - nonKCPrice).toFixed(2));
 				self.setKnifeCutPrice(kcPriceDifference);
-				$('.menu5TitleX span').addClass('menuXVisible');
-				$('.menu5Title').html("" + "  " + "CUSTOMIZED TEXT" + "<br /><b>+ $ " + kcPriceDifference + " " + self.config.bbRegionCurrency + "</b>");
+				$('#left-menu .menu5 .menu-title').html("" + "  " + "CUSTOMIZED TEXT" + "<br /><b>+ $ " + kcPriceDifference + " " + self.config.bbRegionCurrency + "</b>");
+				// show menu 5b
+				$('#left-menu .menu5b').addClass('show');
 			} else {
 				// GRAPHIC BASE
+				self.setBoardBaseDesc(imgDesc);
 				self.config.isKnifecut = false;
-				$('.menu5Title').html("" + "  " + imgName + " " + imgDesc + "<br><b>+ $ 0.00 " + self.config.bbRegionCurrency + "</b>");
+				$('#left-menu .menu5 .menu-title').html("" + "  " + imgName + " " + imgDesc + "<br><b>+ $ 0.00 " + self.config.bbRegionCurrency + "</b>");
+				// remove menu 5b
+				$('#left-menu .menu5b').removeClass('show');
 			}
+			$('#left-menu .menu5').addClass('complete');
 		}
 		self.updateBoardDisplay();
+		// show arrow if shape a selected
+		if (selectedBaseImg !== "" && selectedBaseImg !== undefined) {
+			self.advanceArrowShow();
+		}
 	},
 	getBoardBase: function () {
 		var self = this;
-		if (self.config.bBase == '' || self.config.bBase == undefined) {
-			self.config.bBase = ""
+		if (self.config.bBase === '' || self.config.bBase === undefined) {
+			self.config.bBase = "";
 		}
 		return self.config.bBase;
 	},
@@ -855,19 +850,23 @@ LIBTECH.snowboardbuilder = {
 	},
 	getBoardBaseArtist: function () {
 		var self = this;
-		if (self.config.bBaseArtist == '' || self.config.bBaseArtist == undefined) {
-			self.config.bBaseArtist = ""
+		if (self.config.bBaseArtist === '' || self.config.bBaseArtist === undefined) {
+			self.config.bBaseArtist = "";
 		}
 		return self.config.bBaseArtist;
 	},
 	setBoardBaseDesc: function (sBase) {
 		var self = this;
 		self.config.bBaseDesc = sBase;
+		if(self.getBoardBaseArtist() === "Custom" && sBase !== "") {
+			$('#left-menu .menu5b .menu-title').html(sBase);
+			$('#left-menu .menu5b').addClass('complete');
+		}
 	},
 	getBoardBaseDesc: function () {
 		var self = this;
 		//TODO: SET DEFAULTS TO GREY!!!
-		if (self.config.bBaseDesc == '' || self.config.bBaseDesc == undefined) {
+		if (self.config.bBaseDesc === '' || self.config.bBaseDesc === undefined) {
 			self.config.bBaseDesc = "";
 		}
 		return self.config.bBaseDesc;
@@ -890,11 +889,10 @@ LIBTECH.snowboardbuilder = {
 	},
 	setBoardBadge: function (sBadge) {
 		var self = this;
-		if (sBadge == "" || sBadge == undefined) {
-			$('.menu6Title').html("Personalized Badge");
-			$('.menu6Title').removeClass('menuTitleFull');
-			$('.menu6TitleX span').removeClass('menuXVisible');
-			$('.boardBadgeTextHolder .badge-text-wide').html('');
+		if (sBadge === "" || sBadge === undefined) {
+			$('#left-menu .menu6 .menu-title').html("Personalized Badge");
+			$('#left-menu .menu6').removeClass('complete');
+			$('.step6-badge .board-badge .badge-text').html('');
 			//$('input[name=badge]').val("25 CHARACTER MAX");
 		}
 		self.config.bBadge = sBadge;
@@ -915,30 +913,34 @@ LIBTECH.snowboardbuilder = {
 		baseDesc = self.getBoardBaseDesc().toUpperCase().split(' ').join('-');
 		sidewallColor = self.getBoardSidewallDesc().toUpperCase().split(' ').join('-');
 		// SET TOP GRAPHIC
-		if (topArist == "" || topArist == undefined || topDesc == undefined || topDesc == "") {
+		if (topArist === "" || topArist === undefined || topDesc === undefined || topDesc === "") {
 			self.config.topGraphicImg = self.config.baseImgPath + "snowboard-top/default/" + boardShape + ".png";
 		} else {
 			self.config.topGraphicImg = self.config.baseImgPath + "snowboard-top/top/" + boardShape + "-" + topArist + "-" + topDesc + ".png";
 		}
-		$('#boardDisplay .boardPreview .boardViews .previewTop .board .bImage img').attr('src', self.config.topGraphicImg);
+		$('#board-display .board-preview .board-views .preview-top .board .board-image img').attr('src', self.config.topGraphicImg);
 		// SET SIDEWALL GRAPHIC
-		if(sidewallColor == "" || sidewallColor == undefined) {
-			//self.config.sidewallTopImg = self.config.baseImgPath + "snowboard-sidewall/sidewall/" + boardShape + "-YELLOW.png";
-			$('#boardDisplay .boardPreview .boardViews .preview34 .board .bImage img.sidewall-top').css('display', 'none');
+		if(sidewallColor === "" || sidewallColor === undefined) {
+			// set default to yellow, so we don't error when building sidewall
+			self.config.sidewallTopImg = self.config.baseImgPath + "snowboard-sidewall/sidewall/" + boardShape + "-YELLOW.png";
+			// but hide the default yellow sidewall
+			$('#board-display .board-preview .board-views .preview-side .board .board-image img.sidewall-top').css('display', 'none');
 		} else {
 			self.config.sidewallTopImg = self.config.baseImgPath + "snowboard-sidewall/sidewall/" + boardShape + "-" + sidewallColor + ".png";
-			$('#boardDisplay .boardPreview .boardViews .preview34 .board .bImage img.sidewall-top').css('display', 'block');
+			// show the new, selected sidewall
+			$('#board-display .board-preview .board-views .preview-side .board .board-image img.sidewall-top').css('display', 'block');
 		}
 		// sidewall bottom image
-		if (topArist == "" || topArist == undefined || topDesc == undefined || topDesc == "") {
+		if (topArist === "" || topArist === undefined || topDesc === undefined || topDesc === "") {
 			self.config.sidewallBottomImg = self.config.baseImgPath + "snowboard-sidewall/default/" + boardShape + ".png";
-		} else {    	  	
+		} else {
 			self.config.sidewallBottomImg = self.config.baseImgPath + "snowboard-sidewall/sidewall-top/" + boardShape + "-" + topArist + "-" + topDesc + ".png";
 		}
 		// END UPDATE SIDEWALL
-		$('#boardDisplay .boardPreview .boardViews .preview34 .board .bImage img.sidewall-top').attr('src', self.config.sidewallTopImg);
-		$('#boardDisplay .boardPreview .boardViews .preview34 .board .bImage img.sidewall-bottom').attr('src', self.config.sidewallBottomImg);
-		// $('#boardDisplay .boardPreview .boardViews .preview34 .board .bImage img.sidewall-hidden').attr('src', self.config.topGraphicImg); // just a placeholder
+		// load new sidewall images
+		$('#board-display .board-preview .board-views .preview-side .board .board-image img.sidewall-top').attr('src', self.config.sidewallTopImg);
+		$('#board-display .board-preview .board-views .preview-side .board .board-image img.sidewall-bottom').attr('src', self.config.sidewallBottomImg);
+		// $('#board-display .board-preview .board-views .preview-side .board .board-image img.sidewall-hidden').attr('src', self.config.topGraphicImg); // just a placeholder
 		// SET BASE GRAPHIC
 		if(self.config.isKnifecut) {
 			// KNIFE CUT BASE
@@ -949,25 +951,25 @@ LIBTECH.snowboardbuilder = {
 				iNewBaseText = self.config.baseImgPath + "snowboard-base/custom-colors-logo/LIB-LOGO-ALL-" + customTextColor + ".png";
 			}
 			iNewBaseImg = self.config.baseImgPath + "snowboard-base/custom-colors-board/" + boardShape + "-" + customBaseColor + ".png";
-			$('#boardDisplay .boardPreview .boardViews .previewBase .board .bImage .base').attr('src', iNewBaseImg);
-			$('#boardDisplay .boardPreview .boardViews .previewBase .board .bImage .custom-base-logo').attr('src', iNewBaseText);
-			$('#boardDisplay .boardPreview .boardViews .previewBase .board .bImage .custom-base-logo').css('display', 'block');
-			$('#boardDisplay .boardPreview .boardViews .previewBase .board .bImage .bText .board-text-custom').css('display', 'inline');
+			$('#board-display .board-preview .board-views .preview-base .board .board-image .base').attr('src', iNewBaseImg);
+			$('#board-display .board-preview .board-views .preview-base .board .board-image .custom-base-logo').attr('src', iNewBaseText);
+			$('#board-display .board-preview .board-views .preview-base .board .board-image .custom-base-logo').css('display', 'block');
+			$('#board-display .board-preview .board-views .preview-base .board .board-image .board-text .board-text-custom').css('display', 'inline');
 			// set knifecut text to be sure it's right
-			if(self.getBoardBaseDesc() == "" || self.getBoardBaseDesc() == undefined) {
+			if(self.getBoardBaseDesc() === "" || self.getBoardBaseDesc() === undefined) {
 				var knifecutInputVal = $('#knifecut-base-controls .knifecut-input #board-text').val();
-				if(self.defaultBaseInput == knifecutInputVal || knifecutInputVal == "") {
-					$('#boardDisplay .previewBase .board .bText .rotate-one .board-text-custom').html('DIY BASE!');
+				if(self.defaultBaseInput === knifecutInputVal || knifecutInputVal === "") {
+					$('#board-display .preview-base .board .board-text .rotate-one .board-text-custom').html('DIY BASE!');
 				} else {
-					$('#boardDisplay .previewBase .board .bText .rotate-one .board-text-custom').html(knifecutInputVal);
+					$('#board-display .preview-base .board .board-text .rotate-one .board-text-custom').html(knifecutInputVal);
 				}
 			} else {
-				$('#boardDisplay .previewBase .board .bText .rotate-one .board-text-custom').html(self.getBoardBaseDesc());
+				$('#board-display .preview-base .board .board-text .rotate-one .board-text-custom').html(self.getBoardBaseDesc());
 			}
 			// set board font size			
-			var knifecutText = $('#boardDisplay .boardPreview .boardViews .previewBase .board .bImage .bText .rotate-one .board-text-custom');
-			var knifecutTextHolder = $("#boardDisplay .boardPreview .boardViews .previewBase .board .bImage .bText");
-			var boardWidth = $("#boardDisplay").width();
+			var knifecutText = $('#board-display .board-preview .board-views .preview-base .board .board-image .board-text .rotate-one .board-text-custom');
+			var knifecutTextHolder = $("#board-display .board-preview .board-views .preview-base .board .board-image .board-text");
+			var boardWidth = $("#board-display").width();
 			knifecutText.css('font-size', Math.floor(boardWidth/2) + 'px');
 			// scale font down till it fits
 			while(knifecutText.width() >= knifecutTextHolder.width()) {
@@ -1006,39 +1008,34 @@ LIBTECH.snowboardbuilder = {
 					customTextColorHex = "#CC3333";
 					break;
 			}
-			$('#boardDisplay .boardPreview .boardViews .previewBase .board .bImage .bText .rotate-one .board-text-custom').css('color', customTextColorHex);
+			$('#board-display .board-preview .board-views .preview-base .board .board-image .board-text .rotate-one .board-text-custom').css('color', customTextColorHex);
 		} else {
 			// GRAPHIC BASE
-			if (baseArist == "" || baseArist == undefined) {
+			if (baseArist === "" || baseArist === undefined) {
 				iNewImgBase = self.config.baseImgPath + "snowboard-base/default/" + boardShape + ".png";
 			} else {
 				iNewImgBase = self.config.baseImgPath + "snowboard-base/base/" + boardShape + "-" + baseArist + "-" + baseDesc + ".png";
 			}
-			$('#boardDisplay .boardPreview .boardViews .previewBase .board .bImage .base').attr('src', iNewImgBase);
-			$('#boardDisplay .boardPreview .boardViews .previewBase .board .bImage .custom-base-logo').css('display', 'none');
-			$('#boardDisplay .boardPreview .boardViews .previewBase .board .bImage .bText .board-text-custom').css('display', 'none');
+			$('#board-display .board-preview .board-views .preview-base .board .board-image .base').attr('src', iNewImgBase);
+			$('#board-display .board-preview .board-views .preview-base .board .board-image .custom-base-logo').css('display', 'none');
+			$('#board-display .board-preview .board-views .preview-base .board .board-image .board-text .board-text-custom').css('display', 'none');
 		}
 	},
 	resetAll: function () {
 		var self = this;
-		$('.menu1Title').html("SHAPE & CONTOUR");
-		$('.menu1Title').removeClass('menuTitleFull');
-		$('.menu1TitleX span').removeClass('menuXVisible');
-		$('.menu2Title').html("Size");
-		$('.menu2Title').removeClass('menuTitleFull');
-		$('.menu2TitleX span').removeClass('menuXVisible');
-		$('.menu3Title').html("Top Sheet Art");
-		$('.menu3Title').removeClass('menuTitleFull');
-		$('.menu3TitleX span').removeClass('menuXVisible');
-		$('.menu4Title').html("Sidewall Color");
-		$('.menu4Title').removeClass('menuTitleFull');
-		$('.menu4TitleX span').removeClass('menuXVisible');
-		$('.menu5Title').html("Base Options");
-		$('.menu5Title').removeClass('menuTitleFull');
-		$('.menu5TitleX span').removeClass('menuXVisible');
-		$('.menu6Title').html("Personalized Badge");
-		$('.menu6Title').removeClass('menuTitleFull');
-		$('.menu6TitleX span').removeClass('menuXVisible');
+		// reset menu titles
+		$('#left-menu .menu1 .menu-title').html("SHAPE & CONTOUR");
+		$('#left-menu .menu2 .menu-title').html("Size");
+		$('#left-menu .menu3 .menu-title').html("Top Sheet Art");
+		$('#left-menu .menu4 .menu-title').html("Sidewall Color");
+		$('#left-menu .menu5 .menu-title').html("Base Options");
+		$('#left-menu .menu5b .menu-title').html("Text");
+		$('#left-menu .menu6 .menu-title').html("Personalized Badge");
+		// remove complete bolding
+		$('#left-menu li').removeClass('complete');
+		// make sure knifecut menu option is hidden
+		$('#left-menu .menu5b').removeClass('show');
+		// reset saved input values
 		self.setBoardShape('');
 		self.setBoardSize('');
 		self.setBoardTop('');
@@ -1054,11 +1051,11 @@ LIBTECH.snowboardbuilder = {
 		name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
 		var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
 			results = regex.exec(location.search);
-		return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+		return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 	},
 	buildShare: function () {
 		var self = this;
-		if(self.getParameterByName('shape') != "" && self.getParameterByName('size') != "" && self.getParameterByName('top') != "" && self.getParameterByName('sidewall') != "" && self.getParameterByName('badge') != "") {
+		if(self.getParameterByName('shape') !== "" && self.getParameterByName('size') !== "" && self.getParameterByName('top') !== "" && self.getParameterByName('sidewall') !== "" && self.getParameterByName('badge') !== "") {
 			// set shape
 			var shape = self.getParameterByName('shape');
 			// set global number based on matching shape
@@ -1084,7 +1081,7 @@ LIBTECH.snowboardbuilder = {
 			// set badge
 			var badge = self.getParameterByName('badge');
 			self.setBoardBadge(badge);
-			if(self.getParameterByName('base') != "") {
+			if(self.getParameterByName('base') !== "") {
 				// set graphic base
 				var base, baseArtist, baseDesc;
 				base = self.getParameterByName('base');
@@ -1094,9 +1091,9 @@ LIBTECH.snowboardbuilder = {
 				self.setBoardBaseDesc(baseDesc);
 				self.config.bBase = baseArtist;
 				self.config.isKnifecut = false;
-			} else if (self.getParameterByName('kt') != "" && self.getParameterByName('kbc') != "" && self.getParameterByName('ktc') != "") {
+			} else if (self.getParameterByName('kt') !== "" && self.getParameterByName('kbc') !== "" && self.getParameterByName('ktc') !== "") {
 				// set knifecut base
-				var knifecutText, knifecutBaseColor, knifecutTextColor, kcPriceDifference;
+				var knifecutText, knifecutBaseColor, knifecutTextColor, kcPriceDifference, kcPrice, nonKCPrice;
 				knifecutText = self.getParameterByName('kt');
 				knifecutBaseColor = self.getParameterByName('kbc');
 				knifecutTextColor = self.getParameterByName('ktc');
@@ -1107,11 +1104,11 @@ LIBTECH.snowboardbuilder = {
 				self.config.isKnifecut = true;
 				// set knifecut price
 				if (self.bbGetRegion() == "CA") {
-					var kcPrice = boardData[self.config.globalNum].KnifecutPriceCA;
-					var nonKCPrice = boardData[self.config.globalNum].BasePriceCA;
+					kcPrice = boardData[self.config.globalNum].KnifecutPriceCA;
+					nonKCPrice = boardData[self.config.globalNum].BasePriceCA;
 				} else {
-					var kcPrice = boardData[self.config.globalNum].KnifecutPriceUS;
-					var nonKCPrice = boardData[self.config.globalNum].BasePriceUS;
+					kcPrice = boardData[self.config.globalNum].KnifecutPriceUS;
+					nonKCPrice = boardData[self.config.globalNum].BasePriceUS;
 				}
 				kcPriceDifference = parseFloat((kcPrice - nonKCPrice).toFixed(2));
 				self.setKnifeCutPrice(kcPriceDifference);
@@ -1130,112 +1127,141 @@ LIBTECH.snowboardbuilder = {
 	},
 	flyOutMenuInit: function () {
 		var self = this;
-		$('#leftmenu').mouseenter(function () {
-			TweenMax.to($(this), .135, {
-				left: 0
-			});
-		}).mouseleave(function () {
-			TweenMax.to($(this), .135, {
-				left: -195
-			});
+		$('#left-menu, #left-menu .menu-header').on("mouseenter.left-menu, touch.left-menu", function () {
+			$('#left-menu').addClass('open');
 		});
-		$('#menuClose').bind("click touch", function () {
-			$("#leftmenu").stop().animate({
-				left: "-195px"
-			}, 73);
+		$('#left-menu').on("mouseleave.left-menu", function () {
+			$('#left-menu').removeClass('open');
 		});
+		// check if iPad
+		if (self.config.isIpad) {
+			$('#left-menu .menu-close').on("click.left-menu touch.left-menu", function () {
+				$('#left-menu').removeClass('open');
+			});
+		}
 		// MENU - REMOVE OPTIONS
-		$('.menu1TitleX').bind("click touch", function () {
-			$('.menu1Title').html("Shape & Contour");
-			$('.menu1Title').removeClass('menuTitleFull');
-			$('.menu1TitleX span').removeClass('menuXVisible');
+		$('#left-menu .menu1 .menu-x').on("click.left-menu touch.left-menu", function () {
+			$('#left-menu .menu1 .menu-title').html("Shape & Contour");
+			$('#left-menu .menu1').removeClass('complete');
 			self.advanceArrowHide();
-			$('#blackBoxInfo').hide();
 			self.setBoardShape('');
 			self.confirmedShapeSelection = false;
 			self.config.$mainSlider.goToSlide(0);
+			// hide info box
+			$('#info-box').removeClass('show');
 		});
-		$('.menu2TitleX').bind("click touch", function () {
-			$('.menu2Title').html("Size");
-			$('.menu2Title').removeClass('menuTitleFull');
-			$('.menu2TitleX span').removeClass('menuXVisible');
+		$('#left-menu .menu2 .menu-x').on("click.left-menu touch.left-menu", function () {
+			$('#left-menu .menu2 .menu-title').html("Size");
+			$('#left-menu .menu2').removeClass('complete');
 			self.setBoardSize("");
 			self.config.$mainSlider.goToSlide(1);
 		});
-		$('.menu3TitleX').bind("click touch", function () {
-			$('.menu3Title').html("Topsheet Art");
-			$('.menu3Title').removeClass('menuTitleFull');
-			$('.menu3TitleX span').removeClass('menuXVisible');
+		$('#left-menu .menu3 .menu-x').on("click.left-menu touch.left-menu", function () {
+			$('#left-menu .menu3 .menu-title').html("Topsheet Art");
+			$('#left-menu .menu3').removeClass('complete');
 			self.setBoardTop("");
 			self.config.$mainSlider.goToSlide(2);
 		});
-		$('.menu4TitleX').bind("click touch", function () {
-			$('.menu4Title').html("Sidewall Color");
-			$('.menu4Title').removeClass('menuTitleFull');
-			$('.menu4TitleX span').removeClass('menuXVisible');
+		$('#left-menu .menu4 .menu-x').on("click.left-menu touch.left-menu", function () {
+			$('#left-menu .menu4 .menu-title').html("Sidewall Color");
+			$('#left-menu .menu4').removeClass('complete');
 			self.setBoardSidewall("");
 			self.config.$mainSlider.goToSlide(3);
 		});
-		$('.menu5TitleX').bind("click touch", function () {
-			$('.menu5Title').html("Base Options");
-			$('.menu5Title').removeClass('menuTitleFull');
-			$('.menu5TitleX span').removeClass('menuXVisible');
+		$('#left-menu .menu5 .menu-x').on("click.left-menu touch.left-menu", function () {
+			$('#left-menu .menu5 .menu-title').html("Base Options");
+			$('#left-menu .menu5').removeClass('complete');
+			$('#left-menu .menu5b').removeClass('show');
 			self.setBoardBase("");
+			// reset menu5b
+			// reset input field
+			self.setBoardBaseDesc('DIY Base!');
 			// reset knifecut text
 			self.setCustomTextColor('White');
 			self.setCustomBaseColor('Black');
+			// update
+			self.updateBoardDisplay();
+			self.boardPreviewSet(4);
+			$('#board-text').val('');
+			// reset left menu
+			$('#left-menu .menu5b .menu-title').html("Text");
+			$('#left-menu .menu5b').removeClass('complete');
+			// display correct slide
 			self.config.$mainSlider.goToSlide(4);
 		});
-		$('.menu6TitleX').bind("click touch", function () {
-			$('.menu6Title').html("Personalized Badge");
-			$('.menu6Title').removeClass('menuTitleFull');
-			$('.menu6TitleX span').removeClass('menuXVisible');
-			$('.boardBadgeTextHolder .badge-text-wide').html('');
+		$('#left-menu .menu5b .menu-x').on("click.left-menu touch.left-menu", function () {
+			// reset input field
+			self.setBoardBaseDesc('DIY Base!');
+			// reset knifecut text
+			self.setCustomTextColor('White');
+			self.setCustomBaseColor('Black');
+			// update
+			self.updateBoardDisplay();
+			self.boardPreviewSet(5);
+			$('#board-text').val('').focus();
+			// reset left menu
+			$('#left-menu .menu5b .menu-title').html("Text");
+			$('#left-menu .menu5b').removeClass('complete');
+			self.setBoardBase($('#customBase'));
+			self.config.$mainSlider.goToSlide(5);
+		});
+		$('#left-menu .menu6 .menu-x').on("click.left-menu touch.left-menu", function () {
+			$('#left-menu .menu6 .menu-title').html("Personalized Badge");
+			$('#left-menu .menu6').removeClass('complete');
+			$('.step6-badge .board-badge .badge-text').html('');
 			self.setBoardBadge('');
 			$('input[name=badge]').val(self.defaultBadgeInput);
 			self.config.$mainSlider.goToSlide(6);
 		});
-		$('.menu1, .menu1Title').bind("click touch", function () {
+		$('#left-menu .menu1, #left-menu .menu1 .menu-title').on("click.left-menu touch.left-menu", function () {
 			self.config.$mainSlider.goToSlide(0);
+			$('#left-menu').addClass('open');
 		});
-		$('.menu2, .menu2Title').bind("click touch", function () {
+		$('#left-menu .menu2, #left-menu .menu2 .menu-title').on("click.left-menu touch.left-menu", function () {
 			self.config.$mainSlider.goToSlide(1);
+			$('#left-menu').addClass('open');
 		});
-		$('.menu3, .menu3Title').bind("click touch", function () {
+		$('#left-menu .menu3, #left-menu .menu3 .menu-title').on("click.left-menu touch.left-menu", function () {
 			self.config.$mainSlider.goToSlide(2);
+			$('#left-menu').addClass('open');
 		});
-		$('.menu4, .menu4Title').bind("click touch", function () {
+		$('#left-menu .menu4, #left-menu .menu4 .menu-title').on("click.left-menu touch.left-menu", function () {
 			self.config.$mainSlider.goToSlide(3);
+			$('#left-menu').addClass('open');
 		});
-		$('.menu5, .menu5Title').bind("click touch", function () {
+		$('#left-menu .menu5, #left-menu .menu5 .menu-title').on("click.left-menu touch.left-menu", function () {
 			self.config.$mainSlider.goToSlide(4);
+			$('#left-menu').addClass('open');
 		});
-		$('.menu6, .menu6Title').bind("click touch", function () {
+		$('#left-menu .menu5b, #left-menu .menu5b .menu-title').on("click.left-menu touch.left-menu", function () {
+			self.config.$mainSlider.goToSlide(5);
+			$('#left-menu').addClass('open');
+		});
+		$('#left-menu .menu6, #left-menu .menu6 .menu-title').on("click.left-menu touch.left-menu", function () {
 			self.config.$mainSlider.goToSlide(6);
+			$('#left-menu').addClass('open');
 		});
-		$('.menu7, .menu7Title').bind("click touch", function () {
+		$('#left-menu .menu7, #left-menu .menu7 .menu-title').on("click.left-menu touch.left-menu", function () {
 			self.config.$mainSlider.goToSlide(7);
-		});
-		$('.menu7B, .menu7TitleB').bind("click touch", function () {
-			self.config.$mainSlider.goToSlide(7);
+			$('#left-menu').addClass('open');
 		});
 	},
 	boardPreviewInit: function () {
 		var self = this;
-		$('body').on('click touch', '.boardMenuLeftButton img', function () {
+		$('body').on('click touch', '.board-menu-left-button img', function () {
 			$(this).attr('src', self.config.baseImgPath + 'bb-left.png');
 			self.boardPreviewCycle('left');
 		});
-		$('body').on('click touch', '.boardMenuRightButton img', function () {
+		$('body').on('click touch', '.board-menu-right-button img', function () {
 			$(this).attr('src', self.config.baseImgPath + 'bb-right.png');
 			self.boardPreviewCycle('right');
 		});
-		$(".boardMenuLeftButton img").mouseover(function () {
+		$(".board-menu-left-button img").mouseover(function () {
 			$(this).attr('src', self.config.baseImgPath + 'bb-left-y.png');
 		}).mouseout(function () {
 			$(this).attr('src', self.config.baseImgPath + 'bb-left-w.png');
 		});
-		$(".boardMenuRightButton img").mouseover(function () {
+		$(".board-menu-right-button img").mouseover(function () {
 			$(this).attr('src', self.config.baseImgPath + 'bb-right-y.png');
 		}).mouseout(function () {
 			$(this).attr('src', self.config.baseImgPath + 'bb-right-w.png');
@@ -1243,9 +1269,9 @@ LIBTECH.snowboardbuilder = {
 	},
 	boardPreviewCycle: function (sDirection) {
 		var self = this;
-		$('.boardViews div.previewTop').hide();
-		$('.boardViews div.preview34').hide();
-		$('.boardViews div.previewBase').hide();
+		$('.board-views div.preview-top').hide();
+		$('.board-views div.preview-side').hide();
+		$('.board-views div.preview-base').hide();
 
 		if (sDirection == 'left') {
 			self.config.nPreviewNum--;
@@ -1258,83 +1284,82 @@ LIBTECH.snowboardbuilder = {
 		if (self.config.nPreviewNum < 0) {
 			self.config.nPreviewNum = 2;
 		}
-		if (sDirection == 'left' && self.config.nPreviewNum == 0) {
-			$('.boardViews div.preview34').show();
+		if (sDirection == 'left' && self.config.nPreviewNum === 0) {
+			$('.board-views div.preview-side').show();
 		}
 		if (sDirection == 'left' && self.config.nPreviewNum == 2) {
-			$('.boardViews div.previewTop').show();
+			$('.board-views div.preview-top').show();
 		}
 		if (sDirection == 'left' && self.config.nPreviewNum == 1) {
-			$('.boardViews div.previewBase').show();
+			$('.board-views div.preview-base').show();
 			// make sure knifecut displays correctly
 			self.updateBoardDisplay();
 		}
 		if (sDirection == 'right' && self.config.nPreviewNum == 1) {
-			$('.boardViews div.previewBase').show();
+			$('.board-views div.preview-base').show();
 			// make sure knifecut displays correctly
 			self.updateBoardDisplay();
 		}
 		if (sDirection == 'right' && self.config.nPreviewNum == 2) {
-			$('.boardViews div.previewTop').show();
+			$('.board-views div.preview-top').show();
 		}
-		if (sDirection == 'right' && self.config.nPreviewNum == 0) {
-			$('.boardViews div.preview34').show();
+		if (sDirection == 'right' && self.config.nPreviewNum === 0) {
+			$('.board-views div.preview-side').show();
 		}
 	},
 	boardPreviewSet: function (nSlideNum) {
 		var self = this;
 
-		$('.boardViews div.previewTop').hide();
-		$('.boardViews div.preview34').hide();
-		$('.boardViews div.previewBase').hide();
-		$('#boardDisplay .boardPreview .boardMenuLeftButton').show();
-		$('#boardDisplay .boardPreview .boardMenuRightButton').show();
+		$('.board-views div.preview-top').hide();
+		$('.board-views div.preview-side').hide();
+		$('.board-views div.preview-base').hide();
+		$('#board-display .board-preview .board-menu-left-button').show();
+		$('#board-display .board-preview .board-menu-right-button').show();
 
 		// reset board view position
-		$('.boardViews div.preview34').css('left', '0px');
-		$('.boardViews div.previewBase').css('left', '0px');
+		$('.board-views div.preview-side').css('left', '0px');
+		$('.board-views div.preview-base').css('left', '0px');
 
-		if (nSlideNum == 0) {
-			$('#boardDisplay').hide();
+		if (nSlideNum === 0) {
+			$('#board-display').hide();
 		} else {
-			$('#boardDisplay').show();
+			$('#board-display').show();
 		}
 		var boardWidth;
 		if (nSlideNum == 1 || nSlideNum == 2 || nSlideNum == 6) {
-			$('.boardViews div.previewTop').show();
-			$('.boardViews div.preview34').hide();
-			$('.boardViews div.previewBase').hide();
-			boardWidth = $('.boardViews div.previewTop').width();
+			$('.board-views div.preview-top').show();
+			$('.board-views div.preview-side').hide();
+			$('.board-views div.preview-base').hide();
+			boardWidth = $('.board-views div.preview-top').width();
 			self.config.nPreviewNum = 2;
 		} else if (nSlideNum == 3) {
-			$('.boardViews div.previewTop').hide();
-			$('.boardViews div.preview34').show();
-			$('.boardViews div.previewBase').hide();
-			boardWidth = $('.boardViews div.preview34').width();
+			$('.board-views div.preview-top').hide();
+			$('.board-views div.preview-side').show();
+			$('.board-views div.preview-base').hide();
+			boardWidth = $('.board-views div.preview-side').width();
 			self.config.nPreviewNum = 0;
 		} else if (nSlideNum == 4 || nSlideNum == 5) {
-			$('.boardViews div.previewTop').hide();
-			$('.boardViews div.preview34').hide();
-			$('.boardViews div.previewBase').show();
-			boardWidth = $('.boardViews div.previewBase').width();
+			$('.board-views div.preview-top').hide();
+			$('.board-views div.preview-side').hide();
+			$('.board-views div.preview-base').show();
+			boardWidth = $('.board-views div.preview-base').width();
 			self.config.nPreviewNum = 1;
 		} else if (nSlideNum == 7) {
-			$('.boardViews div.previewTop').show();
-			$('.boardViews div.preview34').show();
-			$('.boardViews div.previewBase').show();
-			$('.boardViews div.preview34').css('left', $('.boardViews div.previewTop').width() - 40);
-			$('.boardViews div.previewBase').css('left', $('.boardViews div.previewTop').width() * 2 - 60);
-			$('#boardDisplay .boardPreview .boardMenuLeftButton').hide();
-			$('#boardDisplay .boardPreview .boardMenuRightButton').hide();
+			$('.board-views div.preview-top').show();
+			$('.board-views div.preview-side').show();
+			$('.board-views div.preview-base').show();
+			$('.board-views div.preview-side').css('left', $('.board-views div.preview-top').width() - 40);
+			$('.board-views div.preview-base').css('left', $('.board-views div.preview-top').width() * 2 - 60);
+			$('#board-display .board-preview .board-menu-left-button').hide();
+			$('#board-display .board-preview .board-menu-right-button').hide();
 		}
 		// position board
 		if (nSlideNum == 7) {
-			$('#boardDisplay').css('left', '50%');
+			$('#board-display').css('left', '50%');
 		} else {
 			// center board within left 30% minus 90px for left menu
-			var leftPosition = Math.floor((($(window).width() * .3 - 90) - boardWidth) / 2) + 90;
-			$('#boardDisplay').css('left', leftPosition);
-			//$('#boardDisplay').css('left', '90px');
+			var leftPosition = Math.floor((($(window).width() * 0.3 - 90) - boardWidth) / 2) + 90;
+			$('#board-display').css('left', leftPosition);
 		}
 	},
 	advanceArrowShow: function () {
@@ -1347,20 +1372,13 @@ LIBTECH.snowboardbuilder = {
 				self.config.$mainSlider.goToNextSlide();
 			}
 			self.advanceArrowHide();
-
-			$("#leftmenu").stop().animate({
-				left: "-195px"
-			}, 73);
+			$('#left-menu').removeClass('open');
 		});
-		$('#advance-arrow').stop().animate({
-			right: "0px"
-		}, 133);
+		TweenMax.to($('#advance-arrow'), 0.3, {right: "0px"});
 	},
 	advanceArrowHide: function () {
 		var self = this;
-		$('#advance-arrow').stop().delay(33).animate({
-			right: "-40px"
-		}, 133);
+		TweenMax.to($('#advance-arrow'), 0.3, {right: "-40px"});
 		// remove click/touch listener
 		$('#advance-arrow').off("click touch");
 	},
@@ -1374,8 +1392,9 @@ LIBTECH.snowboardbuilder = {
 		return sHTMLSizes;
 	},
 	printSizeInfo: function (sPipedLengths, sSideCut, sWaistWidth, sFlex) {
-		var sHTMLLength = "";
-		var sizeArray = sPipedLengths.split('|');
+		var sHTMLLength, sizeArray, cutArray;
+		sHTMLLength = "";
+		sizeArray = sPipedLengths.split('|');
 		//size col!
 		sizeArrayOnly = sizeArray;
 		sHTMLLength += "<div class=\"info-list\"><ul class=\"length-list\"><li>Size</li>";
@@ -1385,7 +1404,7 @@ LIBTECH.snowboardbuilder = {
 		});
 		sHTMLLength += "</ul></div>";
 
-		var cutArray = sSideCut.split('|');
+		cutArray = sSideCut.split('|');
 		sHTMLLength += "<div class=\"info-list\"><ul class=\"side-list\"><li>Sidecut</li>";
 		cutArray.forEach(function (cut) {
 			var nSize = $.trim(cut.split(' - ')[0]).replace(".", "_");
@@ -1394,7 +1413,7 @@ LIBTECH.snowboardbuilder = {
 		});
 		sHTMLLength += "</ul></div>";
 
-		var sizeArray = sWaistWidth.split('|');
+		sizeArray = sWaistWidth.split('|');
 		sHTMLLength += "<div class=\"info-list\"><ul class=\"waist-list\"><li>Waist Width</li>";
 		sizeArray.forEach(function (entry) {
 			var nSize = $.trim(entry.split(' - ')[0]).replace(".", "_");
@@ -1403,7 +1422,7 @@ LIBTECH.snowboardbuilder = {
 		});
 		sHTMLLength += "</ul></div>";
 
-		var sizeArray = sFlex.split('|');
+		sizeArray = sFlex.split('|');
 		sHTMLLength += "<div class=\"info-list\"><ul class=\"flex-list\"><li>Flex</li>";
 		sizeArray.forEach(function (entry) {
 			var nSize = $.trim(entry.split(' - ')[0]).replace(".", "_");
@@ -1417,7 +1436,7 @@ LIBTECH.snowboardbuilder = {
 		var self = this;
 		//if(self.config.isMobile) return;
 		$(item).parent().css('height', $(window).height());
-		if (nNum != 0) {
+		if (nNum !== 0) {
 			$(item).parent().css('background-image', 'url(' + self.config.baseImgPath + 'BACKGROUND-0' + nNum + '.jpg' + ')');
 			setTimeout(function () {
 				$(item).parent().stop().fadeTo(333, 1);
@@ -1430,514 +1449,378 @@ LIBTECH.snowboardbuilder = {
 	updateHeaderLabel: function (nSection) {
 		switch (nSection) {
 			case 0:
-				$('#topSection').html("SELECT BOARD - SHAPE &amp; CONTOUR");
+				$('#header .top-section').html("SELECT BOARD - SHAPE &amp; CONTOUR");
 				$('.pagerLabel').html("SHAPE");
 				break;
 			case 1:
-				$('#topSection').html("SELECT SIZE - BOARD LENGTH");
+				$('#header .top-section').html("SELECT SIZE - BOARD LENGTH");
 				$('.pagerLabel').html("SIZE");
 				break;
 			case 2:
-				$('#topSection').html("SELECT TOP - TOP SHEET ART");
+				$('#header .top-section').html("SELECT TOP - TOP SHEET ART");
 				$('.pagerLabel').html("TOP");
 				break;
 			case 3:
-				$('#topSection').html("SELECT SIDE - SIDEWALL COLOR");
+				$('#header .top-section').html("SELECT SIDE - SIDEWALL COLOR");
 				$('.pagerLabel').html("SIDE");
 				break;
 			case 4:
-				$('#topSection').html("SELECT BASE - BASE ART");
+				$('#header .top-section').html("SELECT BASE - BASE ART");
 				$('.pagerLabel').html("BASE");
 				break;
 			case 5:
-				$('#topSection').html("SELECT BASE - CUSOMIZED KNIFECUT");
+				$('#header .top-section').html("SELECT BASE - CUSOMIZED KNIFECUT");
 				$('.pagerLabel').html("BASE");
 				break;
 			case 6:
-				$('#topSection').html("SELECT BADGE - PERSONALIZE YOUR BADGE");
+				$('#header .top-section').html("SELECT BADGE - PERSONALIZE YOUR BADGE");
 				$('.pagerLabel').html("BADGE");
 				break;
 			case 7:
-				$('#topSection').html("BUY YOUR SNOWBOARD");
+				$('#header .top-section').html("BUY YOUR SNOWBOARD");
 				$('.pagerLabel').html("BUY");
 				break;
 		}
 	},
-	showInfoBox: function (nIndex, nItems) {
-		var self = this;
-		if (nIndex > (nItems / 2) && !self.config.isMobile) {
-			$('#blackBoxInfo').css("margin-left", "-350px"); // position arrow/diamond
-			$('#blackBoxInfo .blackBoxDiamondL').hide();
-			$('#blackBoxInfo .blackBoxDiamondR').show();
-		} else {
-			$('#blackBoxInfo').css("margin-left", "50px"); // position arrow/diamond
-			$('#blackBoxInfo .blackBoxDiamondL').show();
-			$('#blackBoxInfo .blackBoxDiamondR').hide();
+	createCarousel: function (container) {
+		var self, carouselWidth, containerWidth, containerCenter, dragMaxX, dragMinX, gridWidth, offset, selectedItemIndex;
+		self = this;
+		// resize carousel
+		carouselWidth = 0;
+		$(container).first().find(".carousel ul li").each(function (index) {
+			carouselWidth += self.config.carouselItemWidth + 40; // add padding
+			// store selected item
+			if($(this).find('img').hasClass('selectedShape')) {
+				selectedItemIndex = index;
+			}
+		});
+		$(container + ' .carousel ul').css('width', carouselWidth);
+		// set the height of the carousel
+		$(container).first().find(".carousel").height($(container).first().find(".carousel ul").outerHeight() + 20); // add 20 because of scaleup
+		// create dragable list of board shape images
+		containerWidth = $(container).width();
+		containerCenter = containerWidth / 2;
+		gridWidth = $(container + ' .carousel ul li').outerWidth();
+		dragMaxX = containerCenter - gridWidth / 2;
+		dragMinX = (carouselWidth - (containerCenter + gridWidth / 2)) * -1;
+		offset = (containerCenter - Math.floor(containerCenter / gridWidth) * gridWidth);
+		// set up draggable features of carousel
+		self.config.currentCarousel = new Draggable.create(container + " .carousel ul", {
+			type:"left",
+			edgeResistance:0.65,
+			bounds:{minX:dragMinX, maxX:dragMaxX},
+			throwProps:true,
+			maxDuration: 0.5,
+			snap: {
+				x: function(endValue) {
+					var snapX = ((Math.round(endValue / gridWidth) * gridWidth) + offset) - gridWidth / 2;
+					return snapX;
+				}
+			},
+			onDragStart: function () {
+				$('#info-box').removeClass('show');
+				$(container + " ul").addClass('dragging');
+			},
+			onDragEnd: function () {
+				$(container + " ul").removeClass('dragging');
+			},
+			onClick: function () {
+				var clickTarget = this;
+				$(container + " .carousel ul li").each(function( index ) {
+					var carouselItem = $(this);
+					if(clickTarget.pointerX >= carouselItem.offset().left && clickTarget.pointerX <= carouselItem.offset().left + gridWidth) {
+						selectItem(index);
+						return false;
+					}
+				});
+			},
+			onThrowComplete: function () {
+				// check to find item in center selection
+				$(container + " .carousel ul li").each(function( index ) {
+					var carouselItem, containerOffset;
+					carouselItem = $(this);
+					containerOffset = $(container + ' .carousel-container').offset().left;
+					if(containerCenter + containerOffset >= carouselItem.offset().left && containerCenter + containerOffset <= carouselItem.offset().left + gridWidth) {
+						processSelection($(this));
+						return false;
+					}
+				});
+			}
+		});
+		$(document).on('keyup.carousel', function (e) {
+			var code, maxIndex, prevIndex, nextIndex;
+			maxIndex = $(container).first().find(".carousel ul li").size() - 1;
+			$(container + " .carousel ul li").each(function( index ) {
+				var carouselItem, containerOffset;
+				carouselItem = $(this);
+				containerOffset = $(container + ' .carousel-container').offset().left;
+				if(containerCenter + containerOffset >= carouselItem.offset().left && containerCenter + containerOffset <= carouselItem.offset().left + gridWidth) {
+					// set prev index
+					prevIndex = index - 1;
+					if(prevIndex < 0) prevIndex = maxIndex;
+					// set next index
+					nextIndex = index + 1;
+					if(nextIndex > maxIndex) nextIndex = 0;
+					return false;
+				}
+			});
+			// get the code
+			code = (e.keyCode ? e.keyCode : e.which);
+			// check which arrow key
+			if (code == 39) {
+				// right arrow
+				selectItem(nextIndex);
+			} else if (code == 37) {
+				// left arrow
+				selectItem(prevIndex);
+			}
+		});
+		function selectItem(index) {
+			// find x position of arrowed to carousel item
+			var carouselItemX = (index * gridWidth - (containerCenter - gridWidth/2)) * -1;
+			TweenMax.to(container + " .carousel ul", 0.5, {left:carouselItemX + 'px'});
+			processSelection($(container + " .carousel ul li")[index]);
 		}
+		// method for setting the carousel selection
+		function processSelection(listItem) {
+			var selectedImage, nNum, price;
+			selectedImage = $(listItem).find('img');
+			self.confirmedShapeSelection = true;
+
+			if (self.config.nCurSlide === 0) {
+				// STEP 1 - BOARD
+				var theContour, splitArray;
+				// get the shape number
+				nNum = selectedImage.attr("shapenum") - 1;
+				self.config.globalNum = nNum;
+				// set the correct hover display items to be visible
+				$('#info-box .contour, #info-box h4, #info-box .sizes').css('display', 'block');
+				$('#info-box h5').css('display', 'none');
+				// board attributes
+				theContour = boardData[nNum].Contour;
+				splitArray = boardData[nNum].Sizes;
+				splitArray = splitArray.split('|').join(' ') + "";
+				// set the appropriate display copy
+				$('.topInfo h2').text(boardData[nNum].Model);
+				$('.topInfo h3').text(boardData[nNum].BoardTagline);
+				$('#info-box h2').text(boardData[nNum].Model + " - " + theContour);
+				$('#info-box h3').text(boardData[nNum].BoardTagline);
+				$('#info-box .sizes p span').text(boardData[nNum].Sizes);
+				$('#info-box h4').text(contourData[theContour].ContourTitle);
+				$('#info-box .sizes p span').text(splitArray);
+				// set contour image
+				$('#info-box .contour img').attr('src', self.config.baseImgPath + boardData[nNum].ContourImage);
+				// get the price for the board
+				if (self.bbGetRegion() == "CA") {
+					price = boardData[nNum].BasePriceCA;
+				} else {
+					price = boardData[nNum].BasePriceUS;
+				}
+				// Update left menu
+				// on slide 1 - board selection
+				// update the left menu
+				$('#left-menu .menu1 .menu-title').html("" + "" + boardData[nNum].Model + "<br><b>+ $ " + price + " " + self.config.bbRegionCurrency + "</b>");
+				$('#left-menu .menu1').addClass('complete');
+				// show left menu if it's the first time using
+				if(self.config.showLeftMenu === true) {
+					$('#left-menu').addClass('open');
+					self.config.showLeftMenu = false;
+				}
+				// update board shape
+				self.setBoardShape(selectedImage);
+			} else if (self.config.nCurSlide === 2) {
+				// STEP 3 - TOP
+				var imgName, imgDesc, imgIndex;
+				// set the correct hover display items to be visible
+				$('#info-box .contour, #info-box h4, #info-box .sizes').css('display', 'none');
+				$('#info-box h5').css('display', 'block');
+				// top sheet attributes
+				imgName = selectedImage.attr("artist");
+				imgDesc = selectedImage.attr("desc");
+				imgIndex = selectedImage.attr("data-count") - 1;
+				// set the appropriate display copy
+				$('#info-box h2').html(boardDescriptionData[imgIndex].Artist);
+				$('#info-box h3').html(boardDescriptionData[imgIndex].Type + " " + imgDesc + " " + boardDescriptionData[imgIndex].Color);
+				$('#info-box h5').html(boardDescriptionData[imgIndex].Description);
+				// update board topsheet
+				self.setBoardTop(selectedImage);
+			} else if (self.config.nCurSlide === 3) {
+				// STEP 4 - SIDEWALL
+				// set the correct hover display items to be visible
+				$('#info-box .contour, #info-box h4, #info-box .sizes').css('display', 'none');
+				$('#info-box h5').css('display', 'block');
+				if (!self.config.isMobile) {
+					$('#info-box h2').html(selectedImage.attr("color").toUpperCase());
+					$('#info-box h3').html("SWIRLED SIDEWALL");
+					$('#info-box h5').html("A Lib Tech innovation. Twice as sintered as any other sidewall. Tough, fast, hard, waterproof, handsome and light. NO TOXIC ABS!");
+				} else {
+					$('#info-box div, #info-box h4, #info-box h3').css('display', 'none');
+					$('#info-box h2').html(selectedImage.attr("color").toUpperCase());
+				}
+				self.setBoardSidewall(selectedImage);
+				self.boardPreviewSet(3);
+			} else if (self.config.nCurSlide === 4) {
+				// STEP 5a - BASE
+				var imgName, imgDesc, imgIndex;
+				$('#info-box .contour, #info-box h4, #info-box .sizes').css('display', 'none');
+				$('#info-box, #info-box h5').css('display', 'block');
+
+				imgName = selectedImage.attr("artist");
+				imgDesc = selectedImage.attr("desc");
+				imgIndex = selectedImage.attr("data-count");
+
+				if (imgIndex >= 1) {
+					$('#info-box h2').html(boardDescriptionData[imgIndex - 1].Artist);
+					$('#info-box h3').html(boardDescriptionData[imgIndex - 1].Type + " " + imgDesc + " " + boardDescriptionData[imgIndex - 1].Color);
+					$('#info-box h5').html(boardDescriptionData[imgIndex - 1].Description);
+				} else {
+					$('#info-box h2').text('DIY Base!');
+					$('#info-box h3').text('Personalize your base for an additional $29.95 ' + self.config.bbRegionCurrency);
+					$('#info-box h5').text('');
+				}
+				self.setBoardBase(selectedImage);
+				self.boardPreviewSet(4);
+			}
+			// show the info box
+			$('#info-box').addClass('show');
+			// remove old selections
+			$(container + " .carousel ul li img").each(function () {
+				$(this).removeClass('selectedShape');
+			});
+			// set image scale
+			selectedImage.ScaleX = 1;
+			selectedImage.ScaleY = 1;
+			selectedImage.addClass('selectedShape');
+		}
+		if(selectedItemIndex !== "" && selectedItemIndex !== undefined) {
+			selectItem(selectedItemIndex);
+		}
+	},
+	destroyCarousel: function (container) {
+		var self = this;
+		for (var i = 0; i < self.config.currentCarousel.length; i++) {
+			self.config.currentCarousel[i].disable();
+		}
+		self.config.currentCarousel = "";
+		$(document).off('keyup.carousel');
 	},
 	// STEPS CODE BEGINS
 	// STEP 1 - SHAPE
 	step1Init: function () {
 		var self = this;
-		// resize carousel
-		var carouselWidth = 0;
-		$(".boardShape1 ul li").each(function (index) {
-			carouselWidth += $(this).outerWidth() + 4; // add 4 pixels to fix inline block spaces
-		});
-		$('.boardShape1').css('width', carouselWidth);
-		// scroll carousel items & make black box follow mouse
-		$(document).on('mousemove.step1', function (e) {
-			var windowWidth, windowCenter, mouseXPos, percentage, containerWidth, containerCenter, containerCenteredX, containerX;
-			windowWidth = $(window).width();
-			windowCenter = windowWidth / 2;
-			mouseXPos = e.pageX;
-			percentage = ((mouseXPos / windowCenter) - 1) * -1;
-			containerWidth = $('.boardShape1').width();
-			containerCenter = containerWidth / 2;
-			containerCenteredX = (containerCenter - windowCenter) * -1;
-			containerX = containerCenteredX + (percentage * containerWidth);
-			if (containerX > windowCenter) {
-				containerX = windowCenter;
-			} else if (containerX < (containerWidth - windowCenter) * -1) {
-				containerX = (containerWidth - windowCenter) * -1;
-			}
-			TweenMax.to($('.boardShape1'), .3, {'left': containerX}); // $('.boardShape1').css('left', containerX);
-			// BLACK BOX
-			if (!self.config.isMobile) {
-				$('#blackBoxInfo').css({
-					left: e.pageX + 20,
-					top: e.pageY - 20
-				});
-			};
-		});
-
-		var flag = false;
-		$('.boardShape1 ul li img').on('mouseenter.step1', function () {
-			self.config.oImgShape = $(this);
-			processHover(self.config.oImgShape);
-		}).on('mouseleave.step1', function () {
-			$('#blackBoxInfo').hide();
-			var boardImg = $(this);
-			if (boardImg.hasClass('selectedShape')) {} else {
-				boardImg.ScaleX = 1;
-				boardImg.ScaleY = 1;
-				if (!self.config.lockHover) boardImg.removeClass('selectedShape')
-			}
-		}).on('click.step1', function (e) {
-			self.confirmedShapeSelection = true;
-
-			$("#leftmenu").stop().animate({
-				left: "0px"
-			}, 273);
-			if (!self.config.isMobile && !self.config.isIpad) {
-				$('#blackBoxInfo').css('z-index', '9884');
-				if (!self.config.isMobile || !self.config.isIpad) $(this).addClass('selectedShape');
-			}
-			processHover($(this));
-			processClick($(this));
-
-			self.setBoardShape($(this));
-		}).on('touchend.step1', function (e) {
-			if (!flag && isMobile) {
-				flag = true;
-				setTimeout(function () {
-					flag = false;
-				}, 60);
-				
-				if (!self.config.isMobile) {
-					$('#blackBoxInfo').css('left', pointerEventToXY(e).x)
-					$('#blackBoxInfo').css('top', pointerEventToXY(e).y)
-				}
-				processHover($(this));
-				processClick($(this));
-
-				self.setBoardShape($(this));
-			}
-			return false
-		});
-		/* STEP 1 - TOUCH  */
-		var pointerEventToXY = function (e) {
-			var out = {
-				x: 0,
-				y: 0
-			};
-			if (e.type == 'touchstart' || e.type == 'touchmove' || e.type == 'touchend' || e.type == 'touchcancel') {
-				var touch = e.originalEvent.touches[0] || e.originalEvent.changedTouches[0];
-				out.x = touch.pageX;
-				out.y = touch.pageY;
-			} else if (e.type == 'mousedown' || e.type == 'mouseup' || e.type == 'mousemove' || e.type == 'mouseover' || e.type == 'mouseout' || e.type == 'mouseenter' || e.type == 'mouseleave') {
-				out.x = e.pageX;
-				out.y = e.pageY;
-			}
-			return out;
-		};
-		function processHover(oImg) {
-			$('#blackBoxInfo img, #blackBoxInfo h4, #blackBoxInfo p, #blackBoxInfo sizeInfo').css('display', 'block')
-			$('#blackBoxInfo h5').css('display', 'none');
-			if (!self.config.isMobile && !self.config.isIpad) $('#blackBoxInfo').show();
-			nNum = oImg.attr("shapenum") - 1;
-			/*if (self.config.isIpad) {
-				if (!self.config.isMobile || !self.config.isIpad) oImg.addClass('selectedShape');
-				processClick(oImg);
-			}*/
-			$('.topInfo h2').text(boardData[nNum].Model);
-			$('.topInfo h3').text(boardData[nNum].BoardTagline);
-			$('#blackBoxInfo h2').text(boardData[nNum].Model + " - " + boardData[nNum].Contour);
-			$('#blackBoxInfo h3').text(boardData[nNum].BoardTagline);
-			$('#blackBoxInfo p span').text(boardData[nNum].Sizes);
-			theContour = boardData[nNum].Contour;
-			$('#blackBoxInfo h4').text(contourData[theContour].ContourTitle);
-			// BoardDescription
-			splitArray = boardData[nNum].Sizes;
-			splitArray = splitArray.split('|').join(' ') + "";
-			$('#blackBoxInfo p span').text(splitArray);
-			/*TODO: SET CONTOUR*/
-			$('#blackBoxInfo img').attr('src', self.config.baseImgPath + boardData[nNum].ContourImage);
-			self.showInfoBox(nNum, self.config.numBoardShapes);
-			var boardImg = oImg;
-			boardImg.ScaleX = 1;
-			boardImg.ScaleY = 1;
-			if (!self.config.isMobile || !self.config.isIpad) boardImg.addClass('selectedShape');
-		}
-		function processClick(oImg) {
-			$("#leftmenu").stop().animate({
-				left: "0px"
-			}, 73);
-			self.config.oImgShape = oImg;
-			if (!self.config.isMobile && self.config.isIpad != true) $('#blackBoxInfo').show();
-
-			$(".boardShape1 ul li img").each(function () {
-				$(this).removeClass('selectedShape');
-				$(this).removeClass('confirmedShape');
-			});
-			oImg.addClass('confirmedShape');
-			nNum = oImg.attr("shapenum") - 1;
-			self.config.globalNum = nNum;
-
-			var price;
-			if (self.bbGetRegion() == "CA") {
-				price = boardData[nNum].BasePriceCA;
-			} else {
-				price = boardData[nNum].BasePriceUS;
-			}
-			$('.menu1Title').html("" + "" + boardData[nNum].Model + "<br><b>+ $ " + price + " " + self.config.bbRegionCurrency + "</b>");
-			$('.menu1Title').addClass('menuTitleFull');
-			$('.menu1TitleX span').addClass('menuXVisible');
-		}
-		if (self.getBoardShape() == undefined || self.getBoardShape() == "" || !self.confirmedShapeSelection) {
+		// set up carousel for step 1
+		self.createCarousel('.step1-board');
+		// check to see if advance arrow should be shown
+		if (self.getBoardShape() === undefined || self.getBoardShape() === "" || !self.confirmedShapeSelection) {
 			self.advanceArrowHide();
 		} else {
 			self.advanceArrowShow();
 		}
-		self.setBackgroundImage(".boardShape1", 1);
+		// set the correct BG image on init
+		self.setBackgroundImage(".step1-board", 1);
+		// remove offset for info box
+		$('#info-box').removeClass('offset');
 	},
 	step1Uninit: function () {
-		$(document).off('mousemove.step1');
-		$('.boardShape1 ul li img').off('mouseenter.step1 mouseleave.step1 click.step1 touchend.step1');
+		var self = this;
+		self.destroyCarousel('.step1-board');
 	},
 	// STEP 2 - SIZE
 	step2Init: function () {
 		var self = this;
-		self.setBackgroundImage(".boardTech2", 2);
-		if (self.getBoardSize() == undefined || self.getBoardSize() == "") {
+		self.setBackgroundImage(".step2-size", 2);
+		if (self.getBoardSize() === undefined || self.getBoardSize() === "") {
 			self.advanceArrowHide();
 		} else {
 			self.advanceArrowShow();
 		}
-		$('.size-item').on("click.step2 touch.step2", function () {
-			//size-item click
-			var nDetailHighlight = $(this).attr('val').replace(".", "_");
-			var theSize = '#lengthList.' + nDetailHighlight
-			$(".size-detail-table .table-data .info-list li").each(function (index) {
-				$(this).removeClass("sizeYellow");
+		$('.step2-size .size-info .size-holder .sizes .size-item').on("click.step2 touch.step2", function () {
+			// get the selected size and create the appropriate class
+			var selectedSize = $(this).attr('val').replace(".", "_");
+			// find and select the correct size data
+			$(".step2-size .size-info .size-detail-table .table-data .info-list li").each(function (index) {
+				if ($(this).hasClass(selectedSize)) {
+					$(this).addClass("selected");
+				} else {
+					$(this).removeClass("selected");
+				}
 			});
-			if ($('.size-detail-table .table-data .info-list li').hasClass(nDetailHighlight)) {
-				$(this).addClass("sizeYellow");
-			}
-			$('.' + nDetailHighlight).addClass("sizeYellow");
+			// add class
+			//$('.' + selectedSize).addClass("sizeYellow");
 			self.advanceArrowShow();
-			$(".size-item").each(function (index) {
-				$(this).css('background-color', '#ffffff');
+
+			$(".step2-size .size-info .size-holder .sizes .size-item").each(function (index) {
+				$(this).removeClass('selected')
 			});
+			$(this).addClass('selected');
+
 			self.setBoardSize($(this).text());
-			$('.menu2Title').html("" + "Size " + self.getBoardSize() + "<b><br>+ $ 0.00 " + self.config.bbRegionCurrency + "</b>");
-			$('.menu2Title').addClass('menuTitleFull');
-			$('.menu2TitleX span').addClass('menuXVisible');
-			$(this).css('background-color', '#ffff00');
+			$('#left-menu .menu2 .menu-title').html("" + "Size " + self.getBoardSize() + "<b><br>+ $ 0.00 " + self.config.bbRegionCurrency + "</b>");
+			$('#left-menu .menu2').addClass('complete');
 		});
 	},
 	step2Uninit: function () {
-		$('.size-item').off("click.step2 touch.step2");
+		$('.step2-size .size-info .size-holder .sizes .size-item').off("click.step2 touch.step2");
 	},
 	// STEP 3 - TOP
 	step3Init: function () {
 		var self = this;
-		// resize carousel
-		var carouselWidth = 0;
-		$(".boardTop3 .carousel ul li.item").each(function (index) {
-			carouselWidth += $(this).outerWidth() + 4; // add 4 pixels to fix inline block spaces
-		});
-		$('.boardTop3 .carousel').css('width', carouselWidth);
-		// change height of container
-		var carouselHeight = $(".boardTop3 .carousel").outerHeight();
-		$('.boardTop3 .carousel-container').css('height', carouselHeight);
-		// scroll carousel items & make black box follow mouse
-		$(document).on('mousemove.step3', function (e) {
-			var windowWidth, windowCenter, mouseXPos, percentage, containerWidth, containerCenter, containerCenteredX, containerX;
-			windowWidth = $('.boardTop3 .carousel-container').width();
-			windowCenter = windowWidth / 2;
-			mouseXPos = e.pageX - $('.boardTop3 .carousel-container').position().left;
-			percentage = ((mouseXPos / windowCenter) - 1) * -1;
-			containerWidth = $('.boardTop3 .carousel').width();
-			containerCenter = containerWidth / 2;
-			containerCenteredX = (containerCenter - windowCenter) * -1;
-			containerX = containerCenteredX + (percentage * containerWidth);
-			if (containerX > windowCenter) {
-				containerX = windowCenter;
-			} else if (containerX < (containerWidth - windowCenter) * -1) {
-				containerX = (containerWidth - windowCenter) * -1;
-			}
-			TweenMax.to($('.boardTop3 .carousel'), .3, {'left': containerX}); // $('.boardShape1').css('left', containerX);
-			// BLACK BOX
-			if (!self.config.isMobile) {
-				$('#blackBoxInfo').css({
-					left: e.pageX + 20,
-					top: e.pageY - 20
-				});
-			};
-		});
-		$('.boardTop3 .carousel ul li.item img').on("mouseenter.step3", function () {
-			var imgName, imgDesc, imgIndex, nNum;
-			$('#blackBoxInfo img, #blackBoxInfo h4, #blackBoxInfo .sizeInfo').css('display', 'none')
-			$('#blackBoxInfo h5').css('display', 'block');
-			if (!self.config.isMobile) $('#blackBoxInfo').css('display', 'block');
-			imgName = $(this).attr("artist");
-			imgDesc = $(this).attr("desc");
-			imgIndex = $(this).attr("data-count") - 1;
-			if (!self.config.isMobile) {
-				$('#blackBoxInfo h2').html(boardDescriptionData[imgIndex].Artist);
-				$('#blackBoxInfo h3').html(boardDescriptionData[imgIndex].Type + " " + imgDesc + " " + boardDescriptionData[imgIndex].Color);
-				$('#blackBoxInfo h5').html(boardDescriptionData[imgIndex].Description);
-			}
-			nNum = $('.boardTop3 .carousel ul li.item img').index($(this)) + 1;
-			self.showInfoBox(nNum, self.config.numTopSheets);
-		}).on("mouseleave.step3", function () {
-			if (self.config.lockHover == false) $('#blackBoxInfo').css('display', 'none');
-		}).on("click.step3 touch.step3", function () {
-			// listen for click in carousel
-			self.setBoardTop(this);
-			// PROCESS ROLLOVER LOCK
-			oImg = $(this);
-			if (!self.config.isIpad) {
-				oImg.addClass('selectedShape');
-			}
-			if (!self.config.isMobile) $('#blackBoxInfo').show();
-			$(".boardTop3 .carousel ul li.item img").each(function () {
-				$(this).removeClass('selectedShape');
-				$(this).removeClass('confirmedShape');
-			});
-			if (!self.config.isIpad) oImg.addClass('confirmedShape');
-			self.advanceArrowShow();
-		});
-		self.config.lockHover = false;
-		self.setBackgroundImage(".boardTop3", 3);
-		if (self.getBoardTop() == undefined || self.getBoardTop() == "") {
+		// set up carousel for step 3
+		self.createCarousel('.step3-top');
+		// check to see if advance arrow should be shown
+		if (self.getBoardTop() === undefined || self.getBoardTop() === "") {
 			self.advanceArrowHide();
 		} else {
 			self.advanceArrowShow();
 		}
+		// set the correct BG image on init
+		self.setBackgroundImage(".step3-top", 3);
+		// add offset for info box
+		$('#info-box').addClass('offset');
 	},
 	step3Uninit: function () {
-		$(document).off('mousemove.step3');
-		$('.boardTop3 .carousel ul li.item img').off("mouseenter.step3 mouseleave.step3 click.step3 touch.step3");
+		var self = this;
+		self.destroyCarousel('.step3-top');
 	},
 	// STEP 4 - SIDEWALL
 	step4Init: function () {
 		var self = this;
-		// resize carousel
-		var carouselWidth = 0;
-		$(".boardSide4 .carousel ul li.item").each(function (index) {
-			carouselWidth += $(this).outerWidth() + 4; // add 4 pixels to fix inline block spaces
-		});
-		$('.boardSide4 .carousel').css('width', carouselWidth);
-		// change height of container
-		var carouselHeight = $(".boardSide4 .carousel").outerHeight();
-		$('.boardSide4 .carousel-container').css('height', carouselHeight);
-		// scroll carousel items & make black box follow mouse
-		$(document).on('mousemove.step4', function (e) {
-			var windowWidth, windowCenter, mouseXPos, percentage, containerWidth, containerCenter, containerCenteredX, containerX;
-			windowWidth = $('.boardSide4 .carousel-container').width();
-			windowCenter = windowWidth / 2;
-			mouseXPos = e.pageX - $('.boardSide4 .carousel-container').position().left;
-			percentage = ((mouseXPos / windowCenter) - 1) * -1;
-			containerWidth = $('.boardSide4 .carousel').width();
-			containerCenter = containerWidth / 2;
-			containerCenteredX = (containerCenter - windowCenter) * -1;
-			containerX = containerCenteredX + (percentage * containerWidth);
-			if (containerX > windowCenter) {
-				containerX = windowCenter;
-			} else if (containerX < (containerWidth - windowCenter) * -1) {
-				containerX = (containerWidth - windowCenter) * -1;
-			}
-			TweenMax.to($('.boardSide4 .carousel'), .3, {'left': containerX});
-			// BLACK BOX
-			if (!self.config.isMobile) {
-				$('#blackBoxInfo').css({
-					left: e.pageX + 20,
-					top: e.pageY - 20
-				});
-			};
-		});
-
-		$('.boardSide4 .carousel ul li.item img').on('mouseenter.step4', function () {
-			$('#blackBoxInfo img, #blackBoxInfo h4, #blackBoxInfo .sizeInfo').css('display', 'none')
-			$('#blackBoxInfo img, #blackBoxInfo h4').css('display', 'none')
-			$('#blackBoxInfo h5').css('display', 'block');
-			if (!self.config.isMobile) $('#blackBoxInfo').css('display', 'block');
-			if (!self.config.isMobile) {
-				$('#blackBoxInfo h2').html($(this).attr("color").toUpperCase());
-				$('#blackBoxInfo h3').html("SWIRLED SIDEWALL");
-				$('#blackBoxInfo h5').html("A Lib Tech innovation. Twice as sintered as any other sidewall. Tough, fast, hard, waterproof, handsome and light. NO TOXIC ABS!");
-			} else {
-				$('#blackBoxInfo div, #blackBoxInfo h4, #blackBoxInfo h3').css('display', 'none')
-				$('#blackBoxInfo h2').html($(this).attr("color").toUpperCase());
-			}
-			//var nNum = $('.bxSliderSidewallHolder img').index($(this));
-
-			var nNum = $('.boardSide4 .carousel ul li.item img').index($(this)) + 1;
-
-			self.showInfoBox(nNum, self.config.numSideWalls);
-			if (self.config.lockHover == true && !self.config.isIpad) return;
-		}).on('mouseleave.step4', function () {
-			if (self.config.lockHover == false) $('#blackBoxInfo').css('display', 'none');
-		}).on('click.step4 touch.step4', function () {
-			self.setBoardSidewall(this);
-			// PROCESS ROLLOVER LOCK
-			oImg = $(this);
-			if (!self.config.isIpad) {
-				oImg.addClass('selectedShape');
-			}
-			if (!self.config.isMobile) $('#blackBoxInfo').show();
-			$('.boardSide4 .carousel ul li.item img').each(function () {
-				$(this).removeClass('selectedShape');
-				$(this).removeClass('confirmedShape');
-				//$(this).removeAttr("style")
-			});
-			if (!self.config.isIpad) oImg.addClass('confirmedShape');
-			self.boardPreviewSet(self.config.$mainSlider.getCurrentSlide());
-			self.advanceArrowShow();
-		});
-		self.config.lockHover = false;
-		self.setBackgroundImage(".boardSide4", 4);
-
-		if (self.getBoardSidewall() == undefined || self.getBoardSidewall() == "") {
+		// set up carousel for step 4
+		self.createCarousel('.step4-sidewall');
+		// check to see if advance arrow should be shown
+		if (self.getBoardSidewall() === undefined || self.getBoardSidewall() === "") {
 			self.advanceArrowHide();
 		} else {
 			self.advanceArrowShow();
 		}
+		// set the correct BG image on init
+		self.setBackgroundImage(".step4-sidewall", 4);
+		// add offset for info box
+		$('#info-box').addClass('offset');
 	},
 	step4Uninit: function () {
-		$(document).off('mousemove.step4');
-		$('.boardSide4 .carousel ul li.item img').off('mouseenter.step4 mouseleave.step4 click.step4 touch.step4');
+		var self = this;
+		self.destroyCarousel('.step4-sidewall');
 	},
 	// STEP 5a - BASE
 	step5aInit: function () {
 		var self = this;
-		// resize carousel
-		var carouselWidth = 0;
-		$(".boardBase5 .carousel ul li.item").each(function (index) {
-			carouselWidth += $(this).outerWidth() + 4; // add 4 pixels to fix inline block spaces
-		});
-		$('.boardBase5 .carousel').css('width', carouselWidth);
-		// change height of container
-		var carouselHeight = $(".boardBase5 .carousel").outerHeight();
-		$('.boardBase5 .carousel-container').css('height', carouselHeight);
-		// scroll carousel items & make black box follow mouse
-		$(document).on('mousemove.step5a', function (e) {
-			var windowWidth, windowCenter, mouseXPos, percentage, containerWidth, containerCenter, containerCenteredX, containerX;
-			windowWidth = $('.boardBase5 .carousel-container').width();
-			windowCenter = windowWidth / 2;
-			mouseXPos = e.pageX - $('.boardBase5 .carousel-container').position().left;
-			percentage = ((mouseXPos / windowCenter) - 1) * -1;
-			containerWidth = $('.boardBase5 .carousel').width();
-			containerCenter = containerWidth / 2;
-			containerCenteredX = (containerCenter - windowCenter) * -1;
-			containerX = containerCenteredX + (percentage * containerWidth);
-			if (containerX > windowCenter) {
-				containerX = windowCenter;
-			} else if (containerX < (containerWidth - windowCenter) * -1) {
-				containerX = (containerWidth - windowCenter) * -1;
-			}
-			TweenMax.to($('.boardBase5 .carousel'), .3, {'left': containerX}); // $('.boardShape1').css('left', containerX);
-			// BLACK BOX
-			if (!self.config.isMobile) {
-				$('#blackBoxInfo').css({
-					left: e.pageX + 20,
-					top: e.pageY - 20
-				});
-			};
-		});
-		$('.boardBase5 .carousel ul li.item img').on('mouseenter.step5a', function () {
-			$('#blackBoxInfo img, #blackBoxInfo h4, #blackBoxInfo .sizeInfo').css('display', 'none');
-			$('#blackBoxInfo img, #blackBoxInfo h4').css('display', 'none');
-			$('#blackBoxInfo, #blackBoxInfo h5').css('display', 'block');
-
-			if (self.config.lockHover == true && !self.config.isIpad) return;
-
-			var nNum = $(this).find('span').text();
-			var imgName = $(this).attr("artist");
-			var imgDesc = $(this).attr("desc");
-			var imgIndex = $(this).attr("data-count");
-
-			if (imgIndex >= 1) {
-				$('#blackBoxInfo h2').html(boardDescriptionData[imgIndex - 1].Artist);
-				$('#blackBoxInfo h3').html(boardDescriptionData[imgIndex - 1].Type + " " + imgDesc + " " + boardDescriptionData[imgIndex - 1].Color);
-				$('#blackBoxInfo h5').html(boardDescriptionData[imgIndex - 1].Description);
-			} else {
-				$('#blackBoxInfo h2').text('DIY Base!');
-				$('#blackBoxInfo h3').text('Personalize your base for an additional $29.95 ' + self.config.bbRegionCurrency);
-				$('#blackBoxInfo h5').text('');
-			}
-			if (self.config.lockHover == true && !self.config.isIpad) return;
-			var nNum = $('.boardBase5 .carousel ul li.item img').index($(this)) + 1;
-			self.showInfoBox(nNum, self.config.numBoardBases);
-		}).on('mouseleave.step5a', function () {
-			if (self.config.lockHover == false) $('#blackBoxInfo').css('display', 'none');
-		}).on("click.step5a touch.step5a", function () {
-			self.setBoardBase(this);
-			// PROCESS ROLLOVER LOCK
-			oImg = $(this);
-			if (!self.config.isIpad) {
-				oImg.addClass('selectedShape');
-			}
-			if (!self.config.isMobile) $('#blackBoxInfo').show();
-			$(".boardBase5 .carousel ul li.item img").each(function () {
-				$(this).removeClass('selectedShape');
-				$(this).removeClass('confirmedShape');
-				//$(this).removeAttr("style")
-			});
-			if (!self.config.isIpad) oImg.addClass('confirmedShape');
-
-			self.boardPreviewSet(4);
-			self.advanceArrowShow();
-		});
-		// listen for knife cut base selection
-		$('.boardBase5 .carousel ul li.item img#customBase').on("click.step5a touch.step5a", function () {
-			self.config.bHasCustom = true;
-			self.config.$mainSlider.goToSlide(5);
-		});
-		self.config.lockHover = false;
-		self.setBackgroundImage('.boardBase5', '5');
-		if (self.getBoardBase() == undefined || self.getBoardBase() == "") {
+		// set up carousel for step 5
+		self.createCarousel('.step5-base');
+		// check to see if advance arrow should be shown
+		if (self.getBoardBase() === undefined || self.getBoardBase() === "") {
 			self.advanceArrowHide();
 		} else {
 			self.advanceArrowShow();
 		}
+		// set the correct BG image on init
+		self.setBackgroundImage(".step5-base", 5);
+		// add offset for info box
+		$('#info-box').addClass('offset');
 	},
 	step5aUninit: function () {
-		$(document).off('mousemove.step5a');
-		$('.boardBase5 .carousel ul li.item img').off('mouseenter.step5a mouseleave.step5a click.step5a touch.step5a');
-		$('.boardBase5 .carousel ul li.item img#customBase').off("click.step5a touch.step5a");
+		var self = this;
+		self.destroyCarousel('.step5-base');
 	},
 	// STEP 5b - KNIFE CUT BASE
 	step5bInit: function () {
@@ -1956,59 +1839,59 @@ LIBTECH.snowboardbuilder = {
 			self.updateBoardDisplay();
 		}
 		// letter color listeners
-		$('#knifecut-base-controls .letter-color .greyBox').on("click touch", function () {
+		$('#knifecut-base-controls .letter-color .box-grey').on("click touch", function () {
 			setTextColor('Grey');
 		});
-		$('#knifecut-base-controls .letter-color .orangeBox').on("click touch", function () {
+		$('#knifecut-base-controls .letter-color .box-orange').on("click touch", function () {
 			setTextColor('Orange');
 		});
-		$('#knifecut-base-controls .letter-color .yellowBox').on("click touch", function () {
+		$('#knifecut-base-controls .letter-color .box-yellow').on("click touch", function () {
 			setTextColor('Yellow');
 		});
-		$('#knifecut-base-controls .letter-color .blackBox').on("click touch", function () {
+		$('#knifecut-base-controls .letter-color .box-black').on("click touch", function () {
 			setTextColor('Black');
 		});
-		$('#knifecut-base-controls .letter-color .whiteBox').on("click touch", function () {
+		$('#knifecut-base-controls .letter-color .box-white').on("click touch", function () {
 			setTextColor('White');
 		});
-		$('#knifecut-base-controls .letter-color .greenBox').on("click touch", function () {
+		$('#knifecut-base-controls .letter-color .box-green').on("click touch", function () {
 			setTextColor('Green');
 		});
-		$('#knifecut-base-controls .letter-color .blueBox').on("click touch", function () {
+		$('#knifecut-base-controls .letter-color .box-blue').on("click touch", function () {
 			setTextColor('Blue');
 		});
-		$('#knifecut-base-controls .letter-color .redBox').on("click touch", function () {
+		$('#knifecut-base-controls .letter-color .box-red').on("click touch", function () {
 			setTextColor('Red');
 		});
 		// base color listeners
-		$('#knifecut-base-controls .base-color .greyBox').on("click touch", function () {
+		$('#knifecut-base-controls .base-color .box-grey').on("click touch", function () {
 			setBaseColor('Grey');
 		});
-		$('#knifecut-base-controls .base-color .orangeBox').on("click touch", function () {
+		$('#knifecut-base-controls .base-color .box-orange').on("click touch", function () {
 			setBaseColor('Orange');
 		});
-		$('#knifecut-base-controls .base-color .yellowBox').on("click touch", function () {
+		$('#knifecut-base-controls .base-color .box-yellow').on("click touch", function () {
 			setBaseColor('Yellow');
 		});
-		$('#knifecut-base-controls .base-color .blackBox').on("click touch", function () {
+		$('#knifecut-base-controls .base-color .box-black').on("click touch", function () {
 			setBaseColor('Black');
 		});
-		$('#knifecut-base-controls .base-color .whiteBox').on("click touch", function () {
+		$('#knifecut-base-controls .base-color .box-white').on("click touch", function () {
 			setBaseColor('White');
 		});
-		$('#knifecut-base-controls .base-color .greenBox').on("click touch", function () {
+		$('#knifecut-base-controls .base-color .box-green').on("click touch", function () {
 			setBaseColor('Green');
 		});
-		$('#knifecut-base-controls .base-color .blueBox').on("click touch", function () {
+		$('#knifecut-base-controls .base-color .box-blue').on("click touch", function () {
 			setBaseColor('Blue');
 		});
-		$('#knifecut-base-controls .base-color .redBox').on("click touch", function () {
+		$('#knifecut-base-controls .base-color .box-red').on("click touch", function () {
 			setBaseColor('Red');
 		});
 		// imput text listeners
 		$('#knifecut-base-controls .knifecut-input #board-text').on('input.step5b', function () {
 			var inputValue = this.value.toUpperCase();
-			if(inputValue == "") {
+			if(inputValue === "") {
 				self.advanceArrowHide(); // on removal of text, hide arrow
 			} else {
 				self.advanceArrowShow(); // on update of text, show arrow
@@ -2028,73 +1911,72 @@ LIBTECH.snowboardbuilder = {
 			}
 		}).on('blur.step5b', function () {
 			// reset default if nothing is inputed
-			if ($(this).val().length == 0) {
+			if ($(this).val().length === 0) {
 				$(this).val(self.defaultBaseInput);
 			}
 		});
-		self.setBackgroundImage(".boardBase5b", "5");
+		self.setBackgroundImage(".step5b-base-text", "5");
 		self.advanceArrowHide();
 	},
 	step5bUninit: function () {
 		$('#knifecut-base-controls .knifecut-input #board-text').off('input.step5b keyup.step5b focus.step5b blur.step5b');
-		$('#knifecut-base-controls .letter-color .greyBox').off("click touch");
-		$('#knifecut-base-controls .letter-color .orangeBox').off("click touch");
-		$('#knifecut-base-controls .letter-color .yellowBox').off("click touch");
-		$('#knifecut-base-controls .letter-color .blackBox').off("click touch");
-		$('#knifecut-base-controls .letter-color .whiteBox').off("click touch");
-		$('#knifecut-base-controls .letter-color .greenBox').off("click touch");
-		$('#knifecut-base-controls .letter-color .blueBox').off("click touch");
-		$('#knifecut-base-controls .letter-color .redBox').off("click touch");
-		$('#knifecut-base-controls .base-color .greyBox').off("click touch");
-		$('#knifecut-base-controls .base-color .orangeBox').off("click touch");
-		$('#knifecut-base-controls .base-color .yellowBox').off("click touch");
-		$('#knifecut-base-controls .base-color .blackBox').off("click touch");
-		$('#knifecut-base-controls .base-color .whiteBox').off("click touch");
-		$('#knifecut-base-controls .base-color .greenBox').off("click touch");
-		$('#knifecut-base-controls .base-color .blueBox').off("click touch");
-		$('#knifecut-base-controls .base-color .redBox').off("click touch");
+		$('#knifecut-base-controls .letter-color .box-grey').off("click touch");
+		$('#knifecut-base-controls .letter-color .box-orange').off("click touch");
+		$('#knifecut-base-controls .letter-color .box-yellow').off("click touch");
+		$('#knifecut-base-controls .letter-color .box-black').off("click touch");
+		$('#knifecut-base-controls .letter-color .box-white').off("click touch");
+		$('#knifecut-base-controls .letter-color .box-green').off("click touch");
+		$('#knifecut-base-controls .letter-color .box-blue').off("click touch");
+		$('#knifecut-base-controls .letter-color .box-red').off("click touch");
+		$('#knifecut-base-controls .base-color .box-grey').off("click touch");
+		$('#knifecut-base-controls .base-color .box-orange').off("click touch");
+		$('#knifecut-base-controls .base-color .box-yellow').off("click touch");
+		$('#knifecut-base-controls .base-color .box-black').off("click touch");
+		$('#knifecut-base-controls .base-color .box-white').off("click touch");
+		$('#knifecut-base-controls .base-color .box-green').off("click touch");
+		$('#knifecut-base-controls .base-color .box-blue').off("click touch");
+		$('#knifecut-base-controls .base-color .box-red').off("click touch");
 	},
 	// STEP 6 - BADGE
 	step6Init: function () {
 		var self = this;
 		// input text listeners
 		$('.board-badge-input-holder .board-badge-input').on('input.step6', function () {
-			var inputValue = this.value.toUpperCase();
+			var maxFS, inputValue;
+			inputValue = this.value.toUpperCase();
 			if (inputValue.length <= 13) {
-				var maxFS = "200%";
-				$('.boardBadgeTextHolder .badge-text-wide').css('font-size', maxFS);
+				maxFS = "200%";
+				$('.step6-badge .board-badge .badge-text').css('font-size', maxFS);
 				var the1Line = inputValue.slice(0, 13);
-				$('.boardBadgeTextHolder .badge-text-wide').html(the1Line);
+				$('.step6-badge .board-badge .badge-text').html(the1Line);
 			} else if (inputValue.length > 13) {
-				var maxFS = "175%";
-				$('.boardBadgeTextHolder .badge-text-wide').css('font-size', maxFS);
+				maxFS = "175%";
+				$('.step6-badge .board-badge .badge-text').css('font-size', maxFS);
 				//var the1Line = this.value.slice(0, 13);
 				//var the2Line = this.value.slice(13);
 				//var theLines = the1Line + "<br />" + the2Line;
-				$('.boardBadgeTextHolder .badge-text-wide').html(inputValue);
+				$('.step6-badge .board-badge .badge-text').html(inputValue);
 			}
 			// set menu and display arrow if user begins to enter text
 			if (inputValue.length == 1) {
 				self.advanceArrowShow();
-				$('.menu6TitleX span').addClass('menuXVisible');
-				$('.menu6Title').addClass('menuTitleFull');
-				$('.menu6Title').html("Personalized Badge<br><b>+ $ 0.00 " + self.config.bbRegionCurrency + "</b>");
-			} else if (inputValue.length == 0) {
+				$('#left-menu .menu6 .menu-title').html("Personalized Badge<br><b>+ $ 0.00 " + self.config.bbRegionCurrency + "</b>");
+				$('#left-menu .menu6').addClass('complete');
+			} else if (inputValue.length === 0) {
 				self.advanceArrowHide();
 			}
 			self.setBoardBadge(inputValue);
 		}).on('keyup.step6', function (e) {
 			// on enter press, advance to next step
 			var code = (e.keyCode ? e.keyCode : e.which);
-			if (code == 13 && $(this).val().length != 0) { // Enter keycode & input is not empty
+			if (code == 13 && $(this).val().length !== 0) { // Enter keycode & input is not empty
 				self.config.$mainSlider.goToSlide(7);
 			}
 		}).on('blur.step6', function () {
-			if ($(this).val().length != 0 && $(this).val() != self.defaultBadgeInput) {
+			if ($(this).val().length !== 0 && $(this).val() != self.defaultBadgeInput) {
 				self.advanceArrowShow();
-				$('.menu6TitleX span').addClass('menuXVisible');
-				$('.menu6Title').addClass('menuTitleFull');
-				$('.menu6Title').html("Personalized Badge<br><b>+ $ 0.00 " + self.config.bbRegionCurrency + "</b>");
+				$('#left-menu .menu6 .menu-title').html("Personalized Badge<br><b>+ $ 0.00 " + self.config.bbRegionCurrency + "</b>");
+				$('#left-menu .menu6').addClass('complete');
 			} else {
 				self.advanceArrowHide();
 				self.setBoardBadge('');
@@ -2106,11 +1988,11 @@ LIBTECH.snowboardbuilder = {
 			}
 		});
 		// get the board size
-		$(".boardBadge6 .boardBadgeSize").html(self.getBoardSize());
+		$(".step6-badge .board-badge .badge-size").html(self.getBoardSize());
 		// set the background
-		self.setBackgroundImage('.boardBadge6', 6);
+		self.setBackgroundImage('.step6-badge', 6);
 		// decide if advance arrow should be shown
-		if (self.getBoardBadge() == undefined || self.getBoardBadge() == "") {
+		if (self.getBoardBadge() === undefined || self.getBoardBadge() === "") {
 			self.advanceArrowHide();
 		} else {
 			self.advanceArrowShow();
@@ -2126,114 +2008,109 @@ LIBTECH.snowboardbuilder = {
 		$('.thereciept-scroll').css('height', $(window).height());
 		// reset view
 		// hide
-		$(".boardBuy7 .thereciept .terms").css('display', 'none');
-		$(".boardBuy7 .thereciept .terms-international").css('display', 'none');
-		$(".boardBuy7 .thereciept .cart-error").css('display', 'none');
-		$(".boardBuy7 .thereciept .buttonholder .agree-button").css('display', 'none');
+		$(".step7-buy .thereciept .terms").css('display', 'none');
+		$(".step7-buy .thereciept .terms-international").css('display', 'none');
+		$(".step7-buy .thereciept .cart-error").css('display', 'none');
+		$(".step7-buy .thereciept .buttonholder .agree-button").css('display', 'none');
 		// show
-		$(".boardBuy7 .thereciept .board-reciept").css('display', 'block');
-		$(".boardBuy7 .thereciept .buttonholder .buy-button").css('display', 'block');
+		$(".step7-buy .thereciept .board-reciept").css('display', 'block');
+		$(".step7-buy .thereciept .buttonholder .buy-button").css('display', 'block');
 		
 		function showTerms() {
 			// hide
-			$(".boardBuy7 .thereciept .buttonholder .buy-button").css('display', 'none');
-			$(".boardBuy7 .thereciept .board-reciept").css('display', 'none');
-			$(".boardBuy7 .thereciept .cart-error").css('display', 'none');
+			$(".step7-buy .thereciept .buttonholder .buy-button").css('display', 'none');
+			$(".step7-buy .thereciept .board-reciept").css('display', 'none');
+			$(".step7-buy .thereciept .cart-error").css('display', 'none');
 			// show
-			$(".boardBuy7 .thereciept .buttonholder .agree-button").css('display', 'block');
+			$(".step7-buy .thereciept .buttonholder .agree-button").css('display', 'block');
 			// determine which terms to show based on region
 			if(self.bbGetRegion() == 'US' || self.bbGetRegion() == 'CA') {
-				$(".boardBuy7 .thereciept .terms").css('display', 'block');
-				$(".boardBuy7 .thereciept .terms-international").css('display', 'none');
+				$(".step7-buy .thereciept .terms").css('display', 'block');
+				$(".step7-buy .thereciept .terms-international").css('display', 'none');
 			} else {
-				$(".boardBuy7 .thereciept .terms-international").css('display', 'block');
-				$(".boardBuy7 .thereciept .terms").css('display', 'none');
+				$(".step7-buy .thereciept .terms-international").css('display', 'block');
+				$(".step7-buy .thereciept .terms").css('display', 'none');
 			}
 		}
 		function showError(sError) {
 			// hide
-			$(".boardBuy7 .thereciept .board-reciept").css('display', 'none');
-			$(".boardBuy7 .thereciept .terms").css('display', 'none');
-			$(".boardBuy7 .thereciept .terms-international").css('display', 'none');
-			$(".boardBuy7 .thereciept .buttonholder .agree-button").css('display', 'none');
+			$(".step7-buy .thereciept .board-reciept").css('display', 'none');
+			$(".step7-buy .thereciept .terms").css('display', 'none');
+			$(".step7-buy .thereciept .terms-international").css('display', 'none');
+			$(".step7-buy .thereciept .buttonholder .agree-button").css('display', 'none');
 			// show
-			$(".boardBuy7 .thereciept .cart-error").css('display', 'block');			
-			$(".boardBuy7 .thereciept .buttonholder .buy-button").css('display', 'block');
+			$(".step7-buy .thereciept .cart-error").css('display', 'block');
+			$(".step7-buy .thereciept .buttonholder .buy-button").css('display', 'block');
 		}
 		function isComplete() {
-			if (self.getBoardShape() != "" && self.getBoardShape() != undefined &&
-				self.getBoardSize() != "" && self.getBoardSize() != undefined &&
-				self.getBoardTop() != "" && self.getBoardTop() != undefined &&
-				self.getBoardSidewall() != "" && self.getBoardSidewall() != undefined &&
-				self.getBoardBase() != "" && self.getBoardBase() != undefined && self.getBoardBaseDesc() != "" && self.getBoardBaseDesc() != undefined &&
-				self.getBoardBadge() != "" && self.getBoardBadge() != undefined) {
+			if (self.getBoardShape() !== "" && self.getBoardShape() !== undefined &&
+				self.getBoardSize() !== "" && self.getBoardSize() !== undefined &&
+				self.getBoardTop() !== "" && self.getBoardTop() !== undefined &&
+				self.getBoardSidewall() !== "" && self.getBoardSidewall() !== undefined &&
+				self.getBoardBase() !== "" && self.getBoardBase() !== undefined && self.getBoardBaseDesc() !== "" && self.getBoardBaseDesc() !== undefined &&
+				self.getBoardBadge() !== "" && self.getBoardBadge() !== undefined) {
 				return true;
 			} else {
 				return false;
 			}
 		}
 		function isNotComplete() {
-			$("#leftmenu").stop().animate({
-				left: "0px"
-			}, 73);
-			$("#leftmenu").delay(3000).stop().animate({
-				left: "-195px"
-			}, 73);
-
-			if (self.getBoardShape() == "" || self.getBoardShape() == undefined) {
+			if (self.getBoardShape() === "" || self.getBoardShape() === undefined) {
 				highlightRed(1);
 			}
-			if (self.getBoardSize() == "" || self.getBoardSize() == undefined) {
+			if (self.getBoardSize() === "" || self.getBoardSize() === undefined) {
 				highlightRed(2);
 			}
-			if (self.getBoardTop() == "" || self.getBoardTop() == undefined) {
+			if (self.getBoardTop() === "" || self.getBoardTop() === undefined) {
 				highlightRed(3);
 			}
-			if (self.getBoardSidewall() == "" || self.getBoardSidewall() == undefined) {
+			if (self.getBoardSidewall() === "" || self.getBoardSidewall() === undefined) {
 				highlightRed(4);
 			}
-			if (self.getBoardBase() == "" || self.getBoardBase() == undefined || self.getBoardBaseDesc() == "" || self.getBoardBaseDesc() == undefined) {
-				highlightRed(5);
+			if (self.getBoardBase() === "" || self.getBoardBase() === undefined || self.getBoardBaseDesc() === "" || self.getBoardBaseDesc() === undefined) {
+				if(self.getBoardBase() !== "Custom") {
+					highlightRed(5);
+				} else {
+					highlightRed('5b');
+				}
 			}
-			if (self.getBoardBadge() == "" || self.getBoardBadge() == undefined) {
+			if (self.getBoardBadge() === "" || self.getBoardBadge() === undefined) {
 				highlightRed(6);
 			}
+			$('#left-menu').addClass('open');
 		}
 		function highlightRed(nNum) {
-			$("body").find('.menu' + (nNum) + 'Title').css('background-image', 'url(' + self.config.baseImgPath + 'bb-redback.png' + ')');
-			$("body").find('.menu' + (nNum) + '').css('background-image', 'url(' + self.config.baseImgPath + 'bb-redback.png' + ')');
-			$("body").find('.menu' + (nNum) + 'TitleX').css('background-image', 'url(' + self.config.baseImgPath + 'bb-redback.png' + ')');
-			$("body").find('.menu' + (nNum)).css("font-weight", "600");
+			$('#left-menu').find('.menu' + (nNum)).addClass('alert');
 		}
 		function buildReciept() {
 			// set shape
-			$('.boardBuy7 .thereciept .board-reciept .shape span').html(self.getBoardShape());
-			$('.boardBuy7 .thereciept .board-reciept .shape-cost').html("+ $" + self.getBoardPrice() + " " + self.config.bbRegionCurrency);
+			$('.step7-buy .thereciept .board-reciept .shape span').html(self.getBoardShape());
+			$('.step7-buy .thereciept .board-reciept .shape-cost').html("+ $" + self.getBoardPrice() + " " + self.config.bbRegionCurrency);
 			// set size
-			$('.boardBuy7 .thereciept .board-reciept .size span').html(self.getBoardSize());
-			$('.boardBuy7 .thereciept .board-reciept .size-cost').html("+ $0.00 " + self.config.bbRegionCurrency);
+			$('.step7-buy .thereciept .board-reciept .size span').html(self.getBoardSize());
+			$('.step7-buy .thereciept .board-reciept .size-cost').html("+ $0.00 " + self.config.bbRegionCurrency);
 			// set top
-			$('.boardBuy7 .thereciept .board-reciept .top span').html(self.getBoardArtist() + " " + self.getBoardDescription());
-			$('.boardBuy7 .thereciept .board-reciept .top-cost').html("+ $0.00 " + self.config.bbRegionCurrency);
+			$('.step7-buy .thereciept .board-reciept .top span').html(self.getBoardArtist() + " " + self.getBoardDescription());
+			$('.step7-buy .thereciept .board-reciept .top-cost').html("+ $0.00 " + self.config.bbRegionCurrency);
 			// set sidewall
-			$('.boardBuy7 .thereciept .board-reciept .sidewall span').html(self.getBoardSidewall());
-			$('.boardBuy7 .thereciept .board-reciept .sidewall-cost').html("+ $0.00 " + self.config.bbRegionCurrency);
+			$('.step7-buy .thereciept .board-reciept .sidewall span').html(self.getBoardSidewall());
+			$('.step7-buy .thereciept .board-reciept .sidewall-cost').html("+ $0.00 " + self.config.bbRegionCurrency);
 			// set base
 			if (self.config.isKnifecut) {
-				$('.boardBuy7 .thereciept .board-reciept .base').html("KNIFECUT BASE - <span>" + self.getBoardBaseDesc() + "</span><div class=\"text-color\">TEXT COLOR - <span>" + self.getCustomTextColor() + "</span></div><div class=\"base-color\">BASE COLOR - <span>" + self.getCustomBaseColor() + "</span></div>");
-				$('.boardBuy7 .thereciept .board-reciept .base-cost').html("+ $" + self.getKnifeCutPrice() + " " + self.config.bbRegionCurrency);
+				$('.step7-buy .thereciept .board-reciept .base').html("KNIFECUT BASE - <span>" + self.getBoardBaseDesc() + "</span><div class=\"text-color\">TEXT COLOR - <span>" + self.getCustomTextColor() + "</span></div><div class=\"base-color\">BASE COLOR - <span>" + self.getCustomBaseColor() + "</span></div>");
+				$('.step7-buy .thereciept .board-reciept .base-cost').html("+ $" + self.getKnifeCutPrice() + " " + self.config.bbRegionCurrency);
 			} else {
-				$('.boardBuy7 .thereciept .board-reciept .base').html("BASE - <span>" + self.getBoardBase() + " " + self.getBoardBaseDesc() + "</span>");
-				$('.boardBuy7 .thereciept .board-reciept .base-cost').html("+ $0.00 " + self.config.bbRegionCurrency);
+				$('.step7-buy .thereciept .board-reciept .base').html("BASE - <span>" + self.getBoardBase() + " " + self.getBoardBaseDesc() + "</span>");
+				$('.step7-buy .thereciept .board-reciept .base-cost').html("+ $0.00 " + self.config.bbRegionCurrency);
 			}
 			// set badge
-			$('.boardBuy7 .thereciept .board-reciept .badge span').html(self.getBoardBadge());
-			$('.boardBuy7 .thereciept .board-reciept .badge-cost').html("+ $0.00 " + self.config.bbRegionCurrency);
+			$('.step7-buy .thereciept .board-reciept .badge span').html(self.getBoardBadge());
+			$('.step7-buy .thereciept .board-reciept .badge-cost').html("+ $0.00 " + self.config.bbRegionCurrency);
 			// set subtotal
 			if (self.config.isKnifecut) {
-				$('.boardBuy7 .thereciept .board-reciept .subtotal-cost').html("$" + parseFloat(self.getBoardPrice() + self.getKnifeCutPrice()).toFixed(2) + " " + self.config.bbRegionCurrency);
+				$('.step7-buy .thereciept .board-reciept .subtotal-cost').html("$" + parseFloat(self.getBoardPrice() + self.getKnifeCutPrice()).toFixed(2) + " " + self.config.bbRegionCurrency);
 			} else {
-				$('.boardBuy7 .thereciept .board-reciept .subtotal-cost').html("$" + self.getBoardPrice() + " " + self.config.bbRegionCurrency);
+				$('.step7-buy .thereciept .board-reciept .subtotal-cost').html("$" + self.getBoardPrice() + " " + self.config.bbRegionCurrency);
 			}
 		}
 		function boardUrl() {
@@ -2258,7 +2135,7 @@ LIBTECH.snowboardbuilder = {
 		}
 		
 		// Listen for user to click buy
-		$('.boardBuy7 .thereciept .buttonholder .buy-button').on('click.step7', function () {
+		$('.step7-buy .thereciept .buttonholder .buy-button').on('click.step7', function () {
 			if ($('body').hasClass('page-template-page-snowboard-builder-share-php')) {
 				// share page
 				showTerms();
@@ -2272,7 +2149,7 @@ LIBTECH.snowboardbuilder = {
 			}
 		});
 		// Listen for user to click agree
-		$('.boardBuy7 .thereciept .buttonholder .agree-button').on('click.step7', function () {
+		$('.step7-buy .thereciept .buttonholder .agree-button').on('click.step7', function () {
 			var top = self.getBoardArtist() + ' ' + self.getBoardDescription();
 			var partNum = boardData[self.config.globalNum].BaseSku;
 			if (self.config.isKnifecut) {
@@ -2328,15 +2205,15 @@ LIBTECH.snowboardbuilder = {
 			}
 		});
 		// Social Links
-		$('.boardBuy7 .thereciept .buttonholder .social-icons .socialfb').on('click.step7', function () {
+		$('.step7-buy .thereciept .buttonholder .social-icons .socialfb').on('click.step7', function () {
 			window.open(
-				'https://www.facebook.com/sharer/sharer.php?u='+ encodeURIComponent(boardUrl()), 
-				'facebook-share-dialog', 
+				'https://www.facebook.com/sharer/sharer.php?u='+ encodeURIComponent(boardUrl()),
+				'facebook-share-dialog',
 				'width=626,height=436'
 			);
 			return false;
 		});
-		$('.boardBuy7 .thereciept .buttonholder .social-icons .socialtw').on('click.step7', function () {
+		$('.step7-buy .thereciept .buttonholder .social-icons .socialtw').on('click.step7', function () {
 			window.open(
 				'http://twitter.com/share?url=' + encodeURIComponent(boardUrl()) + '&text=' + encodeURIComponent("I built my own @libtechnologies #snowboard with the DIY Board Builder! #LibTechDIY -"),
 				'twitter-share-dialog',
@@ -2344,7 +2221,7 @@ LIBTECH.snowboardbuilder = {
 			);
 			return false;
 		});
-		$('.boardBuy7 .thereciept .buttonholder .social-icons .socialg').on('click.step7', function () {
+		$('.step7-buy .thereciept .buttonholder .social-icons .socialg').on('click.step7', function () {
 			window.open(
 				"https://plus.google.com/share?url=" + encodeURIComponent(boardUrl()),
 				'gplus-share-dialog',
@@ -2352,15 +2229,15 @@ LIBTECH.snowboardbuilder = {
 			);
 			return false;
 		});
-		$('.boardBuy7 .thereciept .buttonholder .social-icons .sociale').on('click.step7', function () {
+		$('.step7-buy .thereciept .buttonholder .social-icons .sociale').on('click.step7', function () {
 			email = "mailto:?subject=" + encodeURIComponent("I built my own Lib Tech Snowboard with the DIY Board Builder!") + "&body=" + encodeURIComponent(" Check out my personalized DIY Lib Tech Snowboard:") +  "%20%0D%0A%20" + encodeURIComponent(boardUrl()) + "%20%0D%0A%20" + encodeURIComponent("Build your dream snowboard!");
 			window.open(email);
 		});
-		$('.boardBuy7 .thereciept .buttonholder .share-url #share-url-input').on('click.step7 touch.step7', function () {
+		$('.step7-buy .thereciept .buttonholder .share-url #share-url-input').on('click.step7 touch.step7', function () {
 			$(this).select();
 		});
 
-		$('.boardBuy7 .thereciept .buttonholder .share-url #share-url-input').val(boardUrl());
+		$('.step7-buy .thereciept .buttonholder .share-url #share-url-input').val(boardUrl());
 
 		self.advanceArrowHide();
 		buildReciept();
@@ -2368,17 +2245,17 @@ LIBTECH.snowboardbuilder = {
 		if ($('body').hasClass('page-template-page-snowboard-builder-share-php')) {
 			self.setBackgroundImage(".wrapper", 7);
 		} else {
-			self.setBackgroundImage(".boardBuy7", 7);
+			self.setBackgroundImage(".step7-buy", 7);
 		}
 	},
 	step7Uninit: function () {
-		$('.boardBuy7 .thereciept .buttonholder .buy-button').off('click.step7');
-		$('.boardBuy7 .thereciept .buttonholder .agree-button').off('click.step7');
-		$('.boardBuy7 .thereciept .buttonholder .social-icons .socialfb').off('click.step7');
-		$('.boardBuy7 .thereciept .buttonholder .social-icons .socialtw').off('click.step7');
-		$('.boardBuy7 .thereciept .buttonholder .social-icons .socialg').off('click.step7');
-		$('.boardBuy7 .thereciept .buttonholder .social-icons .sociale').off('click.step7');
-		$('.boardBuy7 .thereciept .buttonholder .share-url #share-url-input').off('click.step7 touch.step7');
+		$('.step7-buy .thereciept .buttonholder .buy-button').off('click.step7');
+		$('.step7-buy .thereciept .buttonholder .agree-button').off('click.step7');
+		$('.step7-buy .thereciept .buttonholder .social-icons .socialfb').off('click.step7');
+		$('.step7-buy .thereciept .buttonholder .social-icons .socialtw').off('click.step7');
+		$('.step7-buy .thereciept .buttonholder .social-icons .socialg').off('click.step7');
+		$('.step7-buy .thereciept .buttonholder .social-icons .sociale').off('click.step7');
+		$('.step7-buy .thereciept .buttonholder .share-url #share-url-input').off('click.step7 touch.step7');
 	},
 
 	setCurrentSection: function () {
@@ -2388,9 +2265,7 @@ LIBTECH.snowboardbuilder = {
 		self.config.bFirstPlay = false;
 		self.boardPreviewSet(self.config.nCurSlide);
 
-		$(".menuXs ul li").css('background-image', 'none');
-		$(".menuTitles ul li").css('background-image', 'none');
-		$(".menuButtons ul li").css('background-image', 'none');
+		$('#left-menu ul li').removeClass('selected');
 
 		self.config.lockHover = false;
 
@@ -2398,20 +2273,19 @@ LIBTECH.snowboardbuilder = {
 		$(".bx-pager-item").removeClass('black50');
 		$(".pagerTop .active").parent().addClass('black50');
 
-		if (self.config.nCurSlide != 0 && self.config.isMobile) {
-			$("#topTwo").css('display', 'block');
+		if (self.config.nCurSlide !== 0 && self.config.isMobile) {
+			$("#header .top-two").css('display', 'block');
 		} else {
-			$("#topTwo").css('display', 'none');
+			$("#header .top-two").css('display', 'none');
 		}
 
-		$('#blackBoxInfo').hide();
+		$('#info-box').removeClass('show');
 		$('.bxSliderTop').hide();
 		$('.bxSliderBase').hide();
 		// set default snowboard shape
-		if (self.getBoardShape() == "" || self.getBoardShape() == undefined && !self.confirmedShapeSelection) {
+		if (self.getBoardShape() === "" || self.getBoardShape() === undefined && !self.confirmedShapeSelection) {
 			self.setBoardShape($("#defaultShapeImage"));
 		}
-
 		// UNINIT ALL SECTIONS
 		self.step1Uninit();
 		self.step2Uninit();
@@ -2421,8 +2295,14 @@ LIBTECH.snowboardbuilder = {
 		self.step5bUninit();
 		self.step6Uninit();
 		self.step7Uninit();
+
+		if (self.config.isMobile) {
+			self.resizeForMobile();
+		} else {
+			self.resizeForDesktop();
+		}
 		// INIT CURRENT SECTION
-		if (self.config.nCurSlide == 0) {
+		if (self.config.nCurSlide === 0) {
 			self.step1Init();
 		} else if (self.config.nCurSlide == 1) {
 			self.step2Init();
@@ -2439,28 +2319,16 @@ LIBTECH.snowboardbuilder = {
 		} else if (self.config.nCurSlide == 7) {
 			self.step7Init();
 		}
-
+		// set the left menu correctly
 		if (self.config.nCurSlide == 5) {
-			$("body").find('.menu' + (5) + 'Title').css('background-image', 'url(' + self.config.baseImgPath + 'bb-greyback-b0b0b0.png' + ')');
-			$("body").find('.menu' + (5) + '').css('background-image', 'url(' + self.config.baseImgPath + 'bb-greyback-b0b0b0.png' + ')');
-			$("body").find('.menu' + (5) + 'TitleX').css('background-image', 'url(' + self.config.baseImgPath + 'bb-greyback-b0b0b0.png' + ')');
-			$("body").find('.menu' + (5)).css("font-weight", "700");
+			$('#left-menu .menu5b').addClass('selected');
+			$('#left-menu .menu5b').removeClass('alert');
 		} else if (self.config.nCurSlide == 6) {
-			$("body").find('.menu' + (6) + 'Title').css('background-image', 'url(' + self.config.baseImgPath + 'bb-greyback-b0b0b0.png' + ')');
-			$("body").find('.menu' + (6) + '').css('background-image', 'url(' + self.config.baseImgPath + 'bb-greyback-b0b0b0.png' + ')');
-			$("body").find('.menu' + (6) + 'TitleX').css('background-image', 'url(' + self.config.baseImgPath + 'bb-greyback-b0b0b0.png' + ')');
-			$("body").find('.menu' + (6)).css("font-weight", "700");
+			$('#left-menu .menu6').addClass('selected');
+			$('#left-menu .menu6').removeClass('alert');
 		} else {
-			$("body").find('.menu' + (self.config.nCurSlide + 1) + 'Title').css('background-image', 'url(' + self.config.baseImgPath + 'bb-greyback-b0b0b0.png' + ')');
-			$("body").find('.menu' + (self.config.nCurSlide + 1) + '').css('background-image', 'url(' + self.config.baseImgPath + 'bb-greyback-b0b0b0.png' + ')');
-			$("body").find('.menu' + (self.config.nCurSlide + 1) + 'TitleX').css('background-image', 'url(' + self.config.baseImgPath + 'bb-greyback-b0b0b0.png' + ')');
-			$("body").find('.menu' + (self.config.nCurSlide + 1)).css("font-weight", "700");
-		}
-
-		if (self.config.isMobile) {
-			self.resizeForMobile();
-		} else {
-			self.resizeForDesktop();
+			$("#left-menu").find('.menu' + (self.config.nCurSlide + 1)).addClass('selected');
+			$("#left-menu").find('.menu' + (self.config.nCurSlide + 1)).removeClass('alert');
 		}
 		/*SCROLLBARRR*/
 		setTimeout(function () {
@@ -2469,152 +2337,131 @@ LIBTECH.snowboardbuilder = {
 	}, // END setCurrentSection
 
 	resizeForDesktop: function () {
-		var self, windowHeight, windowWidth, headerHeight;
+		var self, windowHeight, windowWidth, headerHeight, shapeWidth, shapeHeight, aspectRatio, newHeight, newWidth, carouselWidth, carouselHeight;
 		self = this;
 		windowHeight = $(window).height();
 		windowWidth = $(window).width();
-		headerHeight = $('#topLogo img').height();
+		headerHeight = $('#header .top-logo img').height();
 
 		function resizeBoardDisplay() {
 			var boardDisplayWidth, boardDisplayHeight, aspectRatio, newHeight, newWidth, maxWidth, arrowY;
 			// check which view we're showing to the user
-			if ($('#boardDisplay .boardPreview .boardViews .preview34').css('display') == 'block') {
-				boardDisplayWidth = $('#boardDisplay .boardPreview .boardViews .preview34 .board .bImage .sidewall-bottom').width();
-				boardDisplayHeight = $('#boardDisplay .boardPreview .boardViews .preview34 .board .bImage .sidewall-bottom').height();
-			} else if ($('#boardDisplay .boardPreview .boardViews .previewBase').css('display') == 'block') {
-				boardDisplayWidth = $('#boardDisplay .boardPreview .boardViews .previewBase .board .bImage .base').width();
-				boardDisplayHeight = $('#boardDisplay .boardPreview .boardViews .previewBase .board .bImage .base').height();
+			if ($('#board-display .board-preview .board-views .preview-side').css('display') == 'block') {
+				boardDisplayWidth = $('#board-display .board-preview .board-views .preview-side .board .board-image .sidewall-bottom').width();
+				boardDisplayHeight = $('#board-display .board-preview .board-views .preview-side .board .board-image .sidewall-bottom').height();
+			} else if ($('#board-display .board-preview .board-views .preview-base').css('display') == 'block') {
+				boardDisplayWidth = $('#board-display .board-preview .board-views .preview-base .board .board-image .base').width();
+				boardDisplayHeight = $('#board-display .board-preview .board-views .preview-base .board .board-image .base').height();
 			} else {
-				boardDisplayWidth = $('#boardDisplay .boardPreview .boardViews .previewTop .board .bImage img').width();
-				boardDisplayHeight = $('#boardDisplay .boardPreview .boardViews .previewTop .board .bImage img').height();
+				boardDisplayWidth = $('#board-display .board-preview .board-views .preview-top .board .board-image img').width();
+				boardDisplayHeight = $('#board-display .board-preview .board-views .preview-top .board .board-image img').height();
 			}
 			aspectRatio = boardDisplayWidth / boardDisplayHeight;
 			newHeight = windowHeight - headerHeight;
 			newWidth = Math.floor(newHeight * aspectRatio);
-			maxWidth = Math.floor(windowWidth * .2);
+			maxWidth = Math.floor(windowWidth * 0.2);
 			// make sure board display doesn't exceed max width
 			if(newWidth > maxWidth) {
 				newWidth = maxWidth;
 			}
-			$('#boardDisplay').width(newWidth);
+			$('#board-display').width(newWidth);
 			// figure out arrow posiiton
-			if ($('#boardDisplay .boardPreview .boardViews .preview34').css('display') == 'block') {
-				arrowY = $('#boardDisplay .boardPreview .boardViews .preview34 .board .bImage .sidewall-bottom').height() / 2;
-			} else if ($('#boardDisplay .boardPreview .boardViews .previewBase').css('display') == 'block') {
-				arrowY = Math.floor($('#boardDisplay .boardPreview .boardViews .previewBase .board .bImage .base').height() / 2 - 25);
+			if ($('#board-display .board-preview .board-views .preview-side').css('display') == 'block') {
+				arrowY = $('#board-display .board-preview .board-views .preview-side .board .board-image .sidewall-bottom').height() / 2;
+			} else if ($('#board-display .board-preview .board-views .preview-base').css('display') == 'block') {
+				arrowY = Math.floor($('#board-display .board-preview .board-views .preview-base .board .board-image .base').height() / 2 - 25);
 			} else {
-				arrowY = Math.floor($('#boardDisplay .boardPreview .boardViews .previewTop .board .bImage img').height() / 2 - 25);
+				arrowY = Math.floor($('#board-display .board-preview .board-views .preview-top .board .board-image img').height() / 2 - 25);
 			}
 			// set arrow position
-			$('#boardDisplay .boardPreview .boardMenuLeftButton, #boardDisplay .boardPreview .boardMenuRightButton').css('top', arrowY);
+			$('#board-display .board-preview .board-menu-left-button, #board-display .board-preview .board-menu-right-button').css('top', arrowY);
 
 			if (self.config.$mainSlider.getCurrentSlide() != 7) {
 				// center board within left 30% minus 90px for left menu
-				var leftPosition = Math.floor(((windowWidth * .3 - 90) - newWidth) / 2) + 90;
-				$('#boardDisplay').css('left', leftPosition);
+				var leftPosition = Math.floor(((windowWidth * 0.3 - 90) - newWidth) / 2) + 90;
+				$('#board-display').css('left', leftPosition);
 			} else {
 				// adjust positioning of other views
-				$('.boardViews div.preview34').css('left', $('.boardViews div.previewTop').width() - 40);
-				$('.boardViews div.previewBase').css('left', Math.floor($('.boardViews div.previewTop').width() * 2 - 60));
+				$('.board-views div.preview-side').css('left', $('.board-views div.preview-top').width() - 40);
+				$('.board-views div.preview-base').css('left', Math.floor($('.board-views div.preview-top').width() * 2 - 60));
 			}
 		}
 		if ($('body').hasClass('page-template-page-snowboard-builder-php')) {
 			// we're in the builder, not share
 			resizeBoardDisplay();
 			// Resize carousel images displayed
-			var shapeWidth, shapeHeight, aspectRatio, newHeight, newWidth;
 			shapeWidth = $('.carousel ul li.item img').width();
 			shapeHeight = $('.carousel ul li.item img').height();
 			aspectRatio = shapeWidth / shapeHeight;
 			newHeight = windowHeight - headerHeight - 50; // remove 50 more to account for scale up on click
 			newWidth = Math.floor(newHeight * aspectRatio);
+			self.config.carouselItemWidth = newWidth;
 			// set width on carousel images
 			$('.carousel ul li.item img').each(function () {
-				$(this).width(newWidth);
+				$(this).css('width', newWidth);
 			});
 			// check what step we're on and do appropriate resizing
-			if (self.config.$mainSlider.getCurrentSlide() == 0) {
-				// resize carousel
-				var carouselWidth = 0; // add 10 pixels for safety so last board doesn't wrap to the bottom left
-				$(".boardShape1 ul li").each(function (index) {
-					carouselWidth += $(this).outerWidth() + 4; // add 4 pixels to fix inline block spaces
-				});
-				$('.boardShape1').css('width', carouselWidth);
+			if (self.config.$mainSlider.getCurrentSlide() === 0) {
 				// reset background
-				self.setBackgroundImage(".boardShape1", 1);
+				self.setBackgroundImage(".step1-board", 1);
+				// reset carousel
+				self.destroyCarousel('.step1-board');
+				self.createCarousel('.step1-board');
 			} else if (self.config.$mainSlider.getCurrentSlide() == 1) {
-				self.setBackgroundImage(".boardTech2", 2);
+				self.setBackgroundImage(".step2-size", 2);
 			} else if (self.config.$mainSlider.getCurrentSlide() == 2) {
-				self.setBackgroundImage(".boardTop3", 3);
-				// resize carousel
-				var carouselWidth = 0;
-				$(".boardTop3 .carousel ul li.item").each(function (index) {
-					carouselWidth += $(this).outerWidth() + 4; // add 4 pixels to fix inline block spaces
-				});
-				$('.boardTop3 .carousel').css('width', carouselWidth);
-				// change height of container
-				var carouselHeight = $(".boardTop3 .carousel").outerHeight();
-				$('.boardTop3 .carousel-container').css('height', carouselHeight);
+				self.setBackgroundImage(".step3-top", 3);
+				// reset carousel
+				self.destroyCarousel('.step3-top');
+				self.createCarousel('.step3-top');
 			} else if (self.config.$mainSlider.getCurrentSlide() == 3) {
-				self.setBackgroundImage(".boardSide4", 4);
-				// resize carousel
-				var carouselWidth = 0;
-				$(".boardSide4 .carousel ul li.item").each(function (index) {
-					carouselWidth += $(this).outerWidth() + 4; // add 4 pixels to fix inline block spaces
-				});
-				$('.boardSide4 .carousel').css('width', carouselWidth);
-				// change height of container
-				var carouselHeight = $(".boardSide4 .carousel").outerHeight();
-				$('.boardSide4 .carousel-container').css('height', carouselHeight);
+				self.setBackgroundImage(".step4-sidewall", 4);
+				// reset carousel
+				self.destroyCarousel('.step4-sidewall');
+				self.createCarousel('.step4-sidewall');
 			} else if (self.config.$mainSlider.getCurrentSlide() == 4) {
-				self.setBackgroundImage('.boardBase5', '5');
-				// resize carousel
-				var carouselWidth = 0;
-				$(".boardBase5 .carousel ul li.item").each(function (index) {
-					carouselWidth += $(this).outerWidth() + 4; // add 4 pixels to fix inline block spaces
-				});
-				$('.boardBase5 .carousel').css('width', carouselWidth);
-				// change height of container
-				var carouselHeight = $(".boardBase5 .carousel").outerHeight();
-				$('.boardBase5 .carousel-container').css('height', carouselHeight);
+				self.setBackgroundImage('.step5-base', '5');
+				// reset carousel
+				self.destroyCarousel('.step5-base');
+				self.createCarousel('.step5-base');
 			} else if (self.config.$mainSlider.getCurrentSlide() == 5) {
-				self.setBackgroundImage(".boardBase5b", "5");
+				self.setBackgroundImage(".step5b-base-text", "5");
 			} else if (self.config.$mainSlider.getCurrentSlide() == 6) {
-				self.setBackgroundImage('.boardBadge6', 6);
+				self.setBackgroundImage('.step6-badge', 6);
 			} else if (self.config.$mainSlider.getCurrentSlide() == 7) {
-				self.setBackgroundImage(".boardBuy7", 7);
+				self.setBackgroundImage(".step7-buy", 7);
 				// fix scroll
 				$('.thereciept-scroll').css('height', $(window).height());
 			}
 		} else {
 			// check to see if boards are rendering taller than the window is
-			var boardDisplay = $('#boardDisplay');
+			var boardDisplay = $('#board-display');
 			if(boardDisplay.height() > windowHeight) {
-				var boardDisplayWidth, boardDisplayHeight, aspectRatio, newHeight, newWidth, maxWidth;
-				boardDisplayWidth = $('#boardDisplay .boardPreview .boardViews .preview34 .board .bImage .sidewall-bottom').width();
-				boardDisplayHeight = $('#boardDisplay .boardPreview .boardViews .preview34 .board .bImage .sidewall-bottom').height();
+				var boardDisplayWidth, boardDisplayHeight, maxWidth;
+				boardDisplayWidth = $('#board-display .board-preview .board-views .preview-side .board .board-image .sidewall-bottom').width();
+				boardDisplayHeight = $('#board-display .board-preview .board-views .preview-side .board .board-image .sidewall-bottom').height();
 				aspectRatio = boardDisplayWidth / boardDisplayHeight;
 				newHeight = windowHeight - headerHeight;
 				newWidth = Math.floor(newHeight * aspectRatio);
-				maxWidth = Math.floor(windowWidth * .2);
+				maxWidth = Math.floor(windowWidth * 0.2);
 				// make sure board display doesn't exceed max width
 				if(newWidth > maxWidth) {
 					newWidth = maxWidth;
 				}
 				boardDisplay.width(newWidth);
-				if($('body.diy-share .wrapper #header-share').width() < windowWidth * .8) {
+				if($('body.diy-share .wrapper #header-share').width() < windowWidth * 0.8) {
 					boardDisplay.css('left', 'auto');
 					boardDisplay.css('right', '30%');
 				} else {
 					boardDisplay.removeAttr('style');
 				}
 				// adjust positioning of other views
-				$('.boardViews div.preview34').css('left', $('.boardViews div.previewTop').width() - 40);
-				$('.boardViews div.previewBase').css('left', Math.floor($('.boardViews div.previewTop').width() * 2 - 60));
+				$('.board-views div.preview-side').css('left', $('.board-views div.preview-top').width() - 40);
+				$('.board-views div.preview-base').css('left', Math.floor($('.board-views div.preview-top').width() * 2 - 60));
 			} else {
 				boardDisplay.removeAttr('style');
-				$('.boardViews div.preview34').removeAttr('style');
-				$('.boardViews div.previewBase').removeAttr('style');
+				$('.board-views div.preview-side').removeAttr('style');
+				$('.board-views div.preview-base').removeAttr('style');
 			}
 		}
 		self.updateBoardDisplay();
@@ -2624,36 +2471,34 @@ LIBTECH.snowboardbuilder = {
 		return false;
 
 		var self = this;
-		$.plax.disable();
-		$('#mobileblocker').css('display', 'block');
+		$('#mobile-blocker').css('display', 'block');
 		// SMALLER IS LARGER - ADJUST PERCENTAGE*/
 		var winW = $(window).width() / 3.95;
 		/*HIGHER IS SMALLER*/
 		$('.bxDivShape li').css("max-width", $(window).height() / 90 + "%"); //"13%");
-		$('.boardShape1 .bx-wrapper').css("max-width", "100%");
-		$('#blackBoxInfo').css("margin-left", "auto");
+		$('#info-box').css("margin-left", "auto");
 		$('#header').css("width", $(window).innerWidth()); //"13%");
 		$('.pagerTop').css("width", $(window).innerWidth()); //"13%");
-		$('.boardShape1').parent().css("width", $(window).innerWidth());
+		$('.step1-board').parent().css("width", $(window).innerWidth());
 		if (self.config.$mainSlider.getCurrentSlide() == 7) {
 			//self.calcBuyView();
 		}
 		if (self.config.$mainSlider.getCurrentSlide() == 2) {
-			$('.boardTop3').parent().css("height", $(window).innerHeight()); //"13%");
-			$(".boardTop3").css('width', $(window).innerWidth());
+			$('.step3-top').parent().css("height", $(window).innerHeight()); //"13%");
+			$(".step3-top").css('width', $(window).innerWidth());
 		}
 		if (self.config.$mainSlider.getCurrentSlide() == 3) {
-			$(".boardSide4 #boardSideItems").css('width', $(window).innerWidth());
+			$(".step4-sidewall #boardSideItems").css('width', $(window).innerWidth());
 		}
 		if (self.config.$mainSlider.getCurrentSlide() == 5) {
 
 		}
 		if (self.config.$mainSlider.getCurrentSlide() == 6) {
-			$(".boardBadge6").parent().css('width', $('#region-selector').width());
-			$(".boardBadge6").parent().css('height', $('#region-selector').height());
+			$(".step6-badge").parent().css('width', $('#region-selector').width());
+			$(".step6-badge").parent().css('height', $('#region-selector').height());
 		}
 		if (self.config.$mainSlider.getCurrentSlide() == 7) {
-			$('.boardBuy7').parent().delay(1).css("width", $('.wrapper').width()); //"13%");
+			$('.step7-buy').parent().delay(1).css("width", $('.wrapper').width()); //"13%");
 		}
 	} // END resizeForMobile
 };
@@ -2661,15 +2506,15 @@ LIBTECH.snowboardbuilder = {
 not sure if this is even being used */
 jQuery.fn.visible = function () {
 	return this.css('visibility', 'visible');
-}
+};
 jQuery.fn.invisible = function () {
 	return this.css('visibility', 'hidden');
-}
+};
 jQuery.fn.visibilityToggle = function () {
 	return this.css('visibility', function (i, visibility) {
 		return (visibility == 'visible') ? 'hidden' : 'visible';
 	});
-}
+};
 var waitForFinalEvent = (function () {
 	var timers = {};
 	return function (callback, ms, uniqueId) {
