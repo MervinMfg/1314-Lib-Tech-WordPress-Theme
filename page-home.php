@@ -201,7 +201,7 @@ get_header();
 				<ul>
 					<li class="homepage-link">
 						<div class="link-wrapper">
-							<a href="#team">
+							<a href="/snowboarding/team/">
 								<img src="<?php bloginfo('template_directory'); ?>/_/img/home-rippers.jpg" alt="Team" />
 								<h4>Rippers</h4>
 							</a>
