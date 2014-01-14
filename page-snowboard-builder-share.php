@@ -211,6 +211,7 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/share/";
 	<!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if necessary -->
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery-1.10.2.min.js"><\/script>')</script>
+ 	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/GSAP/TweenMax.min.js"></script>
  	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/libtech.main.js"></script>
 	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/libtech.snowboardbuilder.js"></script>
 	<!-- Init the main JS -->
