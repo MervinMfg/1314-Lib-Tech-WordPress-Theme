@@ -17,12 +17,12 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 	<!--[if IE ]>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<![endif]-->
-    <title>Lib Tech's DIY Board Builder - Build your dream snowboard!</title>
+	<title>Lib Tech's DIY Board Builder - Build your dream snowboard!</title>
 	<meta name="title" content="Lib Tech's DIY Board Builder - Build your dream snowboard!" />
 	<meta name="description" content="Lib Tech's DIY Snowboard Builder offers you the opportunity to order a custom, one of a kind, dream snowboard handmade in the USA. Customize your snowboard's shape, size, graphics and more in this online, custom snowboard building tool." />
 	<meta name="keywords" content="custom snowboard, custom built snowboard, custom made snowboard, handmade snowboard, made in the USA, build your own, customize" />
 	<meta name="author" content="Lib Tech" />
-    <meta name="Copyright" content="Copyright Lib Tech <?php echo date('Y'); ?>. All Rights Reserved." />
+	<meta name="Copyright" content="Copyright Lib Tech <?php echo date('Y'); ?>. All Rights Reserved." />
 	<!-- FB Meta Data -->
 	<meta property="og:title" content="Lib Tech's DIY Board Builder - Build your dream snowboard!" />
 	<meta property="og:description" content="This dream snowboard project is probably going to cause us some headaches, but you are going to be stoked! Lib Tech's DIY Board Builder offers you the opportunity to order a custom, one of a kind, dream snowboard that will be guided through our experiMENTAL Division’s prototyping process and handcrafted to your specifications in the USA." />
@@ -38,29 +38,28 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 	<!-- Twitter -->
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:site" content="@libtechnologies">
-    <!-- Fav Icon -->
-    <link rel="shortcut icon" href="<?php bloginfo('template_directory'); ?>/_/img/favicon.ico" />
-    <!-- Styles -->
-    <link href="<?php bloginfo('stylesheet_url'); ?>" rel="stylesheet" type="text/css" />
-    <link href="<?php bloginfo('template_directory'); ?>/_/css/snowboard-builder.css" rel="stylesheet" type="text/css" /><!-- http://172.21.44.83/~bbehrens/mervin-sites/Lib-Tech-1314/_/css/snowboard-builder.css -->
+	<!-- Fav Icon -->
+	<link rel="shortcut icon" href="<?php bloginfo('template_directory'); ?>/_/img/favicon.ico" />
+	<!-- Styles -->
+	<link href="<?php bloginfo('stylesheet_url'); ?>" rel="stylesheet" type="text/css" />
+	<link href="<?php bloginfo('template_directory'); ?>/_/css/snowboard-builder.css" rel="stylesheet" type="text/css" />
 	<meta name="viewport" content="user-scalable=1.0,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="format-detection" content="telephone=no">
 	<!--<link rel="apple-touch-icon" href="<?php bloginfo('template_directory'); ?>/_/img/bb/apple-touch-icon.png">-->
-    <!-- Misc. -->
-    <link rel="profile" href="http://gmpg.org/xfn/11" />
-    <!-- Google Site Verification -->
-    <meta name="google-site-verification" content="wE_gDgt0-MYrOnCO0K7VH2HP7af_DuxpDK1EJFdohFc" />
-    <!-- JavaScript Includes -->
+	<!-- Misc. -->
+	<link rel="profile" href="http://gmpg.org/xfn/11" />
+	<!-- Google Site Verification -->
+	<meta name="google-site-verification" content="wE_gDgt0-MYrOnCO0K7VH2HP7af_DuxpDK1EJFdohFc" />
+	<!-- JavaScript Includes -->
 	<script src="<?php bloginfo('template_directory'); ?>/_/js/lib/modernizr-2.6.2.min.js"></script>
 	<!--[if lt IE 9]>
 	<script src="<?php bloginfo('template_directory'); ?>/_/js/lib/respond.min.js"></script>
 	<![endif]-->
-    <!-- WordPress Head -->
+	<!-- WordPress Head -->
 	<?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
-	<!-- <div class="center-line"></div> -->
 	<div class="wrapper">
 		<div id="overview">
 			<div class="overview-content">
@@ -87,22 +86,22 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 				</div>
 			</div>
 		</div><!-- END #overview -->
-	    <div id="header">	
-    		<div class="top-two">
-    			<p class="p-one">1</p>
-    			<p class="p-two">2</p>
-    		</div>
-    		<div class="top-logo">
-    			<a href="/snowboarding/" target="_blank"><img src="<?php bloginfo('template_directory'); ?>/_/img/bb/header-diy-logo.png" alt="Lib Tech DIY Board Builder" /></a>
-    		</div>
-    		<div class="top-flag">
-    			<a href="#region-selector"><img src="<?php bloginfo('template_directory'); ?>/_/img/bb/header-flag.png" alt="Handcrafted in the USA" /></a>
-    		</div>
-    		<div class="top-section">SELECT BOARD - SHAPE &amp; CONTOUR</div>
-    		<div class="top-section-right"></div>
-	    </div><!-- END #header -->
-	    <div id="left-menu">
-	    	<h1 class="menu-header">Choose Your</h1>
+		<div id="header">	
+			<div class="top-two">
+				<p class="p-one">1</p>
+				<p class="p-two">2</p>
+			</div>
+			<div class="top-logo">
+				<a href="/snowboarding/" target="_blank"><img src="<?php bloginfo('template_directory'); ?>/_/img/bb/header-diy-logo.png" alt="Lib Tech DIY Board Builder" /></a>
+			</div>
+			<div class="top-flag">
+				<a href="#region-selector"><img src="<?php bloginfo('template_directory'); ?>/_/img/bb/header-flag.png" alt="Handcrafted in the USA" /></a>
+			</div>
+			<div class="top-section">SELECT BOARD - SHAPE &amp; CONTOUR</div>
+			<div class="top-section-right"></div>
+		</div><!-- END #header -->
+		<div id="left-menu">
+		<h1 class="menu-header">Choose Your</h1>
 			<div class="menu-close">
 				<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/menu-close-button.png" width="20" height="20" alt="Close Menu" />
 			</div>
@@ -150,10 +149,10 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 			</ul>
 		</div><!-- END #leftmenu" -->
 		<div id="advance-arrow"></div>
-	    <div class="pagerLabel">SHAPE</div>
-	   	<div class="pagerTop" id="topPager"></div>
-	   	<div class="miniReciept"></div>
-	   	<div id="info-box">
+		<div class="pager-label">SHAPE</div>
+		<div class="pagerTop" id="topPager"></div>
+		<div class="miniReciept"></div>
+		<div id="info-box">
 			<div class="diamond"></div>
 			<div class="box">
 				<h2>BTX Skate Banana - Board</h2>
@@ -163,7 +162,7 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 				</div>
 				<h4>POWER</h4>
 				<div class="sizes">
-					<p>SIZES: <span></span></p>
+					<p>SIZES <span></span></p>
 				</div>
 				<h5></h5>
 			</div>
@@ -256,8 +255,8 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 			</li>
 			<!-- STEP 3 - TOP SHEET -->
 			<li>
-		  		<div class="step3-top">
-		  			<div class="carousel-container">
+				<div class="step3-top">
+					<div class="carousel-container">
 						<div class="carousel">
 							<ul>
 								<li class="item"><img data-count="1" artist="Tetons" desc="Red" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/art/TETONS-RED.png" class="responsive-image board-top-image" /></li>
@@ -277,7 +276,7 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 								<li class="item"><img data-count="8" artist="Logo" desc="White" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/art/LOGO-WHITE.png" class="responsive-image board-top-image" /></li>
 							</ul>
 						</div>
-			  		</div>
+					</div>
 				</div>
 			</li>
 			<!-- STEP 4 - SIDEWALL -->
@@ -326,9 +325,9 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 			<li>
 				<div class="step5b-base-text">
 					<div id="knifecut-base-controls">
-						<p>Base Text</p>
+						<p><label for="board-text-input">Base Text</label></p>
 						<div class="knifecut-input">
-							<input type="text" id="board-text" value="10 CHARACTER MAX" name="board" maxlength="10" />
+							<input type="text" id="board-text-input" value="10 CHARACTER MAX" name="board" maxlength="10" />
 						</div>
 						<div class="letter-color">
 							<p>Letter Color</p>
@@ -365,7 +364,8 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 						<div class="badge-size"></div>
 					</div>
 					<div class="board-badge-input-holder">
-						<input type="text" class="board-badge-input" value="26 CHARACTER MAX" name="badge" maxlength="26" />
+						<p><label for="board-badge-input">Badge Text</label></p>
+						<input type="text" id="board-badge-input" value="26 CHARACTER MAX" name="badge" maxlength="26" />
 					</div>
 				</div>
 			</li>
@@ -373,7 +373,7 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 			<li>
 				<div class="step7-buy">
 					<div class="thereciept-scroll">
-						<div class="boardText1 thereciept">
+						<div class="thereciept">
 							<div class="board-reciept">
 								<h1>EXPENSE</h1>
 								<h2 class="shape">BOARD - <span></span></h2>
@@ -427,48 +427,48 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 		</ul>
 		<div id="region-selector">
 			<div class="width-fix">
-		        <div class="choose-region">
-		            <h5 class="h1">Choose your region</h5>
-		            <ul>
-		                <li class="us">
-		                	<div class="flag">
-		                		<img src="<?php bloginfo('template_directory'); ?>/_/img/flag-us.png" alt="United States Flag" />
-		                	</div>
-		                	<div class="copy">
-		                		<h3>USA</h3>
-		                		<p>Shop in US currency<br />Ship to US address</p>
-		                	</div>
-		                	 <div class="clearfix"></div>
-		                </li>
-		                <li class="ca">
-		                	<div class="flag">
-			                	<img src="<?php bloginfo('template_directory'); ?>/_/img/flag-ca.png" alt="Canadian Flag" />
-			                </div>
-		                	<div class="copy">
-			                	<h3>Canada</h3>
-			                	<p>Shop in Canadian currency<br />Ship to Canadian address</p>
-			                </div>
-			                 <div class="clearfix"></div>
-		                </li>
-		                <li class="int">
-		                	<div class="flag">
-		                		<img src="<?php bloginfo('template_directory'); ?>/_/img/flag-lib.png" alt="International Flag" />
-		                	</div>
-		                	<div class="copy">
-		                		<h3>International</h3>
-		                		<p>Browse site in English<br />No online shopping internationally</p>
-		                	</div>
-		                	 <div class="clearfix"></div>
-		                </li>
-		            </ul>
-		        </div>
-		    </div>
-	    </div>
-	    <div id="mobile-blocker">
+				<div class="choose-region">
+					<h5 class="h1">Choose your region</h5>
+					<ul>
+						<li class="us">
+							<div class="flag">
+								<img src="<?php bloginfo('template_directory'); ?>/_/img/flag-us.png" alt="United States Flag" />
+							</div>
+							<div class="copy">
+								<h3>USA</h3>
+								<p>Shop in US currency<br />Ship to US address</p>
+							</div>
+							<div class="clearfix"></div>
+						</li>
+						<li class="ca">
+							<div class="flag">
+								<img src="<?php bloginfo('template_directory'); ?>/_/img/flag-ca.png" alt="Canadian Flag" />
+							</div>
+							<div class="copy">
+								<h3>Canada</h3>
+								<p>Shop in Canadian currency<br />Ship to Canadian address</p>
+							</div>
+							<div class="clearfix"></div>
+						</li>
+						<li class="int">
+							<div class="flag">
+								<img src="<?php bloginfo('template_directory'); ?>/_/img/flag-lib.png" alt="International Flag" />
+							</div>
+							<div class="copy">
+								<h3>International</h3>
+								<p>Browse site in English<br />No online shopping internationally</p>
+							</div>
+							<div class="clearfix"></div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div id="mobile-blocker">
 			<h2>WHOA. SLOW DOWN!</h2>
 			<h3>Our Mobile/Tablet DIY Snowboard Builder is not quite ready, but we are busy working on it.</h3>
 			<h3>In the meantime, please use it on your desktop at an appropriate size.</h3>
-	    </div>
+		</div>
 		<div id="div-blocker"></div>
 		<div id="div-preloader">
 			<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/BACKGROUND-01.jpg" />
@@ -491,34 +491,34 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 	<![endif]-->
 	<!-- JavaScript includes -->
 	<!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if necessary -->
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery-1.10.2.min.js"><\/script>')</script>
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery-1.10.2.min.js"><\/script>')</script>
 	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery.fitvids.js"></script>
 	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery.bxslider.min.js"></script>
 	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/GSAP/utils/Draggable.min.js"></script>
 	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/GSAP/plugins/ThrowPropsPlugin.min.js"></script>
 	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/GSAP/TweenMax.min.js"></script>
- 	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/libtech.main.js"></script>
-	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/libtech.snowboardbuilder.js"></script><!-- http://172.21.44.83/~bbehrens/mervin-sites/Lib-Tech-1314/_/js/libtech.snowboardbuilder.js -->
+	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/libtech.main.js"></script>
+	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/libtech.snowboardbuilder.js"></script>
 	<!-- Init the main JS -->
 	<script type="text/javascript">
-	    $(document).ready(function(){
-	        LIBTECH.main.init();
-	    });
+		$(document).ready(function(){
+			LIBTECH.main.init();
+		});
 	</script>
 	<!-- Google Analytics -->
 	<script type="text/javascript">
-	    var _gaq = _gaq || [];
-	    _gaq.push(['_setAccount', 'UA-10240523-1']);
-	    _gaq.push(['_setDomainName', '.lib-tech.com']);
-	    _gaq.push(['_setAllowHash', false]);
-	    _gaq.push(['_setAllowLinker', true]);
-	    _gaq.push(['_trackPageview']);
-	    (function() {
-	        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-	        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-	        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	    })();
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-10240523-1']);
+		_gaq.push(['_setDomainName', '.lib-tech.com']);
+		_gaq.push(['_setAllowHash', false]);
+		_gaq.push(['_setAllowLinker', true]);
+		_gaq.push(['_trackPageview']);
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
 	</script>
 </body>
 </html>	

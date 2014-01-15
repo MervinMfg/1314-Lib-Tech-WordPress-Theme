@@ -66,7 +66,7 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/share/";
     		<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/logo-diy-print.png" alt="Lib Tech DIY Board Builder" />
 	    </div>
 		<div class="step7-buy">
-			<div class="boardText1 thereciept">
+			<div class="thereciept">
 				<div class="board-reciept">
 					<h1>EXPENSE</h1>
 					<h2 class="shape">BOARD - <span></span></h2>

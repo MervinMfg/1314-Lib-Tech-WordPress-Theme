@@ -413,7 +413,8 @@ LIBTECH.snowboardbuilder = {
 			onSlideLoad: function () {},
 			onSlideBefore: function () {
 				self.advanceArrowHide();
-				$('.bx-div-slider > li').css('background-image', 'none');
+				// hide info box
+				$('#info-box').removeClass('show');
 			},
 			onSlideAfter: function () {
 				// don't run first time, wait for delayed load
@@ -422,8 +423,8 @@ LIBTECH.snowboardbuilder = {
 				}
 			}
 		});
-		self.defaultBadgeInput = $('.board-badge-input-holder .board-badge-input').val();
-		self.defaultBaseInput = $('#knifecut-base-controls .knifecut-input #board-text').val();
+		self.defaultBadgeInput = $('.board-badge-input-holder #board-badge-input').val();
+		self.defaultBaseInput = $('#knifecut-base-controls .knifecut-input #board-text-input').val();
 		$('.step1-board').css("left", "0px");
 		
 		$(window).on('load', function () {
@@ -437,13 +438,11 @@ LIBTECH.snowboardbuilder = {
 				} else {
 					self.config.isMobile = false;
 				}
-				maxW = (($(window).height() + 100) / 100) + 2.5 + "%";
 				if (self.config.isMobile) {
 					self.resizeForMobile();
 				} else {
 					self.resizeForDesktop();
 				}
-				$(".bxDivShape > li:first-child").css("max-width", maxW);
 			}, 500, "mervinsbb");
 		});
 		function delayLoad() {
@@ -500,7 +499,6 @@ LIBTECH.snowboardbuilder = {
 			TweenMax.to($('#div-blocker'), 0.5, {opacity: 0, onComplete: hideDivBlocker});
 			function hideDivBlocker () {
 				$('#div-blocker').hide();
-				$(".bx-div-slider ul.bxDivShape").parent().css('height', $(window).height());
 			}
 			self.flyOutMenuInit();
 			self.boardPreviewInit();
@@ -561,7 +559,7 @@ LIBTECH.snowboardbuilder = {
 	},
 	bbGetRegion: function () {
 		var self = this;
-		if (self.config.bbRegion === '' || self.config.bbRegion === undefined) {
+		if (self.config.bbRegion === '' || self.config.bbRegion === undefined || self.config.bbRegion === null) {
 			self.config.bbRegion = "US";
 		}
 		self.config.bbRegion = self.config.bbRegion.toUpperCase();
@@ -957,7 +955,7 @@ LIBTECH.snowboardbuilder = {
 			$('#board-display .board-preview .board-views .preview-base .board .board-image .board-text .board-text-custom').css('display', 'inline');
 			// set knifecut text to be sure it's right
 			if(self.getBoardBaseDesc() === "" || self.getBoardBaseDesc() === undefined) {
-				var knifecutInputVal = $('#knifecut-base-controls .knifecut-input #board-text').val();
+				var knifecutInputVal = $('#knifecut-base-controls .knifecut-input #board-text-input').val();
 				if(self.defaultBaseInput === knifecutInputVal || knifecutInputVal === "") {
 					$('#board-display .preview-base .board .board-text .rotate-one .board-text-custom').html('DIY BASE!');
 				} else {
@@ -1182,7 +1180,7 @@ LIBTECH.snowboardbuilder = {
 			// update
 			self.updateBoardDisplay();
 			self.boardPreviewSet(4);
-			$('#board-text').val('');
+			$('#board-text-input').val('');
 			// reset left menu
 			$('#left-menu .menu5b .menu-title').html("Text");
 			$('#left-menu .menu5b').removeClass('complete');
@@ -1198,7 +1196,7 @@ LIBTECH.snowboardbuilder = {
 			// update
 			self.updateBoardDisplay();
 			self.boardPreviewSet(5);
-			$('#board-text').val('').focus();
+			$('#board-text-input').val('').focus();
 			// reset left menu
 			$('#left-menu .menu5b .menu-title').html("Text");
 			$('#left-menu .menu5b').removeClass('complete');
@@ -1432,53 +1430,39 @@ LIBTECH.snowboardbuilder = {
 		sHTMLLength += "</ul></div>";
 		return sHTMLLength;
 	},
-	setBackgroundImage: function (item, nNum) {
-		var self = this;
-		//if(self.config.isMobile) return;
-		$(item).parent().css('height', $(window).height());
-		if (nNum !== 0) {
-			$(item).parent().css('background-image', 'url(' + self.config.baseImgPath + 'BACKGROUND-0' + nNum + '.jpg' + ')');
-			setTimeout(function () {
-				$(item).parent().stop().fadeTo(333, 1);
-			}, 136);
-		} else {
-			$(item).css('background-image', 'url(' + self.config.baseImgPath + 'BACKGROUND-0' + nNum + '.jpg' + ')');
-			$(item).stop().fadeTo(333, 1);
-		}
-	},
 	updateHeaderLabel: function (nSection) {
 		switch (nSection) {
 			case 0:
 				$('#header .top-section').html("SELECT BOARD - SHAPE &amp; CONTOUR");
-				$('.pagerLabel').html("SHAPE");
+				$('.pager-label').html("SHAPE");
 				break;
 			case 1:
 				$('#header .top-section').html("SELECT SIZE - BOARD LENGTH");
-				$('.pagerLabel').html("SIZE");
+				$('.pager-label').html("SIZE");
 				break;
 			case 2:
 				$('#header .top-section').html("SELECT TOP - TOP SHEET ART");
-				$('.pagerLabel').html("TOP");
+				$('.pager-label').html("TOP");
 				break;
 			case 3:
 				$('#header .top-section').html("SELECT SIDE - SIDEWALL COLOR");
-				$('.pagerLabel').html("SIDE");
+				$('.pager-label').html("SIDE");
 				break;
 			case 4:
 				$('#header .top-section').html("SELECT BASE - BASE ART");
-				$('.pagerLabel').html("BASE");
+				$('.pager-label').html("BASE");
 				break;
 			case 5:
 				$('#header .top-section').html("SELECT BASE - CUSOMIZED KNIFECUT");
-				$('.pagerLabel').html("BASE");
+				$('.pager-label').html("BASE");
 				break;
 			case 6:
 				$('#header .top-section').html("SELECT BADGE - PERSONALIZE YOUR BADGE");
-				$('.pagerLabel').html("BADGE");
+				$('.pager-label').html("BADGE");
 				break;
 			case 7:
 				$('#header .top-section').html("BUY YOUR SNOWBOARD");
-				$('.pagerLabel').html("BUY");
+				$('.pager-label').html("BUY");
 				break;
 		}
 	},
@@ -1716,8 +1700,6 @@ LIBTECH.snowboardbuilder = {
 		} else {
 			self.advanceArrowShow();
 		}
-		// set the correct BG image on init
-		self.setBackgroundImage(".step1-board", 1);
 		// remove offset for info box
 		$('#info-box').removeClass('offset');
 	},
@@ -1728,7 +1710,6 @@ LIBTECH.snowboardbuilder = {
 	// STEP 2 - SIZE
 	step2Init: function () {
 		var self = this;
-		self.setBackgroundImage(".step2-size", 2);
 		if (self.getBoardSize() === undefined || self.getBoardSize() === "") {
 			self.advanceArrowHide();
 		} else {
@@ -1745,15 +1726,11 @@ LIBTECH.snowboardbuilder = {
 					$(this).removeClass("selected");
 				}
 			});
-			// add class
-			//$('.' + selectedSize).addClass("sizeYellow");
 			self.advanceArrowShow();
-
 			$(".step2-size .size-info .size-holder .sizes .size-item").each(function (index) {
-				$(this).removeClass('selected')
+				$(this).removeClass('selected');
 			});
 			$(this).addClass('selected');
-
 			self.setBoardSize($(this).text());
 			$('#left-menu .menu2 .menu-title').html("" + "Size " + self.getBoardSize() + "<b><br>+ $ 0.00 " + self.config.bbRegionCurrency + "</b>");
 			$('#left-menu .menu2').addClass('complete');
@@ -1773,8 +1750,6 @@ LIBTECH.snowboardbuilder = {
 		} else {
 			self.advanceArrowShow();
 		}
-		// set the correct BG image on init
-		self.setBackgroundImage(".step3-top", 3);
 		// add offset for info box
 		$('#info-box').addClass('offset');
 	},
@@ -1793,8 +1768,6 @@ LIBTECH.snowboardbuilder = {
 		} else {
 			self.advanceArrowShow();
 		}
-		// set the correct BG image on init
-		self.setBackgroundImage(".step4-sidewall", 4);
 		// add offset for info box
 		$('#info-box').addClass('offset');
 	},
@@ -1813,8 +1786,6 @@ LIBTECH.snowboardbuilder = {
 		} else {
 			self.advanceArrowShow();
 		}
-		// set the correct BG image on init
-		self.setBackgroundImage(".step5-base", 5);
 		// add offset for info box
 		$('#info-box').addClass('offset');
 	},
@@ -1889,7 +1860,7 @@ LIBTECH.snowboardbuilder = {
 			setBaseColor('Red');
 		});
 		// imput text listeners
-		$('#knifecut-base-controls .knifecut-input #board-text').on('input.step5b', function () {
+		$('#knifecut-base-controls .knifecut-input #board-text-input').on('input.step5b', function () {
 			var inputValue = this.value.toUpperCase();
 			if(inputValue === "") {
 				self.advanceArrowHide(); // on removal of text, hide arrow
@@ -1915,11 +1886,10 @@ LIBTECH.snowboardbuilder = {
 				$(this).val(self.defaultBaseInput);
 			}
 		});
-		self.setBackgroundImage(".step5b-base-text", "5");
 		self.advanceArrowHide();
 	},
 	step5bUninit: function () {
-		$('#knifecut-base-controls .knifecut-input #board-text').off('input.step5b keyup.step5b focus.step5b blur.step5b');
+		$('#knifecut-base-controls .knifecut-input #board-text-input').off('input.step5b keyup.step5b focus.step5b blur.step5b');
 		$('#knifecut-base-controls .letter-color .box-grey').off("click touch");
 		$('#knifecut-base-controls .letter-color .box-orange').off("click touch");
 		$('#knifecut-base-controls .letter-color .box-yellow').off("click touch");
@@ -1941,7 +1911,7 @@ LIBTECH.snowboardbuilder = {
 	step6Init: function () {
 		var self = this;
 		// input text listeners
-		$('.board-badge-input-holder .board-badge-input').on('input.step6', function () {
+		$('.board-badge-input-holder #board-badge-input').on('input.step6', function () {
 			var maxFS, inputValue;
 			inputValue = this.value.toUpperCase();
 			if (inputValue.length <= 13) {
@@ -1989,8 +1959,6 @@ LIBTECH.snowboardbuilder = {
 		});
 		// get the board size
 		$(".step6-badge .board-badge .badge-size").html(self.getBoardSize());
-		// set the background
-		self.setBackgroundImage('.step6-badge', 6);
 		// decide if advance arrow should be shown
 		if (self.getBoardBadge() === undefined || self.getBoardBadge() === "") {
 			self.advanceArrowHide();
@@ -1999,7 +1967,7 @@ LIBTECH.snowboardbuilder = {
 		}
 	},
 	step6Uninit: function () {
-		$('.board-badge-input-holder .board-badge-input').off('input.step6 blur.step6 keyup.step6 mouseleave.step6 focus.step6');
+		$('.board-badge-input-holder #board-badge-input').off('input.step6 blur.step6 keyup.step6 mouseleave.step6 focus.step6');
 	},
 	// STEP 7 - BUY
 	step7Init: function () {
@@ -2236,17 +2204,9 @@ LIBTECH.snowboardbuilder = {
 		$('.step7-buy .thereciept .buttonholder .share-url #share-url-input').on('click.step7 touch.step7', function () {
 			$(this).select();
 		});
-
 		$('.step7-buy .thereciept .buttonholder .share-url #share-url-input').val(boardUrl());
-
 		self.advanceArrowHide();
 		buildReciept();
-		// share vs builder
-		if ($('body').hasClass('page-template-page-snowboard-builder-share-php')) {
-			self.setBackgroundImage(".wrapper", 7);
-		} else {
-			self.setBackgroundImage(".step7-buy", 7);
-		}
 	},
 	step7Uninit: function () {
 		$('.step7-buy .thereciept .buttonholder .buy-button').off('click.step7');
@@ -2257,31 +2217,22 @@ LIBTECH.snowboardbuilder = {
 		$('.step7-buy .thereciept .buttonholder .social-icons .sociale').off('click.step7');
 		$('.step7-buy .thereciept .buttonholder .share-url #share-url-input').off('click.step7 touch.step7');
 	},
-
 	setCurrentSection: function () {
 		var self = this;
 		self.config.nCurSlide = self.config.$mainSlider.getCurrentSlide();
 		self.updateHeaderLabel(self.config.nCurSlide);
 		self.config.bFirstPlay = false;
 		self.boardPreviewSet(self.config.nCurSlide);
-
-		$('#left-menu ul li').removeClass('selected');
-
 		self.config.lockHover = false;
-
 		// menu stuff
 		$(".bx-pager-item").removeClass('black50');
 		$(".pagerTop .active").parent().addClass('black50');
-
+		// show header util nav on mobile
 		if (self.config.nCurSlide !== 0 && self.config.isMobile) {
 			$("#header .top-two").css('display', 'block');
 		} else {
 			$("#header .top-two").css('display', 'none');
 		}
-
-		$('#info-box').removeClass('show');
-		$('.bxSliderTop').hide();
-		$('.bxSliderBase').hide();
 		// set default snowboard shape
 		if (self.getBoardShape() === "" || self.getBoardShape() === undefined && !self.confirmedShapeSelection) {
 			self.setBoardShape($("#defaultShapeImage"));
@@ -2295,12 +2246,6 @@ LIBTECH.snowboardbuilder = {
 		self.step5bUninit();
 		self.step6Uninit();
 		self.step7Uninit();
-
-		if (self.config.isMobile) {
-			self.resizeForMobile();
-		} else {
-			self.resizeForDesktop();
-		}
 		// INIT CURRENT SECTION
 		if (self.config.nCurSlide === 0) {
 			self.step1Init();
@@ -2319,6 +2264,8 @@ LIBTECH.snowboardbuilder = {
 		} else if (self.config.nCurSlide == 7) {
 			self.step7Init();
 		}
+		// reset left menu
+		$('#left-menu ul li').removeClass('selected');
 		// set the left menu correctly
 		if (self.config.nCurSlide == 5) {
 			$('#left-menu .menu5b').addClass('selected');
@@ -2330,10 +2277,12 @@ LIBTECH.snowboardbuilder = {
 			$("#left-menu").find('.menu' + (self.config.nCurSlide + 1)).addClass('selected');
 			$("#left-menu").find('.menu' + (self.config.nCurSlide + 1)).removeClass('alert');
 		}
-		/*SCROLLBARRR*/
-		setTimeout(function () {
-			window.scrollTo(0, 1);
-		}, 0);
+		// check resize
+		if (self.config.isMobile) {
+			self.resizeForMobile();
+		} else {
+			self.resizeForDesktop();
+		}
 	}, // END setCurrentSection
 
 	resizeForDesktop: function () {
@@ -2387,6 +2336,8 @@ LIBTECH.snowboardbuilder = {
 			}
 		}
 		if ($('body').hasClass('page-template-page-snowboard-builder-php')) {
+			// make sure list display is the correct size for the section and parent list item
+			$('.step1-board, .step2-size, .step3-top, .step4-sidewall, .step5-base, .step5b-base-text, .step6-badge, .step7-buy').css('height', windowHeight).parent().css('height', windowHeight);
 			// we're in the builder, not share
 			resizeBoardDisplay();
 			// Resize carousel images displayed
@@ -2402,34 +2353,29 @@ LIBTECH.snowboardbuilder = {
 			});
 			// check what step we're on and do appropriate resizing
 			if (self.config.$mainSlider.getCurrentSlide() === 0) {
-				// reset background
-				self.setBackgroundImage(".step1-board", 1);
 				// reset carousel
 				self.destroyCarousel('.step1-board');
 				self.createCarousel('.step1-board');
 			} else if (self.config.$mainSlider.getCurrentSlide() == 1) {
-				self.setBackgroundImage(".step2-size", 2);
+				// self.setBackgroundImage(".step2-size", 2);
 			} else if (self.config.$mainSlider.getCurrentSlide() == 2) {
-				self.setBackgroundImage(".step3-top", 3);
 				// reset carousel
 				self.destroyCarousel('.step3-top');
 				self.createCarousel('.step3-top');
 			} else if (self.config.$mainSlider.getCurrentSlide() == 3) {
-				self.setBackgroundImage(".step4-sidewall", 4);
 				// reset carousel
 				self.destroyCarousel('.step4-sidewall');
 				self.createCarousel('.step4-sidewall');
 			} else if (self.config.$mainSlider.getCurrentSlide() == 4) {
-				self.setBackgroundImage('.step5-base', '5');
 				// reset carousel
 				self.destroyCarousel('.step5-base');
 				self.createCarousel('.step5-base');
 			} else if (self.config.$mainSlider.getCurrentSlide() == 5) {
-				self.setBackgroundImage(".step5b-base-text", "5");
+				// self.setBackgroundImage(".step5b-base-text", 5);
 			} else if (self.config.$mainSlider.getCurrentSlide() == 6) {
-				self.setBackgroundImage('.step6-badge', 6);
+				// self.setBackgroundImage('.step6-badge', 6);
 			} else if (self.config.$mainSlider.getCurrentSlide() == 7) {
-				self.setBackgroundImage(".step7-buy", 7);
+				// self.setBackgroundImage(".step7-buy", 7);
 				// fix scroll
 				$('.thereciept-scroll').css('height', $(window).height());
 			}
@@ -2466,16 +2412,12 @@ LIBTECH.snowboardbuilder = {
 		}
 		self.updateBoardDisplay();
 	}, // END resizeForDesktop
-
 	resizeForMobile: function () {
 		return false;
-
-		var self = this;
-		$('#mobile-blocker').css('display', 'block');
-		// SMALLER IS LARGER - ADJUST PERCENTAGE*/
+		/*var self = this;
+		// SMALLER IS LARGER - ADJUST PERCENTAGE
 		var winW = $(window).width() / 3.95;
-		/*HIGHER IS SMALLER*/
-		$('.bxDivShape li').css("max-width", $(window).height() / 90 + "%"); //"13%");
+		// HIGHER IS SMALLER
 		$('#info-box').css("margin-left", "auto");
 		$('#header').css("width", $(window).innerWidth()); //"13%");
 		$('.pagerTop').css("width", $(window).innerWidth()); //"13%");
@@ -2499,22 +2441,10 @@ LIBTECH.snowboardbuilder = {
 		}
 		if (self.config.$mainSlider.getCurrentSlide() == 7) {
 			$('.step7-buy').parent().delay(1).css("width", $('.wrapper').width()); //"13%");
-		}
+		}*/
 	} // END resizeForMobile
 };
-/* Adding visibility methods to jQuery,
-not sure if this is even being used */
-jQuery.fn.visible = function () {
-	return this.css('visibility', 'visible');
-};
-jQuery.fn.invisible = function () {
-	return this.css('visibility', 'hidden');
-};
-jQuery.fn.visibilityToggle = function () {
-	return this.css('visibility', function (i, visibility) {
-		return (visibility == 'visible') ? 'hidden' : 'visible';
-	});
-};
+// wait for final event to fire
 var waitForFinalEvent = (function () {
 	var timers = {};
 	return function (callback, ms, uniqueId) {
@@ -2527,10 +2457,11 @@ var waitForFinalEvent = (function () {
 		timers[uniqueId] = setTimeout(callback, ms);
 	};
 })();
-window.addEventListener("load", function () {
-	setTimeout(function () {
-		window.scrollTo(0, 1);
-	}, 0);
+// kill tab actions
+$(document).keydown(function (objEvent) {
+	if (objEvent.keyCode == 9) { //tab pressed
+		objEvent.preventDefault(); // stops its action
+	}
 });
 /*$(document).bind("mobileinit", function (event) {
 	$.extend($.mobile.zoom, {
@@ -2539,8 +2470,3 @@ window.addEventListener("load", function () {
 	});
 });*/
 // $(document).bind('touchmove', false);
-$(document).keydown(function (objEvent) {
-	if (objEvent.keyCode == 9) { //tab pressed
-		objEvent.preventDefault(); // stops its action
-	}
-});
