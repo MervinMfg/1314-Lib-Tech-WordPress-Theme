@@ -346,16 +346,13 @@ LIBTECH.snowboardbuilder = {
 	config: {
 		baseImgPath: 'http://www.lib-tech.com/wp-content/themes/libtech_2/_/img/bb/',
 		topGraphicImg: 0, // top
-		baseGraphicImg: 0, // base
 		sidewallTopImg: 0,
 		sidewallBottomImg: 0,
 		nCurSlide: 0,
 		iJSON: 0,
 		bBoardShape: "",
 		bBoardPrice: "",
-		bTech: "",
 		bSize: false,
-		bHP: "",
 		bTop: "",
 		bDesc: "",
 		bArtist: "",
@@ -366,24 +363,17 @@ LIBTECH.snowboardbuilder = {
 		bBaseDesc: "",
 		bCustomBaseColor: "black",
 		bCustomTextColor: "white",
-		bHasCustom: false,
 		bBadge: "",
 		nPreviewNum: 0,
 		bFirstPlay: true,
-		lockHover: false,
 		confirmedShapeSelection: false,
 		globalNum: 0,
-		isSafari: false,
 		bbRegion: "",
 		bbRegionCurrency: "",
 		bbKnifeCutDiff: "",
 		isKnifecut: "",
 		isMobile: false,
 		isIpad: false,
-		numBoardShapes: 6,
-		numTopSheets: 16,
-		numSideWalls: 5,
-		numBoardBases: 13,
 		$mainSlider: "",
 		defaultBadgeInput: "",
 		defaultBaseInput: "",
@@ -393,11 +383,13 @@ LIBTECH.snowboardbuilder = {
 	},
 	init: function () {
 		var self = this;
-		
 		// set base default colors
 		self.setCustomTextColor('White');
 		self.setCustomBaseColor('Black');
-
+		// get default input values
+		self.defaultBadgeInput = $('.board-badge-input-holder #board-badge-input').val();
+		self.defaultBaseInput = $('#knifecut-base-controls .knifecut-input #board-text-input').val();
+		// setup main BX Slider instance
 		self.config.$mainSlider = $('.bx-div-slider').bxSlider({
 			slideMargin: 0,
 			speed: 231,
@@ -409,7 +401,6 @@ LIBTECH.snowboardbuilder = {
 			auto: false,
 			mode: 'horizontal',
 			useCSS: false,
-			/*preventDefaultSwipeX:false,*/
 			onSlideLoad: function () {},
 			onSlideBefore: function () {
 				self.advanceArrowHide();
@@ -423,10 +414,6 @@ LIBTECH.snowboardbuilder = {
 				}
 			}
 		});
-		self.defaultBadgeInput = $('.board-badge-input-holder #board-badge-input').val();
-		self.defaultBaseInput = $('#knifecut-base-controls .knifecut-input #board-text-input').val();
-		$('.step1-board').css("left", "0px");
-		
 		$(window).on('load', function () {
 			delayLoad();
 		});
@@ -435,16 +422,32 @@ LIBTECH.snowboardbuilder = {
 				self.config.aspectRatio = $(window).height() / $(window).width();
 				if ($('#header .top-section').css('display') == 'none') {
 					self.config.isMobile = true;
-				} else {
-					self.config.isMobile = false;
-				}
-				if (self.config.isMobile) {
 					self.resizeForMobile();
 				} else {
+					self.config.isMobile = false;
 					self.resizeForDesktop();
 				}
 			}, 500, "mervinsbb");
 		});
+		// if on iPad using Chrome check orientation change and set appropriate viewport to fix input field bugs related to viewport size
+		// viewport size changes in Chrome when inputs are selected
+		if(navigator.userAgent.match('iPad') && navigator.userAgent.match('CriOS')) { // CriOS is used to identify the chrome app on iOS
+			$(window).on('orientationchange', function () {
+				checkOrientation();
+			});
+			function checkOrientation() {
+				switch (window.orientation) {
+					case -90:
+					case 90:
+						$('meta[name=viewport]').attr('content', 'initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, width=device-height, height=device-width, user-scalable=no');
+						break;
+					default:
+						$('meta[name=viewport]').attr('content', 'initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, width=device-width, height=device-height, user-scalable=no');
+						break;
+				}
+			}
+			checkOrientation();
+		}
 		function delayLoad() {
 			// SET CONFIG SETTINGS
 			if ($('.bx-pager').css('display') == 'block') {
@@ -453,10 +456,6 @@ LIBTECH.snowboardbuilder = {
 				self.config.isMobile = false;
 			}
 			self.config.aspectRatio = $(window).width() / $(window).height();
-			// check for Safari
-			if (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1) {
-				self.config.isSafari = true;
-			}
 			// check if device is an iPad
 			//var iPad = /(iPad|iPhone|iPod)/g.test(navigator.userAgent);
 			self.config.isIpad = /(iPad)/g.test(navigator.userAgent);
@@ -474,20 +473,11 @@ LIBTECH.snowboardbuilder = {
 			// init the overview
 			$('#overview .overview-content .right-column a').on('click', function (e) {
 				e.preventDefault();
-				// hide overview
-				TweenMax.to($('#overview'), 0.5, {opacity:0, onComplete:hideOverview});
-				function hideOverview () {
-					$('#overview').hide();
-					$('#overview .overview-content .right-column a').off('click');
-				}
+				// hide/kill overview
+				$(this).off('click');
+				TweenMax.to($('#overview'), 1, {autoAlpha:0});
 				// set the first section
 				self.setCurrentSection();
-				// trigger resize
-				if (self.config.isMobile) {
-					self.resizeForMobile();
-				} else {
-					self.resizeForDesktop();
-				}
 				// set region
 				if (LIBTECH.main.utilities.cookie.getCookie('libtech_region') !== "" && LIBTECH.main.utilities.cookie.getCookie('libtech_region') !== undefined) {
 					self.bbSetRegion(LIBTECH.main.utilities.cookie.getCookie('libtech_region'));
@@ -495,23 +485,13 @@ LIBTECH.snowboardbuilder = {
 			});
 			// make sure overview video fits
 			$('#overview .overview-content .right-column .overview-video').fitVids();
-			// hide the div blocker
-			TweenMax.to($('#div-blocker'), 0.5, {opacity: 0, onComplete: hideDivBlocker});
-			function hideDivBlocker () {
-				$('#div-blocker').hide();
-			}
 			self.flyOutMenuInit();
 			self.boardPreviewInit();
-		}
-		/// this pulls the preview from the buy
-		if (self.config.nCurSlide !== 0 || self.config.nCurSlide != 7) {
-			$(".step1-board").parent().css('overflow', 'hidden');
-			$(".step3-top").parent().css('overflow', 'hidden');
-			$(".step5-base").parent().css('overflow', 'hidden');
-			$('.miniReciept').css('z-index', '-333');
+			// hide the div blocker
+			TweenMax.to($('#div-blocker'), 1, {autoAlpha:0, delay:0.2});
 		}
 		// TODO INCREASE MAIN SLIDER HITBOXXXXX
-		$('body').on('click', '.bx-pager-item', function () {
+		$('#topPager .bx-pager .bx-pager-item').on('click', function () {
 			self.config.$mainSlider.goToSlide($(this).find("a").html() - 1);
 		});
 	},
@@ -527,14 +507,7 @@ LIBTECH.snowboardbuilder = {
 			} else {
 				self.resizeForDesktop();
 			}
-			$('#div-blocker').delay(300).animate({
-				opacity: '0'
-			}, {
-				duration: 700,
-				complete: function () {
-					$('#div-blocker').hide();
-				}
-			});
+			TweenMax.to($('#div-blocker'), 1, {autoAlpha:0, delay:0.2});
 		});
 		$(window).on('resize', function () {
 			waitForFinalEvent(function () {
@@ -681,14 +654,6 @@ LIBTECH.snowboardbuilder = {
 		} else {
 			return "";
 		}
-	},
-	setBoardHP: function (sHP) {
-		var self = this;
-		self.config.bHP = sHP;
-	},
-	getBoardHP: function () {
-		var self = this;
-		return self.config.bHP;
 	},
 	/* TOP */
 	setBoardTop: function (selectedTopImg) {
@@ -1860,7 +1825,7 @@ LIBTECH.snowboardbuilder = {
 			setBaseColor('Red');
 		});
 		// imput text listeners
-		$('#knifecut-base-controls .knifecut-input #board-text-input').on('input.step5b', function () {
+		$('#knifecut-base-controls .knifecut-input #board-text-input').css('visibility', 'visible').on('input.step5b', function () {
 			var inputValue = this.value.toUpperCase();
 			if(inputValue === "") {
 				self.advanceArrowHide(); // on removal of text, hide arrow
@@ -1889,7 +1854,7 @@ LIBTECH.snowboardbuilder = {
 		self.advanceArrowHide();
 	},
 	step5bUninit: function () {
-		$('#knifecut-base-controls .knifecut-input #board-text-input').off('input.step5b keyup.step5b focus.step5b blur.step5b');
+		$('#knifecut-base-controls .knifecut-input #board-text-input').css('visibility', 'hidden').off('input.step5b keyup.step5b focus.step5b blur.step5b');
 		$('#knifecut-base-controls .letter-color .box-grey').off("click touch");
 		$('#knifecut-base-controls .letter-color .box-orange').off("click touch");
 		$('#knifecut-base-controls .letter-color .box-yellow').off("click touch");
@@ -1910,8 +1875,9 @@ LIBTECH.snowboardbuilder = {
 	// STEP 6 - BADGE
 	step6Init: function () {
 		var self = this;
+
 		// input text listeners
-		$('.board-badge-input-holder #board-badge-input').on('input.step6', function () {
+		$('.board-badge-input-holder #board-badge-input').css('visibility', 'visible').on('input.step6', function () {
 			var maxFS, inputValue;
 			inputValue = this.value.toUpperCase();
 			if (inputValue.length <= 13) {
@@ -1967,7 +1933,7 @@ LIBTECH.snowboardbuilder = {
 		}
 	},
 	step6Uninit: function () {
-		$('.board-badge-input-holder #board-badge-input').off('input.step6 blur.step6 keyup.step6 mouseleave.step6 focus.step6');
+		$('.board-badge-input-holder #board-badge-input').css('visibility', 'hidden').off('input.step6 blur.step6 keyup.step6 mouseleave.step6 focus.step6');
 	},
 	// STEP 7 - BUY
 	step7Init: function () {
@@ -2201,8 +2167,13 @@ LIBTECH.snowboardbuilder = {
 			email = "mailto:?subject=" + encodeURIComponent("I built my own Lib Tech Snowboard with the DIY Board Builder!") + "&body=" + encodeURIComponent(" Check out my personalized DIY Lib Tech Snowboard:") +  "%20%0D%0A%20" + encodeURIComponent(boardUrl()) + "%20%0D%0A%20" + encodeURIComponent("Build your dream snowboard!");
 			window.open(email);
 		});
-		$('.step7-buy .thereciept .buttonholder .share-url #share-url-input').on('click.step7 touch.step7', function () {
-			$(this).select();
+		// check if iPad... if so remove read only feature of input
+		if (self.config.isIpad) {
+			$('.step7-buy .thereciept .buttonholder .share-url #share-url-input').removeAttr('readonly');
+		}
+		// select the field when clicked or touched
+		$('.step7-buy .thereciept .buttonholder .share-url #share-url-input').css('visibility', 'visible').on('click.step7 touch.step7', function () {
+			$(this).selectRange(0,9999); // call added method to jquery, standard select() doesn't work on mobile devices
 		});
 		$('.step7-buy .thereciept .buttonholder .share-url #share-url-input').val(boardUrl());
 		self.advanceArrowHide();
@@ -2215,7 +2186,7 @@ LIBTECH.snowboardbuilder = {
 		$('.step7-buy .thereciept .buttonholder .social-icons .socialtw').off('click.step7');
 		$('.step7-buy .thereciept .buttonholder .social-icons .socialg').off('click.step7');
 		$('.step7-buy .thereciept .buttonholder .social-icons .sociale').off('click.step7');
-		$('.step7-buy .thereciept .buttonholder .share-url #share-url-input').off('click.step7 touch.step7');
+		$('.step7-buy .thereciept .buttonholder .share-url #share-url-input').css('visibility', 'hidden').off('click.step7 touch.step7');
 	},
 	setCurrentSection: function () {
 		var self = this;
@@ -2223,7 +2194,6 @@ LIBTECH.snowboardbuilder = {
 		self.updateHeaderLabel(self.config.nCurSlide);
 		self.config.bFirstPlay = false;
 		self.boardPreviewSet(self.config.nCurSlide);
-		self.config.lockHover = false;
 		// menu stuff
 		$(".bx-pager-item").removeClass('black50');
 		$(".pagerTop .active").parent().addClass('black50');
@@ -2284,7 +2254,6 @@ LIBTECH.snowboardbuilder = {
 			self.resizeForDesktop();
 		}
 	}, // END setCurrentSection
-
 	resizeForDesktop: function () {
 		var self, windowHeight, windowWidth, headerHeight, shapeWidth, shapeHeight, aspectRatio, newHeight, newWidth, carouselWidth, carouselHeight;
 		self = this;
@@ -2463,6 +2432,22 @@ $(document).keydown(function (objEvent) {
 		objEvent.preventDefault(); // stops its action
 	}
 });
+// add select range for input fields to jQuery
+$.fn.selectRange = function(start, end) {
+	if(!end) end = start; 
+	return this.each(function() {
+		if (this.setSelectionRange) {
+			this.focus();
+			this.setSelectionRange(start, end);
+		} else if (this.createTextRange) {
+			var range = this.createTextRange();
+			range.collapse(true);
+			range.moveEnd('character', end);
+			range.moveStart('character', start);
+			range.select();
+		}
+	});
+};
 /*$(document).bind("mobileinit", function (event) {
 	$.extend($.mobile.zoom, {
 		locked: true,

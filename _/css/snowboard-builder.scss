@@ -69,9 +69,6 @@ input {
 	z-index: 999999;
 	background: #000 url('../img/loader.gif') no-repeat center center;
 }
-#div-preloader {
-	display: none;
-}
 #mobile-blocker,
 #ie-blocker {
 	background: rgb(0, 0, 0);
@@ -184,7 +181,7 @@ input {
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	z-index: 99987;
+	z-index: 9998;
 	margin-left: -50px;
 
 	-webkit-transform: matrix(0.8, 0, 0, 0.8, 0, 0);
@@ -568,11 +565,11 @@ ul.bx-div-slider {
 } 
 /* STEP 1 - SHAPE */
 .step1-board {
-	background-image: url('../img/bb/BACKGROUND-01.jpg');
+	background-image: url('../img/bb/bg-step1.jpg');
 }
 /* STEP 2 - SIZE */
 .step2-size {
-	background-image: url('../img/bb/BACKGROUND-02.jpg');
+	background-image: url('../img/bb/bg-step2.jpg');
 
 	.board-info {
 		text-shadow: 2px 2px 4px #000;
@@ -706,7 +703,7 @@ ul.bx-div-slider {
 /* STEP 3 - TOP */
 .step3-top {
 	padding-left: 30%;
-	background-image: url('../img/bb/BACKGROUND-03.jpg');
+	background-image: url('../img/bb/bg-step3.jpg');
 
 	.carousel-container {
 		overflow: hidden;
@@ -717,7 +714,7 @@ ul.bx-div-slider {
 /* STEP 4 - SIDEWALL */
 .step4-sidewall {
 	padding-left: 30%;
-	background-image: url('../img/bb/BACKGROUND-04.jpg');
+	background-image: url('../img/bb/bg-step4.jpg');
 
 	.carousel-container {
 		overflow: hidden;
@@ -728,7 +725,7 @@ ul.bx-div-slider {
 /* STEP 5 - BASE */
 .step5-base {
 	padding-left: 30%;
-	background-image: url('../img/bb/BACKGROUND-05.jpg');
+	background-image: url('../img/bb/bg-step5.jpg');
 
 	.carousel-container {
 		overflow: hidden;
@@ -739,7 +736,7 @@ ul.bx-div-slider {
 /* STEP 5b - CUSTOM BASE */
 .step5b-base-text {
 	position: relative;
-	background-image: url('../img/bb/BACKGROUND-05.jpg');
+	background-image: url('../img/bb/bg-step5.jpg');
 
 	#knifecut-base-controls {
 
@@ -805,7 +802,7 @@ ul.bx-div-slider {
 }
 /* STEP 6 - BADGE */
 .step6-badge {
-	background-image: url('../img/bb/BACKGROUND-06.jpg');
+	background-image: url('../img/bb/bg-step6.jpg');
 
 	.board-badge {
 		margin: 0 auto 20px;
@@ -864,7 +861,7 @@ ul.bx-div-slider {
 }
 /* STEP 7 - BUY */
 .step7-buy {
-	background-image: url('../img/bb/BACKGROUND-07.jpg');
+	background-image: url('../img/bb/bg-step7.jpg');
 
 	.thereciept-scroll {
 		overflow-y: auto;
@@ -1015,6 +1012,9 @@ ul.bx-div-slider {
 /* SHARE STYLES */
 body.diy-share {
 	min-width: 0;
+	background-image: url('../img/bb/bg-step7.jpg');
+	background-size: cover;
+	background-position: center bottom;
 	
 	.wrapper {
 		padding: 0 20px;
@@ -1035,6 +1035,8 @@ body.diy-share {
 			display: none;
 		}
 		.step7-buy {
+			background-image: none;
+
 			.thereciept {
 				margin: 0 auto;
 				width: 100%;
@@ -1093,6 +1095,7 @@ body.diy-share {
 }
 /* Media Queries
 -------------------------------------------------------------------------------*/
+
 /*SMALL - 560px */
 @media screen and (max-width: 767px) {
 	#header {

@@ -43,10 +43,12 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 	<!-- Styles -->
 	<link href="<?php bloginfo('stylesheet_url'); ?>" rel="stylesheet" type="text/css" />
 	<link href="<?php bloginfo('template_directory'); ?>/_/css/snowboard-builder.css" rel="stylesheet" type="text/css" />
-	<meta name="viewport" content="user-scalable=1.0,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="format-detection" content="telephone=no">
-	<!--<link rel="apple-touch-icon" href="<?php bloginfo('template_directory'); ?>/_/img/bb/apple-touch-icon.png">-->
+	<!-- Mobile -->
+	<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="format-detection" content="telephone=no" />
+	<link rel="apple-touch-icon" href="<?php bloginfo('template_directory'); ?>/_/img/bb/apple-touch-icon-precomposed.png">
 	<!-- Misc. -->
 	<link rel="profile" href="http://gmpg.org/xfn/11" />
 	<!-- Google Site Verification -->
@@ -470,15 +472,6 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 			<h3>In the meantime, please use it on your desktop at an appropriate size.</h3>
 		</div>
 		<div id="div-blocker"></div>
-		<div id="div-preloader">
-			<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/BACKGROUND-01.jpg" />
-			<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/BACKGROUND-02.jpg" />
-			<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/BACKGROUND-03.jpg" />
-			<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/BACKGROUND-04.jpg" />
-			<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/BACKGROUND-05.jpg" />
-			<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/BACKGROUND-06.jpg" />
-			<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/BACKGROUND-07.jpg" />
-		</div>
 	</div><!-- END .wrapper -->
 
 	<?php wp_footer(); ?>
