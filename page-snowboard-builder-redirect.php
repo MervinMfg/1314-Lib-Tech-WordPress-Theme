@@ -37,23 +37,22 @@ if( isset($_GET['shape']) && isset($_GET['size']) && isset($_GET['top']) && isse
 <head id="www-lib-tech-com" data-template-set="lib-tech-wordpress-theme">
 	<meta charset="<?php bloginfo('charset'); ?>">
     <title><?php echo $page_title; ?></title>
-	<meta name="title" content="<?php echo $page_title; ?>" />
 	<meta name="description" content="Lib Tech's DIY Snowboard Builder offers you the opportunity to order a custom, one of a kind, dream snowboard handmade in the USA. Customize your snowboard's shape, size, graphics and more in this online, custom snowboard building tool." />
 	<meta name="keywords" content="custom snowboard, custom built snowboard, custom made snowboard, handmade snowboard, made in the USA, build your own, customize" />
 	<meta name="author" content="Lib Tech" />
-    <meta name="Copyright" content="Copyright Lib Tech <?php echo date('Y'); ?>. All Rights Reserved." />
+    <meta name="copyright" content="Copyright Lib Tech <?php echo date('Y'); ?>. All Rights Reserved." />
 	<!-- FB Meta Data -->
 	<meta property="og:title" content="<?php echo $page_title; ?>" />
 	<meta property="og:description" content="This dream snowboard project is probably going to cause us some headaches, but you are going to be stoked! Lib Tech's DIY Board Builder offers you the opportunity to order a custom, one of a kind, dream snowboard that will be guided through our experiMENTAL Division’s prototyping process and handcrafted to your specifications in the USA." />
 	<meta property="og:url" content="<?php echo $redirect_url; ?>" />
-	<meta property="og:image" content="<?php bloginfo('template_directory'); ?>/_/img/bb/social-share.png" />
+	<meta property="og:image" content="<?php bloginfo('template_directory'); ?>/_/img/diy/social-share.png" />
 	<meta property="og:type" content="website" />
 	<meta property="og:site_name" content="Lib Technologies" />
 	<meta property="fb:app_id" content="352899581451617"/>
 	<!-- Google+ Meta Data -->
 	<meta itemprop="name" content="<?php echo $page_title; ?>" />
 	<meta itemprop="description" content="This dream snowboard project is probably going to cause us some headaches, but you are going to be stoked! Lib Tech's DIY Board Builder offers you the opportunity to order a custom, one of a kind, dream snowboard that will be guided through our experiMENTAL Division’s prototyping process and handcrafted to your specifications in the USA." />
-	<meta itemprop="image" content="<?php bloginfo('template_directory'); ?>/_/img/bb/social-share.png" />
+	<meta itemprop="image" content="<?php bloginfo('template_directory'); ?>/_/img/diy/social-share.png" />
 	<!-- Twitter -->
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:site" content="@libtechnologies">

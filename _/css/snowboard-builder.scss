@@ -3,17 +3,51 @@
  * http://lib-tech.com/diy
  * Copyright 2013 Mervin Mfg.
  * Author: brian.behrens@mervin.com - http://www.mervin.com
- * Version: 1.1
+ * Version: 1.2
  */
 
+// Font-Family Variables
 $bodyFont: "PT Sans Narrow", "Myriad Pro", Helvetica, Arial, sans-serif;
 $knifecutFont: "Altehaas Grotesk Bold", Impact, Arial, sans-serif;
 
-@mixin fadeOpacity($time: 300ms) {
-	transition: opacity $time ease-in-out;
-	-webkit-transition: opacity $time ease-in-out;
-	-moz-transition: opacity $time ease-in-out;
-	-o-transition: opacity $time ease-in-out;
+// SASS Mixins
+@mixin transition($property, $duration: 300ms, $easing: ease-in-out) {
+	-webkit-transition: $property $duration $easing;
+	-moz-transition: $property $duration $easing;
+	-ms-transition: $property $duration $easing;
+	-o-transition: $property $duration $easing;
+	transition: $property $duration $easing;
+}
+@mixin offscreenText() {
+	text-indent: -9999px;
+	overflow: hidden;
+	text-decoration: none;
+	display: block;
+	font-size: 0;
+	text-align: start;
+}
+@mixin vendorize($property, $value) {
+	-webkit-#{$property}: $value;
+	-moz-#{$property}: $value;
+	-ms-#{$property}: $value;
+	-o-#{$property}: $value;
+	#{$property}: $value;
+}
+@mixin clear() {
+	&:before, &:after {
+		content: "\0020";
+		display: block;
+		height: 0;
+		overflow: hidden;
+	}
+	&:after {
+		clear: both;
+	}
+}
+@mixin hoverActiveFocus($property, $value) {
+	&:hover, &:active, &:focus {
+		#{$property}: $value;
+	}
 }
 
 /* Custom Fonts */
@@ -29,18 +63,13 @@ $knifecutFont: "Altehaas Grotesk Bold", Impact, Arial, sans-serif;
 }
 
 /* DOM Styles */
+html,
 body {
-	-moz-background-size: cover;
-	-webkit-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-	background-color: #000;
+	overflow: hidden;
 	height: 100%;
-	width:100%;
-	background-attachment: fixed;
-	// overflow-x:hidden;
-	// overflow-y:hidden;
-	// min-width: 748px;
+}
+body {
+	background: #000;
 }
 input {
 	margin: 0;
@@ -65,11 +94,10 @@ input {
 	width: 100%;
 	top: 0;
 	left: 0;
-	opacity: 1;
+	@include vendorize(opacity, 1);
 	z-index: 999999;
 	background: #000 url('../img/loader.gif') no-repeat center center;
 }
-#mobile-blocker,
 #ie-blocker {
 	background: rgb(0, 0, 0);
 	background: rgba(0, 0, 0, .95);
@@ -77,7 +105,7 @@ input {
 	position: fixed;
 	width: 100%;
 	height: 100%;
-	z-index: 9999;
+	z-index: 99999;
 	top: 0;
 	left: 0;
 	padding: 10%;
@@ -89,215 +117,325 @@ input {
 		margin-bottom: 10px;
 	}
 }
-#ie-blocker {
-	z-index: 99999;
-}
 #header {
-	background: url('../img/bb/header-bar-bg.png') repeat-x;
-	position: absolute;
-	height: 63px;
-	z-index: 8886;
-	width: 100%;
-	font-weight: bold;
+	height: 80px;
+	background: #000;
+	position: relative;
+	z-index: 200;
 
-	.top-two {
-		position: absolute;
-		float:left;
-		width: 20%;
-		display:none;
-		z-index:2;
+	.logo {
+		width: 119px;
+		height: 52px;
+		background: url('../img/diy/header-diy-logo-mobile.png') no-repeat;
+		background-size: 100%;
+		margin: 0 auto;
+		@include transition(all, 300ms, ease-in-out);
 
-		& > p {
-			float: left;
-			padding: 5%;
-			margin: 5%;
-			border: 1px solid white;
-			cursor: pointer;
-			text-align: center;
-			width: 35px;
-			background-color: white;
-			color: black;
+		a {
+			width: 100%;
+			height: 52px;
+			@include offscreenText();
 		}
 	}
-	.top-logo {
-		display: block !important;
-		float: left;
-		width: 100%;
-		padding: 0 0 2px 14px;
+	.flag {
 		position: absolute;
-		z-index: 999777;
-		left: 0px;
-		height: 40px;
-	}
-	.top-flag {
-		float:left;
-		position:absolute;
+		width: 178px;
+		height: 107px;
+		background-size: 100%;
 		z-index: 10;
-		left:233px;
+		left: 306px;
+		top: -107px;
+		@include transition(all, 300ms, ease-in-out);
+	}
+	.mobile-flyout-nav {
+		position: absolute;
+		top: 12px;
+		left: 12px;
+
+		ul > li {
+			float: left;
+			padding-right: 12px;
+
+			a {
+				width: 24px;
+				height: 26px;
+				background-image: url('../img/diy/sprite-mobile.png');
+				background-repeat: no-repeat;
+
+				@include offscreenText();
+
+				&.display-board {
+					&:hover,
+					&:active,
+					&:focus,
+					&.selected {
+						background-position: -24px 0px;
+					}
+				}
+				&.display-receipt {
+					background-position: 0px -26px;
+
+					&:hover,
+					&:active,
+					&:focus,
+					&.selected {
+						background-position: -24px -26px;
+					}
+				}
+			}
+		}
 	}
 	.top-section {
-		font-size: 28px;
-		top: 3px;
-		right: 20px;
-		position: absolute;
-		color: #fff;
-		width: 100%;
-		text-align: right;
-		z-index: 5;
-	}
-	.top-section-right {
-		float: left;
-		text-align: center;
 		display: none;
-		z-index: 2;
+	}
+	.pagination {
+		width: 100%;
+		height: 30px;
+		background: url('../img/diy/left-menu-bg.gif');
+		text-align: center;
+		letter-spacing: 0px;
+		@include vendorize(box-shadow, 1px 1px 10px #000);
+
+		.label {
+			width: 55px;
+			background: none;
+			color: #000;
+			font-size: 1em;
+			font-weight: 700;
+			padding: 4px 6px 0;
+			display: inline-block;
+			vertical-align: top;
+			text-align: right;
+		}
+		.controls {
+			display: inline-block;
+			vertical-align: top;
+
+			.bx-pager {
+				.bx-pager-item {
+					float: left;
+					cursor: pointer;
+					width: 30px;
+					height: 30px;
+					margin: 0 0px;
+					display: inline-block;
+
+					&.selected {
+						background: #000;
+						background: rgba(0, 0, 0, 0.5);
+					}
+					&.alert {
+						background: #000;
+						background: rgba(204, 0, 0, 0.5);
+					}
+					&:nth-child(6) {
+						display: none; // hide the knifecut step5b
+
+						&.show {
+							display: block; // show if knifecut is selected
+						}
+					}
+					a {
+						background: #000;
+						display: block;
+						width: 15px;
+						height: 15px;
+						margin: 7px;
+						outline: 0;
+						@include offscreenText();
+						@include vendorize(border-radius, 7px);
+
+						&:hover,
+						&:focus,
+						&.active {
+							background: #fff;
+						}
+					}
+				}
+			}
+		}
 	}
 }
-.pager-label {
-	position: absolute;
-	color: black;
-	font-size: 130%;
-	font-weight: 700;
-	padding-left: 1.3%;
-	z-index: 9998;
+body.step7 #header .mobile-flyout-nav {
+	display: none;
 }
 #advance-arrow {
-	cursor: pointer;
 	display: block;
+	width: 17px;
+	height: 26px;
+	background-image: url('../img/diy/sprite-mobile.png');
+	background-repeat: no-repeat;
+	background-position: -68px 0px;
 	position: fixed;
-	height: 100%;
-	width: 40px;
-	right: -40px;
-	top: 0px;
-	text-align: center;
-	z-index: 6868;
-	background: #FFFF00 url('../img/bb/advance-arrow.gif') no-repeat center center;
+	z-index: 200;
+	right: -17px;
+	top: 13px;
+	cursor: pointer;
+
+	@include transition(right, 200ms, ease-in-out);
+
+	&:hover,
+	&:active,
+	&:focus {
+		background-position: -85px 0px;
+	}
+	&.show {
+		right: 13px;
+	}
 }
 #info-box {
-	min-width: 250px;
-	max-width: 300px;
+	width: 80%;
 	visibility: hidden;
-	opacity: 0;
-	filter:alpha(opacity=0);
 	position: absolute;
-	top: 50%;
-	left: 50%;
-	z-index: 9998;
-	margin-left: -50px;
+	z-index: 50;
+	top: 90px;
+	left: 10%;
+	@include vendorize(opacity, 0);
 
 	-webkit-transform: matrix(0.8, 0, 0, 0.8, 0, 0);
 	-ms-transform: scale(0.8, 0.8);
 	transform: scale(0.8, 0.8);
 	transition-duration: .2s;
 	-webkit-transition-duration: .2s;
-
-	&.offset {
-		left: 65%;
-	}
+	
 	&.show {
 		visibility: visible;
-		opacity: 1;
-		filter:alpha(opacity=100);
-		margin-left: 50px;
+		@include vendorize(opacity, 1);
 
 		-webkit-transform: matrix(1.0, 0, 0, 1.0, 0, 0);
 		-ms-transform: scale(1.0, 1.0);
 		transform: scale(1.0, 1.0);
 	}
 	.diamond {
-		height: 45px;
-		width: 45px;
-		background: url(../img/bb/bb-0-diamond.png);
-		position: absolute;
-		left: -22px;
-		top: 10px;
+		display: none;
 	}
 	.box {
 		background: #000;
-		padding: 15px;
-		box-shadow: 2px 2px 20px #000;
+		padding: 10px;
+		@include vendorize(box-shadow, 2px 2px 20px #000);
 
 		h2 {
 			font-weight: 700;
-			z-index: 10;
-			position: relative;
 			font-family: $bodyFont;
+			display: none;
+			position: relative;
+			z-index: 10;
+			font-size: 1.125em;
+			text-align: center;
+			margin-bottom: 5px;
 		}
 		h3 {
 			text-align: center;
-			font-size: 16px;
-			z-index: 11;
+			font-size: 1em;
+			display: none;
 			position: relative;
-			margin: 2% 0 2% 0;
+			z-index: 10;
 		}
 		.contour {
+			display: none;
+
 			img {
 				max-width: 100%;
 			}
 		}
 		.sizes {
+			display: none;
+			text-align: center;
+
 			p {
-				color: white;
-				text-align: center;
-				font-size: 14px;
-				font-weight: normal;
-				margin: 4% 0 2% 0;
+				color: #fff;
+				font-size: 1em;
 
 				span {
-					font-size: 18px;
+					font-size: 1em;
 					font-weight: 700;
-					margin: 4% 0 2% 4%; 
+					margin-left: 10px; 
 				}
 			}
 		}
 		h4 {
-			font-size: 14px;
-			font-weight: normal;
-			margin: 4% 0 2% 0;
+			display: none;
 		}
 		h5 {
-			font-weight: 400;
-			font-size: 16px;
-			font-family: $bodyFont;
-			color: white;
-			text-transform: none;
-			margin: 4% 0 2% 0;
+			display: none;
+		}
+	}
+	// show elements in info box based on the step number
+	&.step1 {
+		.box {
+			h2, .sizes {
+				display: block;
+			}
+		}
+	}
+	&.step3,
+	&.step4,
+	&.step5 {
+		.box {
+			h2, h3 {
+				display: block;
+			}
 		}
 	}
 }
 #left-menu {
 	display: none;
 }
-#board-display {
+#board-display,
+#mobile-receipt {
 	position: absolute;
-	z-index: 4444;
-	color: #fff;
-	display: none;
+	z-index: 100;
+	background: url('../img/diy/left-menu-bg.gif');
+	left: -80%;
+	width: 75%;
+	top: 80px;
+	@include vendorize(box-shadow, 1px 0px 20px #000);
+	@include transition(left, 200ms, ease-in-out);
 
-	.board-tech-name {
-		color: #fff;
-		font-size: 20px;
+	&.show {
+		left: 0px;
+	}
+}
+#board-display {
+	.board-name {
+		color: #000;
+		font-size: 1.125em;
 		text-align: center;
 		text-transform: uppercase;
-		min-width: 180px;
-		display: none;
-		margin-left: -50%;
-		font-family: $bodyFont;
 		font-weight: 700;
-		margin-top: -20px;
-		width: 100%;
+		padding-top: 20px;
+	}
+	.board-menu-left-button,
+	.board-menu-right-button {
+		width: 38px;
+		height: 49px;
+		display: block;
+		position: absolute;
+		z-index: 10;
+		cursor: pointer;
+		margin-top: -25px;
+		top: 50%;
+	}
+	.board-menu-left-button {
+		left: 5px;
+		background: url('../img/diy/arrow-left-w.png');
+		// menu-left
+		&:hover {
+			background: url('../img/diy/arrow-left-y.png');
+		}
+	}
+	.board-menu-right-button {
+		right: 5px;
+		background: url('../img/diy/arrow-right-w.png');
+		// menu-right
+		&:hover {
+			background: url('../img/diy/arrow-right-y.png');
+		}
 	}
 	.board-preview {
-		.board-menu-left-button,
-		.board-menu-right-button {
-			width: 38px;
-			height: 49px;
-			display: block;
-
-			.menu-left,
-			.menu-right { 
-			   cursor: pointer;
-			}
-		}
+		position: relative;
+		margin: 0 auto;
+		
 		.board-views {
 			.preview-top,
 			.preview-side,
@@ -307,6 +445,8 @@ input {
 				height: 100%;
 				top: 0;
 				left: 0;
+				@include vendorize(opacity, 0);
+				@include transition(left, 300ms, ease-in-out);
 
 				.board {
 					position: relative;
@@ -319,7 +459,6 @@ input {
 
 					.board-image {
 						position: relative;
-						cursor:  pointer;
 
 						.board-text {
 							position: absolute;
@@ -339,7 +478,6 @@ input {
 							-ms-transform-origin: 0% 0%;
 							-o-transform-origin: 0% 0%;
 							transform-origin: 0% 0%;
-							// filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
 
 							p {
 								color: black;
@@ -352,11 +490,7 @@ input {
 								.board-text-custom {
 									font-family: 'Altehaas Grotesk Bold';
 									text-transform: uppercase;
-									// font-size: 32px;
 									z-index: 99999;
-									// contenteditable: true;
-									// width: 100%;
-									// line-height: 1;
 									text-align: center;
 									color: #fff;
 									font-size: 50px;
@@ -388,6 +522,166 @@ input {
 				}
 			}
 		}
+		&.top .board-views .preview-top,
+		&.all .board-views .preview-top {
+			@include vendorize(opacity, 1);
+		}
+		&.side .board-views .preview-side,
+		&.all .board-views .preview-side {
+			@include vendorize(opacity, 1);
+		}
+		&.base .board-views .preview-base,
+		&.all .board-views .preview-base {
+			@include vendorize(opacity, 1);
+		}
+		&.all {
+			.board-menu-left-button,
+			.board-menu-right-button {
+				display: none;
+			}
+		}
+	}
+}
+body.step7 {
+	#board-display {
+		background: none;
+		left: 50%;
+		@include vendorize(box-shadow, none);
+
+		.board-name {
+			visibility: hidden;
+		}
+		.board-menu-left-button,
+		.board-menu-right-button {
+			display: none;
+		}
+		.board-preview {
+			margin: 0;
+
+			.board-views {
+				.preview-top {
+					left: 0;
+					width: 50%;
+				}
+				.preview-side {
+					display: none;
+				}
+				.preview-base {
+					left: 50%;
+					width: 50%;
+				}
+			}
+		}
+	}
+	#mobile-receipt {
+		left: -80%;
+	}
+}
+// hide board display when terms and conditions are shown, full page width terms
+body.accept-buy {
+	#board-display {
+		display: none;
+	}
+}
+
+/* RECEIPTS */
+#mobile-receipt,
+.step7-buy .board-reciept {
+	h1 {
+		font-family: $bodyFont;
+		font-size: 1.125em;
+		font-weight: 700;
+		padding-bottom: 10px;
+		color: #fff;
+	}
+	h2 {
+		font-size: 1em;
+		font-weight: 700;
+		font-family: $bodyFont;
+		line-height: 1.1em;
+		color: #fff;
+		
+		span {
+			font-weight: 400;
+		}
+		&.base .text-color,
+		&.base .base-color {
+			display: none;
+		}
+	}
+	p {
+		text-align: right;
+		font-weight: 700;
+
+	}
+	hr {
+		height: 1px;
+		border: 0;
+		border-top: 1px solid #fff;
+		margin: 5px 0;
+	}
+	h3 {
+		color: #fff;
+		font-size: .875em;
+
+		&.subtotal-cost {
+			text-align: right;
+		}
+	}
+}
+#mobile-receipt {
+	padding: 20px;
+	color: #000;
+	overflow-y: auto;
+
+	h1, h2, h3 {
+		color: #000;
+	}
+	hr {
+		border-top: 1px solid #000;
+	}
+}
+.board-reciept {
+	text-shadow: 2px 2px 4px #000;
+}
+
+/* CAROUSEL */
+.carousel-container {
+	overflow: hidden;
+	width: 100%;
+	position: relative;
+}
+.carousel {
+	padding-top: 100px;
+	-webkit-transform: translateZ(0); // triggers GPU, sometimes fixes the issue 
+	transform: translateZ(0); // non-webkit specific
+	position: relative;
+
+	ul {
+		position: absolute;
+		cursor: ew-resize !important;
+		cursor: -webkit-grab !important;
+		cursor: -moz-grab !important;
+
+		&.dragging {
+			cursor: -webkit-grabbing !important;
+			cursor: -moz-grabbing !important;
+		}
+		li.item {
+			padding: 0 20px;
+			float: left;
+			-webkit-transform: translateZ(0); /* fix Safari flicker on css transitions */
+			
+			img {
+				&.selectedShape {
+					-webkit-transform: matrix(1.10, 0, 0, 1.10, 0, 0) !important;
+					-ms-transform: scale(1.10, 1.10) !important;
+					transform: scale(1.10, 1.10) !important;
+					transition-duration: .2s;
+					-webkit-transition-duration: .2s;
+				}
+			}
+		}
 	}
 }
 .bx-wrapper {
@@ -398,56 +692,6 @@ input {
 	padding: 0;
 	*zoom: 1;
 
-	.bx-pager {
-		padding-top: 5px;
-		text-align: center;
-		top: 0px;
-		position: absolute;
-		padding-top: 0px;
-		display: block;
-		background: url(../img/bb/bb-0-leftmenubg.gif);
-		height: 27px;
-		box-shadow: 1px 1px 10px #666666;
-
-		.bx-pager-item {
-			cursor: pointer;
-			width: 4%;
-			margin-right: 4%;
-			margin-left: 3%;
-			display: inline-block;
-			// margin-top: 4px;
-
-			a {
-				background: #000;
-				text-indent: -9999px;
-				display: block;
-				width: 15px;
-				height: 15px;
-				margin: 0 15px;
-				outline: 0;
-				-moz-border-radius: 5px;
-				-webkit-border-radius: 10px;
-				border-radius: 10px;
-
-				&:hover,
-				&:focus,
-				&.active {
-					background: black;
-
-					background: #fff;
-					text-indent: -9999px;
-					display: block;
-					width: 10px;
-					height: 10px;
-					margin: 0 15px;
-					outline: 0;
-					-moz-border-radius: 15px;
-					-webkit-border-radius: 15px;
-					border-radius: 15px;
-				}
-			}
-		}
-	}
 	.bx-viewport {
 		overflow: visible !important;
 		background: transparent;
@@ -460,19 +704,6 @@ input {
 .bx-clone {
 	display: none !important;
 }
-/*BX FIX?*/
-.pagerTop {
-	position: absolute;
-	z-index: 9997;
-	width: 100%;
-
-	.bx-pager div:nth-child(6) {
-		display: none; /*HIDE THE 6th SLIDE (CUSTOM KNIFECUT TEXT)*/
-	}
-}
-/*#region-selector .width-fix div {
-	background: inherit !important;
-}*/
 ul.bx-div-slider {
 	-webkit-backface-visibility: hidden;
 
@@ -484,14 +715,15 @@ ul.bx-div-slider {
 
 /* OVERVIEW */
 #overview {
-	position: fixed;
-	height: 100%;
 	width: 100%;
+	height: 100%;
+	background: #000 url('../img/diy/bg-overview.jpg') no-repeat top center;
+	position: fixed;
+	z-index: 9998;
 	top: 0;
 	left: 0;
-	opacity: 1;
-	z-index: 9998;
-	background: #000 url('../img/bb/bg-overview.jpg') no-repeat top center;
+	overflow-y: auto;
+	@include vendorize(opacity, 1);
 
 	.overview-content {
 		h1 {
@@ -562,62 +794,55 @@ ul.bx-div-slider {
 .step7-buy {
 	background-size: cover;
 	background-position: center bottom;
-} 
+}
+.step2-size,
+.step5b-base-text,
+.step6-badge,
+.step7-buy {
+	overflow-y: auto;
+}
 /* STEP 1 - SHAPE */
 .step1-board {
-	background-image: url('../img/bb/bg-step1.jpg');
+	background-image: url('../img/diy/bg-step1-mobile.jpg');
 }
 /* STEP 2 - SIZE */
 .step2-size {
-	background-image: url('../img/bb/bg-step2.jpg');
+	background-image: url('../img/diy/bg-step2-mobile.jpg');
 
 	.board-info {
 		text-shadow: 2px 2px 4px #000;
-		width: 90%;
 		color: #fff;
+		width: 100%;
+		padding: 20px;
 
 		.board {
-			font-size: 32px;
+			font-size: 1.25em;
 			font-weight: 700;
 			text-transform: uppercase;
 			margin: 0 0 10px;
 			color: #FFFF00;
 		}
 		.shape-desc {
-			font-size: 1.25em;
-			margin-bottom: 40px;
-
-			span {
-				font-weight: 900;
-				color: #ffff00;
-			}
+			display: none;
 		}
 		.board-tagline {
-			font-size: 1.75em;
+			font-size: 1em;
 			font-weight: 700;
 			text-transform: uppercase;
-			margin: 0 0 10px;
 		}
 		.board-desc {
-			font-size: 1.125em;
-			font-weight: 400;
-			margin: 0 0 40px;
+			font-size: 1em;
 		}
 		.contour-title {
-			font-size: 1.125em;
-			text-transform: uppercase;
-			font-weight: 700;
-			color: #ffff00;
-			margin: 0 0 10px;
+			display: none;
 		} 
 		.contour-desc {
-			font-size: 1em;
-			font-weight: 400;
-			color: #fff;
+			display: none;
 		}
 	}
 	.size-info {
-		width: 90%;
+		width: 100%;
+		padding: 0 20px 20px;
 
 		h3.size-cta {
 			text-shadow: 2px 2px 4px #000;
@@ -655,7 +880,7 @@ ul.bx-div-slider {
 			}
 		}
 		.size-detail-table {
-			margin: 2% 0px 4% 0px;
+			margin: 0;
 			float: left;
 			width: auto;
 
@@ -675,8 +900,10 @@ ul.bx-div-slider {
 					.flex-list {
 						float: left;
 						text-align: center;
-						color: white;
+						color: #fff;
+						background: #000;
 						width: 100%;
+						min-width: 65px;
 
 						li {
 							padding: 5px 0px 5px 0px;
@@ -699,77 +926,53 @@ ul.bx-div-slider {
 		}
 	}
 }
-
 /* STEP 3 - TOP */
 .step3-top {
-	padding-left: 30%;
-	background-image: url('../img/bb/bg-step3.jpg');
-
-	.carousel-container {
-		overflow: hidden;
-		width: 100%;
-		position: relative;
-	}
+	background-image: url('../img/diy/bg-step3-mobile.jpg');
 }
 /* STEP 4 - SIDEWALL */
 .step4-sidewall {
-	padding-left: 30%;
-	background-image: url('../img/bb/bg-step4.jpg');
-
-	.carousel-container {
-		overflow: hidden;
-		width: 100%;
-		position: relative;
-	}
+	background-image: url('../img/diy/bg-step4-mobile.jpg');
 }
 /* STEP 5 - BASE */
 .step5-base {
-	padding-left: 30%;
-	background-image: url('../img/bb/bg-step5.jpg');
-
-	.carousel-container {
-		overflow: hidden;
-		width: 100%;
-		position: relative;
-	}
+	background-image: url('../img/diy/bg-step5-mobile.jpg');
 }
 /* STEP 5b - CUSTOM BASE */
 .step5b-base-text {
-	position: relative;
-	background-image: url('../img/bb/bg-step5.jpg');
+	background-image: url('../img/diy/bg-step5-mobile.jpg');
+	padding: 20px 20px 0px;
 
 	#knifecut-base-controls {
-
 		p {
 			margin-bottom: 10px;
 			font-weight: 700;
 			font-size: 1.125em;
 			text-transform: uppercase;
 			color: #fff;
-			clear: both;
 			text-shadow: 2px 2px 4px #000;
 		}
 		.knifecut-input {
-			margin-bottom: 40px;
+			margin-bottom: 20px;
 
 			#board-text-input {
-				font-family: 'Altehaas Grotesk Bold';
+				font-family: $knifecutFont;
 				background: #fff;
-				width: 290px;
+				width: 100%;
+				max-width: 290px;
 			}
 		}
-
 		.letter-color,
 		.base-color {
-			padding-bottom: 40px;
+			padding-bottom: 10px;
 
 			div.color {
 				width: 40px;
 				height: 40px;
 				cursor: pointer;
 				float: left;
-				margin-right: 10px;
 				border: 1px solid white;
+				margin: 0 10px 10px 0;
 
 				&.box-grey {
 					background-color: #999999;
@@ -802,14 +1005,20 @@ ul.bx-div-slider {
 }
 /* STEP 6 - BADGE */
 .step6-badge {
-	background-image: url('../img/bb/bg-step6.jpg');
+	background-image: url('../img/diy/bg-step6-mobile.jpg');
+	padding: 20px;
 
 	.board-badge {
-		margin: 0 auto 20px;
-		background: url('../img/bb/bb-6-badgelrg.png');
-		width: 350px;
-		height: 350px;
+		width: 250px;
+		height: 250px;
+		background: url('../img/diy/board-badge.png');
+		background-size: 100%;
 		position: relative;
+		margin: 0 auto 20px;
+		text-align: center;
+		text-transform: uppercase;
+		font-weight: 700;
+		font-size: .7em;
 
 		.badge-text {
 			position: absolute;
@@ -817,16 +1026,12 @@ ul.bx-div-slider {
 			left: 20%;
 			width: 60%;
 			margin: 0 auto;
-			text-align: center;
 			word-wrap: break-word;
-
 			line-height: 100%;
-			color: white;
+			color: #fff;
 			max-height: 60px;
 			overflow: hidden;
-			font-family: $bodyFont;
-			text-transform: uppercase;
-			font-weight: 700;
+			
 		}
 		.badge-size {
 			width: 60%;
@@ -836,11 +1041,11 @@ ul.bx-div-slider {
 			font-size: 320%;
 			font-weight: 700;
 			color: #fff;
-			text-align: center;
 		}
 	}
 	.board-badge-input-holder {
-		width: 330px;
+		width: 100%;
+		max-width: 330px;
 		margin: 0 auto;
 
 		p {
@@ -852,7 +1057,6 @@ ul.bx-div-slider {
 			clear: both;
 			text-shadow: 2px 2px 4px #000;
 		}
-
 		#board-badge-input {
 			width: 100%;
 			font-weight: 700;
@@ -861,164 +1065,131 @@ ul.bx-div-slider {
 }
 /* STEP 7 - BUY */
 .step7-buy {
-	background-image: url('../img/bb/bg-step7.jpg');
+	background-image: url('../img/diy/bg-step7-mobile.jpg');
 
-	.thereciept-scroll {
-		overflow-y: auto;
-	}
-	.thereciept  {
-		font-family: $bodyFont;
-		margin-left: 120px;
-		width: 30%;
-		padding-top: 166px;
-		max-width: 350px;
+	.board-reciept,
+	.buttonholder {
+		width: 50%;
+		padding: 20px;
 		color: #fff;
+	}
+	.terms,
+	.terms-international,
+	.cart-error {
+		width: 100%;
+		padding: 20px;
+		color: #fff;
+	}
+	.terms,
+	.terms-international {
+		display: none;
+		text-shadow: 2px 2px 4px #000;
 
-		.board-reciept {
-			text-shadow: 2px 2px 4px #000;
-
-			h1 {
-				font-family: $bodyFont;
-				font-size: 28px;
-				font-weight: 700;
-				padding-bottom: 10px;
-				color: #fff;
-			}
-			h2 {
-				font-size: 18px;
-				font-weight: 700;
-				line-height: 1.5;
-				font-family: $bodyFont;
-				color: #fff;
-				
-				span {
-					font-weight: 400;
-				}
-				&.base .text-color,
-				&.base .base-color {
-					padding-left: 20px;
-					font-size: .9em;
-				}
-			}
-			p {
-				text-align: right;
-				font-weight: 700;
-			}
-			hr {
-				height: 1px;
-				border: 0;
-				border-top: 1px solid #fff;
-			}
-			h3 {
-				float: left;
-				font-size: 24px;
-				width: 40%;
-
-				&.subtotal-cost {
-					float: right;
-					width: 60%;
-					text-align: right;
-				}
-			}
-			h4 {
-				font-size: 18px;
-				font-weight: 700;
-				margin: 10px;
-			}
+		h1 {
+			font-family: $bodyFont;
+			font-size: 28px;
+			font-weight: 700;
+			padding-bottom: 10px;
 		}
-		.terms,
-		.terms-international {
-			display: none;
-			text-shadow: 2px 2px 4px #000;
+		p strong {
+			color: #FFFF00;
+		}
+	}
+	.cart-error {
+		display: none;
+	}
+	.buttonholder {
+		text-align: center;
+		padding-top: 0px;
 
-			h1 {
-				font-family: $bodyFont;
-				font-size: 28px;
-				font-weight: 700;
-				padding-bottom: 10px;
-			}
-			p strong {
-				color: #FFFF00;
-			}
-		}
-		.cart-error {
-			display: none;
-		}
-		.buttonholder {
-			float: left;
+		.buy-button,
+		.agree-button {
 			width: 100%;
+			background-color: #ffff00;
+			color: #000000;
+			padding: 10px;
+			font-size: 28px;
+			font-weight: 700;
+			border: 1px solid #000;
+			cursor: pointer;
+			text-transform: uppercase;
+
+			&:hover {
+				background-color: #000000;
+				color: #ffff00;
+				border-color: #ffff00;
+			}
+		}
+		.buy-button span {
+			display: none;
+		}
+		.agree-button {
+			display: none;
+		}
+		.social-icons {
+			width: 100%;
+			margin: 0 auto;
 			text-align: center;
-			padding: 20px 0;
 
-			.buy-button,
-			.agree-button {
-				width: 100%;
-				background-color: #ffff00;
-				color: #000000;
-				padding: 10px;
-				font-size: 28px;
-				font-weight: 700;
-				border: 1px solid #000;
-				cursor: pointer;
+			p {
+				padding: 10px 0;
 				text-transform: uppercase;
+				font-weight: 700;
+				clear: both;
+				text-shadow: 2px 2px 4px #000;
 
-				&:hover {
-					background-color: #000000;
-					color: #ffff00;
-					border-color: #ffff00;
+				span {
+					display: none;
 				}
 			}
-			.agree-button {
-				display: none;
+
+			a {
+				display: inline-block;
+				width: 51px;
+				height: 31px;
+				padding: 0 10px;
 			}
-			.social-icons {
-				width: 100%;
-				margin: 0 auto;
+		}
+		.share-url {
+			p {
+				padding: 10px 0;
 				text-align: center;
-
-				p {
-					padding: 10px 0;
-					text-transform: uppercase;
-					font-weight: 700;
-					clear: both;
-					text-shadow: 2px 2px 4px #000;
-				}
-
-				a {
-					display: inline-block;
-					width: 51px;
-					height: 31px;
-					padding: 0 10px;
-				}
+				text-transform: uppercase;
+				font-weight: 700;
+				clear: both;
+				text-shadow: 2px 2px 4px #000;
 			}
-			.share-url {
-				p {
-					padding: 10px 0;
-					text-align: center;
-					text-transform: uppercase;
-					font-weight: 700;
-					clear: both;
-					text-shadow: 2px 2px 4px #000;
-				}
-				#share-url-input {
-					width: 100%;
-					text-transform: none;
-					margin-bottom: 20px;
-				}
+			#share-url-input {
+				width: 100%;
+				text-transform: none;
+				font-size: 1em;
 			}
 		}
 	}
 }
+body.accept-buy { // full width buttons once accept is show, board display is hidden
+	.board-reciept,
+	.buttonholder {
+		width: 100%;
+		padding: 20px;
+		color: #fff;
+	}
+}
+
+
 /* SHARE STYLES */
+html.diy-share {
+	overflow-y: auto;
+	height: auto;
+}
 body.diy-share {
-	min-width: 0;
-	background-image: url('../img/bb/bg-step7.jpg');
+	background-image: url('../img/diy/bg-step7.jpg');
 	background-size: cover;
 	background-position: center bottom;
+	background-attachment: fixed;
 	
 	.wrapper {
 		padding: 0 20px;
-		background-attachment: fixed;
 
 		#header-share {
 			padding-top: 20px;
@@ -1037,55 +1208,62 @@ body.diy-share {
 		.step7-buy {
 			background-image: none;
 
-			.thereciept {
+			.board-reciept,
+			.buttonholder {
 				margin: 0 auto;
 				width: 100%;
 				padding: 0;
+			}
+			.board-reciept {
+				padding-bottom: 20px;
+			}
+			.buttonholder {
+				.build-button {
+					width: 100%;
+					background-color: #000000;
+					color: #ffff00;
+					padding: 10px;
+					font-size: 28px;
+					font-weight: 700;
+					border: 1px solid #ffff00;
+					cursor: pointer;
+					text-transform: uppercase;
+					text-decoration: none;
+					font-style: normal;
+					display: block;
 
-				.buttonholder {
-					.build-button {
-						width: 100%;
-						background-color: #000000;
-						color: #ffff00;
-						padding: 10px;
-						font-size: 28px;
-						font-weight: 700;
-						border: 1px solid #ffff00;
-						cursor: pointer;
-						text-transform: uppercase;
-						text-decoration: none;
-						font-style: normal;
-						display: block;
-
-						&:hover {
-							background-color: #ffff00;
-							color: #000000;
-							border-color: #000;
-						}
+					&:hover {
+						background-color: #ffff00;
+						color: #000000;
+						border-color: #000;
 					}
-					p.or {
-						margin: 5px 0;
-					}
-					.social-icons {
-						width: 100%;
-					}
+				}
+				p.or {
+					margin: 5px 0;
+				}
+				.social-icons {
+					width: 100%;
 				}
 			}
 		}
 		#board-display {
 			display: block;
-			position: relative;
-			width: 33%;
+			position: static;
+			width: 100%;
 
-			.preview-top {
-				position: relative;
+			.board-name {
+				display: none;
 			}
-
-			.preview-side {
-				left: 100%;
-			}
-			.preview-base {
-				left: 200%;
+			.board-preview {
+				.preview-top,
+				.preview-side,
+				.preview-base {
+					display: block;
+					width: 33%;
+					float: left;
+					position: relative;
+					left: 0;
+				}
 			}
 		}
 		.print-disclaimer {
@@ -1093,123 +1271,118 @@ body.diy-share {
 		}
 	}
 }
-/* Media Queries
+/* ----------------------------------------------------------------------------
+   Media Queries -
+   Various Style beyond mobile
+   Tablet / Desktop are they heavy hitters here
 -------------------------------------------------------------------------------*/
 
-/*SMALL - 560px */
-@media screen and (max-width: 767px) {
+/* Phone landscape Styles
+-------------------------------------------------------------------------------*/
+@media only screen and (min-width : 321px) {
+}
+
+/* Tablet Styles
+-------------------------------------------------------------------------------*/
+@media screen and (min-width: 600px) {
+}
+
+/* iPad Landscape & Desktop Styles
+-------------------------------------------------------------------------------*/
+@media screen and (min-width: 769px) { // set one above 768px (iPad Portrait) so styles only apply to iPad Landscape
+	/* GLOBAL */
 	#header {
+		background: url('../img/diy/header-bar-bg.png') repeat-x;
+		position: absolute;
+		height: 63px;
+		width: 100%;
+		z-index: 8886;
+		font-weight: bold;
+
+		.logo {
+			width: 343px;
+			height: 175px;
+			background: url('../img/diy/header-diy-logo.png') no-repeat;
+			position: absolute;
+			z-index: 999777;
+			left: 0px;
+
+			a {
+				height: 175px;
+			}
+		}
+		.flag {
+			background: url('../img/diy/header-flag.png');
+			top: 0px;
+			@include offscreenText();
+
+			a {
+				display: block;
+				width: 100%;
+				height: 121px;
+			}
+		}
 		.top-section {
+			width: 100%;
+			display: block;
+			font-size: 28px;
+			text-align: right;
+			color: #fff;
+			position: absolute;
+			top: 3px;
+			right: 20px;
+			z-index: 5;
+		}
+		.pagination {
 			display: none;
 		}
-		.top-section-right {
-			width: 10%;
-			opacity: 0;
-			cursor: pointer;
-			padding: 2%;
-			right: 2%;
-			position: absolute;
+		.mobile-flyout-nav,
+		.mobile-flyout-nav.show {
+			display: none;
 		}
 	}
-	//@include mobile-version;
-	#info-box,
-	#header .top-logo {
-		display: none;
-	}
-	#header .top-section-right {
-		display: block !important;
-	}
-}
-/*MEDIUM - 746 */
-@media screen and (min-width: 768px) {
-	html, body {
-		overflow: hidden;
+	#advance-arrow {
+		background: #FFFF00 url('../img/diy/advance-arrow.gif') no-repeat center center;
 		height: 100%;
-	}
-	/* OVERVIEW */
-	#overview {
-		background: #000 url('../img/bb/bg-overview.jpg') no-repeat top right;
-		overflow-y: auto;
+		width: 40px;
+		right: -40px;
+		top: 0px;
 
-		.overview-content {
-			max-width: 1200px;
-			margin: 0 auto;
+		@include transition(right, 200ms, ease-in-out);
 
-			h1 {
-				text-align: left;
-				padding: 20px;
-			}
-			.left-column {
-				width: 50%;
-				padding: 0 10px 0 20px;
-				float: left;
-
-				h4 {
-					display: block;
-				}
-				ul {
-					display: block;
-				}
-				p {
-					font-size: .8em;
-					padding-top: 10px;
-				}
-			}
-			.right-column {
-				width: 50%;
-				padding: 60px 20px 0 10px;
-				float: left;
-
-				.overview-video {
-
-				}
-			}
+		&:hover,
+		&:active,
+		&:focus {
+			background-position: center center;
+		}
+		&.show {
+			right: 0px;
 		}
 	}
-	#header {
-		.top-two,
-		.top-section-right {
-			display: none !important;
+	#info-box {
+		width: 200px;
+		top: 45%;
+		left: 50%;
+		margin-left: -50px;
+
+		&.offset {
+			left: 65%;
 		}
-		.top-logo {
-			display: block !important;
+		&.show {
+			margin-left: 50px;
 		}
-		.top-section-right {
-			width: 10%;
-		}
-		.top-section {
+		.diamond {
+			height: 45px;
+			width: 45px;
+			background: url(../img/diy/info-box-diamond.png);
+			position: absolute;
+			left: -22px;
+			top: 10px;
 			display: block;
 		}
-	}
-	#mobile-blocker {
-		display: none;
-	}
-	.miniReciept {
-		display: none !important;
-	}
-	.bx-controls-direction,
-	.bx-pager {
-		display: none;
-	}
-	
-    /*.swipe-wrap .slide1:not(:first-child), .swipe-wrap .slide2:not(:first-child) { display: none;}*/
-    .slide1 ~ .slide1, .slide2 ~ .slide2 {
-    	display: none;
-    }
-    .swipe {
-    	visibility: visible !important;
-    }
-    .swipediv {
-    	position: relative;
-    	/*top: 0px !important;*/
-    	padding-top: 0px;
-    	/*margin-left: -10%;*/
-    }
-    .pager-label {
-    	display: none;
-    }
-	#info-box {
 		.box {
+			padding: 20px;
+
 			h2 {
 				text-align: left;
 				font-size: 1.5625em; // 25/16
@@ -1224,19 +1397,99 @@ body.diy-share {
 				margin: 0 0 5px;
 			}
 			h4 {
+				font-weight: normal;
 				font-size: 1em;
 				margin: 0 0 20px;
 			}
 			.sizes {
-				margin: 0;
+				text-align: left;
 
 				p {
-					font-size: 18px;
-					text-align: left;
-					margin: 0;
+					font-size: 1.125em;
+
+					span {
+						font-size: 1.25em; 
+					}
+				}
+			}
+			h5 {
+				font-weight: normal;
+				font-size: 1em;
+				color: #fff;
+				text-transform: none;
+			}
+		}
+		// show elements in info box based on the step number
+		&.step1 {
+			.box {
+				h2, h3, .contour, h4, .sizes {
+					display: block;
 				}
 			}
 		}
+		&.step3,
+		&.step4,
+		&.step5 {
+			.box {
+				h2, h3, h5 {
+					display: block;
+				}
+			}
+		}
+	}
+	#board-display {
+		left: 90px;
+		top: 166px;
+		width: 15%;
+		background: none;
+		display: block;
+		@include vendorize(box-shadow, none);		
+
+		&.hide {
+			display: none;
+		}
+		.board-name {
+			display: none;
+		}
+		.board-menu-left-button {
+			left: -10px;
+		}
+		.board-menu-right-button {
+			right: -10px;
+		}
+		.board-preview {
+			
+		}
+	}
+	body.step7 #board-display { // spread boards out when we reach step 7
+		left: 50%;
+		width: 45%;
+
+		.board-preview {
+			.board-views {
+				.preview-top {
+					width: 33%;
+					left: 0px;
+				}
+				.preview-side {
+					width: 33%;
+					left: 33%;
+					display: block;
+				}
+				.preview-base {
+					width: 33%;
+					left: 66%
+				}
+			}
+		}
+	}
+	body.accept-buy { // show board display when terms and conditions are shown, hides on mobile
+		#board-display {
+			display: block;
+		}
+	}
+	#mobile-receipt {
+		display: none;
 	}
 	#left-menu {
 		width: 276px;
@@ -1247,19 +1500,16 @@ body.diy-share {
 		padding: 10px 0 16px 0px;
 		margin: 0px;
 		text-transform: uppercase;
-		box-shadow: 1px 1px 8px #666666;
+		@include vendorize(box-shadow, 1px 1px 8px #666666);
 		top: 25%;
-		background: url(../img/bb/bb-0-leftmenubg.gif);
-		display: none;
+		background: url(../img/diy/left-menu-bg.gif);
+		display: block;
 		z-index: 5555;
 
 		-webkit-transform: translateZ(0); // triggers GPU, sometimes fixes the issue 
 		transform: translateZ(0); // non-webkit specific
 		// transition elements
-		transition: left 200ms ease-in-out;
-		-webkit-transition: left 200ms ease-in-out;
-		-moz-transition: left 200ms ease-in-out;
-		-o-transition: left 200ms ease-in-out;
+		@include transition(left, 200ms, ease-in-out);
 
 		&.open {
 			left: 0px;
@@ -1313,7 +1563,7 @@ body.diy-share {
 					}
 				}
 				&.selected {
-					background: url('../img/bb/bb-greyback-b0b0b0.png');
+					background: url('../img/diy/left-menu-bg-selected-option.png');
 
 					div.menu-label {
 						font-weight: 700;
@@ -1332,7 +1582,7 @@ body.diy-share {
 					}
 				}
 				&.alert {
-					background: url('../img/bb/bb-redback.png');
+					background: url('../img/diy/left-menu-bg-alert-option.png');
 					font-weight: 600;
 				}
 				&.menu5b {
@@ -1341,10 +1591,7 @@ body.diy-share {
 					border-bottom: 0px;
 					overflow: hidden;
 
-					transition: all 200ms ease-in-out;
-					-webkit-transition: all 200ms ease-in-out;
-					-moz-transition: all 200ms ease-in-out;
-					-o-transition: all 200ms ease-in-out;
+					@include transition(all, 200ms, ease-in-out);
 
 					&.show {
 						height: 42px;
@@ -1384,90 +1631,104 @@ body.diy-share {
 			}
 		}
 	}
-    .board-tech-name {
-		font-size: 25px;
-		min-width: 120px;
-		line-height: 25px;
-		text-align: center;
-		height: 100px;
-		display: none;
-		margin-left: 0 !important;
-    }
-	#board-display {
-		width: 15%;
-		left: 90px;
-		top: 166px;
+	/* OVERVIEW */
+	#overview {
+		background: #000 url('../img/diy/bg-overview.jpg') no-repeat top right;
+		overflow-y: auto;
 
-		.board-menu-left-button,
-		.board-menu-right-button {
-			display: block;
-			position: absolute;
-			z-index: 1000;
-		}
-		.board-menu-left-button {
-			left: -10px;
-		}
-		.board-menu-right-button {
-			right: -10px;
-		}
-	}
-	#left-menu,
-	.bx-prev,
-	.bx-next {
-		display: block;
-	}
+		.overview-content {
+			max-width: 1200px;
+			margin: 0 auto;
 
-	/* CAROUSEL */
-	.carousel {
-		padding-top: 166px;
-		-webkit-transform: translateZ(0); // triggers GPU, sometimes fixes the issue 
-		transform: translateZ(0); // non-webkit specific
-		position: relative;
-
-		ul {
-			position: absolute;
-			cursor: ew-resize !important;
-			cursor: -webkit-grab !important;
-			cursor: -moz-grab !important;
-
-			&.dragging {
-				cursor: -webkit-grabbing !important;
-				cursor: -moz-grabbing !important;
+			h1 {
+				text-align: left;
+				padding: 20px;
 			}
-			li.item {
-				padding: 0 20px;
+			.left-column {
+				width: 50%;
+				padding: 0 10px 0 20px;
 				float: left;
-				-webkit-transform: translateZ(0); /* fix Safari flicker on css transitions */
-				
-				img {
-					&.selectedShape {
-						-webkit-transform: matrix(1.10, 0, 0, 1.10, 0, 0) !important;
-						-ms-transform: scale(1.10, 1.10) !important;
-						transform: scale(1.10, 1.10) !important;
-						transition-duration: .2s;
-						-webkit-transition-duration: .2s;
-					}
+
+				h4 {
+					display: block;
+				}
+				ul {
+					display: block;
+				}
+				p {
+					font-size: .8em;
+					padding-top: 10px;
+				}
+			}
+			.right-column {
+				width: 50%;
+				padding: 60px 20px 0 10px;
+				float: left;
+
+				.overview-video {
+
 				}
 			}
 		}
 	}
+	/* CAROUSEL */
+	.carousel {
+		padding-top: 166px;
+	}
 	/* STEP 1 - SHAPE */
 	.step1-board {
-		
+		background-image: url('../img/diy/bg-step1.jpg');
 	}
 	/* STEP 2 - SIZE */
 	.step2-size {
+		background-image: url('../img/diy/bg-step2.jpg');
 		padding: 166px 0 0 30%;
 
 		.board-info {
-			padding-right: 5%;
+			padding: 0 5% 0 0;
 			width: 45%;
 			float: left;
+
+			.board {
+				font-size: 2em;
+			}
+			.shape-desc {
+				display: block;
+				font-size: 1.25em;
+				margin-bottom: 40px;
+
+				span {
+					font-weight: 900;
+					color: #ffff00;
+				}
+			}
+			.board-tagline {
+				font-size: 1.75em;
+				margin: 0 0 10px;
+			}
+			.board-desc {
+				font-size: 1.125em;
+				margin: 0 0 40px;
+			}
+			.contour-title {
+				display: block;
+				font-size: 1.125em;
+				text-transform: uppercase;
+				font-weight: 700;
+				color: #ffff00;
+				margin: 0 0 10px;
+			} 
+			.contour-desc {
+				display: block;
+				font-size: 1em;
+				font-weight: 400;
+				color: #fff;
+			}
 		}
 		.size-info {
 			width: 50%;
 			float: left;
-			padding-top: 46px;
+			padding: 58px 0 0;
 
 			.size-detail-table .table-data .info-list {
 				.side-list,
@@ -1485,39 +1746,107 @@ body.diy-share {
 		}
 	}
 	/* STEP 3 - TOP */
-	
+	.step3-top {
+		background-image: url('../img/diy/bg-step3.jpg');
+		padding-left: 30%;
+	}
+	/* STEP 3 - SIDEWALL */
+	.step4-sidewall {
+		background-image: url('../img/diy/bg-step4.jpg');
+		padding-left: 30%;
+	}
 	/* STEP 5a - BASE */
-	.step5-base #boardBaseItems img {
-    	width: 100%;
-    	cursor: pointer;
-    	-webkit-transform: translateZ(0);
-    	transform: translateZ(0);
+	.step5-base {
+		background-image: url('../img/diy/bg-step5.jpg');
+		padding-left: 30%;
     }
     /* STEP 5b - KNIFECUT BASE */
     .step5b-base-text {
-    	padding: 166px 0 0 30%;
+    	background-image: url('../img/diy/bg-step5.jpg');
+    	padding: 166px 0 0 30%; 
+
+    	#knifecut-base-controls {
+			.knifecut-input {
+				margin-bottom: 40px;
+			}
+			.letter-color,
+			.base-color {
+				padding-bottom: 30px;
+			}
+		}
     }
+    /* STEP 6 - BADGE */
     .step6-badge {
-    	padding: 166px 0 0 30%;
+    	background-image: url('../img/diy/bg-step6.jpg');
+    	padding: 166px 0 20px 30%;
+
+    	.board-badge {
+			width: 350px;
+			height: 350px;
+			font-size: 1em;
+		}
     }
-
 	/* STEP 7 - BUY */
-	.boardReciept hr {
-		margin: 0.25em 0;
-		padding: 0;
-	}
-	.bx-wrapper .bx-pager {
-		display: none;
-	}
-	/* SHARE STYLES */
-	html.diy-share {
-		overflow: visible;
-		height: auto;
-	}
-	body.diy-share {
-		overflow: visible;
-		height: auto;
+	.step7-buy {
+		background-image: url('../img/diy/bg-step7.jpg');
 
+		.board-reciept,
+		.terms,
+		.terms-international,
+		.cart-error,
+		.buttonholder,
+		.buttonholder.terms {
+			width: 50%;
+			padding: 166px 0 0 120px;
+			max-width: 470px;
+		}
+		.board-reciept {
+			h1 {
+				font-size: 1.75em;
+			}
+			h2 {
+				font-size: 1.125em;
+				line-height: 1.5em;
+
+				&.base .text-color,
+				&.base .base-color {
+					display: block;
+					padding-left: 20px;
+					font-size: .9em;
+				}
+			}
+			hr {
+				margin: 1em 0;
+			}
+			h3 {
+				float: left;
+				font-size: 1.5em;
+				width: 40%;
+
+				&.subtotal-cost {
+					float: right;
+					width: 60%;
+				}
+			}
+		}
+		.buttonholder {
+			padding-top: 20px;
+			margin-bottom: 20px;
+
+			.buy-button span {
+				display: inline;
+			}
+			.social-icons p span {
+				display: inline;
+			}
+			.share-url #share-url-input {
+				font-size: 1.5em;
+			}
+		}
+	}
+
+	/* SHARE STYLES */
+	body.diy-share {
 		.wrapper {
 			max-width: 1600px;
 			margin: 0 auto;
@@ -1528,90 +1857,49 @@ body.diy-share {
 				margin: 0;
 			}
 			.step7-buy {
-				.thereciept {
+				.board-reciept,
+				.buttonholder,
+				.terms,
+				.terms-international,
+				.cart-error {
 					width: 40%;
 					margin: 0;
+					padding: 0 0 20px;
 				}
 			}
 			#board-display {
-				display: block;
 				position: fixed;
-				width: 18%;
-				max-width: 250px;
-				left: 45%;
+				width: 50%;
 				bottom: 0px;
 				top: auto;
 
-				.preview-top {
-					position: relative;
-				}
-
-				.preview-side {
-					left: 90%;
-				}
-				.preview-base {
-					left: 180%;
+				.board-preview {
+					.preview-top,
+					.preview-side,
+					.preview-base {
+						width: 33%;
+						left: 0;
+					}
 				}
 			}
 		}
 	}
 }
-@media screen and (max-device-width: 748px) {
-	.step1-board-bg {
-		background-image: url('../img/bb/BACKGROUND-01.jpg');
-	}
-}
-/*LARGE - 1200 */
-@media screen and (min-width: 1920px) {
-	/* 
-	#info-box { display: block; } 
-	#left-menu, .bx-prev, .bx-next { display: block; }
-	.board-menu-left-button { margin-left: 10% !important; } 
-	#board-display { max-width: 11% !important; }
-	.rotate-one span { font-size: 300%  !important; }*/
-	/*.rotate-one span { font-size: 2.5em; }*/
-}
-/*iPhone 5:*/
-@media screen and (device-aspect-ratio: 40/71) {
-	#header {
-		background-color: purple;
-		background-image: none !important;
 
-		.top-logo {
-			display: none !important;
-		}
+/* Desktop Styles
+-------------------------------------------------------------------------------*/
+@media screen and (min-width: 1100px) {
+	#info-box {
+		width: 300px;
+		top: 50%;
 	}
 }
-/*iPad*/
+
+/* iPad Landscape Specific Styles
+-------------------------------------------------------------------------------*/
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
-	//ADD/REMOVE THIS TO TOGGLE LANDSCAPE ON IPAD
-	//.top-logo { display: none !important; }
-	/*.item {
-		max-width: 280px;
-		padding-left: 2%;
-		width: 150px;
-		margin-top: 4.8%
-	}*/
-	.bx-div-slider > li,
-	.step1-board {
-		-webkit-transform: translateZ(0);
-	}
-	ul.bx-div-slider > li {
-		-webkit-transform: translateZ(0);
-	}
 	#left-menu.open .menu-close {
 		display: block;
-	} 
-	.contourImg {
-		width: 300px !important;
-		height: 75px;
-	}
-	#info-box {
-		position: absolute !important;
-		width: 200px !important;
-	}
-	#info-box {
-
 	}
 	.board-text { 
 		font-size: 320%;
@@ -1620,14 +1908,18 @@ body.diy-share {
 		font-family: $bodyFont;
 		font-weight: 700;
 		overflow: hidden;
-		top:90%;
+		top: 90%;
 	}
 }
 
+/* Print Specific Styles
+-------------------------------------------------------------------------------*/
 @media print {
 	/* DIY SHARE PRINT */
 	body.diy-share {
 		.wrapper {
+			width: 100%;
+			max-width: 100%;
 			#header-share {
 				display: none;
 			}
@@ -1637,7 +1929,7 @@ body.diy-share {
 				text-align: center;
 			}
 			.step7-buy {
-				.thereciept {
+				.board-reciept {
 					padding-top: 10%;
 					color: #000;
 					margin: 0 auto;
@@ -1645,28 +1937,35 @@ body.diy-share {
 					h1, h2, h3, p {
 						color: #000;
 					}
-
-					.buttonholder {
-						display: none;
-					}
+				}
+				.buttonholder {
+					display: none;
 				}
 			}
 			#board-display {
 				display: block;
 				position: relative;
-				margin-left: 5%;
+				margin: 0;
+				padding: 0;
+				left: 50% !important;
+				right: auto !important;
+				top: 0;
+				max-width: 100% !important;
+				width: 100% !important;
 
-				.preview-top {
-					position: relative;
-				}
-				.preview-side {
-					left: 90%;
-				}
-				.preview-base {
-					left: 180%;
-
-					.board .board-image .board-text {
-						margin-left: -7%;
+				.board-preview {
+					left: 0 !important;
+					margin: 0;
+					.preview-top,
+					.preview-side,
+					.preview-base {
+						position: relative;
+						left: 0 !important;
+					}
+					.preview-base {
+						.board .board-image .board-text {
+							//margin-left: -7%;
+						}
 					}
 				}
 			}

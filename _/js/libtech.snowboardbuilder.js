@@ -1,17 +1,20 @@
 /*
 
-    Lib Tech DIY Builder - lib-tech.com
-    VERSION 1.1
-    AUTHOR brian.behrens@mervin.com
+	Lib Tech DIY Builder - lib-tech.com
+	VERSION 1.2
+	AUTHOR brian.behrens@mervin.com
 
-    DEPENDENCIES:
-    - jQuery v1.10.2
-    - Shopatron API v2.2.0
-    - Modernizr v2.6.2
-    - Respond.js
-    - TweenMax beta 1.10.2
-    - LIBTECH.main v2.0
-    - BxSlider v4.1.1
+	DEPENDENCIES:
+	- jQuery v1.10.2
+	- Shopatron API v2.2.0
+	- Modernizr v2.6.2
+	- Respond.js
+	- TweenMax v1.11.3
+	- Draggable v0.9.8
+	- ThrowPropsPlugin v0.9.1
+	- LIBTECH.main v2.0
+	- BxSlider v4.1.1
+	- FitVids v1.0
 
 */
 var boardData = [{
@@ -39,7 +42,7 @@ var boardData = [{
 	"ShapeDescription": "True Twin",
 	"Sidewall Options": "",
 	"Custom KnifeCut Color Options": "",
-	"ContourImage": "bb-contour-btx.gif",
+	"ContourImage": "contour-btx.gif",
 	"HPDetail": ""
 }, {
 	"Model": "Attack Banana",
@@ -66,7 +69,7 @@ var boardData = [{
 	"ShapeDescription": "True Twin",
 	"Sidewall Options": "",
 	"Custom KnifeCut Color Options": "",
-	"ContourImage": "bb-contour-ec2-btx.gif",
+	"ContourImage": "contour-ec2-btx.gif",
 	"HPDetail": ""
 }, {
 	"Model": "Travis Rice Pro Blunt",
@@ -93,7 +96,7 @@ var boardData = [{
 	"ShapeDescription": "Twin Blunt",
 	"Sidewall Options": "",
 	"Custom KnifeCut Color Options": "",
-	"ContourImage": "bb-contour-c2-btx.gif",
+	"ContourImage": "contour-c2-btx.gif",
 	"HPDetail": ""
 }, {
 	"Model": "Travis Rice Pro Pointy",
@@ -120,7 +123,7 @@ var boardData = [{
 	"ShapeDescription": "Pointy Pow",
 	"Sidewall Options": "",
 	"Custom KnifeCut Color Options": "",
-	"ContourImage": "bb-contour-c2-btx.gif",
+	"ContourImage": "contour-c2-btx.gif",
 	"HPDetail": ""
 }, {
 	"Model": "TRS",
@@ -147,7 +150,7 @@ var boardData = [{
 	"ShapeDescription": "True Twin",
 	"Sidewall Options": "",
 	"Custom KnifeCut Color Options": "",
-	"ContourImage": "bb-contour-xc2-btx.gif",
+	"ContourImage": "contour-xc2-btx.gif",
 	"HPDetail": ""
 }, {
 	"Model": "Hot Knife",
@@ -174,7 +177,7 @@ var boardData = [{
 	"ShapeDescription": "Twin Freeride",
 	"Sidewall Options": "",
 	"Custom KnifeCut Color Options": "",
-	"ContourImage": "bb-contour-c3-btx.gif",
+	"ContourImage": "contour-c3-btx.gif",
 	"HPDetail": ""
 }, {
 	"Model": "Skunk Ape",
@@ -201,7 +204,7 @@ var boardData = [{
 	"ShapeDescription": "Directional Twin",
 	"Sidewall Options": "",
 	"Custom KnifeCut Color Options": "",
-	"ContourImage": "bb-contour-c2-btx.gif",
+	"ContourImage": "contour-c2-btx.gif",
 	"HPDetail": ""
 }, {
 	"Model": "Banana Blaster",
@@ -228,7 +231,7 @@ var boardData = [{
 	"ShapeDescription": "True Twin",
 	"Sidewall Options": "",
 	"Custom KnifeCut Color Options": "",
-	"ContourImage": "bb-contour-btx.gif",
+	"ContourImage": "contour-btx.gif",
 	"HPDetail": ""
 }];
 var contourData = {
@@ -344,7 +347,7 @@ var LIBTECH = LIBTECH || {};
 
 LIBTECH.snowboardbuilder = {
 	config: {
-		baseImgPath: 'http://www.lib-tech.com/wp-content/themes/libtech_2/_/img/bb/',
+		baseImgPath: 'http://www.lib-tech.com/wp-content/themes/libtech_2/_/img/diy/',
 		topGraphicImg: 0, // top
 		sidewallTopImg: 0,
 		sidewallBottomImg: 0,
@@ -374,6 +377,7 @@ LIBTECH.snowboardbuilder = {
 		isKnifecut: "",
 		isMobile: false,
 		isIpad: false,
+		isSharePage: false,
 		$mainSlider: "",
 		defaultBadgeInput: "",
 		defaultBaseInput: "",
@@ -389,13 +393,16 @@ LIBTECH.snowboardbuilder = {
 		// get default input values
 		self.defaultBadgeInput = $('.board-badge-input-holder #board-badge-input').val();
 		self.defaultBaseInput = $('#knifecut-base-controls .knifecut-input #board-text-input').val();
+		// check if device is an iPad
+		//var iPad = /(iPad|iPhone|iPod)/g.test(navigator.userAgent);
+		self.config.isIpad = /(iPad)/g.test(navigator.userAgent);
 		// setup main BX Slider instance
 		self.config.$mainSlider = $('.bx-div-slider').bxSlider({
 			slideMargin: 0,
 			speed: 231,
 			touchEnabled: false,
 			pager: true,
-			pagerSelector: '.pagerTop',
+			pagerSelector: '#header .pagination .controls',
 			controls: false,
 			preventDefaultSwipeX: true,
 			auto: false,
@@ -420,48 +427,32 @@ LIBTECH.snowboardbuilder = {
 		$(window).on('resize', function () {
 			waitForFinalEvent(function () {
 				self.config.aspectRatio = $(window).height() / $(window).width();
-				if ($('#header .top-section').css('display') == 'none') {
-					self.config.isMobile = true;
-					self.resizeForMobile();
-				} else {
-					self.config.isMobile = false;
-					self.resizeForDesktop();
-				}
+				self.resizeLayout();
 			}, 500, "mervinsbb");
 		});
+		$(window).trigger('resize');
 		// if on iPad using Chrome check orientation change and set appropriate viewport to fix input field bugs related to viewport size
 		// viewport size changes in Chrome when inputs are selected
+		function checkOrientation() {
+			switch (window.orientation) {
+				case -90:
+				case 90:
+					$('meta[name=viewport]').attr('content', 'initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, width=device-height, height=device-width, user-scalable=no');
+					break;
+				default:
+					$('meta[name=viewport]').attr('content', 'initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, width=device-width, height=device-height, user-scalable=no');
+					break;
+			}
+		}
 		if(navigator.userAgent.match('iPad') && navigator.userAgent.match('CriOS')) { // CriOS is used to identify the chrome app on iOS
 			$(window).on('orientationchange', function () {
 				checkOrientation();
 			});
-			function checkOrientation() {
-				switch (window.orientation) {
-					case -90:
-					case 90:
-						$('meta[name=viewport]').attr('content', 'initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, width=device-height, height=device-width, user-scalable=no');
-						break;
-					default:
-						$('meta[name=viewport]').attr('content', 'initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, width=device-width, height=device-height, user-scalable=no');
-						break;
-				}
-			}
 			checkOrientation();
 		}
 		function delayLoad() {
-			// SET CONFIG SETTINGS
-			if ($('.bx-pager').css('display') == 'block') {
-				self.config.isMobile = true;
-			} else {
-				self.config.isMobile = false;
-			}
-			self.config.aspectRatio = $(window).width() / $(window).height();
-			// check if device is an iPad
-			//var iPad = /(iPad|iPhone|iPod)/g.test(navigator.userAgent);
-			self.config.isIpad = /(iPad)/g.test(navigator.userAgent);
-
 			// listen for flag selection
-			$("#header .top-flag a").on('click', function (e) {
+			$("#header .flag a").on('click', function (e) {
 				e.preventDefault();
 				e.stopPropagation(); // kill even from firing further
 				if (navigator.cookieEnabled === false) {
@@ -475,7 +466,7 @@ LIBTECH.snowboardbuilder = {
 				e.preventDefault();
 				// hide/kill overview
 				$(this).off('click');
-				TweenMax.to($('#overview'), 1, {autoAlpha:0});
+				TweenMax.to($('#overview'), 1, {autoAlpha:0, onComplete:function(){$('#overview').css('display', 'none');}});
 				// set the first section
 				self.setCurrentSection();
 				// set region
@@ -485,43 +476,26 @@ LIBTECH.snowboardbuilder = {
 			});
 			// make sure overview video fits
 			$('#overview .overview-content .right-column .overview-video').fitVids();
-			self.flyOutMenuInit();
 			self.boardPreviewInit();
 			// hide the div blocker
 			TweenMax.to($('#div-blocker'), 1, {autoAlpha:0, delay:0.2});
 		}
-		// TODO INCREASE MAIN SLIDER HITBOXXXXX
-		$('#topPager .bx-pager .bx-pager-item').on('click', function () {
-			self.config.$mainSlider.goToSlide($(this).find("a").html() - 1);
-		});
 	},
 	shareInit: function () {
 		var self = this;
+		self.config.isSharePage = true;
 		if (LIBTECH.main.utilities.cookie.getCookie('libtech_region') !== "" && LIBTECH.main.utilities.cookie.getCookie('libtech_region') !== undefined) {
 			self.bbSetRegion(LIBTECH.main.utilities.cookie.getCookie('libtech_region'));
 		}
 		self.buildShare();
 		$(window).on('load', function () {
-			if (self.config.isMobile) {
-				self.resizeForMobile();
-			} else {
-				self.resizeForDesktop();
-			}
+			self.resizeLayout();
 			TweenMax.to($('#div-blocker'), 1, {autoAlpha:0, delay:0.2});
 		});
 		$(window).on('resize', function () {
 			waitForFinalEvent(function () {
 				self.config.aspectRatio = $(window).height() / $(window).width();
-				if ($('#header .top-section').css('display') == 'none') {
-					self.config.isMobile = true;
-				} else {
-					self.config.isMobile = false;
-				}
-				if (self.config.isMobile) {
-					self.resizeForMobile();
-				} else {
-					self.resizeForDesktop();
-				}
+				self.resizeLayout();
 			}, 500, "mervinsbb");
 		});
 	},
@@ -568,9 +542,9 @@ LIBTECH.snowboardbuilder = {
 		self.config.iJSON = spanVal;
 		sNoDash = boardData[boardNum].Model;
 		// updated board display
-		$('.board-tech-name').text(sNoDash); // being hidden now
+		$('#board-display .board-name').text(sNoDash);
 		// Board Details
-		$('.step2-size .board-info .board').html(sNoDash); // being hidden now
+		$('.step2-size .board-info .board').html(sNoDash);
 		$('.step2-size .board-info .shape-desc').html("<span>SHAPE</span> " + boardData[boardNum].ShapeDescription);
 		$('.step2-size .board-info .board-tagline').text(boardData[boardNum].BoardTagline);
 		$('.step2-size .board-info .board-desc').text(boardData[boardNum].BoardDescription);
@@ -646,6 +620,7 @@ LIBTECH.snowboardbuilder = {
 			self.advanceArrowHide();
 		}
 		self.config.bSize = sSize;
+		self.buildReciepts();
 	},
 	getBoardSize: function () {
 		var self = this;
@@ -659,8 +634,8 @@ LIBTECH.snowboardbuilder = {
 	setBoardTop: function (selectedTopImg) {
 		var self, imgName, imgDesc;
 		self = this;
-		imgName = $(selectedTopImg).attr("artist");
-		imgDesc = $(selectedTopImg).attr("desc");
+		imgName = $(selectedTopImg).attr("data-artist");
+		imgDesc = $(selectedTopImg).attr("data-desc");
 		if (imgDesc === "" || imgDesc === undefined) {
 			self.advanceArrowHide();
 			self.setBoardArtist('');
@@ -696,7 +671,6 @@ LIBTECH.snowboardbuilder = {
 	},
 	getBoardDescription: function () {
 		var self = this;
-		//TODO: SET DEFAULTS TO GREY!!!
 		if (self.config.bDesc === '' || self.config.bDesc === undefined) {
 			self.config.bDesc = "";
 		}
@@ -717,8 +691,8 @@ LIBTECH.snowboardbuilder = {
 	setBoardSidewall: function (selectedSidewallImg) {
 		var self, sColor, sDesc;
 		self = this;
-		sColor = $(selectedSidewallImg).attr("color");
-		sDesc = $(selectedSidewallImg).attr("desc");
+		sColor = $(selectedSidewallImg).attr("data-color");
+		sDesc = $(selectedSidewallImg).attr("data-desc");
 		if (sColor === "" || sColor === undefined) {
 			self.advanceArrowHide();
 			self.config.bSidewall = "";
@@ -752,8 +726,8 @@ LIBTECH.snowboardbuilder = {
 	setBoardBase: function (selectedBaseImg) {
 		var self, imgName, imgDesc;
 		self = this;
-		imgName = $(selectedBaseImg).attr("artist");
-		imgDesc = $(selectedBaseImg).attr("desc");
+		imgName = $(selectedBaseImg).attr("data-artist");
+		imgDesc = $(selectedBaseImg).attr("data-desc");
 		if (imgDesc === "" || imgDesc === undefined) {
 			self.advanceArrowHide();
 			self.setBoardBaseArtist('');
@@ -784,6 +758,7 @@ LIBTECH.snowboardbuilder = {
 				$('#left-menu .menu5 .menu-title').html("" + "  " + "CUSTOMIZED TEXT" + "<br /><b>+ $ " + kcPriceDifference + " " + self.config.bbRegionCurrency + "</b>");
 				// show menu 5b
 				$('#left-menu .menu5b').addClass('show');
+				$('#header .pagination .controls .bx-pager-item:eq(5)').addClass('show');
 			} else {
 				// GRAPHIC BASE
 				self.setBoardBaseDesc(imgDesc);
@@ -791,6 +766,7 @@ LIBTECH.snowboardbuilder = {
 				$('#left-menu .menu5 .menu-title').html("" + "  " + imgName + " " + imgDesc + "<br><b>+ $ 0.00 " + self.config.bbRegionCurrency + "</b>");
 				// remove menu 5b
 				$('#left-menu .menu5b').removeClass('show');
+				$('#header .pagination .controls .bx-pager-item:eq(5)').removeClass('show');
 			}
 			$('#left-menu .menu5').addClass('complete');
 		}
@@ -828,7 +804,6 @@ LIBTECH.snowboardbuilder = {
 	},
 	getBoardBaseDesc: function () {
 		var self = this;
-		//TODO: SET DEFAULTS TO GREY!!!
 		if (self.config.bBaseDesc === '' || self.config.bBaseDesc === undefined) {
 			self.config.bBaseDesc = "";
 		}
@@ -856,9 +831,9 @@ LIBTECH.snowboardbuilder = {
 			$('#left-menu .menu6 .menu-title').html("Personalized Badge");
 			$('#left-menu .menu6').removeClass('complete');
 			$('.step6-badge .board-badge .badge-text').html('');
-			//$('input[name=badge]').val("25 CHARACTER MAX");
 		}
 		self.config.bBadge = sBadge;
+		self.buildReciepts();
 	},
 	getBoardBadge: function () {
 		var self = this;
@@ -868,6 +843,9 @@ LIBTECH.snowboardbuilder = {
 		var self, boardShape, topArist, topDesc, customTextColor, customBaseColor, baseArist, baseDesc, sidewallColor;
 		self = this;
 		boardShape = self.getBoardShape().toUpperCase().split(' ').join('-');
+		if (boardShape === "" || boardShape === undefined) {
+			boardShape = "SKATE-BANANA";
+		}
 		topArist = self.getBoardArtist().toUpperCase().split(' ').join('-');
 		topDesc = self.getBoardDescription().toUpperCase().split(' ').join('-');
 		customTextColor = self.getCustomTextColor().toUpperCase().split(' ').join('-');
@@ -932,7 +910,23 @@ LIBTECH.snowboardbuilder = {
 			// set board font size			
 			var knifecutText = $('#board-display .board-preview .board-views .preview-base .board .board-image .board-text .rotate-one .board-text-custom');
 			var knifecutTextHolder = $("#board-display .board-preview .board-views .preview-base .board .board-image .board-text");
-			var boardWidth = $("#board-display").width();
+			// check which page we're viewing
+			if (!self.config.isSharePage) {
+				if (self.config.$mainSlider.getCurrentSlide() != 7) {
+					// any slide that's not the buy section
+					var boardWidth = $("#board-display .board-preview").width();
+				} else {
+					// if we're on step 7, we need to change how we evaluate the width because multiple boards are show at the same time
+					if (self.config.isMobile) {
+						var boardWidth = $("#board-display .board-preview").width()/2;
+					} else {
+						var boardWidth = $("#board-display .board-preview").width()/3;
+					}
+				}
+			} else {
+				// share page
+				var boardWidth = $("#board-display .board-preview").width()/3;
+			}
 			knifecutText.css('font-size', Math.floor(boardWidth/2) + 'px');
 			// scale font down till it fits
 			while(knifecutText.width() >= knifecutTextHolder.width()) {
@@ -983,6 +977,7 @@ LIBTECH.snowboardbuilder = {
 			$('#board-display .board-preview .board-views .preview-base .board .board-image .custom-base-logo').css('display', 'none');
 			$('#board-display .board-preview .board-views .preview-base .board .board-image .board-text .board-text-custom').css('display', 'none');
 		}
+		self.buildReciepts();
 	},
 	resetAll: function () {
 		var self = this;
@@ -1209,120 +1204,108 @@ LIBTECH.snowboardbuilder = {
 			$('#left-menu').addClass('open');
 		});
 	},
+	flyOutMenuUnInit: function () {
+		var self = this;
+		$('#left-menu, #left-menu .menu-header').off("mouseenter.left-menu, touch.left-menu");
+		$('#left-menu').off("mouseleave.left-menu");
+		// check if iPad
+		if (self.config.isIpad) {
+			$('#left-menu .menu-close').off("click.left-menu touch.left-menu");
+		}
+		$('#left-menu .menu1 .menu-x').off("click.left-menu touch.left-menu");
+		$('#left-menu .menu2 .menu-x').off("click.left-menu touch.left-menu");
+		$('#left-menu .menu3 .menu-x').off("click.left-menu touch.left-menu");
+		$('#left-menu .menu4 .menu-x').off("click.left-menu touch.left-menu");
+		$('#left-menu .menu5 .menu-x').off("click.left-menu touch.left-menu");
+		$('#left-menu .menu5b .menu-x').off("click.left-menu touch.left-menu");
+		$('#left-menu .menu6 .menu-x').off("click.left-menu touch.left-menu");
+		$('#left-menu .menu1, #left-menu .menu1 .menu-title').off("click.left-menu touch.left-menu");
+		$('#left-menu .menu2, #left-menu .menu2 .menu-title').off("click.left-menu touch.left-menu");
+		$('#left-menu .menu3, #left-menu .menu3 .menu-title').off("click.left-menu touch.left-menu");
+		$('#left-menu .menu4, #left-menu .menu4 .menu-title').off("click.left-menu touch.left-menu");
+		$('#left-menu .menu5, #left-menu .menu5 .menu-title').off("click.left-menu touch.left-menu");
+		$('#left-menu .menu5b, #left-menu .menu5b .menu-title').off("click.left-menu touch.left-menu");
+		$('#left-menu .menu6, #left-menu .menu6 .menu-title').off("click.left-menu touch.left-menu");
+		$('#left-menu .menu7, #left-menu .menu7 .menu-title').off("click.left-menu touch.left-menu");
+	},
+	mobileMenuInit: function () {
+		$("#header .mobile-flyout-nav .display-board").on('click.mobile-menu touch.mobile-menu', function (e) {
+			e.preventDefault();
+			$(this).toggleClass('selected');
+			$('#board-display').toggleClass('show');
+			$("#header .mobile-flyout-nav .display-receipt").removeClass('selected');
+			$('#mobile-receipt').removeClass('show');
+		});
+		$("#header .mobile-flyout-nav .display-receipt").on('click.mobile-menu touch.mobile-menu', function (e) {
+			e.preventDefault();
+			$(this).toggleClass('selected');
+			$('#mobile-receipt').toggleClass('show');
+			$("#header .mobile-flyout-nav .display-board").removeClass('selected');
+			$('#board-display').removeClass('show');
+		});
+	},
+	mobileMenuUnInit: function () {
+		$("#header .mobile-flyout-nav .display-board").off('click.mobile-menu touch.mobile-menu');
+		$("#header .mobile-flyout-nav .display-receipt").off('click.mobile-menu touch.mobile-menu');
+	},
 	boardPreviewInit: function () {
 		var self = this;
-		$('body').on('click touch', '.board-menu-left-button img', function () {
-			$(this).attr('src', self.config.baseImgPath + 'bb-left.png');
+		$('#board-display .board-menu-left-button').on('click touch', function () {
 			self.boardPreviewCycle('left');
 		});
-		$('body').on('click touch', '.board-menu-right-button img', function () {
-			$(this).attr('src', self.config.baseImgPath + 'bb-right.png');
+		$('#board-display .board-menu-right-button').on('click touch', function () {
 			self.boardPreviewCycle('right');
-		});
-		$(".board-menu-left-button img").mouseover(function () {
-			$(this).attr('src', self.config.baseImgPath + 'bb-left-y.png');
-		}).mouseout(function () {
-			$(this).attr('src', self.config.baseImgPath + 'bb-left-w.png');
-		});
-		$(".board-menu-right-button img").mouseover(function () {
-			$(this).attr('src', self.config.baseImgPath + 'bb-right-y.png');
-		}).mouseout(function () {
-			$(this).attr('src', self.config.baseImgPath + 'bb-right-w.png');
 		});
 	},
 	boardPreviewCycle: function (sDirection) {
 		var self = this;
-		$('.board-views div.preview-top').hide();
-		$('.board-views div.preview-side').hide();
-		$('.board-views div.preview-base').hide();
-
+		$('#board-display .board-preview').removeClass('top side base all');
+		// check direction
 		if (sDirection == 'left') {
 			self.config.nPreviewNum--;
 		} else {
 			self.config.nPreviewNum++;
 		}
+		// check preview numbers
 		if (self.config.nPreviewNum > 2) {
 			self.config.nPreviewNum = 0;
 		}
 		if (self.config.nPreviewNum < 0) {
 			self.config.nPreviewNum = 2;
 		}
-		if (sDirection == 'left' && self.config.nPreviewNum === 0) {
-			$('.board-views div.preview-side').show();
+		// set classes
+		if (self.config.nPreviewNum === 0) {
+			$('#board-display .board-preview').addClass('top');
 		}
-		if (sDirection == 'left' && self.config.nPreviewNum == 2) {
-			$('.board-views div.preview-top').show();
+		if (self.config.nPreviewNum === 1) {
+			$('#board-display .board-preview').addClass('side');
 		}
-		if (sDirection == 'left' && self.config.nPreviewNum == 1) {
-			$('.board-views div.preview-base').show();
-			// make sure knifecut displays correctly
-			self.updateBoardDisplay();
+		if (self.config.nPreviewNum === 2) {
+			$('#board-display .board-preview').addClass('base');
 		}
-		if (sDirection == 'right' && self.config.nPreviewNum == 1) {
-			$('.board-views div.preview-base').show();
-			// make sure knifecut displays correctly
-			self.updateBoardDisplay();
-		}
-		if (sDirection == 'right' && self.config.nPreviewNum == 2) {
-			$('.board-views div.preview-top').show();
-		}
-		if (sDirection == 'right' && self.config.nPreviewNum === 0) {
-			$('.board-views div.preview-side').show();
-		}
+		// make sure knifecut displays correctly
+		self.updateBoardDisplay();
 	},
 	boardPreviewSet: function (nSlideNum) {
 		var self = this;
-
-		$('.board-views div.preview-top').hide();
-		$('.board-views div.preview-side').hide();
-		$('.board-views div.preview-base').hide();
-		$('#board-display .board-preview .board-menu-left-button').show();
-		$('#board-display .board-preview .board-menu-right-button').show();
-
-		// reset board view position
-		$('.board-views div.preview-side').css('left', '0px');
-		$('.board-views div.preview-base').css('left', '0px');
-
+		$('#board-display .board-preview').removeClass('top side base all');
+		// hide and show for desktop based on step
 		if (nSlideNum === 0) {
-			$('#board-display').hide();
+			$('#board-display').addClass('hide');
 		} else {
-			$('#board-display').show();
+			$('#board-display').removeClass('hide');
 		}
-		var boardWidth;
-		if (nSlideNum == 1 || nSlideNum == 2 || nSlideNum == 6) {
-			$('.board-views div.preview-top').show();
-			$('.board-views div.preview-side').hide();
-			$('.board-views div.preview-base').hide();
-			boardWidth = $('.board-views div.preview-top').width();
-			self.config.nPreviewNum = 2;
-		} else if (nSlideNum == 3) {
-			$('.board-views div.preview-top').hide();
-			$('.board-views div.preview-side').show();
-			$('.board-views div.preview-base').hide();
-			boardWidth = $('.board-views div.preview-side').width();
+		if (nSlideNum === 0 || nSlideNum === 1 || nSlideNum === 2 || nSlideNum === 6) {
+			$('#board-display .board-preview').addClass('top');
 			self.config.nPreviewNum = 0;
-		} else if (nSlideNum == 4 || nSlideNum == 5) {
-			$('.board-views div.preview-top').hide();
-			$('.board-views div.preview-side').hide();
-			$('.board-views div.preview-base').show();
-			boardWidth = $('.board-views div.preview-base').width();
+		} else if (nSlideNum == 3) {
+			$('#board-display .board-preview').addClass('side');
 			self.config.nPreviewNum = 1;
+		} else if (nSlideNum == 4 || nSlideNum == 5) {
+			$('#board-display .board-preview').addClass('base');
+			self.config.nPreviewNum = 2;
 		} else if (nSlideNum == 7) {
-			$('.board-views div.preview-top').show();
-			$('.board-views div.preview-side').show();
-			$('.board-views div.preview-base').show();
-			$('.board-views div.preview-side').css('left', $('.board-views div.preview-top').width() - 40);
-			$('.board-views div.preview-base').css('left', $('.board-views div.preview-top').width() * 2 - 60);
-			$('#board-display .board-preview .board-menu-left-button').hide();
-			$('#board-display .board-preview .board-menu-right-button').hide();
-		}
-		// position board
-		if (nSlideNum == 7) {
-			$('#board-display').css('left', '50%');
-		} else {
-			// center board within left 30% minus 90px for left menu
-			var leftPosition = Math.floor((($(window).width() * 0.3 - 90) - boardWidth) / 2) + 90;
-			$('#board-display').css('left', leftPosition);
+			$('#board-display .board-preview').addClass('all');
 		}
 	},
 	advanceArrowShow: function () {
@@ -1337,11 +1320,12 @@ LIBTECH.snowboardbuilder = {
 			self.advanceArrowHide();
 			$('#left-menu').removeClass('open');
 		});
-		TweenMax.to($('#advance-arrow'), 0.3, {right: "0px"});
+		$('#advance-arrow').addClass('show');
 	},
 	advanceArrowHide: function () {
 		var self = this;
-		TweenMax.to($('#advance-arrow'), 0.3, {right: "-40px"});
+		// hide arrow
+		$('#advance-arrow').removeClass('show');
 		// remove click/touch listener
 		$('#advance-arrow').off("click touch");
 	},
@@ -1399,36 +1383,68 @@ LIBTECH.snowboardbuilder = {
 		switch (nSection) {
 			case 0:
 				$('#header .top-section').html("SELECT BOARD - SHAPE &amp; CONTOUR");
-				$('.pager-label').html("SHAPE");
+				$('#header .pagination .label').html("SHAPE");
 				break;
 			case 1:
 				$('#header .top-section').html("SELECT SIZE - BOARD LENGTH");
-				$('.pager-label').html("SIZE");
+				$('#header .pagination .label').html("SIZE");
 				break;
 			case 2:
 				$('#header .top-section').html("SELECT TOP - TOP SHEET ART");
-				$('.pager-label').html("TOP");
+				$('#header .pagination .label').html("TOP");
 				break;
 			case 3:
 				$('#header .top-section').html("SELECT SIDE - SIDEWALL COLOR");
-				$('.pager-label').html("SIDE");
+				$('#header .pagination .label').html("SIDE");
 				break;
 			case 4:
 				$('#header .top-section').html("SELECT BASE - BASE ART");
-				$('.pager-label').html("BASE");
+				$('#header .pagination .label').html("BASE");
 				break;
 			case 5:
 				$('#header .top-section').html("SELECT BASE - CUSOMIZED KNIFECUT");
-				$('.pager-label').html("BASE");
+				$('#header .pagination .label').html("BASE");
 				break;
 			case 6:
 				$('#header .top-section').html("SELECT BADGE - PERSONALIZE YOUR BADGE");
-				$('.pager-label').html("BADGE");
+				$('#header .pagination .label').html("BADGE");
 				break;
 			case 7:
 				$('#header .top-section').html("BUY YOUR SNOWBOARD");
-				$('.pager-label').html("BUY");
+				$('#header .pagination .label').html("BUY");
 				break;
+		}
+	},
+	buildReciepts: function() {
+		var self = this;
+		// set shape
+		$('#mobile-receipt .shape span, .step7-buy .board-reciept .shape span').html(self.getBoardShape());
+		$('#mobile-receipt .shape-cost, .step7-buy .board-reciept .shape-cost').html("+ $" + self.getBoardPrice() + " " + self.config.bbRegionCurrency);
+		// set size
+		$('#mobile-receipt .size span, .step7-buy .board-reciept .size span').html(self.getBoardSize());
+		$('#mobile-receipt .size-cost, .step7-buy .board-reciept .size-cost').html("+ $0.00 " + self.config.bbRegionCurrency);
+		// set top
+		$('#mobile-receipt .top span, .step7-buy .board-reciept .top span').html(self.getBoardArtist() + " " + self.getBoardDescription());
+		$('#mobile-receipt .top-cost, .step7-buy .board-reciept .top-cost').html("+ $0.00 " + self.config.bbRegionCurrency);
+		// set sidewall
+		$('#mobile-receipt .sidewall span, .step7-buy .board-reciept .sidewall span').html(self.getBoardSidewall());
+		$('#mobile-receipt .sidewall-cost, .step7-buy .board-reciept .sidewall-cost').html("+ $0.00 " + self.config.bbRegionCurrency);
+		// set base
+		if (self.config.isKnifecut) {
+			$('#mobile-receipt .base, .step7-buy .board-reciept .base').html("KNIFECUT BASE - <span>" + self.getBoardBaseDesc() + "</span><div class=\"text-color\">TEXT COLOR - <span>" + self.getCustomTextColor() + "</span></div><div class=\"base-color\">BASE COLOR - <span>" + self.getCustomBaseColor() + "</span></div>");
+			$('#mobile-receipt .base-cost, .step7-buy .board-reciept .base-cost').html("+ $" + self.getKnifeCutPrice().toFixed(2) + " " + self.config.bbRegionCurrency);
+		} else {
+			$('#mobile-receipt .base, .step7-buy .board-reciept .base').html("BASE - <span>" + self.getBoardBase() + " " + self.getBoardBaseDesc() + "</span>");
+			$('#mobile-receipt .base-cost, .step7-buy .board-reciept .base-cost').html("+ $0.00 " + self.config.bbRegionCurrency);
+		}
+		// set badge
+		$('#mobile-receipt .badge span, .step7-buy .board-reciept .badge span').html(self.getBoardBadge());
+		$('#mobile-receipt .badge-cost, .step7-buy .board-reciept .badge-cost').html("+ $0.00 " + self.config.bbRegionCurrency);
+		// set subtotal
+		if (self.config.isKnifecut) {
+			$('#mobile-receipt .subtotal-cost, .step7-buy .board-reciept .subtotal-cost').html("$" + parseFloat(self.getBoardPrice() + self.getKnifeCutPrice()).toFixed(2) + " " + self.config.bbRegionCurrency);
+		} else {
+			$('#mobile-receipt .subtotal-cost, .step7-buy .board-reciept .subtotal-cost').html("$" + self.getBoardPrice() + " " + self.config.bbRegionCurrency);
 		}
 	},
 	createCarousel: function (container) {
@@ -1445,7 +1461,7 @@ LIBTECH.snowboardbuilder = {
 		});
 		$(container + ' .carousel ul').css('width', carouselWidth);
 		// set the height of the carousel
-		$(container).first().find(".carousel").height($(container).first().find(".carousel ul").outerHeight() + 20); // add 20 because of scaleup
+		// resize of .carousel height happens in resize event
 		// create dragable list of board shape images
 		containerWidth = $(container).width();
 		containerCenter = containerWidth / 2;
@@ -1532,19 +1548,20 @@ LIBTECH.snowboardbuilder = {
 		}
 		// method for setting the carousel selection
 		function processSelection(listItem) {
-			var selectedImage, nNum, price;
+			var selectedImage, nNum, price, $infoBox;
 			selectedImage = $(listItem).find('img');
 			self.confirmedShapeSelection = true;
-
+			$infoBox = $('#info-box');
+			$infoBox.removeClass('step1 step3 step4 step5');
+			// Check which step we're viewing
 			if (self.config.nCurSlide === 0) {
 				// STEP 1 - BOARD
 				var theContour, splitArray;
 				// get the shape number
-				nNum = selectedImage.attr("shapenum") - 1;
+				nNum = selectedImage.attr("data-shapenum") - 1;
 				self.config.globalNum = nNum;
-				// set the correct hover display items to be visible
-				$('#info-box .contour, #info-box h4, #info-box .sizes').css('display', 'block');
-				$('#info-box h5').css('display', 'none');
+				// set the correct info box display items
+				$infoBox.addClass('step1');
 				// board attributes
 				theContour = boardData[nNum].Contour;
 				splitArray = boardData[nNum].Sizes;
@@ -1580,12 +1597,11 @@ LIBTECH.snowboardbuilder = {
 			} else if (self.config.nCurSlide === 2) {
 				// STEP 3 - TOP
 				var imgName, imgDesc, imgIndex;
-				// set the correct hover display items to be visible
-				$('#info-box .contour, #info-box h4, #info-box .sizes').css('display', 'none');
-				$('#info-box h5').css('display', 'block');
+				// set the correct info box display items
+				$infoBox.addClass('step3');
 				// top sheet attributes
-				imgName = selectedImage.attr("artist");
-				imgDesc = selectedImage.attr("desc");
+				imgName = selectedImage.attr("data-artist");
+				imgDesc = selectedImage.attr("data-desc");
 				imgIndex = selectedImage.attr("data-count") - 1;
 				// set the appropriate display copy
 				$('#info-box h2').html(boardDescriptionData[imgIndex].Artist);
@@ -1595,29 +1611,19 @@ LIBTECH.snowboardbuilder = {
 				self.setBoardTop(selectedImage);
 			} else if (self.config.nCurSlide === 3) {
 				// STEP 4 - SIDEWALL
-				// set the correct hover display items to be visible
-				$('#info-box .contour, #info-box h4, #info-box .sizes').css('display', 'none');
-				$('#info-box h5').css('display', 'block');
-				if (!self.config.isMobile) {
-					$('#info-box h2').html(selectedImage.attr("color").toUpperCase());
-					$('#info-box h3').html("SWIRLED SIDEWALL");
-					$('#info-box h5').html("A Lib Tech innovation. Twice as sintered as any other sidewall. Tough, fast, hard, waterproof, handsome and light. NO TOXIC ABS!");
-				} else {
-					$('#info-box div, #info-box h4, #info-box h3').css('display', 'none');
-					$('#info-box h2').html(selectedImage.attr("color").toUpperCase());
-				}
+				// set the correct info box display items
+				$infoBox.addClass('step4');
+				$('#info-box h2').html(selectedImage.attr("data-color").toUpperCase());
 				self.setBoardSidewall(selectedImage);
 				self.boardPreviewSet(3);
 			} else if (self.config.nCurSlide === 4) {
 				// STEP 5a - BASE
 				var imgName, imgDesc, imgIndex;
-				$('#info-box .contour, #info-box h4, #info-box .sizes').css('display', 'none');
-				$('#info-box, #info-box h5').css('display', 'block');
-
-				imgName = selectedImage.attr("artist");
-				imgDesc = selectedImage.attr("desc");
+				// set the correct info box display items
+				$infoBox.addClass('step5');
+				imgName = selectedImage.attr("data-artist");
+				imgDesc = selectedImage.attr("data-desc");
 				imgIndex = selectedImage.attr("data-count");
-
 				if (imgIndex >= 1) {
 					$('#info-box h2').html(boardDescriptionData[imgIndex - 1].Artist);
 					$('#info-box h3').html(boardDescriptionData[imgIndex - 1].Type + " " + imgDesc + " " + boardDescriptionData[imgIndex - 1].Color);
@@ -1631,7 +1637,7 @@ LIBTECH.snowboardbuilder = {
 				self.boardPreviewSet(4);
 			}
 			// show the info box
-			$('#info-box').addClass('show');
+			$infoBox.addClass('show');
 			// remove old selections
 			$(container + " .carousel ul li img").each(function () {
 				$(this).removeClass('selectedShape');
@@ -1875,7 +1881,6 @@ LIBTECH.snowboardbuilder = {
 	// STEP 6 - BADGE
 	step6Init: function () {
 		var self = this;
-
 		// input text listeners
 		$('.board-badge-input-holder #board-badge-input').css('visibility', 'visible').on('input.step6', function () {
 			var maxFS, inputValue;
@@ -1888,9 +1893,6 @@ LIBTECH.snowboardbuilder = {
 			} else if (inputValue.length > 13) {
 				maxFS = "175%";
 				$('.step6-badge .board-badge .badge-text').css('font-size', maxFS);
-				//var the1Line = this.value.slice(0, 13);
-				//var the2Line = this.value.slice(13);
-				//var theLines = the1Line + "<br />" + the2Line;
 				$('.step6-badge .board-badge .badge-text').html(inputValue);
 			}
 			// set menu and display arrow if user begins to enter text
@@ -1938,43 +1940,43 @@ LIBTECH.snowboardbuilder = {
 	// STEP 7 - BUY
 	step7Init: function () {
 		var self = this;
-		// fix scroll
-		$('.thereciept-scroll').css('height', $(window).height());
 		// reset view
+		$('body').addClass('step7');
 		// hide
-		$(".step7-buy .thereciept .terms").css('display', 'none');
-		$(".step7-buy .thereciept .terms-international").css('display', 'none');
-		$(".step7-buy .thereciept .cart-error").css('display', 'none');
-		$(".step7-buy .thereciept .buttonholder .agree-button").css('display', 'none');
+		$(".step7-buy .terms").css('display', 'none');
+		$(".step7-buy .terms-international").css('display', 'none');
+		$(".step7-buy .cart-error").css('display', 'none');
+		$(".step7-buy .buttonholder .agree-button").css('display', 'none');
 		// show
-		$(".step7-buy .thereciept .board-reciept").css('display', 'block');
-		$(".step7-buy .thereciept .buttonholder .buy-button").css('display', 'block');
-		
+		$(".step7-buy .board-reciept").css('display', 'block');
+		$(".step7-buy .buttonholder .buy-button").css('display', 'block');
+		// functions
 		function showTerms() {
+			$('body').addClass('accept-buy');
 			// hide
-			$(".step7-buy .thereciept .buttonholder .buy-button").css('display', 'none');
-			$(".step7-buy .thereciept .board-reciept").css('display', 'none');
-			$(".step7-buy .thereciept .cart-error").css('display', 'none');
+			$(".step7-buy .buttonholder .buy-button").css('display', 'none');
+			$(".step7-buy .board-reciept").css('display', 'none');
+			$(".step7-buy .cart-error").css('display', 'none');
 			// show
-			$(".step7-buy .thereciept .buttonholder .agree-button").css('display', 'block');
+			$(".step7-buy .buttonholder .agree-button").css('display', 'block');
 			// determine which terms to show based on region
 			if(self.bbGetRegion() == 'US' || self.bbGetRegion() == 'CA') {
-				$(".step7-buy .thereciept .terms").css('display', 'block');
-				$(".step7-buy .thereciept .terms-international").css('display', 'none');
+				$(".step7-buy .terms").css('display', 'block');
+				$(".step7-buy .terms-international").css('display', 'none');
 			} else {
-				$(".step7-buy .thereciept .terms-international").css('display', 'block');
-				$(".step7-buy .thereciept .terms").css('display', 'none');
+				$(".step7-buy .terms-international").css('display', 'block');
+				$(".step7-buy .terms").css('display', 'none');
 			}
 		}
 		function showError(sError) {
 			// hide
-			$(".step7-buy .thereciept .board-reciept").css('display', 'none');
-			$(".step7-buy .thereciept .terms").css('display', 'none');
-			$(".step7-buy .thereciept .terms-international").css('display', 'none');
-			$(".step7-buy .thereciept .buttonholder .agree-button").css('display', 'none');
+			$(".step7-buy .board-reciept").css('display', 'none');
+			$(".step7-buy .terms").css('display', 'none');
+			$(".step7-buy .terms-international").css('display', 'none');
+			$(".step7-buy .buttonholder .agree-button").css('display', 'none');
 			// show
-			$(".step7-buy .thereciept .cart-error").css('display', 'block');
-			$(".step7-buy .thereciept .buttonholder .buy-button").css('display', 'block');
+			$(".step7-buy .cart-error").css('display', 'block');
+			$(".step7-buy .buttonholder .buy-button").css('display', 'block');
 		}
 		function isComplete() {
 			if (self.getBoardShape() !== "" && self.getBoardShape() !== undefined &&
@@ -1990,62 +1992,41 @@ LIBTECH.snowboardbuilder = {
 		}
 		function isNotComplete() {
 			if (self.getBoardShape() === "" || self.getBoardShape() === undefined) {
-				highlightRed(1);
+				alertDesktop(1);
+				alertMobile(0);
 			}
 			if (self.getBoardSize() === "" || self.getBoardSize() === undefined) {
-				highlightRed(2);
+				alertDesktop(2);
+				alertMobile(1);
 			}
 			if (self.getBoardTop() === "" || self.getBoardTop() === undefined) {
-				highlightRed(3);
+				alertDesktop(3);
+				alertMobile(2);
 			}
 			if (self.getBoardSidewall() === "" || self.getBoardSidewall() === undefined) {
-				highlightRed(4);
+				alertDesktop(4);
+				alertMobile(3);
 			}
 			if (self.getBoardBase() === "" || self.getBoardBase() === undefined || self.getBoardBaseDesc() === "" || self.getBoardBaseDesc() === undefined) {
 				if(self.getBoardBase() !== "Custom") {
-					highlightRed(5);
+					alertDesktop(5);
+					alertMobile(4);
 				} else {
-					highlightRed('5b');
+					alertDesktop('5b');
+					alertMobile(5);
 				}
 			}
 			if (self.getBoardBadge() === "" || self.getBoardBadge() === undefined) {
-				highlightRed(6);
+				alertDesktop(6);
+				alertMobile(6);
 			}
 			$('#left-menu').addClass('open');
 		}
-		function highlightRed(nNum) {
+		function alertDesktop(nNum) {
 			$('#left-menu').find('.menu' + (nNum)).addClass('alert');
 		}
-		function buildReciept() {
-			// set shape
-			$('.step7-buy .thereciept .board-reciept .shape span').html(self.getBoardShape());
-			$('.step7-buy .thereciept .board-reciept .shape-cost').html("+ $" + self.getBoardPrice() + " " + self.config.bbRegionCurrency);
-			// set size
-			$('.step7-buy .thereciept .board-reciept .size span').html(self.getBoardSize());
-			$('.step7-buy .thereciept .board-reciept .size-cost').html("+ $0.00 " + self.config.bbRegionCurrency);
-			// set top
-			$('.step7-buy .thereciept .board-reciept .top span').html(self.getBoardArtist() + " " + self.getBoardDescription());
-			$('.step7-buy .thereciept .board-reciept .top-cost').html("+ $0.00 " + self.config.bbRegionCurrency);
-			// set sidewall
-			$('.step7-buy .thereciept .board-reciept .sidewall span').html(self.getBoardSidewall());
-			$('.step7-buy .thereciept .board-reciept .sidewall-cost').html("+ $0.00 " + self.config.bbRegionCurrency);
-			// set base
-			if (self.config.isKnifecut) {
-				$('.step7-buy .thereciept .board-reciept .base').html("KNIFECUT BASE - <span>" + self.getBoardBaseDesc() + "</span><div class=\"text-color\">TEXT COLOR - <span>" + self.getCustomTextColor() + "</span></div><div class=\"base-color\">BASE COLOR - <span>" + self.getCustomBaseColor() + "</span></div>");
-				$('.step7-buy .thereciept .board-reciept .base-cost').html("+ $" + self.getKnifeCutPrice() + " " + self.config.bbRegionCurrency);
-			} else {
-				$('.step7-buy .thereciept .board-reciept .base').html("BASE - <span>" + self.getBoardBase() + " " + self.getBoardBaseDesc() + "</span>");
-				$('.step7-buy .thereciept .board-reciept .base-cost').html("+ $0.00 " + self.config.bbRegionCurrency);
-			}
-			// set badge
-			$('.step7-buy .thereciept .board-reciept .badge span').html(self.getBoardBadge());
-			$('.step7-buy .thereciept .board-reciept .badge-cost').html("+ $0.00 " + self.config.bbRegionCurrency);
-			// set subtotal
-			if (self.config.isKnifecut) {
-				$('.step7-buy .thereciept .board-reciept .subtotal-cost').html("$" + parseFloat(self.getBoardPrice() + self.getKnifeCutPrice()).toFixed(2) + " " + self.config.bbRegionCurrency);
-			} else {
-				$('.step7-buy .thereciept .board-reciept .subtotal-cost').html("$" + self.getBoardPrice() + " " + self.config.bbRegionCurrency);
-			}
+		function alertMobile(nNum) {
+			$('#header .pagination .controls .bx-pager-item').eq(nNum).addClass('alert');
 		}
 		function boardUrl() {
 			var boardBuilderURL = "http://www.lib-tech.com/diy/";
@@ -2067,9 +2048,8 @@ LIBTECH.snowboardbuilder = {
 			//boardBuilderURL = encodeURIComponent(boardBuilderURL);
 			return boardBuilderURL;
 		}
-		
 		// Listen for user to click buy
-		$('.step7-buy .thereciept .buttonholder .buy-button').on('click.step7', function () {
+		$('.step7-buy .buttonholder .buy-button').on('click.step7', function () {
 			if ($('body').hasClass('page-template-page-snowboard-builder-share-php')) {
 				// share page
 				showTerms();
@@ -2083,7 +2063,7 @@ LIBTECH.snowboardbuilder = {
 			}
 		});
 		// Listen for user to click agree
-		$('.step7-buy .thereciept .buttonholder .agree-button').on('click.step7', function () {
+		$('.step7-buy .buttonholder .agree-button').on('click.step7', function () {
 			var top = self.getBoardArtist() + ' ' + self.getBoardDescription();
 			var partNum = boardData[self.config.globalNum].BaseSku;
 			if (self.config.isKnifecut) {
@@ -2139,7 +2119,7 @@ LIBTECH.snowboardbuilder = {
 			}
 		});
 		// Social Links
-		$('.step7-buy .thereciept .buttonholder .social-icons .socialfb').on('click.step7', function () {
+		$('.step7-buy .buttonholder .social-icons .socialfb').on('click.step7', function () {
 			window.open(
 				'https://www.facebook.com/sharer/sharer.php?u='+ encodeURIComponent(boardUrl()),
 				'facebook-share-dialog',
@@ -2147,7 +2127,7 @@ LIBTECH.snowboardbuilder = {
 			);
 			return false;
 		});
-		$('.step7-buy .thereciept .buttonholder .social-icons .socialtw').on('click.step7', function () {
+		$('.step7-buy .buttonholder .social-icons .socialtw').on('click.step7', function () {
 			window.open(
 				'http://twitter.com/share?url=' + encodeURIComponent(boardUrl()) + '&text=' + encodeURIComponent("I built my own @libtechnologies #snowboard with the DIY Board Builder! #LibTechDIY -"),
 				'twitter-share-dialog',
@@ -2155,7 +2135,7 @@ LIBTECH.snowboardbuilder = {
 			);
 			return false;
 		});
-		$('.step7-buy .thereciept .buttonholder .social-icons .socialg').on('click.step7', function () {
+		$('.step7-buy .buttonholder .social-icons .socialg').on('click.step7', function () {
 			window.open(
 				"https://plus.google.com/share?url=" + encodeURIComponent(boardUrl()),
 				'gplus-share-dialog',
@@ -2163,30 +2143,32 @@ LIBTECH.snowboardbuilder = {
 			);
 			return false;
 		});
-		$('.step7-buy .thereciept .buttonholder .social-icons .sociale').on('click.step7', function () {
+		$('.step7-buy .buttonholder .social-icons .sociale').on('click.step7', function () {
 			email = "mailto:?subject=" + encodeURIComponent("I built my own Lib Tech Snowboard with the DIY Board Builder!") + "&body=" + encodeURIComponent(" Check out my personalized DIY Lib Tech Snowboard:") +  "%20%0D%0A%20" + encodeURIComponent(boardUrl()) + "%20%0D%0A%20" + encodeURIComponent("Build your dream snowboard!");
 			window.open(email);
 		});
 		// check if iPad... if so remove read only feature of input
 		if (self.config.isIpad) {
-			$('.step7-buy .thereciept .buttonholder .share-url #share-url-input').removeAttr('readonly');
+			$('.step7-buy .buttonholder .share-url #share-url-input').removeAttr('readonly');
 		}
 		// select the field when clicked or touched
-		$('.step7-buy .thereciept .buttonholder .share-url #share-url-input').css('visibility', 'visible').on('click.step7 touch.step7', function () {
+		$('.step7-buy .buttonholder .share-url #share-url-input').css('visibility', 'visible').on('click.step7 touch.step7', function () {
+			$(this).selectRange(0,9999); // call added method to jquery, standard select() doesn't work on mobile devices
 			$(this).selectRange(0,9999); // call added method to jquery, standard select() doesn't work on mobile devices
 		});
-		$('.step7-buy .thereciept .buttonholder .share-url #share-url-input').val(boardUrl());
+		$('.step7-buy .buttonholder .share-url #share-url-input').val(boardUrl());
 		self.advanceArrowHide();
-		buildReciept();
+		self.buildReciepts();
 	},
 	step7Uninit: function () {
-		$('.step7-buy .thereciept .buttonholder .buy-button').off('click.step7');
-		$('.step7-buy .thereciept .buttonholder .agree-button').off('click.step7');
-		$('.step7-buy .thereciept .buttonholder .social-icons .socialfb').off('click.step7');
-		$('.step7-buy .thereciept .buttonholder .social-icons .socialtw').off('click.step7');
-		$('.step7-buy .thereciept .buttonholder .social-icons .socialg').off('click.step7');
-		$('.step7-buy .thereciept .buttonholder .social-icons .sociale').off('click.step7');
-		$('.step7-buy .thereciept .buttonholder .share-url #share-url-input').css('visibility', 'hidden').off('click.step7 touch.step7');
+		$('.step7-buy .buttonholder .buy-button').off('click.step7');
+		$('.step7-buy .buttonholder .agree-button').off('click.step7');
+		$('.step7-buy .buttonholder .social-icons .socialfb').off('click.step7');
+		$('.step7-buy .buttonholder .social-icons .socialtw').off('click.step7');
+		$('.step7-buy .buttonholder .social-icons .socialg').off('click.step7');
+		$('.step7-buy .buttonholder .social-icons .sociale').off('click.step7');
+		$('.step7-buy .buttonholder .share-url #share-url-input').css('visibility', 'hidden').off('click.step7 touch.step7');
+		$('body').removeClass('step7 accept-buy');
 	},
 	setCurrentSection: function () {
 		var self = this;
@@ -2195,14 +2177,8 @@ LIBTECH.snowboardbuilder = {
 		self.config.bFirstPlay = false;
 		self.boardPreviewSet(self.config.nCurSlide);
 		// menu stuff
-		$(".bx-pager-item").removeClass('black50');
-		$(".pagerTop .active").parent().addClass('black50');
-		// show header util nav on mobile
-		if (self.config.nCurSlide !== 0 && self.config.isMobile) {
-			$("#header .top-two").css('display', 'block');
-		} else {
-			$("#header .top-two").css('display', 'none');
-		}
+		$("#header .pagination .controls .bx-pager-item").removeClass('selected');
+		$("#header .pagination .controls .bx-pager-item .active").parent().addClass('selected');
 		// set default snowboard shape
 		if (self.getBoardShape() === "" || self.getBoardShape() === undefined && !self.confirmedShapeSelection) {
 			self.setBoardShape($("#defaultShapeImage"));
@@ -2247,86 +2223,126 @@ LIBTECH.snowboardbuilder = {
 			$("#left-menu").find('.menu' + (self.config.nCurSlide + 1)).addClass('selected');
 			$("#left-menu").find('.menu' + (self.config.nCurSlide + 1)).removeClass('alert');
 		}
+		$('#header .pagination .controls .bx-pager-item').eq(self.config.nCurSlide).removeClass('alert');
 		// check resize
-		if (self.config.isMobile) {
-			self.resizeForMobile();
-		} else {
-			self.resizeForDesktop();
-		}
+		self.resizeLayout();
 	}, // END setCurrentSection
-	resizeForDesktop: function () {
-		var self, windowHeight, windowWidth, headerHeight, shapeWidth, shapeHeight, aspectRatio, newHeight, newWidth, carouselWidth, carouselHeight;
+	resizeLayout: function () {
+		var self, windowHeight, windowWidth, headerHeight, shapeWidth, shapeHeight, aspectRatio, newHeight, newWidth, carouselWidth, carouselHeight, boardDisplayWidth, boardDisplayHeight, aspectRatio, newHeight, newWidth, maxWidth, arrowY;
 		self = this;
 		windowHeight = $(window).height();
 		windowWidth = $(window).width();
-		headerHeight = $('#header .top-logo img').height();
-
-		function resizeBoardDisplay() {
-			var boardDisplayWidth, boardDisplayHeight, aspectRatio, newHeight, newWidth, maxWidth, arrowY;
-			// check which view we're showing to the user
-			if ($('#board-display .board-preview .board-views .preview-side').css('display') == 'block') {
-				boardDisplayWidth = $('#board-display .board-preview .board-views .preview-side .board .board-image .sidewall-bottom').width();
-				boardDisplayHeight = $('#board-display .board-preview .board-views .preview-side .board .board-image .sidewall-bottom').height();
-			} else if ($('#board-display .board-preview .board-views .preview-base').css('display') == 'block') {
-				boardDisplayWidth = $('#board-display .board-preview .board-views .preview-base .board .board-image .base').width();
-				boardDisplayHeight = $('#board-display .board-preview .board-views .preview-base .board .board-image .base').height();
-			} else {
-				boardDisplayWidth = $('#board-display .board-preview .board-views .preview-top .board .board-image img').width();
-				boardDisplayHeight = $('#board-display .board-preview .board-views .preview-top .board .board-image img').height();
-			}
-			aspectRatio = boardDisplayWidth / boardDisplayHeight;
-			newHeight = windowHeight - headerHeight;
-			newWidth = Math.floor(newHeight * aspectRatio);
-			maxWidth = Math.floor(windowWidth * 0.2);
-			// make sure board display doesn't exceed max width
-			if(newWidth > maxWidth) {
-				newWidth = maxWidth;
-			}
-			$('#board-display').width(newWidth);
-			// figure out arrow posiiton
-			if ($('#board-display .board-preview .board-views .preview-side').css('display') == 'block') {
-				arrowY = $('#board-display .board-preview .board-views .preview-side .board .board-image .sidewall-bottom').height() / 2;
-			} else if ($('#board-display .board-preview .board-views .preview-base').css('display') == 'block') {
-				arrowY = Math.floor($('#board-display .board-preview .board-views .preview-base .board .board-image .base').height() / 2 - 25);
-			} else {
-				arrowY = Math.floor($('#board-display .board-preview .board-views .preview-top .board .board-image img').height() / 2 - 25);
-			}
-			// set arrow position
-			$('#board-display .board-preview .board-menu-left-button, #board-display .board-preview .board-menu-right-button').css('top', arrowY);
-
-			if (self.config.$mainSlider.getCurrentSlide() != 7) {
-				// center board within left 30% minus 90px for left menu
-				var leftPosition = Math.floor(((windowWidth * 0.3 - 90) - newWidth) / 2) + 90;
-				$('#board-display').css('left', leftPosition);
-			} else {
-				// adjust positioning of other views
-				$('.board-views div.preview-side').css('left', $('.board-views div.preview-top').width() - 40);
-				$('.board-views div.preview-base').css('left', Math.floor($('.board-views div.preview-top').width() * 2 - 60));
-			}
+		boardDisplayWidth = $('#board-display .board-preview .board-views .preview-top .board .board-image img').width();
+		boardDisplayHeight = $('#board-display .board-preview .board-views .preview-top .board .board-image img').height();
+		aspectRatio = boardDisplayWidth / boardDisplayHeight;
+		// check size settings
+		if ($('#header .top-section').css('display') == 'none') {
+			self.config.isMobile = true;
+		} else {
+			self.config.isMobile = false;
+		}
+		// kill menus
+		self.flyOutMenuUnInit();
+		self.mobileMenuUnInit();
+		// reset pagination selection, removes on resize
+		$("#header .pagination .controls .bx-pager-item .active").parent().addClass('selected');
+		// make sure knifecut pager item is shown if resize fires
+		if(self.getBoardBase() == "Custom") {
+			$('#header .pagination .controls .bx-pager-item:eq(5)').addClass('show');
+		}
+		// set specific variables based on size
+		if (self.config.isMobile) {
+			headerHeight = $('#header').height();
+		} else {
+			headerHeight = $('#header .logo').height();
 		}
 		if ($('body').hasClass('page-template-page-snowboard-builder-php')) {
-			// make sure list display is the correct size for the section and parent list item
-			$('.step1-board, .step2-size, .step3-top, .step4-sidewall, .step5-base, .step5b-base-text, .step6-badge, .step7-buy').css('height', windowHeight).parent().css('height', windowHeight);
-			// we're in the builder, not share
-			resizeBoardDisplay();
-			// Resize carousel images displayed
+			// VIEWING BUILDER
+			if (self.config.isMobile) {
+				// ON MOBILE
+				newHeight = windowHeight - headerHeight - $('#board-display .board-name').outerHeight() - 20;
+				newWidth = Math.floor(newHeight * aspectRatio);
+				// reinit mobile
+				self.mobileMenuInit();
+				// make sure list display is the correct size for the section and parent list item
+				$('.step1-board, .step2-size, .step3-top, .step4-sidewall, .step5-base, .step5b-base-text, .step6-badge, .step7-buy').css('height', windowHeight - headerHeight).parent().css('height', windowHeight - headerHeight);
+				// RESIZE MOBILE BOARD DISPLAY
+				if (self.config.$mainSlider.getCurrentSlide() != 7) {
+					maxWidth = $('#board-display').width(); // displayed within flyout
+				} else {
+					maxWidth = windowWidth / 4; // find 50% of display, divide that by 2... only showing top and bottom
+				}
+				// make sure board display doesn't exceed max width
+				if(newWidth > maxWidth) {
+					newWidth = maxWidth;
+				}
+				arrowY = newHeight / 2 + $('#board-display .board-name').outerHeight();
+				// set arrow position
+				$('#board-display .board-menu-left-button, #board-display .board-menu-right-button').css('top', arrowY);
+				// set container width
+				if (self.config.$mainSlider.getCurrentSlide() != 7) {
+					$('#board-display .board-preview').width(newWidth);
+				} else {
+					// step 7
+					$('#board-display .board-preview').width(newWidth*2);
+				}
+				$('#board-display').removeAttr('style');
+				boardDisplayHeight = windowHeight - headerHeight;
+				$('#board-display, #mobile-receipt').css('height', boardDisplayHeight);
+			} else {
+				// ON DESKTOP
+				newHeight = windowHeight - headerHeight;
+				newWidth = Math.floor(newHeight * aspectRatio);
+				// reinit desktop
+				self.flyOutMenuInit();
+				// make sure list display is the correct size for the section and parent list item
+				$('.step1-board, .step2-size, .step3-top, .step4-sidewall, .step5-base, .step5b-base-text, .step6-badge, .step7-buy').css('height', windowHeight).parent().css('height', windowHeight);
+				// RESIZE DESKTOP BOARD DISPLAY
+				maxWidth = Math.floor(windowWidth * 0.2);
+				// make sure board display doesn't exceed max width
+				if(newWidth > maxWidth) {
+					newHeight = newHeight * (maxWidth/newWidth); // make sure arrows align right vertically if width/height is changed
+					newWidth = maxWidth;
+				}
+				$('#board-display, #board-display .board-preview').width(newWidth);
+				// arrow posiiton
+				arrowY = Math.floor($('#board-display .board-preview .board-views .preview-top .board .board-image img').height() / 2 - 25);
+				arrowY = newHeight / 2;
+				$('#board-display .board-menu-left-button, #board-display .board-menu-right-button').css('top', arrowY);
+				// check slides and do your worst!
+				if (self.config.$mainSlider.getCurrentSlide() != 7) {
+					// center board within left 30% minus 90px for left menu
+					var leftPosition = Math.floor(((windowWidth * 0.3 - 90) - newWidth) / 2) + 90;
+					$('#board-display').css('left', leftPosition);
+				} else {
+					// step 7
+					$('#board-display').removeAttr('style');
+					$('#board-display .board-preview').width(newWidth*3);
+				}
+			}
+			// RESIZE CAROUSEL IMAGES - Both mobile and dekstop
 			shapeWidth = $('.carousel ul li.item img').width();
 			shapeHeight = $('.carousel ul li.item img').height();
 			aspectRatio = shapeWidth / shapeHeight;
-			newHeight = windowHeight - headerHeight - 50; // remove 50 more to account for scale up on click
+			// set carousel height
+			$('.carousel').height(windowHeight - headerHeight + 20); // add 20 because of scaleup
+			// set new height based on device
+			if (self.config.isMobile) {
+				newHeight = windowHeight - headerHeight - 115; // remove 115 more to account for scale up on click
+			} else {
+				newHeight = windowHeight - headerHeight - 20; // remove 20 more to account for scale up on click
+			}
 			newWidth = Math.floor(newHeight * aspectRatio);
 			self.config.carouselItemWidth = newWidth;
 			// set width on carousel images
 			$('.carousel ul li.item img').each(function () {
 				$(this).css('width', newWidth);
 			});
-			// check what step we're on and do appropriate resizing
+			// check what step we're on and reset appropriate carousel
 			if (self.config.$mainSlider.getCurrentSlide() === 0) {
 				// reset carousel
 				self.destroyCarousel('.step1-board');
 				self.createCarousel('.step1-board');
-			} else if (self.config.$mainSlider.getCurrentSlide() == 1) {
-				// self.setBackgroundImage(".step2-size", 2);
 			} else if (self.config.$mainSlider.getCurrentSlide() == 2) {
 				// reset carousel
 				self.destroyCarousel('.step3-top');
@@ -2339,79 +2355,30 @@ LIBTECH.snowboardbuilder = {
 				// reset carousel
 				self.destroyCarousel('.step5-base');
 				self.createCarousel('.step5-base');
-			} else if (self.config.$mainSlider.getCurrentSlide() == 5) {
-				// self.setBackgroundImage(".step5b-base-text", 5);
-			} else if (self.config.$mainSlider.getCurrentSlide() == 6) {
-				// self.setBackgroundImage('.step6-badge', 6);
-			} else if (self.config.$mainSlider.getCurrentSlide() == 7) {
-				// self.setBackgroundImage(".step7-buy", 7);
-				// fix scroll
-				$('.thereciept-scroll').css('height', $(window).height());
 			}
 		} else {
-			// check to see if boards are rendering taller than the window is
 			var boardDisplay = $('#board-display');
-			if(boardDisplay.height() > windowHeight) {
-				var boardDisplayWidth, boardDisplayHeight, maxWidth;
-				boardDisplayWidth = $('#board-display .board-preview .board-views .preview-side .board .board-image .sidewall-bottom').width();
-				boardDisplayHeight = $('#board-display .board-preview .board-views .preview-side .board .board-image .sidewall-bottom').height();
-				aspectRatio = boardDisplayWidth / boardDisplayHeight;
-				newHeight = windowHeight - headerHeight;
+			// VIEWING SHARE
+			if(boardDisplay.css('position') == 'fixed') {
+				// check to see if boards are rendering taller than the window is
+				var maxWidth;
+				newHeight = windowHeight;
 				newWidth = Math.floor(newHeight * aspectRatio);
-				maxWidth = Math.floor(windowWidth * 0.2);
+				maxWidth = Math.floor(windowWidth * 0.5 / 3);
 				// make sure board display doesn't exceed max width
 				if(newWidth > maxWidth) {
 					newWidth = maxWidth;
 				}
-				boardDisplay.width(newWidth);
-				if($('body.diy-share .wrapper #header-share').width() < windowWidth * 0.8) {
-					boardDisplay.css('left', 'auto');
-					boardDisplay.css('right', '30%');
-				} else {
-					boardDisplay.removeAttr('style');
-				}
-				// adjust positioning of other views
-				$('.board-views div.preview-side').css('left', $('.board-views div.preview-top').width() - 40);
-				$('.board-views div.preview-base').css('left', Math.floor($('.board-views div.preview-top').width() * 2 - 60));
+				boardDisplay.width(newWidth*3);
 			} else {
 				boardDisplay.removeAttr('style');
 				$('.board-views div.preview-side').removeAttr('style');
 				$('.board-views div.preview-base').removeAttr('style');
 			}
 		}
+		// update display of rendered board
 		self.updateBoardDisplay();
-	}, // END resizeForDesktop
-	resizeForMobile: function () {
-		return false;
-		/*var self = this;
-		// SMALLER IS LARGER - ADJUST PERCENTAGE
-		var winW = $(window).width() / 3.95;
-		// HIGHER IS SMALLER
-		$('#info-box').css("margin-left", "auto");
-		$('#header').css("width", $(window).innerWidth()); //"13%");
-		$('.pagerTop').css("width", $(window).innerWidth()); //"13%");
-		$('.step1-board').parent().css("width", $(window).innerWidth());
-		if (self.config.$mainSlider.getCurrentSlide() == 7) {
-			//self.calcBuyView();
-		}
-		if (self.config.$mainSlider.getCurrentSlide() == 2) {
-			$('.step3-top').parent().css("height", $(window).innerHeight()); //"13%");
-			$(".step3-top").css('width', $(window).innerWidth());
-		}
-		if (self.config.$mainSlider.getCurrentSlide() == 3) {
-			$(".step4-sidewall #boardSideItems").css('width', $(window).innerWidth());
-		}
-		if (self.config.$mainSlider.getCurrentSlide() == 5) {
-
-		}
-		if (self.config.$mainSlider.getCurrentSlide() == 6) {
-			$(".step6-badge").parent().css('width', $('#region-selector').width());
-			$(".step6-badge").parent().css('height', $('#region-selector').height());
-		}
-		if (self.config.$mainSlider.getCurrentSlide() == 7) {
-			$('.step7-buy').parent().delay(1).css("width", $('.wrapper').width()); //"13%");
-		}*/
-	} // END resizeForMobile
+	} // END resizeLayout
 };
 // wait for final event to fire
 var waitForFinalEvent = (function () {
@@ -2448,10 +2415,3 @@ $.fn.selectRange = function(start, end) {
 		}
 	});
 };
-/*$(document).bind("mobileinit", function (event) {
-	$.extend($.mobile.zoom, {
-		locked: true,
-		enabled: false
-	});
-});*/
-// $(document).bind('touchmove', false);

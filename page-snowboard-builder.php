@@ -18,23 +18,22 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<![endif]-->
 	<title>Lib Tech's DIY Board Builder - Build your dream snowboard!</title>
-	<meta name="title" content="Lib Tech's DIY Board Builder - Build your dream snowboard!" />
 	<meta name="description" content="Lib Tech's DIY Snowboard Builder offers you the opportunity to order a custom, one of a kind, dream snowboard handmade in the USA. Customize your snowboard's shape, size, graphics and more in this online, custom snowboard building tool." />
 	<meta name="keywords" content="custom snowboard, custom built snowboard, custom made snowboard, handmade snowboard, made in the USA, build your own, customize" />
 	<meta name="author" content="Lib Tech" />
-	<meta name="Copyright" content="Copyright Lib Tech <?php echo date('Y'); ?>. All Rights Reserved." />
+	<meta name="copyright" content="Copyright Lib Tech <?php echo date('Y'); ?>. All Rights Reserved." />
 	<!-- FB Meta Data -->
 	<meta property="og:title" content="Lib Tech's DIY Board Builder - Build your dream snowboard!" />
 	<meta property="og:description" content="This dream snowboard project is probably going to cause us some headaches, but you are going to be stoked! Lib Tech's DIY Board Builder offers you the opportunity to order a custom, one of a kind, dream snowboard that will be guided through our experiMENTAL Division’s prototyping process and handcrafted to your specifications in the USA." />
 	<meta property="og:url" content="<?php echo $page_url; ?>" />
-	<meta property="og:image" content="<?php bloginfo('template_directory'); ?>/_/img/bb/social-share.png" />
+	<meta property="og:image" content="<?php bloginfo('template_directory'); ?>/_/img/diy/social-share.png" />
 	<meta property="og:type" content="website" />
 	<meta property="og:site_name" content="Lib Technologies" />
 	<meta property="fb:app_id" content="352899581451617"/>
 	<!-- Google+ Meta Data -->
 	<meta itemprop="name" content="Lib Tech's DIY Board Builder - Build your dream snowboard!" />
 	<meta itemprop="description" content="This dream snowboard project is probably going to cause us some headaches, but you are going to be stoked! Lib Tech's DIY Board Builder offers you the opportunity to order a custom, one of a kind, dream snowboard that will be guided through our experiMENTAL Division’s prototyping process and handcrafted to your specifications in the USA." />
-	<meta itemprop="image" content="<?php bloginfo('template_directory'); ?>/_/img/bb/social-share.png" />
+	<meta itemprop="image" content="<?php bloginfo('template_directory'); ?>/_/img/diy/social-share.png" />
 	<!-- Twitter -->
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:site" content="@libtechnologies">
@@ -48,7 +47,7 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 	<meta name="format-detection" content="telephone=no" />
-	<link rel="apple-touch-icon" href="<?php bloginfo('template_directory'); ?>/_/img/bb/apple-touch-icon-precomposed.png">
+	<link rel="apple-touch-icon" href="<?php bloginfo('template_directory'); ?>/_/img/diy/apple-touch-icon-precomposed.png">
 	<!-- Misc. -->
 	<link rel="profile" href="http://gmpg.org/xfn/11" />
 	<!-- Google Site Verification -->
@@ -65,7 +64,7 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 	<div class="wrapper">
 		<div id="overview">
 			<div class="overview-content">
-				<h1><img src="<?php bloginfo('template_directory'); ?>/_/img/bb/logo-diy.png" alt="Lib Tech DIY Board Builder" /></h1>
+				<h1><img src="<?php bloginfo('template_directory'); ?>/_/img/diy/logo-diy.png" alt="Lib Tech DIY Board Builder" /></h1>
 				<h3><span>Welcome to Lib Tech’s DIY Board Builder!</span> Order a custom one of a kind dream snowboard, and Lib Tech’s Bitchin’ Board Builders will handcraft it to your specifications!</h3>
 				<div class="left-column">
 					<h4>CHOOSE:</h4>
@@ -88,24 +87,27 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 				</div>
 			</div>
 		</div><!-- END #overview -->
-		<div id="header">	
-			<div class="top-two">
-				<p class="p-one">1</p>
-				<p class="p-two">2</p>
-			</div>
-			<div class="top-logo">
-				<a href="/snowboarding/" target="_blank"><img src="<?php bloginfo('template_directory'); ?>/_/img/bb/header-diy-logo.png" alt="Lib Tech DIY Board Builder" /></a>
-			</div>
-			<div class="top-flag">
-				<a href="#region-selector"><img src="<?php bloginfo('template_directory'); ?>/_/img/bb/header-flag.png" alt="Handcrafted in the USA" /></a>
+		<div id="header">
+			<h1 class="logo"><a href="/snowboarding/" target="_blank">Lib Tech DIY Board Builder</a></h1>
+			<div class="flag">
+				<a href="#region-selector">Handcrafted in the USA near Canada</a>
 			</div>
 			<div class="top-section">SELECT BOARD - SHAPE &amp; CONTOUR</div>
-			<div class="top-section-right"></div>
+			<div class="pagination">
+				<div class="label">SHAPE</div>
+				<div class="controls"></div>
+			</div>
+			<div class="mobile-flyout-nav">
+				<ul>
+					<li><a href="#board-display" class="display-board">View Snowboard</a></li>
+					<li><a href="#mobile-receipt" class="display-receipt">View Receipt</a></li>
+				</ul>
+			</div>
 		</div><!-- END #header -->
 		<div id="left-menu">
 		<h1 class="menu-header">Choose Your</h1>
 			<div class="menu-close">
-				<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/menu-close-button.png" width="20" height="20" alt="Close Menu" />
+				<img src="<?php bloginfo('template_directory'); ?>/_/img/diy/menu-close-button.png" width="20" height="20" alt="Close Menu" />
 			</div>
 			<ul class="menu-options">
 				<li class="menu1">
@@ -146,21 +148,37 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 				<li class="menu7">
 					<div class="menu-x"></div>
 					<div class="menu-title">Your Custom Board</div>
-					<div class="menu-label">buy &nbsp;&nbsp; <img src="<?php bloginfo('template_directory'); ?>/_/img/bb/bb-0-rightarrow.png" alt=">" /></div>
+					<div class="menu-label">buy &nbsp;&nbsp; <img src="<?php bloginfo('template_directory'); ?>/_/img/diy/left-menu-right-arrow.png" alt=">" /></div>
 				</li>
 			</ul>
 		</div><!-- END #leftmenu" -->
 		<div id="advance-arrow"></div>
-		<div class="pager-label">SHAPE</div>
-		<div class="pagerTop" id="topPager"></div>
-		<div class="miniReciept"></div>
+		<div class="miniReciept" id="mobile-receipt">
+			<h1>EXPENSE</h1>
+			<h2 class="shape">BOARD - <span></span></h2>
+			<p class="shape-cost"></p>
+			<h2 class="size">SIZE - <span></span></h2>
+			<p class="size-cost"></p>
+			<h2 class="top">TOP - <span></span></h2>
+			<p class="top-cost"></p>
+			<h2 class="sidewall">SIDEWALL - <span></span></h2>
+			<p class="sidewall-cost"></p>
+			<h2 class="base"></h2>
+			<p class="base-cost"></p>
+			<h2 class="badge">BADGE - <span></span></h2>
+			<p class="badge-cost"></p>
+			<hr />
+			<h3 class="subtotal">SUBTOTAL</h3>
+			<h3 class="subtotal-cost"></h3>
+			<div class="clearfix"></div>
+		</div>
 		<div id="info-box">
 			<div class="diamond"></div>
 			<div class="box">
 				<h2>BTX Skate Banana - Board</h2>
 				<h3>DESC</h3>
 				<div class="contour">
-					<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/bb-contour-none.jpg" />
+					<img src="<?php bloginfo('template_directory'); ?>/_/img/diy/contour-none.jpg" alt="Snowboard Contour" />
 				</div>
 				<h4>POWER</h4>
 				<div class="sizes">
@@ -170,17 +188,16 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 			</div>
 		</div><!-- END #info-box -->
 		<div id="board-display">
-			<div class="board-tech-name"></div>
+			<div class="board-name"></div>
+			<div class="board-menu-left-button"></div>
+			<div class="board-menu-right-button"></div>
 			<div class="board-preview">
-				<div class="board-menu-left-button">
-					<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/bb-left-w.png" class="menu-left" />
-				</div>								
 				<div class="board-views">
 					<div class="preview-top">
-						<div class="board">						 
+						<div class="board">
 							<div class="board-image">
 								<div class="board-text"></div>
-								<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/default/SKATE-BANANA.png" class="responsive-image" />
+								<img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-top/default/SKATE-BANANA.png" class="responsive-image" alt="Snowboard Top" />
 							</div>
 						</div>
 					</div>
@@ -188,9 +205,9 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 						<div class="board">
 							<div class="board-image">
 								<div class="board-text"></div>
-								<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-sidewall/sidewall/SKATE-BANANA-YELLOW.png" class="responsive-image sidewall-top" />
-								<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-sidewall/default/SKATE-BANANA.png" class="responsive-image sidewall-bottom" />
-								<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-sidewall/default/SKATE-BANANA.png" class="responsive-image sidewall-hidden" />
+								<img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-sidewall/sidewall/SKATE-BANANA-YELLOW.png" class="responsive-image sidewall-top" alt="Snowboard Sidewall" />
+								<img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-sidewall/default/SKATE-BANANA.png" class="responsive-image sidewall-bottom" alt="Snowboard Sidewall Bottom" />
+								<img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-sidewall/default/SKATE-BANANA.png" class="responsive-image sidewall-hidden" alt="Snowboard Sidewall Hidden" />
 							</div>	
 						</div>
 					</div>
@@ -202,14 +219,11 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 										<span class="board-text-custom">DIY BOARD!</span>
 									</p>
 								</div>
-								<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-base/custom-colors-logo/LIB-LOGO-ALL-WHITE.png" class="responsive-image custom-base-logo" />
-								<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-base/default/SKATE-BANANA.png" class="responsive-image base" />
+								<img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-base/custom-colors-logo/LIB-LOGO-ALL-WHITE.png" class="responsive-image custom-base-logo" alt="Snowboard Base Logo" />
+								<img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-base/default/SKATE-BANANA.png" class="responsive-image base" alt="Snowboard Base" />
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="board-menu-right-button">
-					<img src="<?php bloginfo('template_directory'); ?>/_/img/bb/bb-right-w.png" class="menu-right" />
 				</div>
 			</div>
 		</div>
@@ -220,14 +234,14 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 					<div class="carousel-container">
 						<div class="carousel">
 							<ul>
-								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/default/SKATE-BANANA.png" shapenum="1" id="defaultShapeImage" /></li>
-								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/default/ATTACK-BANANA.png" shapenum="2" /></li>
-								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/default/TRAVIS-RICE-PRO-BLUNT.png" shapenum="3" /></li>
-								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/default/TRAVIS-RICE-PRO-POINTY.png" shapenum="4" /></li>
-								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/default/TRS.png" shapenum="5" /></li>
-								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/default/HOT-KNIFE.png" shapenum="6" /></li>
-								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/default/SKUNK-APE.png" shapenum="7" /></li>
-								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/default/BANANA-BLASTER.png" shapenum="8" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-top/default/SKATE-BANANA.png" alt="Skate Banana" id="defaultShapeImage" data-shapenum="1" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-top/default/ATTACK-BANANA.png" alt="Attack Banana" data-shapenum="2" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-top/default/TRAVIS-RICE-PRO-BLUNT.png" alt="Travis Rice Pro Blunt" data-shapenum="3" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-top/default/TRAVIS-RICE-PRO-POINTY.png" alt="Travis Rice Pro Pointy" data-shapenum="4" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-top/default/TRS.png" alt="TRS" data-shapenum="5" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-top/default/HOT-KNIFE.png" alt="Hot Knife" data-shapenum="6" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-top/default/SKUNK-APE.png" alt="Skunk Ape" data-shapenum="7" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-top/default/BANANA-BLASTER.png" alt="Banana Blaster" data-shapenum="8" /></li>
 							</ul>
 						</div>
 					</div>
@@ -252,6 +266,7 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 						<div class="size-detail-table">
 							<div class="table-data"></div>
 						</div>
+						<div class="clearfix"></div>
 					</div>
 				</div>
 			</li>
@@ -261,21 +276,21 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 					<div class="carousel-container">
 						<div class="carousel">
 							<ul>
-								<li class="item"><img data-count="1" artist="Tetons" desc="Red" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/art/TETONS-RED.png" class="responsive-image board-top-image" /></li>
-								<li class="item"><img data-count="1" artist="Tetons" desc="Blue" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/art/TETONS-BLUE.png" class="responsive-image board-top-image" /></li>
-								<li class="item"><img data-count="1" artist="Tetons" desc="Pink" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/art/TETONS-PINK.png" class="responsive-image board-top-image" /></li>
-								<li class="item"><img data-count="2" artist="Jamie" desc="Girl" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/art/JAMIE-GIRL.png" class="responsive-image board-top-image" /></li>
-								<li class="item"><img data-count="3" artist="Jamie" desc="Wave" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/art/JAMIE-WAVE.png" class="responsive-image board-top-image" /></li>
-								<li class="item"><img data-count="4" artist="Hummingbird" desc="Red" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/art/HUMMINGBIRD-RED.png" class="responsive-image board-top-image" /></li>
-								<li class="item"><img data-count="5" artist="Guitar" desc="Skull" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/art/GUITAR-SKULL.png" class="responsive-image board-top-image" /></li>
-								<li class="item"><img data-count="6" artist="Poly" desc="Green" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/art/POLY-GREEN.png" class="responsive-image board-top-image" /></li>
-								<li class="item"><img data-count="6" artist="Poly" desc="Blue" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/art/POLY-BLUE.png" class="responsive-image board-top-image" /></li>
-								<li class="item"><img data-count="7" artist="Skeleton" desc="Yellow" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/art/SKELETON-YELLOW.png" class="responsive-image board-top-image" /></li>
-								<li class="item"><img data-count="7" artist="Skeleton" desc="Blue" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/art/SKELETON-BLUE.png" class="responsive-image board-top-image" /></li>
-								<li class="item"><img data-count="7" artist="Skeleton" desc="Pink" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/art/SKELETON-PINK.png" class="responsive-image board-top-image" /></li>
-								<li class="item"><img data-count="7" artist="Skeleton" desc="Green" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/art/SKELETON-GREEN.png" class="responsive-image board-top-image" /></li>
-								<li class="item"><img data-count="8" artist="Logo" desc="Black" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/art/LOGO-BLACK.png" class="responsive-image board-top-image" /></li>
-								<li class="item"><img data-count="8" artist="Logo" desc="White" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-top/art/LOGO-WHITE.png" class="responsive-image board-top-image" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-top/art/TETONS-RED.png" alt="Tetons Red Top" class="responsive-image board-top-image" data-count="1" data-artist="Tetons" data-desc="Red" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-top/art/TETONS-BLUE.png" alt="Tetons Blue Top" class="responsive-image board-top-image" data-count="1" data-artist="Tetons" data-desc="Blue" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-top/art/TETONS-PINK.png" alt="Tetons Pink Top" class="responsive-image board-top-image" data-count="1" data-artist="Tetons" data-desc="Pink" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-top/art/JAMIE-GIRL.png" alt="Jamie Girl Top" class="responsive-image board-top-image" data-count="2" data-artist="Jamie" data-desc="Girl" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-top/art/JAMIE-WAVE.png" alt="Jamie Wave Top" class="responsive-image board-top-image" data-count="3" data-artist="Jamie" data-desc="Wave" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-top/art/HUMMINGBIRD-RED.png" alt="Hummingbird Red Top" class="responsive-image board-top-image" data-count="4" data-artist="Hummingbird" data-desc="Red" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-top/art/GUITAR-SKULL.png" alt="Guitar Skull Top" class="responsive-image board-top-image" data-count="5" data-artist="Guitar" data-desc="Skull" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-top/art/POLY-GREEN.png" alt="Poly Green Top" class="responsive-image board-top-image" data-count="6" data-artist="Poly" data-desc="Green" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-top/art/POLY-BLUE.png" alt="Poly Blue Top" class="responsive-image board-top-image" data-count="6" data-artist="Poly" data-desc="Blue" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-top/art/SKELETON-YELLOW.png" alt="Skeleton Yellow Top" class="responsive-image board-top-image" data-count="7" data-artist="Skeleton" data-desc="Yellow" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-top/art/SKELETON-BLUE.png" alt="Skeleton Blue Top" class="responsive-image board-top-image" data-count="7" data-artist="Skeleton" data-desc="Blue" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-top/art/SKELETON-PINK.png" alt="Skeleton Pink Top" class="responsive-image board-top-image" data-count="7" data-artist="Skeleton" data-desc="Pink" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-top/art/SKELETON-GREEN.png" alt="Skeleton Green Top" class="responsive-image board-top-image" data-count="7" data-artist="Skeleton" data-desc="Green" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-top/art/LOGO-BLACK.png" alt="Logo Black Top" class="responsive-image board-top-image" data-count="8" data-artist="Logo" data-desc="Black" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-top/art/LOGO-WHITE.png" alt="Logo White Top" class="responsive-image board-top-image" data-count="8" data-artist="Logo" data-desc="White" /></li>
 							</ul>
 						</div>
 					</div>
@@ -287,12 +302,12 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 					<div class="carousel-container">
 						<div class="carousel">
 							<ul>
-								<li class="item"><img data-count="1" color="Black/Blue" desc="Blue" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-sidewall/colors/BLUE.png" class="responsive-image" /></li>
-								<li class="item"><img data-count="2" color="Black/Slime Green" desc="Slime Green" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-sidewall/colors/GREEN.png" class="responsive-image" /></li>
-								<li class="item"><img data-count="3" color="Black/Orange" desc="Orange" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-sidewall/colors/ORANGE.png" class="responsive-image" /></li>
-								<li class="item"><img data-count="4" color="Black/Red" desc="Red" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-sidewall/colors/RED.png" class="responsive-image" /></li>
-								<li class="item"><img data-count="5" color="Black/White" desc="White" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-sidewall/colors/WHITE.png" class="responsive-image" /></li>
-								<li class="item"><img data-count="6" color="Black/Yellow" desc="Yellow" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-sidewall/colors/YELLOW.png" class="responsive-image" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-sidewall/colors/BLUE.png" alt="Black/Blue Sidewall" class="responsive-image" data-count="1" data-color="Black/Blue" data-desc="Blue" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-sidewall/colors/GREEN.png" alt="Black/Slime Green Sidewall" class="responsive-image" data-count="2" data-color="Black/Slime Green" data-desc="Slime Green" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-sidewall/colors/ORANGE.png" alt="Black/Orange Sidewall" class="responsive-image" data-count="3" data-color="Black/Orange" data-desc="Orange" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-sidewall/colors/RED.png" alt="Black/Red Sidewall" class="responsive-image" data-count="4" data-color="Black/Red" data-desc="Red" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-sidewall/colors/WHITE.png" alt="Black/White Sidewall" class="responsive-image" data-count="5" data-color="Black/White" data-desc="White" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-sidewall/colors/YELLOW.png" alt="Black/Yellow Sidewall" class="responsive-image" data-count="6" data-color="Black/Yellow" data-desc="Yellow" /></li>
 							</ul>
 						</div>
 					</div>
@@ -304,20 +319,20 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 					<div class="carousel-container">
 						<div class="carousel">
 							<ul>
-								<li class="item"><img data-count="0" artist="Custom" desc="Custom" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-base/art/KNIFE-CUT.png" class="responsive-image board-base-image" id="customBase" /></li>
-								<li class="item"><img data-count="1" artist="Tetons" desc="Red" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-base/art/TETONS-RED.png" class="responsive-image board-base-image" /></li>
-								<li class="item"><img data-count="1" artist="Tetons" desc="Blue"  src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-base/art/TETONS-BLUE.png" class="responsive-image board-base-image" /></li>
-								<li class="item"><img data-count="1" artist="Tetons" desc="Pink"  src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-base/art/TETONS-PINK.png" class="responsive-image board-base-image" /></li>
-								<li class="item"><img data-count="2" artist="Jamie" desc="Girl"  src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-base/art/JAMIE-GIRL.png" class="responsive-image board-base-image" /></li>
-								<li class="item"><img data-count="2" artist="Jamie" desc="Wave"  src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-base/art/JAMIE-WAVE.png" class="responsive-image board-base-image"/></li>
-								<li class="item"><img data-count="4" artist="Hummingbird" desc="Red"  src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-base/art/HUMMINGBIRD-RED.png" class="responsive-image board-base-image" /></li>
-								<li class="item"><img data-count="5" artist="Guitar" desc="Skull" src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-base/art/GUITAR-SKULL.png" class="responsive-image board-base-image" /></li>
-								<li class="item"><img data-count="6" artist="Poly" desc="Green"  src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-base/art/POLY-GREEN.png" class="responsive-image board-base-image" /></li>
-								<li class="item"><img data-count="6" artist="Poly" desc="Blue"  src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-base/art/POLY-BLUE.png" class="responsive-image board-base-image" /></li>
-								<li class="item"><img data-count="7" artist="Skeleton" desc="Grey"  src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-base/art/SKELETON-GREY.png" class="responsive-image board-base-image" /></li>
-								<li class="item"><img data-count="8" artist="Logo" desc="Black"  src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-base/art/LOGO-BLACK.png" class="responsive-image board-base-image" /></li>
-								<li class="item"><img data-count="8" artist="Logo" desc="White"  src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-base/art/LOGO-WHITE.png" class="responsive-image board-base-image" /></li>
-								<li class="item"><img data-count="8" artist="Logo" desc="Grey"  src="<?php bloginfo('template_directory'); ?>/_/img/bb/snowboard-base/art/LOGO-GREY.png" class="responsive-image board-base-image" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-base/art/KNIFE-CUT.png" alt="Custom Base" class="responsive-image board-base-image" id="customBase" data-count="0" data-artist="Custom" data-desc="Custom" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-base/art/TETONS-RED.png" alt="Tetons Red Base" class="responsive-image board-base-image" data-count="1" data-artist="Tetons" data-desc="Red" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-base/art/TETONS-BLUE.png" alt="Tetons Blue Base" class="responsive-image board-base-image" data-count="1" data-artist="Tetons" data-desc="Blue" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-base/art/TETONS-PINK.png" alt="Tetons Pink Base" class="responsive-image board-base-image" data-count="1" data-artist="Tetons" data-desc="Pink" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-base/art/JAMIE-GIRL.png" alt="Jamie Girl Base" class="responsive-image board-base-image" data-count="2" data-artist="Jamie" data-desc="Girl" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-base/art/JAMIE-WAVE.png" alt="Jamie Wave Base" class="responsive-image board-base-image" data-count="2" data-artist="Jamie" data-desc="Wave" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-base/art/HUMMINGBIRD-RED.png" alt="Hummingbird Red Base" class="responsive-image board-base-image" data-count="4" data-artist="Hummingbird" data-desc="Red" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-base/art/GUITAR-SKULL.png" alt="Guitar Skull Base" class="responsive-image board-base-image" data-count="5" data-artist="Guitar" data-desc="Skull" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-base/art/POLY-GREEN.png" alt="Poly Green Base" class="responsive-image board-base-image" data-count="6" data-artist="Poly" data-desc="Green" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-base/art/POLY-BLUE.png" alt="Poly Blue Base" class="responsive-image board-base-image" data-count="6" data-artist="Poly" data-desc="Blue" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-base/art/SKELETON-GREY.png" alt="Skeleton Grey Base" class="responsive-image board-base-image" data-count="7" data-artist="Skeleton" data-desc="Grey" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-base/art/LOGO-BLACK.png" alt="Logo Black Base" class="responsive-image board-base-image" data-count="8" data-artist="Logo" data-desc="Black" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-base/art/LOGO-WHITE.png" alt="Logo White Base" class="responsive-image board-base-image" data-count="8" data-artist="Logo" data-desc="White" /></li>
+								<li class="item"><img src="<?php bloginfo('template_directory'); ?>/_/img/diy/snowboard-base/art/LOGO-GREY.png" alt="Logo Grey Base" class="responsive-image board-base-image" data-count="8" data-artist="Logo" data-desc="Grey" /></li>
 							</ul>
 						</div>
 					</div>
@@ -374,56 +389,52 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 			<!-- STEP 7 - BUY -->
 			<li>
 				<div class="step7-buy">
-					<div class="thereciept-scroll">
-						<div class="thereciept">
-							<div class="board-reciept">
-								<h1>EXPENSE</h1>
-								<h2 class="shape">BOARD - <span></span></h2>
-								<p class="shape-cost"></p>
-								<h2 class="size">SIZE - <span></span></h2>
-								<p class="size-cost"></p>
-								<h2 class="top">TOP - <span></span></h2>
-								<p class="top-cost"></p>
-								<h2 class="sidewall">SIDEWALL - <span></span></h2>
-								<p class="sidewall-cost"></p>
-								<h2 class="base"></h2>
-								<p class="base-cost"></p>
-								<h2 class="badge">BADGE - <span></span></h2>
-								<p class="badge-cost"></p>
-								<hr />
-								<h3 class="subtotal">SUBTOTAL</h3>
-								<h3 class="subtotal-cost"></h3>
-								<div class="clearfix"></div>
-							</div>
-							<div class="terms">
-								<h1>Lib Tech DIY Program Policy</h1>
-								<p>The finished board may not appear exactly as it is shown on the screen. <strong>DIY board orders take 3-6 weeks to build and ship for United States/Canada.</strong> DIY board orders will be charged upon order confirmation. No returns or refunds on customized boards will be accepted or given.</p>
-							</div>
-							<div class="terms-international">
-								<h1>Lib Tech DIY Program Policy</h1>
-								<p>The finished board may not appear exactly as it is shown on the screen. <strong>DIY board orders take 6-9 weeks for countries outside of United States/Canada.</strong> For a list of countries we ship DIY boards to <a href='/snowboarding/snowboard-builder/international-countries/' target='_blank'>click here</a>. DIY board orders will be charged upon order confirmation. No returns or refunds on customized boards will be accepted or given.</p>
-							</div>
-							<div class="cart-error">
-								<p>An error has occured. Verify your snowboard is complete and try again. If the problem persists <a href=”http://www.mervin.com/contact/” target=”_blank”>let us know</a>.</p>
-							</div>
-							<div class="buttonholder">
-								<div class="buy-button">Buy this board!</div>
-								<div class="agree-button">I agree</div>
-								<div class="social-icons">
-									<p>Share with your friends</p>
-									<a href="#"><img class="socialfb" src="<?php bloginfo('template_directory'); ?>/_/img/bb/bb-social-fb.png" alt="Facebook" /></a>
-									<a href="#"><img class="socialtw" src="<?php bloginfo('template_directory'); ?>/_/img/bb/bb-social-twitter.png" alt="Twitter" /></a>
-									<a href="#"><img class="socialg" src="<?php bloginfo('template_directory'); ?>/_/img/bb/bb-social-google.png" alt="Google+" /></a>
-									<a href="#"><img class="sociale" src="<?php bloginfo('template_directory'); ?>/_/img/bb/bb-social-email.png" alt="Email" /></a>
-								</div>
-								<div class="share-url">
-									<p>Copy and Paste URL</p>
-									<input type="text" id="share-url-input" value="http://www.lib-tech.com" readonly="readonly" />
-								</div>
-							</div>
-							<div class="clearfix"></div>
+					<div class="board-reciept">
+						<h1>EXPENSE</h1>
+						<h2 class="shape">BOARD - <span></span></h2>
+						<p class="shape-cost"></p>
+						<h2 class="size">SIZE - <span></span></h2>
+						<p class="size-cost"></p>
+						<h2 class="top">TOP - <span></span></h2>
+						<p class="top-cost"></p>
+						<h2 class="sidewall">SIDEWALL - <span></span></h2>
+						<p class="sidewall-cost"></p>
+						<h2 class="base"></h2>
+						<p class="base-cost"></p>
+						<h2 class="badge">BADGE - <span></span></h2>
+						<p class="badge-cost"></p>
+						<hr />
+						<h3 class="subtotal">SUBTOTAL</h3>
+						<h3 class="subtotal-cost"></h3>
+						<div class="clearfix"></div>
+					</div>
+					<div class="terms">
+						<h1>Lib Tech DIY Program Policy</h1>
+						<p>The finished board may not appear exactly as it is shown on the screen. <strong>DIY board orders take 3-6 weeks to build and ship for United States/Canada.</strong> DIY board orders will be charged upon order confirmation. No returns or refunds on customized boards will be accepted or given.</p>
+					</div>
+					<div class="terms-international">
+						<h1>Lib Tech DIY Program Policy</h1>
+						<p>The finished board may not appear exactly as it is shown on the screen. <strong>DIY board orders take 6-9 weeks for countries outside of United States/Canada.</strong> For a list of countries we ship DIY boards to <a href='/snowboarding/snowboard-builder/international-countries/' target='_blank'>click here</a>. DIY board orders will be charged upon order confirmation. No returns or refunds on customized boards will be accepted or given.</p>
+					</div>
+					<div class="cart-error">
+						<p>An error has occured. Verify your snowboard is complete and try again. If the problem persists <a href="http://www.mervin.com/contact/" target="_blank">let us know</a>.</p>
+					</div>
+					<div class="buttonholder">
+						<div class="buy-button">Buy<span> this board</span>!</div>
+						<div class="agree-button">I agree</div>
+						<div class="social-icons">
+							<p>Share<span> with your friends</span></p>
+							<a href="#"><img class="socialfb" src="<?php bloginfo('template_directory'); ?>/_/img/diy/social-fb.png" alt="Facebook" /></a>
+							<a href="#"><img class="socialtw" src="<?php bloginfo('template_directory'); ?>/_/img/diy/social-twitter.png" alt="Twitter" /></a>
+							<a href="#"><img class="socialg" src="<?php bloginfo('template_directory'); ?>/_/img/diy/social-google.png" alt="Google+" /></a>
+							<a href="#"><img class="sociale" src="<?php bloginfo('template_directory'); ?>/_/img/diy/social-email.png" alt="Email" /></a>
+						</div>
+						<div class="share-url">
+							<p>Copy and Paste URL</p>
+							<input type="text" id="share-url-input" value="http://www.lib-tech.com" readonly="readonly" />
 						</div>
 					</div>
+					<div class="clearfix"></div>
 				</div>
 			</li>
 		</ul>
@@ -465,11 +476,6 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 					</ul>
 				</div>
 			</div>
-		</div>
-		<div id="mobile-blocker">
-			<h2>WHOA. SLOW DOWN!</h2>
-			<h3>Our Mobile/Tablet DIY Snowboard Builder is not quite ready, but we are busy working on it.</h3>
-			<h3>In the meantime, please use it on your desktop at an appropriate size.</h3>
 		</div>
 		<div id="div-blocker"></div>
 	</div><!-- END .wrapper -->
