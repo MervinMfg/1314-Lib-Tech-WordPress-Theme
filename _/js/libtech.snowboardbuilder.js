@@ -464,6 +464,7 @@ LIBTECH.snowboardbuilder = {
 			// init the overview
 			$('#overview .overview-content .right-column a').on('click', function (e) {
 				e.preventDefault();
+				e.stopPropagation(); // kill even from firing further
 				// hide/kill overview
 				$(this).off('click');
 				TweenMax.to($('#overview'), 1, {autoAlpha:0, onComplete:function(){$('#overview').css('display', 'none');}});
@@ -1231,6 +1232,7 @@ LIBTECH.snowboardbuilder = {
 	mobileMenuInit: function () {
 		$("#header .mobile-flyout-nav .display-board").on('click.mobile-menu touch.mobile-menu', function (e) {
 			e.preventDefault();
+			e.stopPropagation(); // kill even from firing further
 			$(this).toggleClass('selected');
 			$('#board-display').toggleClass('show');
 			$("#header .mobile-flyout-nav .display-receipt").removeClass('selected');
@@ -1238,6 +1240,7 @@ LIBTECH.snowboardbuilder = {
 		});
 		$("#header .mobile-flyout-nav .display-receipt").on('click.mobile-menu touch.mobile-menu', function (e) {
 			e.preventDefault();
+			e.stopPropagation(); // kill even from firing further
 			$(this).toggleClass('selected');
 			$('#mobile-receipt').toggleClass('show');
 			$("#header .mobile-flyout-nav .display-board").removeClass('selected');
