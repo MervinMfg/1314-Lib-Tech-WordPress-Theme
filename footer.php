@@ -125,6 +125,7 @@
 							<!--<li><a href="/faqs/">Faqs</a></li>
 							<li><a href="/testimonials/">Testimonials</a></li>-->
 							<li><a href="/dealer-locator/">Find a Dealer</a></li>
+							<li><a href="/partners/">Partners</a></li>
 						</ul>
 					</div>
 					<div class="support">
