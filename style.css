@@ -988,6 +988,29 @@ body.skate .ripper-videos .section-content .featured-videos .video-thumbnails li
 .partners .section-content .entry-content ul li .partner-images img { margin-bottom: 10px; }
 .partners .section-content .entry-content ul li p { margin-bottom: 10px; }
 
+/* LBS styles
+-------------------------------------------------------------------------------*/
+.lbs-details .section-content { padding: 0 20px; }
+.lbs-details .section-content h1, .lbs-details .section-content p { margin-bottom: 10px; }
+
+.lbs-updates .section-content { padding: 0 20px; }
+.lbs-updates .section-content .featured-video { margin-bottom: 20px; }
+.lbs-updates .section-content .featured-video h2, .lbs-updates .section-content .featured-video .video-player, .lbs-updates .section-content .featured-video .video-copy p { margin-bottom: 10px; }
+.lbs-updates .section-content .blog-posts { margin-bottom: 20px; padding: 0; }
+.lbs-updates .section-content .blog-posts h2 { margin-bottom: 10px; padding: 0; }
+.lbs-updates .section-content .blog-posts a.archive-link { background: yellow; padding: 5px 10px; color: #000; display: inline-block; }
+
+.lbs-demo .section-content { padding: 0 20px; }
+.lbs-demo .section-content .demo-info h2, .lbs-demo .section-content .demo-info p, .lbs-demo .section-content .demo-info img { margin-bottom: 10px; }
+.lbs-demo .section-content .demo-products ul li { padding: 0 0 20px; width: 50%; float: left; overflow: hidden; }
+.lbs-demo .section-content .demo-products ul li:nth-child(odd) { clear: left; }
+.lbs-demo .section-content .demo-products ul li a { text-align: center; }
+.lbs-demo .section-content .demo-products ul li a img { width: 140%; margin-left: -20%; height: auto; max-width: 200%; }
+
+.lbs-contest .section-content { padding: 0 20px; }
+.lbs-contest .section-content h2, .lbs-contest .section-content p, .lbs-contest .section-content blockquote { margin-bottom: 10px; }
+.lbs-contest .section-content blockquote { margin-left: 20px; font-style: italic; line-height: 1.3em; }
+
 /* Print Styles
 -------------------------------------------------------------------------------*/
 /* Media Queries
@@ -1096,9 +1119,14 @@ body.skate .ripper-videos .section-content .featured-videos .video-thumbnails li
   .blog-post .section-content #sidebar .related-posts .post { width: 50%; float: left; }
   .blog-post .section-content #sidebar .related-posts .post:nth-child(1) .post-wrapper { padding-right: 10px; }
   .blog-post .section-content #sidebar .related-posts .post:nth-child(2) .post-wrapper { padding-left: 10px; }
+  /* Partners styles */
   .partners .section-content .entry-content ul li { width: 50%; float: left; }
   .partners .section-content .entry-content ul li:nth-child(odd) { clear: left; }
-  .partners .section-content .entry-content ul li .partner-entry { padding-right: 20px; } }
+  .partners .section-content .entry-content ul li .partner-entry { padding-right: 20px; }
+  /* LBS styles */
+  .lbs-contest .section-content h2 { float: left; }
+  .lbs-contest .section-content .social-links { float: right; }
+  .lbs-contest .section-content p { clear: both; } }
 @media screen and (min-width: 768px) { /* General Styles */
   h1, h2, .h1, .h2 { font-size: 3.125em; /* 50 / 16 */ }
   h3, .h3 { font-size: 1.875em; /* 30 / 16 */ }
@@ -1158,7 +1186,16 @@ body.skate .ripper-videos .section-content .featured-videos .video-thumbnails li
   .partners .section-content .entry-content ul li .partner-entry h4 { width: 70%; float: right; }
   .partners .section-content .entry-content ul li .partner-entry .partner-images { width: 30%; float: left; }
   .partners .section-content .entry-content ul li .partner-entry .partner-images img { padding-right: 20px; }
-  .partners .section-content .entry-content ul li .partner-entry p { width: 70%; float: right; } }
+  .partners .section-content .entry-content ul li .partner-entry p { width: 70%; float: right; }
+  /* LBS styles */
+  .lbs-updates .section-content .featured-video .video-player { width: 50%; float: left; }
+  .lbs-updates .section-content .featured-video .video-copy { width: 50%; float: left; }
+  .lbs-updates .section-content .featured-video .video-copy p { padding-left: 20px; }
+  .lbs-demo .section-content { padding: 0 20px; }
+  .lbs-demo .section-content .demo-info { width: 50%; float: left; }
+  .lbs-demo .section-content .demo-info h2, .lbs-demo .section-content .demo-info p, .lbs-demo .section-content .demo-info img { margin-bottom: 10px; }
+  .lbs-demo .section-content .demo-products { width: 50%; float: left; }
+  .lbs-demo .section-content .demo-products ul { padding-left: 20px; } }
 /* Desktop Styles
 -------------------------------------------------------------------------------*/
 @media screen and (min-width: 980px) { /* Header Styles */
@@ -1291,8 +1328,21 @@ body.skate .ripper-videos .section-content .featured-videos .video-thumbnails li
   /* Dealer Locator */
   .dealer-locator .section-content .dealer-copy { width: 30%; }
   .dealer-locator .section-content iframe { width: 70%; }
-  /* Blog styles -------------------------------------------------------------------------------*/
-  .blog-posts .blog-post { width: 16.4%; } }
+  /* Blog styles */
+  .blog-posts .blog-post { width: 16.4%; }
+  /* LBS styles */
+  .lbs-updates .section-content .featured-video { width: 40%; float: left; }
+  .lbs-updates .section-content .featured-video .video-player { width: auto; float: none; padding-right: 10px; }
+  .lbs-updates .section-content .featured-video .video-copy { width: auto; float: none; padding-right: 10px; }
+  .lbs-updates .section-content .featured-video .video-copy p { padding-left: 0px; }
+  .lbs-updates .section-content .blog-posts { width: 60%; float: left; }
+  .lbs-updates .section-content .blog-posts h2 { margin-left: 10px; }
+  .lbs-updates .section-content .blog-posts .blog-post { width: 33%; }
+  .lbs-updates .section-content .blog-posts a.archive-link { margin-left: 10px; }
+  .lbs-demo .section-content .demo-info { width: 40%; }
+  .lbs-demo .section-content .demo-products { width: 60%; padding-top: 125px; }
+  .lbs-demo .section-content .demo-products ul li { width: 25%; }
+  .lbs-demo .section-content .demo-products ul li:nth-child(odd) { clear: none; } }
 /* Shopatron Shopping Cart
 -------------------------------------------------------------------------------*/
 /* hide shopatron api key */

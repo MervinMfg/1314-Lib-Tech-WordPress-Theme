@@ -57,6 +57,8 @@ LIBTECH.main = {
 			LIBTECH.snowboardbuilder.shareInit();
 		} else if ($('body').hasClass('page-template-page-partners-php')) {
 			self.partnersInit();
+		} else if ($('body').hasClass('page-template-page-lbs-php')) {
+			self.lbsInit();
 		}
 	},
 	shopatronInit: function () {
@@ -1086,6 +1088,9 @@ LIBTECH.main = {
 				preload: [0,1] // Will preload 0 - before current, and 1 after the current image
 			}
 		});
+	},
+	lbsInit: function () {
+		$('.lbs-updates .featured-video .video-player').fitVids();
 	},
 	shoppingCartInit: function () {
 		var self, lang, regionCookie;
