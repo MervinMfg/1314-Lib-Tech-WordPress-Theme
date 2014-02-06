@@ -878,8 +878,6 @@ body.international .shopping-cart .section-content .int-cart-details { display: 
 .blog-post .section-content .section-content-wrapper { position: relative; }
 .blog-post .section-content .post .entry-header .entry-title { margin-bottom: .25em; }
 .blog-post .section-content .post .entry-header .entry-meta { margin-bottom: 1em; }
-.blog-post .section-content .post .entry-header .entry-share li { float: left; padding-bottom: 1em; }
-.blog-post .section-content .post .entry-header .entry-share li .fb-like { padding-right: 20px; }
 .blog-post .section-content .post .entry-content { clear: both; }
 .blog-post .section-content .post .entry-content p { margin-bottom: 1.25em; }
 .blog-post .section-content .post .entry-content > p:first-of-type { font-weight: bold; }
@@ -903,6 +901,9 @@ body.international .shopping-cart .section-content .int-cart-details { display: 
 .blog-post .section-content #sidebar .widget.widget_archive h2 { margin-bottom: 5px; }
 .blog-post .section-content #sidebar .widget.widget_archive select { font-family: "PT Sans Narrow", "Myriad Pro", Helvetica, Arial, sans-serif; font-size: 1.25em; font-style: italic; text-transform: uppercase; background: #fff; padding: 10px; line-height: 1; border: 0; border-radius: 0; -webkit-appearance: none; margin-bottom: 10px; }
 .blog-post .section-content #sidebar .related-posts { padding-left: 0; padding-right: 0; }
+
+.entry-share li { float: left; padding-bottom: 1em; }
+.entry-share li .fb-like { padding-right: 20px; }
 
 /* Search styles
 -------------------------------------------------------------------------------*/

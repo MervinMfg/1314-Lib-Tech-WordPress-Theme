@@ -2964,16 +2964,6 @@ body.international .shopping-cart .section-content {
 				.entry-meta {
 					margin-bottom: 1em;
 				}
-				.entry-share {
-					li {
-						float: left;
-						padding-bottom: 1em;
-
-						.fb-like {
-							padding-right: 20px;
-						}
-					}
-				}
 			}
 			.entry-content {
 				clear: both;
@@ -3090,6 +3080,16 @@ body.international .shopping-cart .section-content {
 				padding-left: 0;
 				padding-right: 0;
 			}
+		}
+	}
+}
+.entry-share {
+	li {
+		float: left;
+		padding-bottom: 1em;
+
+		.fb-like {
+			padding-right: 20px;
 		}
 	}
 }

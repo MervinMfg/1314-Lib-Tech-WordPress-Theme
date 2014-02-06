@@ -24,6 +24,12 @@ get_header();
 			<div class="section-content">
 				<h1><?php the_title(); ?></h1>
 				<?php the_content(); ?>
+				<ul class="entry-share">
+					<li><div class="fb-like" data-href="<? the_permalink(); ?>" data-send="true" data-layout="button_count" data-width="150" data-action="like" data-show-faces="false" data-share="true" data-colorscheme="dark"></div></li>
+					<li><a href="https://twitter.com/share" class="twitter-share-button" data-via="libtechnologies">Tweet</a></li>
+					<li><div class="g-plusone" data-size="medium" data-href="<? the_permalink(); ?>"></div></li>
+					<li><a href="http://pinterest.com/pin/create/button/?url=<?php the_permalink(); ?>&media=<?php echo $GLOBALS['pageImage']; ?>&description=<?php echo $GLOBALS['pageTitle']; ?>" class="pin-it-button" count-layout="horizontal"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It" /></a></li>
+				</ul>
 			</div><!-- END .section-content -->
 			<div class="clearfix"></div>
 		</section><!-- END .lbs-details -->
