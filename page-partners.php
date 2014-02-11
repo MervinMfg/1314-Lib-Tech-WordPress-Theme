@@ -78,9 +78,10 @@ get_header();
 									return null;
 								}
 							}
-							array_push($partners, findPartners('academies-clubs', 'Academies/Clubs'));
-							array_push($partners, findPartners('causes', 'Causes'));
+							array_push($partners, findPartners('vehicles', 'Vehicles'));
 							array_push($partners, findPartners('camps', 'Camps'));
+							array_push($partners, findPartners('non-profits', 'Non-profits'));
+							array_push($partners, findPartners('academies-clubs', 'Academies/Clubs'));
 							array_push($partners, findPartners('resorts', 'Resorts'));
 							// display resorts
 							foreach ($partners as $partnerGroup) {
