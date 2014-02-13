@@ -1214,7 +1214,7 @@ LIBTECH.main = {
 				auto: true,
 				autoHover: true,
 				speed: 500,
-				randomStart: true,
+				randomStart: false,
 				controls: false,
 				mode: 'horizontal',
 				onSlideBefore: function (slideElement, oldIndex, newIndex) {
