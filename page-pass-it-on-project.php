@@ -37,16 +37,3 @@ get_header();
 		<?php endwhile; endif; ?>
 
 <?php get_footer(); ?>
-
-
-
-
-#passitonproject is an experiment in social art to document one boards journey through the global snowboard community. Seeing how many riders it can be passed on to and just how far around the world it can travel.
-
-
-This is Travis Rice's personal board. A Lib Tech 2014/15 Gold Member ridden by Travis during the 2014/15 season. Really.
-
-
-YOU HAVE THE BOARD, NOW WHAT?
-
-Treat this board like it's your 
