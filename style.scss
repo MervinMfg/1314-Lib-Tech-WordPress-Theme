@@ -3514,6 +3514,31 @@ body.skate .ripper-videos .section-content .featured-videos {
 		}
 	}
 }
+/* Pass It On Project styles
+-------------------------------------------------------------------------------*/
+.pass-it-on-header {
+	.section-content {
+		padding-left: 20px;
+		padding-right: 20px;
+
+		h1 {
+			padding-bottom: 10px;
+			color: #000;
+		}
+		.pass-it-on-image {
+			padding-bottom: 10px;
+		}
+		.pass-it-on-desc p {
+			max-width: 900px;
+			color: #000;
+			font-size: 1em;
+			margin-bottom: 10px;
+		}
+	}
+}
+.tagboard {
+	padding: 0 10px;
+}
 
 /* Print Styles
 -------------------------------------------------------------------------------*/
@@ -4536,7 +4561,6 @@ body.skate .ripper-videos .section-content .featured-videos {
 	.team-members .section-content ul li {
 		width: 24.7%;
 	}
-
 	.team-header.video .section-content {
 		h1,
 		p {
@@ -4556,8 +4580,6 @@ body.skate .ripper-videos .section-content .featured-videos {
 			font-size: 1.125em;
 		}
 	}
-
-
 	.ripper-videos .section-content .featured-videos {
 		.video-player {
 			width: 50%;
@@ -4609,6 +4631,29 @@ body.skate .ripper-videos .section-content .featured-videos {
 						padding-left: 0;
 					}
 				}
+			}
+		}
+	}
+	/* Pass It On Project styles
+	-------------------------------------------------------------------------------*/
+	.pass-it-on-header {
+		.section-content {
+			h1,
+			.pass-it-on-desc {
+				width: 40%;
+				float: right;
+			}
+			.pass-it-on-image {
+				width: 60%;
+				float: left;
+				padding-top: 5px;
+
+				img {
+					padding-right: 20px;
+				}
+			}
+			.pass-it-on-desc p {
+				font-size: 1.125em;
 			}
 		}
 	}

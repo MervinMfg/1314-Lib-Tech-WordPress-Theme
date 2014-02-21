@@ -1012,6 +1012,15 @@ body.skate .ripper-videos .section-content .featured-videos .video-thumbnails li
 .lbs-contest .section-content h2, .lbs-contest .section-content p, .lbs-contest .section-content blockquote { margin-bottom: 10px; }
 .lbs-contest .section-content blockquote { margin-left: 20px; font-style: italic; line-height: 1.3em; }
 
+/* Pass It On Project styles
+-------------------------------------------------------------------------------*/
+.pass-it-on-header .section-content { padding-left: 20px; padding-right: 20px; }
+.pass-it-on-header .section-content h1 { padding-bottom: 10px; color: #000; }
+.pass-it-on-header .section-content .pass-it-on-image { padding-bottom: 10px; }
+.pass-it-on-header .section-content .pass-it-on-desc p { max-width: 900px; color: #000; font-size: 1em; margin-bottom: 10px; }
+
+.tagboard { padding: 0 10px; }
+
 /* Print Styles
 -------------------------------------------------------------------------------*/
 /* Media Queries
@@ -1279,7 +1288,12 @@ body.skate .ripper-videos .section-content .featured-videos .video-thumbnails li
   .blog-post .section-content #sidebar .related-posts { padding-left: 40px; }
   .blog-post .section-content #sidebar .related-posts .post { width: 100%; float: none; }
   .blog-post .section-content #sidebar .related-posts .post:nth-child(1) .post-wrapper { padding-right: 0; }
-  .blog-post .section-content #sidebar .related-posts .post:nth-child(2) .post-wrapper { padding-left: 0; } }
+  .blog-post .section-content #sidebar .related-posts .post:nth-child(2) .post-wrapper { padding-left: 0; }
+  /* Pass It On Project styles -------------------------------------------------------------------------------*/
+  .pass-it-on-header .section-content h1, .pass-it-on-header .section-content .pass-it-on-desc { width: 40%; float: right; }
+  .pass-it-on-header .section-content .pass-it-on-image { width: 60%; float: left; padding-top: 5px; }
+  .pass-it-on-header .section-content .pass-it-on-image img { padding-right: 20px; }
+  .pass-it-on-header .section-content .pass-it-on-desc p { font-size: 1.125em; } }
 @media screen and (min-width: 1200px) { /* homepage styles */
   .homepage-posts .homepage-post { float: left; width: 20%; }
   .homepage-posts .homepage-post:nth-child(5) { display: block; }
