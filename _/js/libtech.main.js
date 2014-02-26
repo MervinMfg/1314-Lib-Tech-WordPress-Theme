@@ -60,6 +60,14 @@ LIBTECH.main = {
 		} else if ($('body').hasClass('page-template-page-lbs-php')) {
 			self.lbsInit();
 		}
+		/* Chrome Webfont Fix Styles
+			- https://code.google.com/p/chromium/issues/detail?id=336476
+			- https://productforums.google.com/forum/#!topic/chrome/elw8busIfJA
+		*/
+		var is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+		if(is_chrome === true) {
+			$('body').hide().show();
+		}
 	},
 	shopatronInit: function () {
 		var self, lang, regionCookie, shopAPIKey, shopAPIKeyString;
