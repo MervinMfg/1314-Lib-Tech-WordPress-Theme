@@ -17,7 +17,7 @@
         	<div class="discussion">
 				<h2>Discussion</h2>
 				<div class="discussion-thread">
-					<fb:comments href="<?php the_permalink(); ?>" width="940" colorscheme="dark" num_posts="5" mobile="false"></fb:comments>
+					<div class="fb-comments" data-href="<?php the_permalink(); ?>" data-width="940" data-numposts="5" data-colorscheme="dark" data-mobile="false"></div>
 				</div>
 				<div class="clearfix"></div>
 			</div>
@@ -29,7 +29,7 @@
         	<div class="section-content">
 				<h2>Discussion</h2>
 				<div class="discussion-thread">
-					<fb:comments href="<?php the_permalink(); ?>" width="940" colorscheme="dark" num_posts="5" mobile="false"></fb:comments>
+					<div class="fb-comments" data-href="<?php the_permalink(); ?>" data-width="940" data-numposts="5" data-colorscheme="dark" data-mobile="false"></div>
 				</div>
 				<div class="clearfix"></div>
 			</div>
