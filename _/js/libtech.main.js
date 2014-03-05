@@ -59,6 +59,8 @@ LIBTECH.main = {
 			self.partnersInit();
 		} else if ($('body').hasClass('page-template-page-lbs-php')) {
 			self.lbsInit();
+		} else if ($('body').hasClass('page-template-page-pass-it-on-project-php')) {
+			self.passItOnInit();
 		}
 		/* Chrome Webfont Fix Styles
 			- https://code.google.com/p/chromium/issues/detail?id=336476
@@ -1099,6 +1101,16 @@ LIBTECH.main = {
 	},
 	lbsInit: function () {
 		$('.lbs-updates .featured-video .video-player').fitVids();
+	},
+	passItOnInit: function () {
+		$('.pass-it-on-header .pass-it-on-video').fitVids();
+		// lightbox for gold member
+		$('.pass-it-on-contest .product-wrapper .product.lightbox').magnificPopup({
+			delegate: 'a',
+			type: 'image',
+			disableOn: '768',
+			closeOnBgClick: true
+		});
 	},
 	shoppingCartInit: function () {
 		var self, lang, regionCookie;
