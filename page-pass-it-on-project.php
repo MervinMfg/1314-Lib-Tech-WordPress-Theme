@@ -66,10 +66,20 @@ get_header();
 		<section class="bg2 pass-it-on-tagboard">
 			<div class="section-content">
 				<h2>#passitonproject Tagboard</h2>
+				<div class="social-links">
+					<p class="h4">Hit us up!</p>
+					<ul>
+						<li><a href="http://www.facebook.com/libtech" class="facebook" target="_blank">Facebook</a></li>
+						<li><a href="http://www.instagram.com/libtechnologies" class="instagram" target="_blank">Instagram</a></li>
+						<li><a href="http://www.vimeo.com/libtech" class="vimeo" target="_blank">Vimeo</a></li>
+						<li><a href="http://www.twitter.com/libtechnologies" class="twitter" target="_blank">Twitter</a></li>
+					</ul>
+					<div class="clearfix"></div>
+				</div>
 				<!-- START TagBoard -->
 				<div id="tagboard-embed"></div>
 				<script>
-					var tagboardOptions = {tagboard:"passitonproject/153199", darkMode: true, postCount: 20, mobilePostCount: 10};
+					var tagboardOptions = {tagboard:"passitonproject/153199", darkMode: true};
 				</script>
 				<script src="https://tagboard.com/public/js/embed.js"></script>
 				<!-- END TagBoard -->

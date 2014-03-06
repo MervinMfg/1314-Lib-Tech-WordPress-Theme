@@ -3579,6 +3579,9 @@ body.skate .ripper-videos .section-content .featured-videos {
 	h2 {
 		padding: 0 10px;
 	}
+	.social-links {
+		padding: 10px 0 0 10px;
+	}
 }
 
 /* Print Styles
@@ -4056,6 +4059,19 @@ body.skate .ripper-videos .section-content .featured-videos {
 			}
 			p {
 				clear: both;
+			}
+		}
+	}
+	/* Pass It On Project styles */
+
+	.pass-it-on-tagboard {
+		.section-content {
+			h2 {
+				float: left;
+			}
+			.social-links {
+				float: right;
+				padding: 0 0 0 10px;
 			}
 		}
 	}

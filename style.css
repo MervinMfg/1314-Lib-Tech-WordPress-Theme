@@ -1031,6 +1031,7 @@ body.skate .ripper-videos .section-content .featured-videos .video-thumbnails li
 
 .pass-it-on-tagboard { padding: 0 10px; }
 .pass-it-on-tagboard h2 { padding: 0 10px; }
+.pass-it-on-tagboard .social-links { padding: 10px 0 0 10px; }
 
 /* Print Styles
 -------------------------------------------------------------------------------*/
@@ -1147,7 +1148,10 @@ body.skate .ripper-videos .section-content .featured-videos .video-thumbnails li
   /* LBS styles */
   .lbs-contest .section-content h2 { float: left; }
   .lbs-contest .section-content .social-links { float: right; }
-  .lbs-contest .section-content p { clear: both; } }
+  .lbs-contest .section-content p { clear: both; }
+  /* Pass It On Project styles */
+  .pass-it-on-tagboard .section-content h2 { float: left; }
+  .pass-it-on-tagboard .section-content .social-links { float: right; padding: 0 0 0 10px; } }
 @media screen and (min-width: 768px) { /* General Styles */
   h1, h2, .h1, .h2 { font-size: 3.125em; /* 50 / 16 */ }
   h3, .h3 { font-size: 1.875em; /* 30 / 16 */ }
