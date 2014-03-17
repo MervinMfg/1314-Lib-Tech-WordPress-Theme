@@ -347,7 +347,7 @@ var LIBTECH = LIBTECH || {};
 
 LIBTECH.snowboardbuilder = {
 	config: {
-		baseImgPath: 'http://www.lib-tech.com/wp-content/themes/libtech_2/_/img/diy/',
+		baseImgPath: 'http://cdn.lib-tech.com/wp-content/themes/libtech/_/img/diy/',
 		topGraphicImg: 0, // top
 		sidewallTopImg: 0,
 		sidewallBottomImg: 0,
