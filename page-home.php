@@ -209,7 +209,7 @@ get_header();
 					</li>
 					<li class="homepage-link">
 						<div class="link-wrapper">
-							<a href="#kraftsmen">
+							<a href="/category/kraftsmen/">
 								<img src="<?php bloginfo('template_directory'); ?>/_/img/home-kraftsmen.jpg" alt="Kraftsmen" />
 								<h4>Kraftsmen</h4>
 							</a>
@@ -217,7 +217,7 @@ get_header();
 					</li>
 					<li class="homepage-link">
 						<div class="link-wrapper">
-							<a href="#artists">
+							<a href="/category/artists/">
 								<img src="<?php bloginfo('template_directory'); ?>/_/img/home-artists.jpg" alt="Artists" />
 								<h4>Artists</h4>
 							</a>
