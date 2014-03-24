@@ -992,6 +992,38 @@ function register_custom_post_types() {
     ); 
     register_post_type('libtech_team_nas',$args);
 
+    // TEAM SURF
+    $labels = array(
+        'name' => _x('Surf Team', 'post type general name'),
+        'singular_name' => _x('Surf Ripper', 'post type singular name'),
+        'add_new' => _x('Add Surf Ripper', 'libtech_team_surf'),
+        'add_new_item' => __('Add New Team Member'),
+        'edit_item' => __('Edit Team Member'),
+        'new_item' => __('New Team Member'),
+        'all_items' => __('All Team Members'),
+        'view_item' => __('View Team Member'),
+        'search_items' => __('Search Team'),
+        'not_found' =>  __('No Team Member Found'),
+        'not_found_in_trash' => __('No Team Member Found In Trash'), 
+        'parent_item_colon' => '',
+        'menu_name' => 'Surf Team'
+    );
+    $args = array(
+        'labels' => $labels,
+        'public' => true,
+        'publicly_queryable' => true,
+        'show_ui' => true, 
+        'show_in_menu' => true, 
+        'query_var' => true,
+        'rewrite' => array("slug" => "surfing/team"),
+        'capability_type' => 'page',
+        'has_archive' => false, 
+        'hierarchical' => false,
+        'menu_position' => null,
+        'supports' => array( 'title', 'editor', 'page-attributes' )
+    ); 
+    register_post_type('libtech_team_surf',$args);
+
     // TEAM SKATE
     $labels = array(
         'name' => _x('Skate Team', 'post type general name'),
@@ -1048,11 +1080,11 @@ function register_custom_post_types() {
         'show_ui'                       => true,
         'show_in_nav_menus'             => true,
         'args'                          => array( 'orderby' => 'term_order' ),
-        //'rewrite'                       => array( 'slug' => 'outerwear' ),
         'query_var'                     => true
     );
     register_taxonomy( 'libtech_team_snow_cat', 'libtech_team_snow', $args );
     register_taxonomy( 'libtech_team_nas_cat', 'libtech_team_nas', $args );
+    register_taxonomy( 'libtech_team_surf_cat', 'libtech_team_surf', $args );
     register_taxonomy( 'libtech_team_skate_cat', 'libtech_team_skate', $args );
     // END TEAM
     

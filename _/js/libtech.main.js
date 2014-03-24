@@ -42,7 +42,7 @@ LIBTECH.main = {
 			self.environmentalInit();
 		} else if ($('body').hasClass('page-template-page-overview-team-php')) {
 			self.teamOverviewInit();
-		} else if ($('body').hasClass('single-libtech_team_snow') || $('body').hasClass('single-libtech_team_nas') || $('body').hasClass('single-libtech_team_skate')) {
+		} else if ($('body').hasClass('single-libtech_team_snow') || $('body').hasClass('single-libtech_team_nas') || $('body').hasClass('single-libtech_team_surf') || $('body').hasClass('single-libtech_team_skate')) {
 			self.teamDetailsInit();
 		} else if ($('body').hasClass('blog') || $('body').hasClass('search') || $('body').hasClass('archive') || $('body').hasClass('error404')) {
 			self.blogInit();

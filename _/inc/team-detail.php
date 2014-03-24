@@ -25,7 +25,7 @@
 				</div>
 				<div class="ripper-right">
 					<div class="ripper-meta">
-						<?php if(get_field('libtech_team_home')) : ?><p class="ripper-home"><span><?php if($postType == 'libtech_team_skate'): echo 'Local Skatepark'; else: echo 'Home Mountain'; endif; ?>: </span><?php the_field('libtech_team_home'); ?></p><?php endif; ?>
+						<?php if(get_field('libtech_team_home')) : ?><p class="ripper-home"><span><?php if($postType == 'libtech_team_skate'): echo 'Local Skatepark'; elseif($postType == 'libtech_team_surf'): echo 'Local Break'; else: echo 'Home Mountain'; endif; ?>: </span><?php the_field('libtech_team_home'); ?></p><?php endif; ?>
 						<?php if(get_field('libtech_team_sponsors')) : ?><p class="ripper-sponsors"><span>Sponsors: </span><?php the_field('libtech_team_sponsors'); ?></p><?php endif; ?>
 					</div>
 					<h4><?php the_field('libtech_team_profile_tagline'); ?></h4>

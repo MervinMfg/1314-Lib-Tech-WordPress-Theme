@@ -233,6 +233,9 @@ if (have_posts()) :
                         if (is_tree('18925')) {
                             // check if this is within skateboarding
                             $postType = "libtech_team_skate";
+                        } else if (is_tree('11418')) {
+                            // check if this is within surfing
+                            $postType = "libtech_team_surf";
                         } else {
                             $postType = "libtech_team_nas";
                         }
