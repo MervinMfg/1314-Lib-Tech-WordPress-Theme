@@ -235,7 +235,7 @@
             ?>
 			<div class="nav-sub-wrapper <? echo $GLOBALS['sport']; ?>">
                 <?php
-                    if ($GLOBALS['sport'] != "" && !is_front_page() && !is_home() && !is_page('environmental') && !is_page('technology') && !is_page('dealer-locator') && !is_page('search')) { // we have a sport, so use their menus
+                    if ($GLOBALS['sport'] != "" && !is_front_page() && !is_home() && !is_page('environmental') && !is_page('18947') && !is_page('dealer-locator') && !is_page('search')) { // we have a sport, so use their menus
                         $productNav = $GLOBALS['sport'] . '_products';
                         $subNav = $GLOBALS['sport'] . '_sub';
                         wp_nav_menu( // sport products menu
