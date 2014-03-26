@@ -14,8 +14,8 @@ switch ($parentSlug) {
     case "skateboarding":
         $categorySlug = "skateboards";
         break;
-    case "snowboarding":
-        $categorySlug = "snowboards";
+    case "surfing":
+        $categorySlug = "surfboards";
         break;
     default:
         $categorySlug = "snowboards";
@@ -29,6 +29,8 @@ switch ($parentSlug) {
                     <img src="<?php bloginfo('template_directory'); ?>/_/img/tech-snow.jpg" alt="Lib Tech Snowboard Technology" />
                     <?php elseif ($categorySlug == "nas"): ?>
                     <img src="<?php bloginfo('template_directory'); ?>/_/img/tech-ski.jpg" alt="Lib Tech NAS Technology" />
+                    <?php elseif ($categorySlug == "surfboards"): ?>
+                    <img src="<?php bloginfo('template_directory'); ?>/_/img/tech-surf.jpg" alt="Lib Tech Surf Technology" />
                     <?php elseif ($categorySlug == "skateboards"): ?>
                     <img src="<?php bloginfo('template_directory'); ?>/_/img/tech-skate.jpg" alt="Lib Tech Skate Technology" />
                     <?php endif; ?>
