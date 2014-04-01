@@ -189,7 +189,7 @@
 </head>
 <body <?php body_class($bodyClass); ?>>
 	<div class="wrapper">
-        <?php
+        <?php /*
             // determine the correct takeover link
             switch ($GLOBALS['sport']) {
                 case "ski":
@@ -204,7 +204,7 @@
                 default:
                     $takeoverLink = "/snowboards/";
             }
-        ?>
+        
         <div class="takeover">
             <div class="takeover-content">
                 <div class="expanded">
@@ -219,7 +219,8 @@
                     </a>
                 </div>
             </div>
-        </div><!-- END .takeover -->
+        </div><!-- END .takeover --> */ ?>
+        
 		<header>
 			<div class="logo-wrapper">
 				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" id="logo"><img src="<?php echo $logo; ?>" alt="<?php bloginfo( 'name' ); ?> – <?php bloginfo( 'description' ); ?>" /></a>
