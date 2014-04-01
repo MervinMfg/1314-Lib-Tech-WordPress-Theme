@@ -1012,6 +1012,25 @@ body.skate .ripper-videos .section-content .featured-videos .video-thumbnails li
 .lbs-contest .section-content h2, .lbs-contest .section-content p, .lbs-contest .section-content blockquote { margin-bottom: 10px; }
 .lbs-contest .section-content blockquote { margin-left: 20px; font-style: italic; line-height: 1.3em; }
 
+/* Surf Fin styles
+-------------------------------------------------------------------------------*/
+.fins-includes .section-content { padding: 0 10px; }
+.fins-includes .section-content h1 { margin-bottom: 20px; padding: 0 10px; }
+.fins-includes .section-content h3 { margin-bottom: 10px; padding: 0 10px; }
+.fins-includes .section-content ul li { width: 50%; float: left; }
+.fins-includes .section-content ul li div { padding: 0 10px; }
+.fins-includes .section-content ul li div img { height: auto; }
+
+.fins-adjusting .section-content { padding: 0 20px; }
+.fins-adjusting .section-content h2 { margin-bottom: 20px; }
+.fins-adjusting .section-content .fins-adjusting-text p { margin-bottom: 10px; }
+.fins-adjusting .section-content .bx-wrapper { padding: 10px 0 20px; }
+.fins-adjusting .section-content .bx-wrapper .bx-viewport { background: none; }
+.fins-adjusting .section-content .fins-adjusting-images li img { height: auto; }
+
+.fins-candy .section-content { padding: 0 20px; }
+.fins-candy .section-content img { height: auto; }
+
 /* Pass It On Project styles
 -------------------------------------------------------------------------------*/
 .pass-it-on-header .section-content { padding-left: 20px; padding-right: 20px; }
@@ -1145,6 +1164,8 @@ body.skate .ripper-videos .section-content .featured-videos .video-thumbnails li
   .partners .section-content .entry-content ul li { width: 50%; float: left; }
   .partners .section-content .entry-content ul li:nth-child(odd) { clear: left; }
   .partners .section-content .entry-content ul li .partner-entry { padding-right: 20px; }
+  /* Surf Fin styles */
+  .fins-candy .section-content ul li { width: 50%; float: left; }
   /* LBS styles */
   .lbs-contest .section-content h2 { float: left; }
   .lbs-contest .section-content .social-links { float: right; }
@@ -1205,13 +1226,19 @@ body.skate .ripper-videos .section-content .featured-videos .video-thumbnails li
   .ripper-details .section-content .ripper-right .ripper-meta, .ripper-details .section-content .ripper-right h4, .ripper-details .section-content .ripper-right .ripper-bio { display: block; max-width: 600px; }
   .ripper-videos .section-content .featured-videos .video-thumbnails li { width: 33.3333%; }
   .whats-new.ripper .content-grid .grid-item.blog.item-2 { display: inline-block; }
-  /* Blog styles -------------------------------------------------------------------------------*/
+  /* Blog styles */
   .blog-posts .blog-post { width: 33%; }
   .blog-post .section-content .post .entry-content .strobbr-list li { width: 50%; float: left; }
+  /* Partners styles */
   .partners .section-content .entry-content ul li .partner-entry h4 { width: 70%; float: right; }
   .partners .section-content .entry-content ul li .partner-entry .partner-images { width: 30%; float: left; }
   .partners .section-content .entry-content ul li .partner-entry .partner-images img { padding-right: 20px; }
   .partners .section-content .entry-content ul li .partner-entry p { width: 70%; float: right; }
+  /* Surf Fin styles */
+  .fins-adjusting .section-content .fins-adjusting-text { width: 50%; float: left; }
+  .fins-adjusting .section-content .fins-adjusting-text p { padding-right: 20px; }
+  .fins-adjusting .section-content .bx-wrapper { width: 50%; float: left; }
+  .fins-adjusting .section-content .fins-adjusting-video { clear: both; }
   /* LBS styles */
   .lbs-updates .section-content .featured-video .video-player { width: 50%; float: left; }
   .lbs-updates .section-content .featured-video .video-copy { width: 50%; float: left; }
@@ -1295,7 +1322,7 @@ body.skate .ripper-videos .section-content .featured-videos .video-thumbnails li
   .ripper-videos .section-content .featured-videos .video-player { width: 50%; float: left; }
   .ripper-videos .section-content .featured-videos .video-thumbnails { width: 50%; float: left; }
   .whats-new.ripper .content-grid .grid-item.instagram.item-2, .whats-new.ripper .content-grid .grid-item.product.item-2 { display: inline-block; }
-  /* Blog styles -------------------------------------------------------------------------------*/
+  /* Blog styles */
   .blog-posts .blog-post { width: 24.7%; }
   .blog-post .section-content .post { width: 75%; float: left; }
   .blog-post .section-content #sidebar { width: 25%; float: right; }
@@ -1304,7 +1331,13 @@ body.skate .ripper-videos .section-content .featured-videos .video-thumbnails li
   .blog-post .section-content #sidebar .related-posts .post { width: 100%; float: none; }
   .blog-post .section-content #sidebar .related-posts .post:nth-child(1) .post-wrapper { padding-right: 0; }
   .blog-post .section-content #sidebar .related-posts .post:nth-child(2) .post-wrapper { padding-left: 0; }
-  /* Pass It On Project styles -------------------------------------------------------------------------------*/
+  /* Surf Fin styles */
+  .fins-includes .section-content ul li { width: 25%; float: left; }
+  .fins-adjusting .section-content .fins-adjusting-content { width: 50%; float: left; }
+  .fins-adjusting .section-content .fins-adjusting-content .fins-adjusting-text { width: 100%; float: none; }
+  .fins-adjusting .section-content .fins-adjusting-content .bx-wrapper { width: 100%; float: none; }
+  .fins-adjusting .section-content .fins-adjusting-video { width: 50%; float: left; clear: none; }
+  /* Pass It On Project styles */
   .pass-it-on-header .section-content h1, .pass-it-on-header .section-content .pass-it-on-desc { width: 40%; float: right; }
   .pass-it-on-header .section-content .pass-it-on-video { width: 60%; float: left; padding-top: 5px; }
   .pass-it-on-header .section-content .pass-it-on-video iframe { padding-right: 20px; }

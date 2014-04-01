@@ -57,6 +57,8 @@ LIBTECH.main = {
 			LIBTECH.snowboardbuilder.shareInit();
 		} else if ($('body').hasClass('page-template-page-partners-php')) {
 			self.partnersInit();
+		} else if ($('body').hasClass('page-template-page-surfboard-fins-php')) {
+			self.finsInit();
 		} else if ($('body').hasClass('page-template-page-lbs-php')) {
 			self.lbsInit();
 		} else if ($('body').hasClass('page-template-page-pass-it-on-project-php')) {
@@ -1098,6 +1100,18 @@ LIBTECH.main = {
 				preload: [0,1] // Will preload 0 - before current, and 1 after the current image
 			}
 		});
+	},
+	finsInit: function () {
+		$('.fins-adjusting .fins-adjusting-video').fitVids();
+
+		$('.fins-adjusting .fins-adjusting-images').bxSlider({
+            mode: 'fade',
+            auto: true,
+            controls: false,
+            pause: 4000,
+            autoHover: true,
+            pager: false
+        });
 	},
 	lbsInit: function () {
 		$('.lbs-updates .featured-video .video-player').fitVids();

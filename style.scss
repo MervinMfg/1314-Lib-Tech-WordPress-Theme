@@ -3514,6 +3514,72 @@ body.skate .ripper-videos .section-content .featured-videos {
 		}
 	}
 }
+/* Surf Fin styles
+-------------------------------------------------------------------------------*/
+.fins-includes {
+	.section-content {
+		padding: 0 10px;
+
+		h1 {
+			margin-bottom: 20px;
+			padding: 0 10px;
+		}
+		h3 {
+			margin-bottom: 10px;
+			padding: 0 10px;
+		}
+		ul li {
+			width: 50%;
+			float: left;
+
+			div {
+				padding: 0 10px;
+
+				img {
+					height: auto;
+				}
+			}
+		}
+	}
+}
+.fins-adjusting {
+	.section-content {
+		padding: 0 20px;
+
+		h2 {
+			margin-bottom: 20px;
+		}
+		.fins-adjusting-text {
+			p {
+				margin-bottom: 10px;
+			}
+		}
+		.bx-wrapper {
+			padding: 10px 0 20px;
+
+			.bx-viewport {
+				background: none;
+			}
+		}
+		.fins-adjusting-images {
+			li img {
+				height: auto;
+			}
+		}
+		.fins-adjusting-video {
+
+		}
+	}
+}
+.fins-candy {
+	.section-content {
+		padding: 0 20px;
+
+		img {
+			height: auto;
+		}
+	}
+}
 /* Pass It On Project styles
 -------------------------------------------------------------------------------*/
 .pass-it-on-header {
@@ -4048,6 +4114,15 @@ body.skate .ripper-videos .section-content .featured-videos {
 			}
 		}
 	}
+	/* Surf Fin styles */
+	.fins-candy {
+		.section-content {
+			ul li {
+				width: 50%;
+				float: left;
+			}
+		}
+	}
 	/* LBS styles */
 	.lbs-contest {
 		.section-content {
@@ -4063,7 +4138,6 @@ body.skate .ripper-videos .section-content .featured-videos {
 		}
 	}
 	/* Pass It On Project styles */
-
 	.pass-it-on-tagboard {
 		.section-content {
 			h2 {
@@ -4270,8 +4344,7 @@ body.skate .ripper-videos .section-content .featured-videos {
 			display: inline-block;
 		}
 	}
-	/* Blog styles
-	-------------------------------------------------------------------------------*/
+	/* Blog styles */
 	.blog-posts {
 		.blog-post {
 			width: 33%;
@@ -4285,6 +4358,7 @@ body.skate .ripper-videos .section-content .featured-videos {
 			}
 		}
 	}
+	/* Partners styles */
 	.partners {
 		.section-content {
 			.entry-content {
@@ -4308,6 +4382,26 @@ body.skate .ripper-videos .section-content .featured-videos {
 						}
 					}
 				}
+			}
+		}
+	}
+	/* Surf Fin styles */
+	.fins-adjusting {
+		.section-content {
+			.fins-adjusting-text {
+				width: 50%;
+				float: left;
+
+				p {
+					padding-right: 20px;
+				}
+			}
+			.bx-wrapper {
+				width: 50%;
+				float: left;
+			}
+			.fins-adjusting-video {
+				clear: both;
 			}
 		}
 	}
@@ -4653,8 +4747,7 @@ body.skate .ripper-videos .section-content .featured-videos {
 			display: inline-block;
 		}
 	}
-	/* Blog styles
-	-------------------------------------------------------------------------------*/
+	/* Blog styles */
 	.blog-posts {
 		.blog-post {
 			width: 24.7%;
@@ -4691,8 +4784,38 @@ body.skate .ripper-videos .section-content .featured-videos {
 			}
 		}
 	}
-	/* Pass It On Project styles
-	-------------------------------------------------------------------------------*/
+	/* Surf Fin styles */
+	.fins-includes {
+		.section-content {
+			ul li {
+				width: 25%;
+				float: left;
+			}
+		}
+	}
+	.fins-adjusting {
+		.section-content {
+			.fins-adjusting-content {
+				width: 50%;
+				float: left;
+
+				.fins-adjusting-text {
+					width: 100%;
+					float: none;
+				}
+				.bx-wrapper {
+					width: 100%;
+					float: none;
+				}
+			}
+			.fins-adjusting-video {
+				width: 50%;
+				float: left;
+				clear: none;
+			}
+		}
+	}
+	/* Pass It On Project styles */
 	.pass-it-on-header {
 		.section-content {
 			h1,
@@ -4714,7 +4837,6 @@ body.skate .ripper-videos .section-content .featured-videos {
 			}
 		}
 	}
-
 	.pass-it-on-contest {
 		.woobox-wrapper {
 			padding-bottom: 40px;
