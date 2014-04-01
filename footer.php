@@ -184,8 +184,8 @@
 	<!--[if lt IE 8]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
 	<!-- JavaScript includes -->
 	<!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if necessary -->
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery-1.10.2.min.js"><\/script>')</script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery-1.11.0.min.js"><\/script>')</script>
 	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery.fitvids.js"></script>
 	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery.bxslider.min.js"></script>
 	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery.magnific-popup.min.js"></script>

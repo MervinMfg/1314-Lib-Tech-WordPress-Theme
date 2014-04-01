@@ -5,7 +5,7 @@
     AUTHOR brian.behrens@mervin.com
 
     DEPENDENCIES:
-    - jQuery v1.10.2
+    - jQuery v1.11.0
     - Modernizr 2.6.2
     - Shopatron API v2.2.0
     - FitVids 1.0

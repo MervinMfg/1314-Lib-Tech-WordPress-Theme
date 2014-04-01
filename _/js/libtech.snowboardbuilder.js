@@ -5,7 +5,7 @@
 	AUTHOR brian.behrens@mervin.com
 
 	DEPENDENCIES:
-	- jQuery v1.10.2
+	- jQuery v1.11.0
 	- Shopatron API v2.2.0
 	- Modernizr v2.6.2
 	- Respond.js
