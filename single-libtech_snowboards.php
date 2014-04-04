@@ -138,7 +138,7 @@ Template Name: Snowboard Detail
 						endif;
 					?>
 					<div class="product-variations <?php if($isProductAvailable == "No"){echo 'hidden';} ?>">
-						<select id="product-variation">
+						<select id="product-variation" class="select">
 							<option value="-1">Select a Size</option>
 							<?php
 								// sort by variation name

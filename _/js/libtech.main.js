@@ -49,8 +49,8 @@ LIBTECH.main = {
 		} else if ($('body').hasClass('single-post')) {
 			self.blogInit();
 			self.blogSingleInit();
-		} else if ($('body').hasClass('page-template-page-support-faq-php')) {
-			self.faqInit();
+		} else if ($('body').hasClass('page-template-page-faqs-php')) {
+			self.faqsInit();
 		} else if ($('body').hasClass('page-template-page-snowboard-builder-php')) {
 			LIBTECH.snowboardbuilder.init();
 		} else if ($('body').hasClass('page-template-page-snowboard-builder-share-php')) {
@@ -1101,17 +1101,54 @@ LIBTECH.main = {
 			}
 		});
 	},
+	faqsInit: function () {
+		var self = this;
+		// fit videos
+		$('.faq-list .faq-question .answer').fitVids();
+		// hide answer
+		$(".faq-question a.question").next().each(function (index, element) {
+			$(this).css("display", "none");
+		});
+		// activate click listeners
+		$(".faq-question a.question").on({
+			click: function (e) {
+				if ($(this).next("div").css("display") === "none") {
+					$(this).next("div").slideDown(300);
+					$(this).parent().addClass("active");
+				} else {
+					$(this).next("div").slideUp(300);
+					$(this).parent().removeClass("active");
+				}
+				e.preventDefault();
+			}
+		});
+		// update page scroll on category change
+		$('.faq-categories .mobile-nav').on('change', function (e) {
+			var val = $(this).val();
+			if(val !== '' || val !== '#' || val !== undefined) {
+				self.utilities.pageScroll(val);
+			}
+		});
+		$('.faq-categories .desktop-nav a').on('click', function (e) {
+			var val = $(this).attr('href');
+			e.preventDefault();
+			e.stopPropagation();
+			if(val !== '' || val !== '#' || val !== undefined) {
+				self.utilities.pageScroll(val);
+			}
+		});
+	},
 	finsInit: function () {
 		$('.fins-adjusting .fins-adjusting-video').fitVids();
-
+		// init fin adjustment slideshow
 		$('.fins-adjusting .fins-adjusting-images').bxSlider({
-            mode: 'fade',
-            auto: true,
-            controls: false,
-            pause: 4000,
-            autoHover: true,
-            pager: false
-        });
+			mode: 'fade',
+			auto: true,
+			controls: false,
+			pause: 4000,
+			autoHover: true,
+			pager: false
+		});
 	},
 	lbsInit: function () {
 		$('.lbs-updates .featured-video .video-player').fitVids();

@@ -77,7 +77,7 @@ Template Name: Outerwear Detail
 						<?php echo getPrice( get_field('libtech_product_price_us'), get_field('libtech_product_price_ca'), get_field('libtech_product_on_sale'), get_field('libtech_product_sale_percentage') ); ?>
 					</div>
 					<div class="product-variations <?php if($isProductAvailable == "No"){echo 'hidden';} ?>">
-						<select id="product-variation-size">
+						<select id="product-variation-size" class="select">
 							<option value="-1">Select Size</option>
 							<?php
 							$sizeArray = array();
@@ -96,7 +96,7 @@ Template Name: Outerwear Detail
 							endforeach;
 							?>
 						</select>
-						<select id="product-variation-color">
+						<select id="product-variation-color" class="select">
 							<option value="-1">Select Color</option>
 							<?php
 							$colorArray = array();

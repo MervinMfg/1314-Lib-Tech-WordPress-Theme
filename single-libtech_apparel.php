@@ -83,7 +83,7 @@ Template Name: Apparel Detail
 								$apparelSizeCheck = $product['size'];
 						endforeach;
 						?>
-						<select id="product-variation-size" class="<?php if($apparelSizeCheck == 'OSFA'){echo 'hidden';} ?>">
+						<select id="product-variation-size" class="select <?php if($apparelSizeCheck == 'OSFA'){echo 'hidden';} ?>">
 							<option value="-1">Select Size</option>
 							<?php
 							$sizeArray = array();
@@ -102,7 +102,7 @@ Template Name: Apparel Detail
 							endforeach;
 							?>
 						</select>
-						<select id="product-variation-color">
+						<select id="product-variation-color" class="select">
 							<option value="-1">Select Color</option>
 							<?php
 							$colorArray = array();

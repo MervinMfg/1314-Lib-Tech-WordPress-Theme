@@ -43,10 +43,8 @@ register_nav_menus( array(
     'surf_products' => 'Surf Products',
     'surf_sub' => 'Surf Sub',
     'skate_products' => 'Skate Products',
-    'skate_sub' => 'Skate Sub'
-    //'about_submenu' => 'About Submenu',
-    //'contact_submenu' => 'Contact Submenu',
-    //'support_submenu' => 'Support Submenu'
+    'skate_sub' => 'Skate Sub',
+    'faq_menu' => 'FAQ Menu'
 ) );
 // register a sidebar for blog
 if (function_exists('register_sidebar')) {
@@ -590,99 +588,6 @@ function register_custom_post_types() {
     register_taxonomy( 'libtech_skateboard_categories', 'libtech_skateboards', $args );
     // END SKATEBOARDS
 
-    // START AWARDS
-    $labels = array(
-        'name' => _x('Awards', 'post type general name'),
-        'singular_name' => _x('Award', 'post type singular name'),
-        'add_new' => _x('Add New', 'libtech_awards'),
-        'add_new_item' => __('Add New Award'),
-        'edit_item' => __('Edit Award'),
-        'new_item' => __('New Award'),
-        'all_items' => __('All Awards'),
-        'view_item' => __('View Award'),
-        'search_items' => __('Search Awards'),
-        'not_found' =>  __('No Award Found'),
-        'not_found_in_trash' => __('No Awards Found In Trash'), 
-        'parent_item_colon' => '',
-        'menu_name' => 'Awards'
-    );
-    $args = array(
-        'labels' => $labels,
-        'public' => true,
-        'publicly_queryable' => true,
-        'show_ui' => true, 
-        'show_in_menu' => true, 
-        'query_var' => true,
-        'rewrite' => array("slug" => "awards"),
-        'capability_type' => 'page',
-        'has_archive' => false, 
-        'hierarchical' => false,
-        'menu_position' => null,
-        'supports' => array( 'title', 'page-attributes' )
-    ); 
-    register_post_type('libtech_awards',$args);
-    // END AWARDS
-
-    // START TECHNOLOGY
-    $labels = array(
-        'name' => _x('Technology', 'post type general name'),
-        'singular_name' => _x('Technology', 'post type singular name'),
-        'add_new' => _x('Add New', 'libtech_technology'),
-        'add_new_item' => __('Add New Tech Item'),
-        'edit_item' => __('Edit Tech Item'),
-        'new_item' => __('New Technology'),
-        'all_items' => __('All Technology'),
-        'view_item' => __('View Tech Item'),
-        'search_items' => __('Search Technology'),
-        'not_found' =>  __('No Tech Item Found'),
-        'not_found_in_trash' => __('No Technology Found In Trash'), 
-        'parent_item_colon' => '',
-        'menu_name' => 'Technology'
-    );
-    $args = array(
-        'labels' => $labels,
-        'public' => true,
-        'publicly_queryable' => true,
-        'show_ui' => true, 
-        'show_in_menu' => true, 
-        'query_var' => true,
-        'rewrite' => array("slug" => "technology"),
-        'capability_type' => 'page',
-        'has_archive' => false, 
-        'hierarchical' => false,
-        'menu_position' => null,
-        'supports' => array( 'title', 'editor', 'page-attributes' )
-    ); 
-    register_post_type('libtech_technology',$args);
-    // start taxonamy for Technology
-    $labels = array(
-        'name'                          => 'Categories',
-        'singular_name'                 => 'Category',
-        'search_items'                  => 'Search Category',
-        'popular_items'                 => 'Popular Categories',
-        'all_items'                     => 'All Categories',
-        'parent_item'                   => 'Parent Category',
-        'edit_item'                     => 'Edit Category',
-        'update_item'                   => 'Update Category',
-        'add_new_item'                  => 'Add New Category',
-        'new_item_name'                 => 'New Category',
-        'separate_items_with_commas'    => 'Separate Categories with commas',
-        'add_or_remove_items'           => 'Add or remove Categories',
-        'choose_from_most_used'         => 'Choose from most used Categories'
-    );
-    $args = array(
-        'label'                         => 'Categories',
-        'labels'                        => $labels,
-        'public'                        => true,
-        'hierarchical'                  => true,
-        'show_ui'                       => true,
-        'show_in_nav_menus'             => true,
-        'args'                          => array( 'orderby' => 'term_order' ),
-        'query_var'                     => true
-    );
-    register_taxonomy( 'libtech_technology_categories', 'libtech_technology', $args );
-    // END TECHNOLOGY
-
     // START OUTERWEAR
     $labels = array(
         'name' => _x('Outerwear', 'post type general name'),
@@ -927,6 +832,160 @@ function register_custom_post_types() {
     register_taxonomy( 'libtech_luggage_categories', 'libtech_luggage', $args );
     // END LUGGAGE
 
+    // START AWARDS
+    $labels = array(
+        'name' => _x('Awards', 'post type general name'),
+        'singular_name' => _x('Award', 'post type singular name'),
+        'add_new' => _x('Add New', 'libtech_awards'),
+        'add_new_item' => __('Add New Award'),
+        'edit_item' => __('Edit Award'),
+        'new_item' => __('New Award'),
+        'all_items' => __('All Awards'),
+        'view_item' => __('View Award'),
+        'search_items' => __('Search Awards'),
+        'not_found' =>  __('No Award Found'),
+        'not_found_in_trash' => __('No Awards Found In Trash'), 
+        'parent_item_colon' => '',
+        'menu_name' => 'Awards'
+    );
+    $args = array(
+        'labels' => $labels,
+        'public' => true,
+        'publicly_queryable' => true,
+        'show_ui' => true, 
+        'show_in_menu' => true, 
+        'query_var' => true,
+        'rewrite' => array("slug" => "awards"),
+        'capability_type' => 'page',
+        'has_archive' => false, 
+        'hierarchical' => false,
+        'menu_position' => null,
+        'supports' => array( 'title', 'page-attributes' )
+    ); 
+    register_post_type('libtech_awards',$args);
+    // END AWARDS
+
+    // START TECHNOLOGY
+    $labels = array(
+        'name' => _x('Technology', 'post type general name'),
+        'singular_name' => _x('Technology', 'post type singular name'),
+        'add_new' => _x('Add New', 'libtech_technology'),
+        'add_new_item' => __('Add New Tech Item'),
+        'edit_item' => __('Edit Tech Item'),
+        'new_item' => __('New Technology'),
+        'all_items' => __('All Technology'),
+        'view_item' => __('View Tech Item'),
+        'search_items' => __('Search Technology'),
+        'not_found' =>  __('No Tech Item Found'),
+        'not_found_in_trash' => __('No Technology Found In Trash'), 
+        'parent_item_colon' => '',
+        'menu_name' => 'Technology'
+    );
+    $args = array(
+        'labels' => $labels,
+        'public' => true,
+        'publicly_queryable' => true,
+        'show_ui' => true, 
+        'show_in_menu' => true, 
+        'query_var' => true,
+        'rewrite' => array("slug" => "technology"),
+        'capability_type' => 'page',
+        'has_archive' => false, 
+        'hierarchical' => false,
+        'menu_position' => null,
+        'supports' => array( 'title', 'editor', 'page-attributes' )
+    ); 
+    register_post_type('libtech_technology',$args);
+    // start taxonamy for Technology
+    $labels = array(
+        'name'                          => 'Categories',
+        'singular_name'                 => 'Category',
+        'search_items'                  => 'Search Category',
+        'popular_items'                 => 'Popular Categories',
+        'all_items'                     => 'All Categories',
+        'parent_item'                   => 'Parent Category',
+        'edit_item'                     => 'Edit Category',
+        'update_item'                   => 'Update Category',
+        'add_new_item'                  => 'Add New Category',
+        'new_item_name'                 => 'New Category',
+        'separate_items_with_commas'    => 'Separate Categories with commas',
+        'add_or_remove_items'           => 'Add or remove Categories',
+        'choose_from_most_used'         => 'Choose from most used Categories'
+    );
+    $args = array(
+        'label'                         => 'Categories',
+        'labels'                        => $labels,
+        'public'                        => true,
+        'hierarchical'                  => true,
+        'show_ui'                       => true,
+        'show_in_nav_menus'             => true,
+        'args'                          => array( 'orderby' => 'term_order' ),
+        'query_var'                     => true
+    );
+    register_taxonomy( 'libtech_technology_categories', 'libtech_technology', $args );
+    // END TECHNOLOGY
+
+    // START FAQs
+    $labels = array(
+        'name' => _x('FAQs', 'post type general name'),
+        'singular_name' => _x('FAQ', 'post type singular name'),
+        'add_new' => _x('Add New', 'libtech_faqs'),
+        'add_new_item' => __('Add New FAQ'),
+        'edit_item' => __('Edit FAQ'),
+        'new_item' => __('New FAQ'),
+        'all_items' => __('All FAQs'),
+        'view_item' => __('View FAQs'),
+        'search_items' => __('Search FAQs'),
+        'not_found' =>  __('No FAQ found'),
+        'not_found_in_trash' => __('No FAQs found in Trash'), 
+        'parent_item_colon' => '',
+        'menu_name' => 'FAQs'
+    );
+    $args = array(
+        'labels' => $labels,
+        'public' => true,
+        'publicly_queryable' => true,
+        'show_ui' => true, 
+        'show_in_menu' => true, 
+        'query_var' => true,
+        //'rewrite' => array("slug" => "artists"),
+        'capability_type' => 'post',
+        'has_archive' => false, 
+        'hierarchical' => false,
+        'menu_position' => null,
+        'supports' => array( 'title', 'editor', 'page-attributes' )
+    ); 
+    register_post_type('libtech_faqs',$args);
+    // start taxonamy for FAQs
+    $labels = array(
+        'name'                          => 'Categories',
+        'singular_name'                 => 'Category',
+        'search_items'                  => 'Search Category',
+        'popular_items'                 => 'Popular Categories',
+        'all_items'                     => 'All Categories',
+        'parent_item'                   => 'Parent Category',
+        'edit_item'                     => 'Edit Category',
+        'update_item'                   => 'Update Category',
+        'add_new_item'                  => 'Add New Category',
+        'new_item_name'                 => 'New Category',
+        'separate_items_with_commas'    => 'Separate Categories with commas',
+        'add_or_remove_items'           => 'Add or remove Categories',
+        'choose_from_most_used'         => 'Choose from most used Categories'
+    );
+    $args = array(
+        'label'                         => 'Categories',
+        'labels'                        => $labels,
+        'public'                        => true,
+        'hierarchical'                  => true,
+        'show_ui'                       => true,
+        'show_in_nav_menus'             => true,
+        'args'                          => array( 'orderby' => 'term_order' ),
+        //'rewrite'                       => array( 'slug' => 'cameras/brands', 'with_front' => false ),
+        'query_var'                     => true
+    );
+    register_taxonomy( 'libtech_faqs_categories', 'libtech_faqs', $args );
+    // END FAQs
+
     // START TEAM
     // TEAM SNOW
     $labels = array(
@@ -942,7 +1001,7 @@ function register_custom_post_types() {
         'not_found' =>  __('No Team Member Found'),
         'not_found_in_trash' => __('No Team Member Found In Trash'), 
         'parent_item_colon' => '',
-        'menu_name' => 'Snowboard Team'
+        'menu_name' => 'Snow Team'
     );
     $args = array(
         'labels' => $labels,

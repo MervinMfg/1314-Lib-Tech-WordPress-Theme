@@ -81,7 +81,7 @@ Template Name: NAS Detail
 						<?php echo getPrice( get_field('libtech_product_price_us'), get_field('libtech_product_price_ca'), get_field('libtech_product_on_sale'), get_field('libtech_product_sale_percentage') ); ?>
 					</div>
 					<div class="product-variations <?php if($isProductAvailable == "No"){echo 'hidden';} ?>">
-						<select id="product-variation">
+						<select id="product-variation" class="select">
 							<option value="-1">Select a Size</option>
 							<?php
 								// sort by variation name
