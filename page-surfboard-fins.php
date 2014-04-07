@@ -60,10 +60,16 @@ get_header();
         <div class="bg1-top"></div>
         <section class="fins-candy bg1">
             <div class="section-content">
-                <h2 class="orange-underline">Fin Candy</h2>
+                <h2>Fin Candy</h2>
                 <ul>
-                    <li><img src="<?php bloginfo('template_directory'); ?>/_/img/surf-fins-board-3-fin.png" width="460" height="320" alt="Waterboard with 3 Fins" /></li>
-                    <li><img src="<?php bloginfo('template_directory'); ?>/_/img/surf-fins-board-5-fin.png" width="460" height="320" alt="Waterboard with 5 Fins" /></li>
+                    <li>
+                        <p>Each 3 Fin Box Board includes 4 adjustable fins featuring 2 M.I.L.F. Technology side fins, 1 Lib Standard Trailing fin, and 1 special bonus Spinfly Trailing fin.</p>
+                        <img src="<?php bloginfo('template_directory'); ?>/_/img/surf-fins-board-3-fin.png" width="640" height="445" alt="Waterboard with 3 Fins" />
+                    </li>
+                    <li>
+                        <p>Each 5 Fin Box Board includes 5 adjustable fins featuring 2 M.I.L.F. Technology side fins, 1 Lib Standard Trailing fin, and 2 special bonus Spinfly Trailing fins.</p>
+                        <img src="<?php bloginfo('template_directory'); ?>/_/img/surf-fins-board-5-fin.png" width="640" height="445" alt="Waterboard with 5 Fins" />
+                    </li>
                 </ul>
                 <div class="clearfix"></div>
             </div><!-- END .section-content -->

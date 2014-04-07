@@ -1080,6 +1080,8 @@ body.skate .ripper-videos .section-content .featured-videos .video-thumbnails li
 .fins-adjusting .section-content .fins-adjusting-images li img { height: auto; }
 
 .fins-candy .section-content { padding: 0 20px; }
+.fins-candy .section-content h2 { margin-bottom: 20px; }
+.fins-candy .section-content p { margin-bottom: 10px; max-width: 500px; }
 .fins-candy .section-content img { height: auto; }
 
 /* Pass It On Project styles
