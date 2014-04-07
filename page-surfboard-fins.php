@@ -62,10 +62,10 @@ get_header();
             <div class="section-content">
                 <h2 class="orange-underline">Fin Candy</h2>
                 <ul>
-                    <li><img src="<?php bloginfo('template_directory'); ?>/_/img/surf-fins-board.png" width="460" height="380" alt="Waterboard with Fins" /></li>
-                    <li><img src="<?php bloginfo('template_directory'); ?>/_/img/surf-fins-illustration.png" width="460" height="380" alt="Fin Illustration" /></li>
+                    <li><img src="<?php bloginfo('template_directory'); ?>/_/img/surf-fins-board-3-fin.png" width="460" height="320" alt="Waterboard with 3 Fins" /></li>
+                    <li><img src="<?php bloginfo('template_directory'); ?>/_/img/surf-fins-board-5-fin.png" width="460" height="320" alt="Waterboard with 5 Fins" /></li>
                 </ul>
                 <div class="clearfix"></div>
             </div><!-- END .section-content -->
-        </section><!-- END .tech-minor -->
+        </section><!-- END .fins-candy -->
 <?php get_footer(); ?>
