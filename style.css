@@ -392,6 +392,12 @@ body.international .shopping-cart .section-content .int-cart-details { display: 
 .page-template-default .default-page .section-content p { margin-bottom: 10px; }
 .page-template-default .default-page .section-content ul { list-style: square; margin: 0 0 20px 25px; }
 
+.video-header .section-content { padding-left: 20px; padding-right: 20px; }
+.video-header .section-content h1 { margin-bottom: 20px; color: #000; }
+.video-header .section-content .video-player { padding-bottom: 10px; }
+.video-header .section-content h3 { color: #000; margin-bottom: 10px; }
+.video-header .section-content p { max-width: 900px; color: #000; font-size: 1em; margin-bottom: 10px; }
+
 /* Takeover Styles
 -------------------------------------------------------------------------------*/
 .takeover { max-width: 1640px; margin: 0 auto; padding: 0 20px; }
@@ -766,10 +772,16 @@ body.international .shopping-cart .section-content .int-cart-details { display: 
 
 /* Technology styles
 -------------------------------------------------------------------------------*/
+.tech-overview .section-content { padding: 0 20px; }
+.tech-overview .section-content .tech-header { margin-bottom: 20px; }
+.tech-overview .section-content .tech-sport { clear: both; padding-bottom: 20px; }
+.tech-overview .section-content .tech-sport h1 { margin-bottom: 20px; }
+.tech-overview .section-content .tech-sport h3 { margin-bottom: 10px; }
+.tech-overview .section-content .tech-sport img { width: 100%; margin-bottom: 10px; }
+.tech-overview .section-content .tech-sport .tech-copy h3, .tech-overview .section-content .tech-sport .tech-copy p { margin-bottom: 10px; }
+.tech-overview .section-content .tech-sport .tech-copy h3 { font-size: 1em; }
+
 .tech-major .section-content { padding: 0 20px; }
-.tech-major .tech-header { margin-bottom: 40px; }
-.tech-major .tech-header h1 { margin-bottom: 20px; }
-.tech-major .tech-header p { margin-bottom: 1em; }
 .tech-major h2 { margin-bottom: 10px; }
 .tech-major ul li { margin-bottom: 20px; }
 .tech-major ul li .tech-video { margin-bottom: 10px; }
@@ -791,13 +803,18 @@ body.international .shopping-cart .section-content .int-cart-details { display: 
 .tech-minor > ul > li .tech-copy, .tech-minor .section-content > ul > li .tech-copy { clear: both; }
 .tech-minor > ul > li .tech-copy ul, .tech-minor .section-content > ul > li .tech-copy ul { margin-left: 25px; list-style: square; }
 
-.tech-overview .section-content { padding: 0 20px; }
-.tech-overview .section-content .tech-header { margin-bottom: 40px; }
-.tech-overview .section-content .tech-sport { clear: both; padding-bottom: 40px; }
-.tech-overview .section-content .tech-sport h1 { margin-bottom: 1em; }
-.tech-overview .section-content .tech-sport h3 { margin-bottom: 1em; }
-.tech-overview .section-content .tech-sport img { width: 100%; margin-bottom: 1em; }
-.tech-overview .section-content .tech-sport .tech-copy p { margin-bottom: 1em; }
+.tech-faq .section-content { padding: 0 10px; }
+.tech-faq h2 { padding: 0 10px; margin-bottom: 20px; }
+.tech-faq .faq-list { width: 100%; }
+.tech-faq .faq-list ul li { max-width: 100%; width: 100%; padding-right: 10px; padding-left: 10px; }
+
+.tech-surf .section-content { padding: 0 20px; }
+.tech-surf h2 { margin-bottom: 20px; }
+.tech-surf .ddd-image { padding-bottom: 20px; }
+.tech-surf .ddd-image img { height: auto; }
+.tech-surf ul { list-style: square; }
+.tech-surf ul li { margin: 0 0 10px 20px; }
+.tech-surf p { margin-bottom: 10px; }
 
 /* Environmental styles
 -------------------------------------------------------------------------------*/
@@ -926,11 +943,6 @@ body.international .shopping-cart .section-content .int-cart-details { display: 
 
 /* Ripper styles
 -------------------------------------------------------------------------------*/
-.team-header .section-content { padding-left: 20px; padding-right: 20px; }
-.team-header .section-content h1 { padding-bottom: 10px; color: #000; }
-.team-header .section-content .video-player { padding-bottom: 10px; }
-.team-header .section-content p { max-width: 900px; color: #000; font-size: 1em; }
-
 .team-members .section-content { padding-left: 10px; padding-right: 10px; }
 .team-members .section-content h2 { margin: 10px 0 20px 10px; }
 .team-members .section-content ul li { margin-bottom: 20px; }
@@ -1185,12 +1197,12 @@ body.skate .ripper-videos .section-content .featured-videos .video-thumbnails li
   /* Discussion styles */
   .discussion-top, .discussion { display: block; }
   /* Technology styles */
-  .tech-major .tech-header img { padding: 0 20px 10px 0; float: left; }
   .tech-minor > ul > li, .tech-minor .section-content > ul > li { width: 48%; display: inline-block; vertical-align: top; text-align: left; }
   .tech-minor > ul > li .tech-pad, .tech-minor .section-content > ul > li .tech-pad { padding: 10px; }
   .tech-overview .section-content .tech-sport img { width: 50%; float: left; }
   .tech-overview .section-content .tech-sport .tech-copy { width: 50%; float: right; }
-  .tech-overview .section-content .tech-sport .tech-copy p { padding-left: 20px; }
+  .tech-overview .section-content .tech-sport .tech-copy h3, .tech-overview .section-content .tech-sport .tech-copy p { padding-left: 20px; }
+  .tech-overview .section-content .tech-sport .tech-copy h3 { font-size: 1.375em; }
   /* Ripper styles */
   .team-members .section-content ul li { width: 49.7%; display: inline-block; vertical-align: top; }
   .ripper-details .section-content h1 { width: 40%; float: right; }
@@ -1262,6 +1274,7 @@ body.skate .ripper-videos .section-content .featured-videos .video-thumbnails li
   .tech-major ul li .tech-video { width: 50%; float: left; }
   .tech-major ul li .tech-copy { width: 50%; float: left; }
   .tech-major ul li .tech-copy h4, .tech-major ul li .tech-copy h5, .tech-major ul li .tech-copy p, .tech-major ul li .tech-copy ul { margin-left: 20px; }
+  .tech-faq .faq-list ul { width: 50%; float: left; }
   /* Environmental styles */
   .enviro-video .section-content .video-player { width: 50%; float: left; }
   .enviro-video .section-content .video-copy { width: 50%; float: left; }
@@ -1328,6 +1341,11 @@ body.skate .ripper-videos .section-content .featured-videos .video-thumbnails li
   footer .logo { position: absolute; top: 0px; right: 20px; width: 25%; }
   footer .subscribe { position: absolute; top: 170px; right: 20px; width: 25%; }
   footer .footer-copy { padding: 0; width: 100%; }
+  /* General styles */
+  .video-header.video .section-content h1, .video-header.video .section-content p { width: 40%; float: right; }
+  .video-header.video .section-content .video-player { width: 60%; float: left; padding-top: 5px; }
+  .video-header.video .section-content .video-player .video-wrapper { padding-right: 20px; }
+  .video-header.video .section-content p { font-size: 1.125em; }
   /* Homepage Styles */
   .homepage-posts h2 { padding: 0 10px; }
   .homepage-posts .homepage-post { float: left; width: 25%; }
@@ -1374,15 +1392,15 @@ body.skate .ripper-videos .section-content .featured-videos .video-thumbnails li
   .tech-major .section-content ul li .tech-copy h4, .tech-major .section-content ul li .tech-copy h5, .tech-major .section-content ul li .tech-copy p { margin-left: 20px; }
   .tech-major .section-content ul li .tech-copy .tech-found-on { display: block; }
   .tech-minor > ul > li, .tech-minor .section-content > ul > li { width: 33%; display: inline-block; vertical-align: top; text-align: left; }
+  .tech-surf h2 { width: 60%; float: left; }
+  .tech-surf ul { width: 60%; float: left; }
+  .tech-surf ul li { padding-right: 20px; }
+  .tech-surf .ddd-image { width: 40%; float: right; padding-bottom: 0; }
   /* Dealer Locator */
   .dealer-locator .section-content iframe { display: block; }
   .dealer-locator .section-content .iframe-fallback { display: none; }
   /* Ripper styles */
   .team-members .section-content ul li { width: 24.7%; }
-  .team-header.video .section-content h1, .team-header.video .section-content p { width: 40%; float: right; }
-  .team-header.video .section-content .video-player { width: 60%; float: left; padding-top: 5px; }
-  .team-header.video .section-content .video-player .video-wrapper { padding-right: 20px; }
-  .team-header.video .section-content p { font-size: 1.125em; }
   .ripper-videos .section-content .featured-videos .video-player { width: 50%; float: left; }
   .ripper-videos .section-content .featured-videos .video-thumbnails { width: 50%; float: left; }
   .whats-new.ripper .content-grid .grid-item.instagram.item-2, .whats-new.ripper .content-grid .grid-item.product.item-2 { display: inline-block; }

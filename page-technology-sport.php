@@ -10,33 +10,48 @@ $parentSlug = $parent->post_name;
 switch ($parentSlug) {
     case "skiing":
         $categorySlug = "nas";
+        $faqSlug = "ski-technology";
         break;
     case "skateboarding":
         $categorySlug = "skateboards";
+        $faqSlug = "skate-technology";
         break;
     case "surfing":
         $categorySlug = "surfboards";
+        $faqSlug = "surf-technology";
         break;
     default:
         $categorySlug = "snowboards";
+        $faqSlug = "snow-technology";
 }
 ?>
+        <div class="bg-product-<?php echo $GLOBALS['sport']; ?>-top"></div>
+        <section class="video-header video bg-product-<?php echo $GLOBALS['sport']; ?>">
+            <div class="section-content">
+                <h1><?php the_title(); ?></h1>
+                <div class="video-player">
+                    <div class="video-wrapper">
+                        <?php if (get_field('libtech_tech_video_id')) : $videoID = get_field('libtech_tech_video_id'); ?>
+                        <iframe src="http://player.vimeo.com/video/<?php echo $videoID; ?>?title=0&amp;byline=0&amp;portrait=0&amp;color=66CC00" width="640" height="360" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                        <?php elseif ($categorySlug == "snowboards"): ?>
+                        <img src="<?php bloginfo('template_directory'); ?>/_/img/tech-snow.jpg" alt="Lib Tech Snowboard Technology" />
+                        <?php elseif ($categorySlug == "nas"): ?>
+                        <img src="<?php bloginfo('template_directory'); ?>/_/img/tech-ski.jpg" alt="Lib Tech NAS Technology" />
+                        <?php elseif ($categorySlug == "surfboards"): ?>
+                        <img src="<?php bloginfo('template_directory'); ?>/_/img/tech-surf.jpg" alt="Lib Tech Surf Technology" />
+                        <?php elseif ($categorySlug == "skateboards"): ?>
+                        <img src="<?php bloginfo('template_directory'); ?>/_/img/tech-skate.jpg" alt="Lib Tech Skate Technology" />
+                        <?php endif; ?>
+                    </div>
+                </div>
+                <?php the_content(); ?>
+                <div class="clearfix"></div>
+            </div><!-- END .section-content -->
+        </section><!-- END .tech-major -->
+        <?php if ($parentSlug != "surfing" && $parentSlug != "skateboarding"): ?>
+        <div class="bg2-top"></div>
         <section class="tech-major bg2">
             <div class="section-content">
-                <div class="tech-header">
-                    <h1><?php the_title(); ?></h1>
-                    <?php if ($categorySlug == "snowboards") : ?>
-                    <img src="<?php bloginfo('template_directory'); ?>/_/img/tech-snow.jpg" alt="Lib Tech Snowboard Technology" />
-                    <?php elseif ($categorySlug == "nas"): ?>
-                    <img src="<?php bloginfo('template_directory'); ?>/_/img/tech-ski.jpg" alt="Lib Tech NAS Technology" />
-                    <?php elseif ($categorySlug == "surfboards"): ?>
-                    <img src="<?php bloginfo('template_directory'); ?>/_/img/tech-surf.jpg" alt="Lib Tech Surf Technology" />
-                    <?php elseif ($categorySlug == "skateboards"): ?>
-                    <img src="<?php bloginfo('template_directory'); ?>/_/img/tech-skate.jpg" alt="Lib Tech Skate Technology" />
-                    <?php endif; ?>
-                    <?php the_content(); ?>
-                    <div class="clearfix"></div>
-                </div>
                 <ul>
                     <?php
                     // get the major tech items
@@ -90,13 +105,40 @@ switch ($parentSlug) {
                     endwhile;
                     wp_reset_query();
                     ?>
-                    <div class="clearfix"></div>
+                </ul>
+                <div class="clearfix"></div>
             </div><!-- END .section-content -->
         </section><!-- END .tech-major -->
-        <div class="bg3-top product-video-top"></div>
+        <?php endif; // end not surfing check ?>
+        <?php if ($parentSlug == "surfing"): ?>
+        <div class="bg1-top"></div>
+        <section class="tech-surf bg1">
+            <div class="section-content">
+                <h2>Dang Difficult to Ding</h2>
+                <div class="ddd-image">
+                    <img src="<?php bloginfo('template_directory'); ?>/_/img/surf-dang-difficult-to-ding.gif" width="640" height="360" alt="Man on bike rides over Waterboard" />
+                </div>
+                <ul>
+                    <li>
+                        <p>Years of composite panel impact testing went into our unique combination of fibers, Basalt and Resin systems.</p>
+                    </li>
+                    <li>
+                        <p>Voted toughest board of the year by Outside Magazine.</p>
+                    </li>
+                    <li>
+                        <p>Crossing the street or the globe, tougher surfboards - free your mind!</p>
+                    </li>
+                    <li>
+                        <p>If you do ding it, you don't have to get out of the water. Our core doesn't take on water.</p>
+                    </li>
+                </ul>
+            </div><!-- END .section-content -->
+        </section><!-- END .surf-tech -->
+        <?php endif; // end surfing check ?>
+        <div class="bg3-top"></div>
         <section class="tech-minor bg3">
             <div class="section-content">
-                <h2>Ingredients:</h2>
+                <h2>Ingredients</h2>
                 <ul>
                     <?php
                     $args = array(
@@ -135,4 +177,67 @@ switch ($parentSlug) {
                 </ul>
             </div><!-- END .section-content -->
         </section><!-- END .tech-minor -->
+        <?php
+            // get each post under taxonimy type
+            $args = array(
+                'tax_query' => array(
+                    array(
+                        'taxonomy' => 'libtech_faqs_categories',
+                        'field' => 'slug',
+                        'terms' => $faqSlug
+                    )
+                )
+            );
+            $loop = new WP_Query( $args );
+            // check to see if we have any FAQs to display
+            if ($loop->have_posts()) :
+                $columnOnePostNum = ceil($loop->post_count / 2);
+        ?>
+        <div class="bg2-top"></div>
+        <section class="tech-faq bg2">
+            <div class="section-content">
+                <div class="faq-list">
+                    <h2>FAQs</h2>
+                    <ul>
+                        <?php
+                            $i = 0;
+                            // get first set of posts
+                            while ( $loop->have_posts() ) : $loop->the_post();
+                                if ($i < $columnOnePostNum) {
+                                    $custom = get_post_custom($post->ID);
+                                    $content = apply_filters('the_content', get_the_content());
+                                    $content = str_replace(']]>', ']]&gt;', $content);
+                                    echo "\n\t\t\t\t\t<li class=\"faq-question\">\n\t\t\t\t\t\t<a href=\"#\" class=\"question\"><span></span>". get_the_title() ."</a>\n\t\t\t\t\t\t<div class=\"answer\">".$content."</div>\n\t\t\t\t\t</li>\n";
+                                } else {
+                                    break;
+                                }
+                                $i++; // incriment loop
+                            endwhile;
+                        ?>
+                    </ul>
+                    <ul>
+                        <?php
+                            // redo loop again
+                            $loop = new WP_Query( $args );
+                            $i = 0;
+                            // get the remaining posts
+                            while ( $loop->have_posts() ) : $loop->the_post();
+                                if ($i >= $columnOnePostNum) {
+                                    $custom = get_post_custom($post->ID);
+                                    $content = apply_filters('the_content', get_the_content());
+                                    $content = str_replace(']]>', ']]&gt;', $content);
+                                    echo "\n\t\t\t\t\t<li class=\"faq-question\">\n\t\t\t\t\t\t<a href=\"#\" class=\"question\"><span></span>". get_the_title() ."</a>\n\t\t\t\t\t\t<div class=\"answer\">".$content."</div>\n\t\t\t\t\t</li>\n";
+                                }
+                                $i++; // incriment loop
+                            endwhile;
+                        ?>
+                    </ul>
+                </div><!-- END .faq-list -->
+                <div class="clearfix"></div>
+            </div><!-- END .section-content -->
+        </section><!-- END .tech-faq -->
+        <?php
+            endif;
+            wp_reset_query();
+        ?>
 <?php get_footer(); ?>

@@ -870,7 +870,11 @@ LIBTECH.main = {
 		}
 	},
 	technologyDetailInit: function () {
-		$(".tech-major").fitVids();
+		var self = this;
+		// make video fit within target
+		$('.video-header.video .video-player').fitVids();
+		$('.tech-major .tech-video').fitVids();
+		self.faqsInit();
 	},
 	environmentalInit: function () {
 		$(".enviro-video").fitVids();
@@ -1050,7 +1054,7 @@ LIBTECH.main = {
 	teamOverviewInit: function () {
 		var self = this;
 		// make video fit within target
-		$('.team-header.video .video-player').fitVids();
+		$('.video-header.video .video-player').fitVids();
 	},
 	teamDetailsInit: function () {
 		var self = this;

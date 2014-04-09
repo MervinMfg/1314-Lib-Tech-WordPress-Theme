@@ -10,7 +10,7 @@ if (have_posts()) :
         $videoID = get_field('libtech_team_overview_video');
 ?>
         <div class="bg-product-<?php echo $GLOBALS['sport']; ?>-top"></div>
-        <section class="team-header bg-product-<?php echo $GLOBALS['sport']; if ($videoID) { echo " video"; }; ?>">
+        <section class="video-header bg-product-<?php echo $GLOBALS['sport']; if ($videoID) { echo " video"; }; ?>">
             <div class="section-content">
                 <h1><?php the_title(); ?></h1>
 
