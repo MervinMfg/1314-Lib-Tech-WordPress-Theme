@@ -1046,15 +1046,28 @@ body.international .shopping-cart .section-content {
 		.video-player {
 			padding-bottom: 10px;
 		}
-		h3 {
-			color: #000;
-			margin-bottom: 10px;
-		}
-		p {
-			max-width: 900px;
-			color: #000;
-			font-size: 1em;
-			margin-bottom: 10px;
+		.video-text {
+			h3 {
+				color: #000;
+				margin-bottom: 10px;
+			}
+			p {
+				max-width: 900px;
+				color: #000;
+				font-size: 1em;
+				margin-bottom: 10px;
+			}
+			ul {
+				list-style: square;
+				margin-left: 20px;
+
+				li {
+					margin-bottom: 5px;
+					color: #000;
+					font-size: .875em; /* 14 / 16 */
+				    line-height: 1.32;
+				}
+			}
 		}
 	}
 }
@@ -2580,7 +2593,6 @@ body.international .shopping-cart .section-content {
 		}
 	}
 }
-
 /* Technology styles
 -------------------------------------------------------------------------------*/
 .tech-overview {
@@ -3575,17 +3587,17 @@ body.skate .ripper-videos .section-content .featured-videos {
 				display: inline-block;
 				width: 0;
 				height: 0;
-				border-top: 8px solid transparent;
-				border-bottom: 8px solid transparent;
-				border-left: 15px solid $snowColor;
 				margin-left: 10px;
+				border-bottom: none;
+				border-left: 8px solid transparent;
+				border-right: 8px solid transparent;
+				border-top: 15px solid $snowColor;
 			}
 		}
-		&.active .question span {
-			border-bottom: none;
-			border-left: 8px solid transparent;
-			border-right: 8px solid transparent;
-			border-top: 15px solid $snowColor;
+		&.collapsed .question span {
+			border-top: 8px solid transparent;
+			border-bottom: 8px solid transparent;
+			border-left: 15px solid $snowColor;
 		}
 		.answer {
 			color: #000;
@@ -3617,12 +3629,13 @@ body.skate .ripper-videos .section-content .featured-videos {
 		color: $skiColor;
 
 		span {
-			border-left: 15px solid $skiColor;
+			border-left: 8px solid transparent;
+			border-top: 15px solid $skiColor;
 		}
 	}
-	&.active .question span {
-		border-left: 8px solid transparent;
-		border-top: 15px solid $skiColor;
+	&.collapsed .question span {
+		border-top: 8px solid transparent;
+		border-left: 15px solid $skiColor;
 	}
 	.answer {
 		background: $skiColor;
@@ -3633,28 +3646,30 @@ body.skate .ripper-videos .section-content .featured-videos {
 		color: $surfColor;
 
 		span {
-			border-left: 15px solid $surfColor;
+			border-left: 8px solid transparent;
+			border-top: 15px solid $surfColor;
 		}
 	}
-	&.active .question span {
-		border-left: 8px solid transparent;
-		border-top: 15px solid $surfColor;
+	&.collapsed .question span {
+		border-top: 8px solid transparent;
+		border-left: 15px solid $surfColor;
 	}
 	.answer {
 		background: $surfColor;
 	}
 }
 .skate .faq-list .faq-question {
-	.question {
+	.collapsed {
 		color: $skateColor;
 		
 		span {
-			border-left: 15px solid $skateColor;
+			border-left: 8px solid transparent;
+			border-top: 15px solid $skateColor;
 		}
 	}
-	&.active .question span {
-		border-left: 8px solid transparent;
-		border-top: 15px solid $skateColor;
+	&.collapsed .question span {
+		border-top: 8px solid transparent;
+		border-left: 15px solid $skateColor;
 	}
 	.answer {
 		background: $skateColor;
@@ -4444,6 +4459,15 @@ body.skate .ripper-videos .section-content .featured-videos {
 			}
 		}
 	}
+	/* General styles */
+	.video-header .section-content .video-text {
+		p {
+			font-size: 1.125em;
+		}
+		ul li {
+			font-size: 1em; /* 16 / 16 */
+		}
+	}
 	/* product overview */
 	.product-filtering {
 		display: block;
@@ -4791,8 +4815,7 @@ body.skate .ripper-videos .section-content .featured-videos {
 	}
 	/* General styles */
 	.video-header.video .section-content {
-		h1,
-		p {
+		h1, .video-text {
 			width: 40%;
 			float: right;
 		}
@@ -4800,13 +4823,11 @@ body.skate .ripper-videos .section-content .featured-videos {
 			width: 60%;
 			float: left;
 			padding-top: 5px;
+			padding-bottom: 0;
 
 			.video-wrapper {
 				padding-right: 20px;
 			}
-		}
-		p {
-			font-size: 1.125em;
 		}
 	}
 	/* Homepage Styles */

@@ -395,8 +395,10 @@ body.international .shopping-cart .section-content .int-cart-details { display: 
 .video-header .section-content { padding-left: 20px; padding-right: 20px; }
 .video-header .section-content h1 { margin-bottom: 20px; color: #000; }
 .video-header .section-content .video-player { padding-bottom: 10px; }
-.video-header .section-content h3 { color: #000; margin-bottom: 10px; }
-.video-header .section-content p { max-width: 900px; color: #000; font-size: 1em; margin-bottom: 10px; }
+.video-header .section-content .video-text h3 { color: #000; margin-bottom: 10px; }
+.video-header .section-content .video-text p { max-width: 900px; color: #000; font-size: 1em; margin-bottom: 10px; }
+.video-header .section-content .video-text ul { list-style: square; margin-left: 20px; }
+.video-header .section-content .video-text ul li { margin-bottom: 5px; color: #000; font-size: .875em; /* 14 / 16 */ line-height: 1.32; }
 
 /* Takeover Styles
 -------------------------------------------------------------------------------*/
@@ -1029,8 +1031,8 @@ body.skate .ripper-videos .section-content .featured-videos .video-thumbnails li
 .faq-list h3 { margin: 20px 0 10px 0; }
 .faq-list .faq-question { padding-bottom: 10px; }
 .faq-list .faq-question .question { font-style: italic; display: block; background: #000; padding: 10px; text-decoration: none; font-weight: bold; color: yellow; }
-.faq-list .faq-question .question span { float: right; display: inline-block; width: 0; height: 0; border-top: 8px solid transparent; border-bottom: 8px solid transparent; border-left: 15px solid yellow; margin-left: 10px; }
-.faq-list .faq-question.active .question span { border-bottom: none; border-left: 8px solid transparent; border-right: 8px solid transparent; border-top: 15px solid yellow; }
+.faq-list .faq-question .question span { float: right; display: inline-block; width: 0; height: 0; margin-left: 10px; border-bottom: none; border-left: 8px solid transparent; border-right: 8px solid transparent; border-top: 15px solid yellow; }
+.faq-list .faq-question.collapsed .question span { border-top: 8px solid transparent; border-bottom: 8px solid transparent; border-left: 15px solid yellow; }
 .faq-list .faq-question .answer { color: #000; background: yellow; padding: 10px; }
 .faq-list .faq-question .answer p { margin-bottom: 10px; }
 .faq-list .faq-question .answer p:last-child { margin-bottom: 0; }
@@ -1038,18 +1040,18 @@ body.skate .ripper-videos .section-content .featured-videos .video-thumbnails li
 .faq-list .faq-question .answer ol { padding: 0 0 0 10px; margin-left: 20px; }
 
 .ski .faq-list .faq-question .question { color: #0099ff; }
-.ski .faq-list .faq-question .question span { border-left: 15px solid #0099ff; }
-.ski .faq-list .faq-question.active .question span { border-left: 8px solid transparent; border-top: 15px solid #0099ff; }
+.ski .faq-list .faq-question .question span { border-left: 8px solid transparent; border-top: 15px solid #0099ff; }
+.ski .faq-list .faq-question.collapsed .question span { border-top: 8px solid transparent; border-left: 15px solid #0099ff; }
 .ski .faq-list .faq-question .answer { background: #0099ff; }
 
 .surf .faq-list .faq-question .question { color: #ff6600; }
-.surf .faq-list .faq-question .question span { border-left: 15px solid #ff6600; }
-.surf .faq-list .faq-question.active .question span { border-left: 8px solid transparent; border-top: 15px solid #ff6600; }
+.surf .faq-list .faq-question .question span { border-left: 8px solid transparent; border-top: 15px solid #ff6600; }
+.surf .faq-list .faq-question.collapsed .question span { border-top: 8px solid transparent; border-left: 15px solid #ff6600; }
 .surf .faq-list .faq-question .answer { background: #ff6600; }
 
-.skate .faq-list .faq-question .question { color: #66cc00; }
-.skate .faq-list .faq-question .question span { border-left: 15px solid #66cc00; }
-.skate .faq-list .faq-question.active .question span { border-left: 8px solid transparent; border-top: 15px solid #66cc00; }
+.skate .faq-list .faq-question .collapsed { color: #66cc00; }
+.skate .faq-list .faq-question .collapsed span { border-left: 8px solid transparent; border-top: 15px solid #66cc00; }
+.skate .faq-list .faq-question.collapsed .question span { border-top: 8px solid transparent; border-left: 15px solid #66cc00; }
 .skate .faq-list .faq-question .answer { background: #66cc00; }
 
 /* LBS styles
@@ -1254,6 +1256,9 @@ body.skate .ripper-videos .section-content .featured-videos .video-thumbnails li
   /* section homepage styles */
   .content-grid .grid-item { width: 33.3333%; }
   .content-grid .grid-item.product.item-1 { display: inline-block; }
+  /* General styles */
+  .video-header .section-content .video-text p { font-size: 1.125em; }
+  .video-header .section-content .video-text ul li { font-size: 1em; /* 16 / 16 */ }
   /* product overview */
   .product-filtering { display: block; }
   /* product details */
@@ -1342,10 +1347,9 @@ body.skate .ripper-videos .section-content .featured-videos .video-thumbnails li
   footer .subscribe { position: absolute; top: 170px; right: 20px; width: 25%; }
   footer .footer-copy { padding: 0; width: 100%; }
   /* General styles */
-  .video-header.video .section-content h1, .video-header.video .section-content p { width: 40%; float: right; }
-  .video-header.video .section-content .video-player { width: 60%; float: left; padding-top: 5px; }
+  .video-header.video .section-content h1, .video-header.video .section-content .video-text { width: 40%; float: right; }
+  .video-header.video .section-content .video-player { width: 60%; float: left; padding-top: 5px; padding-bottom: 0; }
   .video-header.video .section-content .video-player .video-wrapper { padding-right: 20px; }
-  .video-header.video .section-content p { font-size: 1.125em; }
   /* Homepage Styles */
   .homepage-posts h2 { padding: 0 10px; }
   .homepage-posts .homepage-post { float: left; width: 25%; }

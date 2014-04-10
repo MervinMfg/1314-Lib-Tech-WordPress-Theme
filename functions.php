@@ -19,7 +19,6 @@ function new_embed_size() {
     return array( 'width' => 640, 'height' => 600 );
 }
 add_filter( 'embed_defaults', 'new_embed_size' );
-
 // Clean up the <head>
 function removeHeadLinks() {
     remove_action('wp_head', 'rsd_link');
@@ -32,6 +31,17 @@ function removeHeadLinks() {
 }
 add_action('init', 'removeHeadLinks');
 remove_action('wp_head', 'wp_generator');
+// allow script tag within posts
+function allow_script_tags( $allowedposttags ){
+    $allowedposttags['script'] = array(
+        'type' => true,
+        'src' => true,
+        'height' => true,
+        'width' => true,
+    );
+    return $allowedposttags;
+}
+add_filter('wp_kses_allowed_html','allow_script_tags', 1);
 // register menus
 register_nav_menus( array(
     'main_menu' => 'Main Menu',

@@ -26,8 +26,9 @@ if (have_posts()) :
                 <?php
                     endif;
                 ?>
-
-                <?php the_content(); ?>
+                <div class="video-text">
+                    <?php the_content(); ?>
+                </div>
                 <div class="clearfix"></div>
             </div><!-- END .section-content -->
         </section><!-- END .team-header -->

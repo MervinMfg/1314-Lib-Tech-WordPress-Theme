@@ -44,10 +44,12 @@ switch ($parentSlug) {
                         <?php endif; ?>
                     </div>
                 </div>
-                <?php the_content(); ?>
+                <div class="video-text">
+                    <?php the_content(); ?>
+                </div>
                 <div class="clearfix"></div>
             </div><!-- END .section-content -->
-        </section><!-- END .tech-major -->
+        </section><!-- END .video-header -->
         <?php if ($parentSlug != "surfing" && $parentSlug != "skateboarding"): ?>
         <div class="bg2-top"></div>
         <section class="tech-major bg2">

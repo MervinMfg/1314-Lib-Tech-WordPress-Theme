@@ -40,6 +40,8 @@ LIBTECH.main = {
 			self.technologyDetailInit();
 		} else if ($('body').hasClass('page-template-page-environmental-php')) {
 			self.environmentalInit();
+		} else if ($('body').hasClass('page-template-page-environmental-detail-php')) {
+			self.environmentalDetailInit();
 		} else if ($('body').hasClass('page-template-page-overview-team-php')) {
 			self.teamOverviewInit();
 		} else if ($('body').hasClass('single-libtech_team_snow') || $('body').hasClass('single-libtech_team_nas') || $('body').hasClass('single-libtech_team_surf') || $('body').hasClass('single-libtech_team_skate')) {
@@ -879,6 +881,12 @@ LIBTECH.main = {
 	environmentalInit: function () {
 		$(".enviro-video").fitVids();
 	},
+	environmentalDetailInit: function () {
+		var self = this;
+		// make video fit within target
+		$('.video-header.video .video-player').fitVids();
+		self.faqsInit();
+	},
 	blogInit: function () {
 		// CATEGORY TREE VIEW ON BLOG PAGES
 		$(".widget_mycategoryorder ul").treeview({
@@ -1110,6 +1118,9 @@ LIBTECH.main = {
 		// fit videos
 		$('.faq-list .faq-question .answer').fitVids();
 		// hide answer
+		$(".faq-question").each(function (index, element) {
+			$(this).addClass("collapsed");
+		});
 		$(".faq-question a.question").next().each(function (index, element) {
 			$(this).css("display", "none");
 		});
@@ -1118,10 +1129,10 @@ LIBTECH.main = {
 			click: function (e) {
 				if ($(this).next("div").css("display") === "none") {
 					$(this).next("div").slideDown(300);
-					$(this).parent().addClass("active");
+					$(this).parent().removeClass("collapsed");
 				} else {
 					$(this).next("div").slideUp(300);
-					$(this).parent().removeClass("active");
+					$(this).parent().addClass("collapsed");
 				}
 				e.preventDefault();
 			}
