@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: Technology Sport
+Template Name: Technology Detail
 */
 get_header();
 

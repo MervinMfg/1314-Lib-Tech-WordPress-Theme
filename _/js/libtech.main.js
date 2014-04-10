@@ -36,7 +36,7 @@ LIBTECH.main = {
 			self.productOverviewInit();
 		} else if ($('body').hasClass('single-libtech_snowboards') || $('body').hasClass('single-libtech_nas') || $('body').hasClass('single-libtech_skateboards') || $('body').hasClass('single-libtech_apparel') || $('body').hasClass('single-libtech_accessories') || $('body').hasClass('single-libtech_luggage') || $('body').hasClass('single-libtech_outerwear') || $('body').hasClass('single-libtech_bindings')) {
 			self.productDetailInit();
-		} else if ($('body').hasClass('page-template-page-technology-sport-php')) {
+		} else if ($('body').hasClass('page-template-page-technology-detail-php')) {
 			self.technologyDetailInit();
 		} else if ($('body').hasClass('page-template-page-environmental-php')) {
 			self.environmentalInit();
