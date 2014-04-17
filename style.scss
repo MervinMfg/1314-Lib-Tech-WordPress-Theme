@@ -2184,6 +2184,16 @@ body.international .shopping-cart .section-content {
 
 		p {
 			font-size: 1.1em;
+			margin-bottom: 10px;
+		}
+		ul {
+			list-style: square;
+			margin: 0 0 10px 25px;
+			font-size: 1.1em;
+
+			li {
+				margin: 0 0 5px 0;
+			}
 		}
 	}
 	.product-share {

@@ -22,7 +22,17 @@ Template Name: Luggage Detail
 	       						$optionImageMedium = wp_get_attachment_image_src($optionImage, 'square-xlarge', false);
 	       						$optionImageFull = wp_get_attachment_image_src($optionImage, 'full', false);
 	       						$optionImageColor = get_sub_field('libtech_luggage_images_color');
-	       						array_push($thumbnailImages, Array($optionImageThumb, $optionImageFull, $optionImageColor));
+	       						$optionSKU = 0;
+	       						if(get_field('libtech_luggage_variations')):
+									while(the_repeater_field('libtech_luggage_variations')):
+										$optionColor = get_sub_field('libtech_luggage_variations_color');
+										if($optionImageColor == $optionColor) {
+											$optionSKU = get_sub_field('libtech_luggage_variations_sku');
+											break;
+										}
+									endwhile;
+								endif;
+	       						array_push($thumbnailImages, Array($optionImageThumb, $optionImageFull, $optionImageColor, $optionSKU));
 						?>
 						<li><a href="<?php echo $optionImageFull[0]; ?>" title="<?php the_title(); ?> - <?php echo $optionImageColor; ?>"><img src="<?php echo $optionImageMedium[0]; ?>" alt="<?php the_title(); ?> - <?php echo $optionImageColor; ?>" width="<?php echo $optionImageMedium[1]; ?>" height="<?php echo $optionImageMedium[2]; ?>" /></a></li>
 						
@@ -39,7 +49,7 @@ Template Name: Luggage Detail
 						<ul id="image-list-thumbs">
 							<?php if($thumbnailImages): $i = 0; foreach ($thumbnailImages as $thumbnail) { ?>
 
-							<li><a href="<?php echo $thumbnail[1][0]; ?>" title="<?php the_title(); ?> - <?php echo $thumbnail[2]; ?>" data-sku="<?php echo $thumbnail[2]; ?>" data-slide-index="<?php echo $i; ?>"><img src="<?php echo $thumbnail[0][0]; ?>" alt="<?php the_title(); ?> - <?php echo $thumbnail[2]; ?>" width="<?php echo $thumbnail[0][1]; ?>" height="<?php echo $thumbnail[0][2]; ?>" /></a></li>
+							<li><a href="<?php echo $thumbnail[1][0]; ?>" title="<?php the_title(); ?> - <?php echo $thumbnail[2]; ?>" data-sku="<?php echo $thumbnail[3]; ?>" data-slide-index="<?php echo $i; ?>"><img src="<?php echo $thumbnail[0][0]; ?>" alt="<?php the_title(); ?> - <?php echo $thumbnail[2]; ?>" width="<?php echo $thumbnail[0][1]; ?>" height="<?php echo $thumbnail[0][2]; ?>" /></a></li>
 							
 							<?php $i ++; }; endif; ?>
 						</ul>
@@ -68,16 +78,16 @@ Template Name: Luggage Detail
 							endwhile;
 						endif;
 					?>
-					<div class="product-variations <?php if($isProductAvailable == "No"){echo 'hidden';} ?>">
+					<div class="product-variations <?php if($isProductAvailable == "No" || count($productArray) < 2){echo 'hidden';} ?>">
 						<select id="product-variation" class="select">
-							<option value="-1">Select a Size</option>
+							<option value="-1">Select a Color</option>
 							<?php
 								// sort by variation length
-								asort($productArray);
+								//asort($productArray);
 								// render out variation dropdown
 								foreach ($productArray as $product) {
 							?>
-							<option value="<?php echo $product[1]; ?>" title="<?php echo $product[0]; ?>"<?php if($product[2] == "No") echo ' disabled="disabled"'; ?>><?php echo $product[0]; ?></option>
+							<option value="<?php echo $product[1]; ?>" title="<?php echo $product[0]; ?>"<?php if($product[2] == "No") echo ' disabled="disabled"'; if(count($productArray) < 2) echo ' selected="selected"'; ?>><?php echo $product[0]; ?></option>
 							<?php
 								}
 							?>
@@ -113,7 +123,7 @@ Template Name: Luggage Detail
 				</div><!-- END .product-details-right -->
 				<div class="clearfix"></div>
 			</div><!-- END .section-content -->
-		</section>
+		</section><!-- END .product-details -->
 		<section class="product-zoom bg-product-details">
         	<div class="section-content">
         		<div class="zoom-title"></div>
@@ -144,8 +154,8 @@ Template Name: Luggage Detail
 					<p class="quote-attribution h4">- <?php the_field('libtech_product_video_quote_attribution'); ?></p>
 				</div>
 				<div class="clearfix"></div>
-			</div>
-		</section>
+			</div><!-- END .section-content -->
+		</section><!-- END .product-video -->
 		<?php
 			endif;
 		?>

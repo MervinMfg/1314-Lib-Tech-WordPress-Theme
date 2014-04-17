@@ -656,7 +656,9 @@ body.international .shopping-cart .section-content .int-cart-details { display: 
 .product-details .product-quick-specs li { margin-bottom: 5px; }
 .product-details .product-quick-specs li span { color: yellow; text-transform: uppercase; padding-right: 10px; }
 .product-details .product-description { margin-bottom: 40px; max-width: 540px; }
-.product-details .product-description p { font-size: 1.1em; }
+.product-details .product-description p { font-size: 1.1em; margin-bottom: 10px; }
+.product-details .product-description ul { list-style: square; margin: 0 0 10px 25px; font-size: 1.1em; }
+.product-details .product-description ul li { margin: 0 0 5px 0; }
 .product-details .product-share { display: none; }
 .product-details .product-share li { float: left; width: 125px; margin-bottom: 5px; }
 
