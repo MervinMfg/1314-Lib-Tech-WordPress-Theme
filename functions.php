@@ -13,6 +13,8 @@ if ( function_exists( 'add_image_size' ) ) {
     add_image_size('square-large', 640, 640, true);
     add_image_size('square-xlarge', 800, 800, true);
     add_image_size('media-email', 560, 300, true);
+    add_image_size('soft-thumbnail', 100, 100, false);
+    add_image_size('soft-xlarge', 800, 800, false);
 }
 // update auto embed sizes for videos
 function new_embed_size() {
@@ -504,21 +506,21 @@ function register_custom_post_types() {
     register_post_type('libtech_bindings',$args);
     // END BINDINGS
 
-    // START NAS
+    // START SKIS
     $labels = array(
-        'name' => _x('NASs', 'post type general name'),
-        'singular_name' => _x('NAS', 'post type singular name'),
+        'name' => _x('Skis', 'post type general name'),
+        'singular_name' => _x('Skis', 'post type singular name'),
         'add_new' => _x('Add New', 'libtech_nas'),
-        'add_new_item' => __('Add New NAS'),
-        'edit_item' => __('Edit NAS'),
-        'new_item' => __('New NAS'),
-        'all_items' => __('All NASs'),
-        'view_item' => __('View NAS'),
-        'search_items' => __('Search NASs'),
-        'not_found' =>  __('No NAS Found'),
-        'not_found_in_trash' => __('No NASs Found In Trash'), 
+        'add_new_item' => __('Add New Skis'),
+        'edit_item' => __('Edit Skis'),
+        'new_item' => __('New Skis'),
+        'all_items' => __('All Skis'),
+        'view_item' => __('View Skis'),
+        'search_items' => __('Search Skis'),
+        'not_found' =>  __('No Skis Found'),
+        'not_found_in_trash' => __('No Skis Found In Trash'), 
         'parent_item_colon' => '',
-        'menu_name' => 'NAS'
+        'menu_name' => 'Skis'
     );
     $args = array(
         'labels' => $labels,
@@ -535,7 +537,40 @@ function register_custom_post_types() {
         'supports' => array( 'title', 'editor', 'page-attributes', 'comments' )
     ); 
     register_post_type('libtech_nas',$args);
-    // END NAS
+    // END SKIS
+
+    // START SURFBOARDS
+    $labels = array(
+        'name' => _x('Surfboards', 'post type general name'),
+        'singular_name' => _x('Surfboard', 'post type singular name'),
+        'add_new' => _x('Add New', 'libtech_surfboards'),
+        'add_new_item' => __('Add New Surfboard'),
+        'edit_item' => __('Edit Surfboard'),
+        'new_item' => __('New Surfboard'),
+        'all_items' => __('All Surfboards'),
+        'view_item' => __('View Surfboard'),
+        'search_items' => __('Search Surfboards'),
+        'not_found' =>  __('No surfboard found'),
+        'not_found_in_trash' => __('No surfboards found in Trash'), 
+        'parent_item_colon' => '',
+        'menu_name' => 'Surfboards'
+    );
+    $args = array(
+        'labels' => $labels,
+        'public' => true,
+        'publicly_queryable' => true,
+        'show_ui' => true, 
+        'show_in_menu' => true, 
+        'query_var' => true,
+        'rewrite' => array("slug" => "surfboards"),
+        'capability_type' => 'page',
+        'has_archive' => false, 
+        'hierarchical' => false,
+        'menu_position' => null,
+        'supports' => array( 'title', 'editor', 'page-attributes', 'comments' )
+    ); 
+    register_post_type('libtech_surfboards',$args);
+    // END SURFBOARDS
 
     // START SKATEBOARDS
     $labels = array(

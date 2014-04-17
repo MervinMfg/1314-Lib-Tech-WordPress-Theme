@@ -56,11 +56,11 @@
         }
     }
     // check for the appropriate sport
-    if (is_front_page() || is_tree('6886') || is_tree('7124') || is_tree('21159') || get_post_type($post->ID) == "libtech_snowboards" || get_post_type($post->ID) == "libtech_bindings" || is_tree('18848') || get_post_type($post->ID) == "libtech_team_snow" || in_category( '220' ) || post_is_in_descendant_category( '220' ) || is_page('passitonproject') || is_page('mt-baker-legendary-banked-slalom')) {
+    if (is_front_page() || is_tree('6886') || is_tree('7124') || is_tree('21159') || get_post_type($post->ID) == "libtech_snowboards" || get_post_type($post->ID) == "libtech_bindings" || is_tree('18848') || get_post_type($post->ID) == "libtech_team_snow" || in_category( '220' ) || post_is_in_descendant_category( '220' ) || is_page('passitonproject') || is_page('mt-baker-legendary-banked-slalom')|| in_category( '5540' ) || post_is_in_descendant_category( '5540' )) {
         $GLOBALS['sport'] = "snow";
     } else if (is_tree('6884') || is_tree('18938') || get_post_type($post->ID) == "libtech_nas" || get_post_type($post->ID) == "libtech_team_nas" || in_category( '828' ) || post_is_in_descendant_category( '828' )) {
         $GLOBALS['sport'] = "ski";
-    } else if (is_tree('11418') || is_tree('18952') || get_post_type($post->ID) == "libtech_waterboards") {
+    } else if (is_tree('11418') || is_tree('18952') || get_post_type($post->ID) == "libtech_surfboards" || in_category( '5540' ) || post_is_in_descendant_category( '5540' )) {
         $GLOBALS['sport'] = "surf";
     } else if (is_tree('7159') || is_tree('7161') || get_post_type($post->ID) == "libtech_skateboards" || get_post_type($post->ID) == "libtech_team_skate" || in_category( '190' ) || post_is_in_descendant_category( '190' ) || is_page('environmental')) {
         $GLOBALS['sport'] = "skate";
@@ -97,43 +97,43 @@
 <!--[if IE 9 ]>    <html class="ie ie9 ie-lt10 no-js" <?php language_attributes(); ?>> <![endif]-->
 <!--[if gt IE 9]><!--><html class="no-js" <?php language_attributes(); ?>><!--<![endif]-->
 <!--
-                          ,
-                          ,,
-                         ,,,
-                        ,,,,,
-                       ,,, ,,
-                       ,,  ,,,
-                      ,,    ,,
-                     ,,,    ,,,
-                    ,,,     ,,,
-                   ,,,      ,,,,
-                   ,,,       ,,,
-                  ,,,         ,,
-                ,,,,,,,,,,    ,,,
-               ,,,,,,,,,,,,,, ,,,
-             ,,,,        ,,,,,,,,,
-           ,,,,  ,,,        ,,,,,,
-          ,,,    ,,,,          ,,,,
-         ,,      ,,,,,,, ,,,    ,,
-        ,,,      ,, ,,, ,,,,    ,,,
-        ,,       ,,         ,,,  ,,,
-        ,,      ,,,         ,,,   ,,
-        ,,,     ,,,         ,,    ,,
-         ,,      ,,        ,,,   ,,,
-         ,,,     ,,,       ,,    ,,
-          ,,,     ,,,,    ,,,   ,,
-           ,,,,    ,,,,,,,,,  ,,,,
-            ,,,       ,,,,   ,,,,
-              ,,,,,,      ,,,,,
-                ,,,,,,,,,,,,
-                ,,    ,
-,,,            ,,     ,
-  ,,,          ,,     ,
-     ,,        ,      ,     ,,
-       ,,,    ,,     ,,,,,,,,,,,
-        ,,,,  ,,
-           ,,,,
-            ,,,
+                           *
+                          **
+                         ***
+                        *****
+                       *** **
+                       **  ***
+                      **    **
+                     ***    ***
+                    ***     ***
+                   ***      ****
+                   ***       ***
+                  ***         **
+                **********    ***
+               ************** ***
+             ****        *********
+           ****  ***        ******
+          ***    ****          ****
+         **      ******* ***    **
+        ***      ** *** ****    ***
+        **       **         ***  ***
+        **      ***         ***   **
+        ***     ***         **    **
+         **      **        ***   ***
+         ***     ***       **    **
+          ***     ****    ***   **
+           ****    *********  ****
+            ***       ****   ****
+              ******      *****
+                ************
+                **    *
+***            **     *
+  ***          **     *
+     **        *      *     **
+       ***    **     ***********
+        ****  **
+           ****
+            ****
 -->
 <head id="www-lib-tech-com" data-template-set="lib-tech-wordpress-theme">
     <meta charset="<?php bloginfo('charset'); ?>">

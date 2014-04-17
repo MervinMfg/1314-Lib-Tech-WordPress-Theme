@@ -1,7 +1,7 @@
 /*
 
     Lib Tech - lib-tech.com
-    VERSION 2.0
+    VERSION 2.1
     AUTHOR brian.behrens@mervin.com
 
     DEPENDENCIES:
@@ -34,7 +34,7 @@ LIBTECH.main = {
 			self.homeSportInit();
 		} else if ($('body').hasClass('page-template-page-overview-products-php')) {
 			self.productOverviewInit();
-		} else if ($('body').hasClass('single-libtech_snowboards') || $('body').hasClass('single-libtech_nas') || $('body').hasClass('single-libtech_skateboards') || $('body').hasClass('single-libtech_apparel') || $('body').hasClass('single-libtech_accessories') || $('body').hasClass('single-libtech_luggage') || $('body').hasClass('single-libtech_outerwear') || $('body').hasClass('single-libtech_bindings')) {
+		} else if ($('body').hasClass('single-libtech_snowboards') || $('body').hasClass('single-libtech_nas') || $('body').hasClass('single-libtech_surfboards') || $('body').hasClass('single-libtech_skateboards') || $('body').hasClass('single-libtech_apparel') || $('body').hasClass('single-libtech_accessories') || $('body').hasClass('single-libtech_luggage') || $('body').hasClass('single-libtech_outerwear') || $('body').hasClass('single-libtech_bindings')) {
 			self.productDetailInit();
 		} else if ($('body').hasClass('page-template-page-technology-detail-php')) {
 			self.technologyDetailInit();
@@ -465,7 +465,7 @@ LIBTECH.main = {
 					}
 				}
 				// max width for 1 filter set
-				if ($('.product-filtering').hasClass('bindings')) {
+				if ($('.product-filtering').hasClass('surfboards') || $('.product-filtering').hasClass('bindings')) {
 					if (widthTotal > 96) {
 						widthTotal = 96;
 					}
@@ -584,12 +584,33 @@ LIBTECH.main = {
 		});
 	},
 	productDetailInit: function () {
-		var self, slider, thumbSlider;
+		var self, slider, thumbSlider, thumbSliderWidth, techConstructionSlider;
 		self = this;
 		$(".product-tech-major").fitVids();
 		$(".product-video").fitVids();
-
-		var techConstructionSlider = $('.product-tech-construction ul').bxSlider({
+		// setup main product image slider
+		slider = $('#image-list').bxSlider({
+			controls: false,
+			mode: 'fade',
+			pagerCustom: '#image-list-thumbs'
+		});
+		// set up thumbnail slider
+		thumbSliderWidth = 100;
+		if ($('body').hasClass('single-libtech_surfboards')) { thumbSliderWidth = 45; }
+		thumbSlider = $('#image-list-thumbs').bxSlider({
+			slideWidth: thumbSliderWidth,
+			minSlides: 2,
+			maxSlides: 8,
+			slideMargin: 10,
+			controls: true,
+			pager: false,
+			mode: 'horizontal',
+			moveSlides: 2,
+			infiniteLoop: false,
+			hideControlOnEnd: true
+		});
+		// setup skate tech slider
+		techConstructionSlider = $('.product-tech-construction ul').bxSlider({
 			video: true,
 			useCSS: false,
 			auto: true,
@@ -621,13 +642,21 @@ LIBTECH.main = {
 				techConstructionSlider.reloadSlider();
 			}
 		});
-
 		// check for browser resize and see if desktop zoom should occur
 		$(window).on('resize.productZoom', function () {
 			if (self.utilities.getMediaWidth() >= 600) { // if not mobile, trigger zoom on click
+				// zoom listener
 				$('.product-images #image-list li a').on('click.productZoom', function (e) {
 					e.preventDefault();
 					initZoom($(this).parent().index());
+				});
+				// surf zoom listener
+				$('.product-images .surfboard-top, .product-images .surfboard-side, .product-images .surfboard-bottom').on('click.productZoom', function (e) {
+					e.preventDefault();
+					// determine active graphic option
+					var zoomIndex = $('#image-list-thumbs li a.active').parent().index();
+					if(zoomIndex < 0) {zoomIndex = 0;} // if it's still default
+					initZoom(zoomIndex);
 				});
 			} else { // if mobile, do not zoom on click
 				$('.product-images #image-list li a').off('click.productZoom');
@@ -658,7 +687,14 @@ LIBTECH.main = {
 				e.preventDefault();
 				var zoomTitle, zoomAlt, zoomSubAlt;
 				// change source of zoom image
-				$('.product-zoom .zoom-image img').attr('src', $(this).attr('href'));
+				if ($('body').hasClass('single-libtech_surfboards')) {
+					// if we're on surf, do it differently
+					$('.product-zoom .zoom-image img.surfboard-top').attr('src', $('.product-images .surfboard-top img').attr('data-img-full'));
+					$('.product-zoom .zoom-image img.surfboard-side').attr('src', $('.product-images .surfboard-side img').attr('data-img-full'));
+					$('.product-zoom .zoom-image img.surfboard-bottom').attr('src', $('.product-images .surfboard-bottom img').attr('data-img-full'));
+				} else {
+					$('.product-zoom .zoom-image img').attr('src', $(this).attr('href'));
+				}
 				// remove active class from all and add to selected
 				$('#zoom-thumbnails li a').each(function () {
 					$(this).removeClass('active');
@@ -693,28 +729,172 @@ LIBTECH.main = {
 			disableOn: '768',
 			closeOnBgClick: false
 		});
-
-		// assign the slider to a variable
-		slider = $('#image-list').bxSlider({
-			controls: false,
-			mode: 'fade',
-			pagerCustom: '#image-list-thumbs'
-		});
-
-		thumbSlider = $('#image-list-thumbs').bxSlider({
-			slideWidth: 100,
-			minSlides: 2,
-			maxSlides: 8,
-			slideMargin: 10,
-			controls: true,
-			pager: false,
-			mode: 'horizontal',
-			moveSlides: 2,
-			infiniteLoop: false,
-			hideControlOnEnd: true
-		});
 		// CHECK WHICH PRODUCT WE'RE ON AND RUN THE CORRECT CODE
-		if ($('body').hasClass('single-libtech_outerwear') || $('body').hasClass('single-libtech_accessories') || $('body').hasClass('single-libtech_apparel')) {
+		if ($('body').hasClass('single-libtech_surfboards')) {
+			// check thumbnails on right
+			$('#image-list-thumbs li a').on('click', function (e) {
+				e.preventDefault();
+				// select this image visually
+				$('#image-list-thumbs li a').removeClass('active');
+				$(this).addClass('active');
+				// use name to determine input selection
+				var selector = "#product-variation-graphic option[value='" + $(this).find('img').attr('data-sub-alt') + "']";
+				$(selector).prop('selected', true);
+				$('#product-variation-graphic').change();
+			});
+			// listen for graphic selection change
+			$('#product-variation-graphic').on('change', function () {
+				// select the correct image
+				var graphicName, topImage, topImageFull;
+				graphicName = $(this).val();
+				// check to make sure something was selected
+				if (graphicName != -1) {
+					topImage = $(this).find("option:selected").attr("data-img");
+					topImageFull = $(this).find("option:selected").attr("data-img-full");
+					// kill alert color
+					$(this).removeClass('alert');
+					// change top graphic
+					$('.product-images .surfboard-top img').attr('src', topImage).attr('data-img', topImage).attr('data-img-full', topImageFull);
+					// update image thumbnail selection
+					$('#image-list-thumbs li a').removeClass('active');
+					var selector = "#image-list-thumbs li a img[data-sub-alt='" + graphicName + "']";
+					$(selector).parent().addClass('active');
+					// build size options based on graphic selection
+					var sizeOptions = '<option value="-1">Select Size &amp; Fins</option>';
+					var sizeArray = [];
+					var selectedSize = $('#product-variation-size').val();
+					$.each(productArray, function (key, value) {
+						var fullName = value.length + ' - ' + value.fins;
+						// check if size already exists
+						var inArrayCheck = $.inArray(fullName, sizeArray);
+						if (value.name == graphicName && inArrayCheck === -1 || graphicName == -1 && inArrayCheck === -1) {
+							if(value.avail === "Yes" || value.avail === "Limited") {
+								// check to see if we matched an size that was already selected
+								if (selectedSize == fullName) {
+									sizeOptions += '<option value="' + fullName + '" selected="selected" data-img="' + value.bottomImage + '" data-img-full="' + value.bottomImageFull + '">' + fullName + '</option>';
+								} else {
+									sizeOptions += '<option value="' + fullName + '" data-img="' + value.bottomImage + '" data-img-full="' + value.bottomImageFull + '">' + fullName + '</option>';
+								}
+								sizeArray.push(fullName);
+							}
+						}
+					});
+					// render out html for size options
+					$('#product-variation-size').html(sizeOptions);
+					// kill alert color, if it's added
+					$('#product-variation-size').removeClass('alert');
+					// update price display
+					updatePrice();
+				}
+			});
+			// check for size / fin selection change
+			$('#product-variation-size').on('change', function () {
+				// select the correct image
+				var sizeName, bottomImage, bottomImageFull;
+				sizeName = $(this).val();
+				// check to make sure something was selectedSize
+				if (sizeName != -1) {
+					bottomImage = $(this).find("option:selected").attr("data-img");
+					bottomImageFull = $(this).find("option:selected").attr("data-img-full");
+					// kill alert color, if it's added
+					$(this).removeClass('alert');
+					// change bottom graphic
+					$('.product-images .surfboard-bottom img').attr('src', bottomImage).attr('data-img', bottomImage).attr('data-img-full', bottomImageFull);
+					// update price display
+					updatePrice();
+				}
+			});
+			var updatePrice = function () {
+				var selectedGraphic, selectedSize;
+				$('.product-price div').removeClass('active');
+				selectedGraphic = $('#product-variation-graphic').val();
+				selectedSize = $('#product-variation-size').val();
+
+				if (selectedGraphic == "Logo" || selectedGraphic == -1) {
+					if (selectedSize == -1 || selectedSize.indexOf("3 Fin") !== -1) {
+						$('.product-price .price-logo').addClass('active');
+					} else {
+						$('.product-price .price-logo-five').addClass('active');
+					}
+				} else {
+					if (selectedSize == -1 || selectedSize.indexOf("3 Fin") !== -1) {
+						$('.product-price .price-graphic').addClass('active');
+					} else {
+						$('.product-price .price-graphic-five').addClass('active');
+					}
+				}
+				// remove active class from availability alerts
+				$('.product-stock-alert p').removeClass('active');
+				// check avail if product is selected
+				if (selectedGraphic != -1 && selectedSize != -1) {
+					// with both selections set, check availablity and update messaging display
+					$.each(productArray, function (key, value) {
+						if (selectedSize === (value.length + ' - ' + value.fins) && selectedGraphic === value.name) {
+							if(value.type == "Logo" && value.avail == "Limited") {
+								// show limited logo option messaging
+								$('.product-stock-alert .surf-logo-limited').addClass('active');
+							} else if (value.type == "Graphic" && value.avail == "Limited") {
+								// show limited graphic option messaging
+								$('.product-stock-alert .surf-graphic-limited').addClass('active');
+							}
+						}
+					});
+				}
+			};
+			// add to cart api btn
+			$('a.add-to-cart').click(function (e) {
+				e.preventDefault();
+				var productGraphic, productSize, productSKU;
+				// check graphic selection
+				productGraphic = $('#product-variation-graphic').val();
+				if (productGraphic === "-1") {
+					$('#product-variation-graphic').addClass('alert');
+				}
+				// check size selection
+				productSize = $('#product-variation-size').val();
+				if (productSize === "-1") {
+					// add alert to class
+					$('#product-variation-size').addClass('alert');
+				}
+				// check if either are -1, and return if they are
+				if (productGraphic === "-1" || productSize === "-1") {
+					return;
+				}
+				// find the SKU in the product array
+				productSKU = "";
+				$.each(productArray, function (key, value) {
+					if (productSize === (value.length + ' - ' + value.fins) && productGraphic === value.name) {
+						productSKU = value.sku;
+					}
+				});
+				if (productSKU === "") {
+					$('.product-buy .cart-failure').addClass('visible').removeClass('hidden');
+					return;
+				}
+				// hide add to cart, show loading while request is made
+				$('.product-buy ul li.loading').addClass('visible').removeClass('hidden');
+				$('.product-buy ul li.cart-button').addClass('hidden').removeClass('visible');
+				// call shopatron's api
+				Shopatron.addToCart({
+					quantity: '1', // Optional: Defaults to 1 if not set
+					partNumber: productSKU // Required: This is the product that will be added to the cart.
+				}, {
+					// All event handlers are optional
+					success: function (data, textStatus) {
+						$('.product-buy .cart-success').removeClass('hidden');
+						$('.product-buy .cart-failure').addClass('hidden');
+					},
+					error: function (textStatus, errorThrown) {
+						$('.product-buy .cart-failure').removeClass('hidden');
+						$('.product-buy .cart-success').addClass('hidden');
+					},
+					complete: function (textStatus) {
+						$('.product-buy ul li.loading').addClass('hidden');
+						$('.product-buy ul li.cart-button').removeClass('hidden');
+					}
+				});
+			});
+		} else if ($('body').hasClass('single-libtech_outerwear') || $('body').hasClass('single-libtech_accessories') || $('body').hasClass('single-libtech_apparel')) {
 			// FOR PRODCUTS WITH MORE THAN 1 VARTIATION SELECTION
 			// select field for color
 			$('#product-variation-color').change(function () {
