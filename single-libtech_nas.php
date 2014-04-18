@@ -306,7 +306,7 @@ Template Name: NAS Detail
 		<div class="bg3-top product-video-top"></div>
         <section class="bg3 product-video">
         	<div class="section-content">
-				<h2><span>Product Video</span></h2>
+				<h2><span>Video</span></h2>
 				<div class="video-player">
 					<iframe src="http://player.vimeo.com/video/<?php echo $videoID; ?>?title=0&amp;byline=0&amp;portrait=0&amp;color=fff100" width="940" height="528" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
 				</div>
