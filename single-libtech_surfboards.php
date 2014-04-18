@@ -46,6 +46,7 @@ Template Name: Surfboard Detail
 				// loop through options
 				for ($i = 0; $i < count($variationOptions); $i++) {
 					$length = $variationOptions[$i]['libtech_surfboard_variations_options_length'];
+					$length = floor($length/12) . "’" . ($length - (floor($length/12)*12)) . "”"; // convert from inches to feet + inches
 					$fins = $variationOptions[$i]['libtech_surfboard_variations_options_fins'];
 					$sku = $variationOptions[$i]['libtech_surfboard_variations_options_sku'];
 					if ($GLOBALS['language'] == "ca") {
@@ -204,7 +205,7 @@ Template Name: Surfboard Detail
 								endwhile;
 							endif;
 							// sort sizes
-							array_multisort($surfboardSizes, SORT_ASC);
+							// array_multisort($surfboardSizes, SORT_ASC);
 							// setup sizes text display
 							$sizes = "";
 							for ($i = 0; $i < count($surfboardSizes); $i++) {
@@ -412,7 +413,7 @@ Template Name: Surfboard Detail
 		<div class="bg3-top product-video-top"></div>
         <section class="bg3 product-video">
         	<div class="section-content">
-				<h2><span>Product Video</span></h2>
+				<h2><span>Video</span></h2>
 				<div class="video-player">
 					<iframe src="http://player.vimeo.com/video/<?php echo $videoID; ?>?title=0&amp;byline=0&amp;portrait=0&amp;color=fff100" width="940" height="528" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
 				</div>
@@ -421,13 +422,30 @@ Template Name: Surfboard Detail
 					<p class="quote-attribution h4">- <?php the_field('libtech_product_video_quote_attribution'); ?></p>
 				</div>
 				<div class="clearfix"></div>
-			</div>
-		</section>
+			</div><!-- END .section-content -->
+		</section><!-- END .product-video -->
 		<?php
 			endif;
+			// display gallery if we have one
+			if( get_field('libtech_surfboard_gallery') ):
+				if( $videoID ) {
+					$topClass = "bg2-top";
+					$sectionClass = "bg2";
+				} else {
+					$topClass = "bg3-top";
+					$sectionClass = "bg3";
+				}
 		?>
-
+		<div class="<?php echo $topClass; ?> product-gallery-top"></div>
+		<section class="<?php echo $sectionClass; ?> product-gallery">
+			<div class="section-content">
+				<h2>Gallery</h2>
+				<?php the_field('libtech_surfboard_gallery'); ?>
+				<div class="clearfix"></div>
+			</div><!-- END .section-content -->
+		</section><!-- END .product-gallery -->
 		<?php
+			endif;
 			comments_template();
 			// display the related products
 			getRelatedProducts();

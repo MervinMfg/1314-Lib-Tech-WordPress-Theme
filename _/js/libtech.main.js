@@ -623,15 +623,9 @@ LIBTECH.main = {
 		// navigation when displayed below 600px (mobile phone)
 		$('.product-extras .product-mobile-nav ul li a').click(function (e) {
 			e.preventDefault();
-			// update extras display
-			$('.product-extras').removeClass('info specs tech');
-			$('.product-extras').addClass($(this).attr('id'));
-			// update video top border display
-			$('.product-video-top').removeClass('info specs tech');
-			$('.product-video-top').addClass($(this).attr('id'));
-			// update video display
-			$('.product-video').removeClass('info specs tech');
-			$('.product-video').addClass($(this).attr('id'));
+			// update extras, video and gallery display
+			$('.product-extras, .product-video-top, .product-video, .product-gallery-top, .product-gallery').removeClass('info specs tech');
+			$('.product-extras, .product-video-top, .product-video, .product-gallery-top, .product-gallery').addClass($(this).attr('id'));
 			// update nav item state
 			$('.product-extras .product-mobile-nav ul li a').each(function () {
 				$(this).removeClass('selected');
@@ -689,7 +683,8 @@ LIBTECH.main = {
 				// change source of zoom image
 				if ($('body').hasClass('single-libtech_surfboards')) {
 					// if we're on surf, do it differently
-					$('.product-zoom .zoom-image img.surfboard-top').attr('src', $('.product-images .surfboard-top img').attr('data-img-full'));
+					$('.product-zoom .zoom-image img.surfboard-top').attr('src', $(this).attr('href'));
+					//$('.product-zoom .zoom-image img.surfboard-top').attr('src', $('.product-images .surfboard-top img').attr('data-img-full'));
 					$('.product-zoom .zoom-image img.surfboard-side').attr('src', $('.product-images .surfboard-side img').attr('data-img-full'));
 					$('.product-zoom .zoom-image img.surfboard-bottom').attr('src', $('.product-images .surfboard-bottom img').attr('data-img-full'));
 				} else {
@@ -731,6 +726,10 @@ LIBTECH.main = {
 		});
 		// CHECK WHICH PRODUCT WE'RE ON AND RUN THE CORRECT CODE
 		if ($('body').hasClass('single-libtech_surfboards')) {
+			// init gallery
+			if ($('.gallery')) {
+				self.utilities.galleryInit();
+			}
 			// check thumbnails on right
 			$('#image-list-thumbs li a').on('click', function (e) {
 				e.preventDefault();

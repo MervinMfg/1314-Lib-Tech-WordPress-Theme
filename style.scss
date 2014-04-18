@@ -2559,21 +2559,26 @@ body.international .shopping-cart .section-content {
 		background: none;
 	}
 }
-.product-video-top {
+.product-video-top,
+.product-gallery-top {
 	&.specs, &.tech {
 		display: none;
 	}
 }
-.product-video {
-	padding-right: 20px;
-	padding-left: 20px;
-
+.product-video,
+.product-gallery {
+	.section-content {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
 	&.specs, &.tech {
 		display: none;
 	}
 	h2 {
 		margin-bottom: 10px;
 	}
+}
+.product-video {
 	.video-player {
 		padding-bottom: 20px;
 	}
@@ -4305,12 +4310,14 @@ body.skate .ripper-videos .section-content .featured-videos {
 			display: block;
 		}
 	}
-	.product-video-top {
+	.product-video-top,
+	.product-gallery-top {
 		&.specs, &.tech {
 			display: block;
 		}
 	}
-	.product-video {
+	.product-video,
+	.product-gallery {
 		&.specs, &.tech {
 			display: block;
 		}

@@ -756,11 +756,12 @@ body.international .shopping-cart .section-content .int-cart-details { display: 
 .skate .product-extras .product-mobile-nav li a { background: #66cc00; }
 .skate .product-extras .product-mobile-nav li a.selected { color: #66cc00; background: none; }
 
-.product-video-top.specs, .product-video-top.tech { display: none; }
+.product-video-top.specs, .product-video-top.tech, .product-gallery-top.specs, .product-gallery-top.tech { display: none; }
 
-.product-video { padding-right: 20px; padding-left: 20px; }
-.product-video.specs, .product-video.tech { display: none; }
-.product-video h2 { margin-bottom: 10px; }
+.product-video .section-content, .product-gallery .section-content { padding-left: 20px; padding-right: 20px; }
+.product-video.specs, .product-video.tech, .product-gallery.specs, .product-gallery.tech { display: none; }
+.product-video h2, .product-gallery h2 { margin-bottom: 10px; }
+
 .product-video .video-player { padding-bottom: 20px; }
 .product-video .video-copy { padding-bottom: 20px; }
 .product-video .video-copy .quote { line-height: 1.32em; }
@@ -1217,8 +1218,8 @@ body.skate .ripper-videos .section-content .featured-videos .video-thumbnails li
   .product-zoom.show { display: block; }
   .product-extras .product-mobile-nav { display: none; }
   .product-extras.info .product-specs, .product-extras.info .product-tech-major, .product-extras.info .product-tech-construction, .product-extras.info .product-tech-minor, .product-extras.specs .product-description, .product-extras.specs .product-awards, .product-extras.specs .product-tech-major, .product-extras.specs .product-tech-construction, .product-extras.specs .product-tech-minor, .product-extras.tech .product-description, .product-extras.tech .product-awards, .product-extras.tech .product-specs { display: block; }
-  .product-video-top.specs, .product-video-top.tech { display: block; }
-  .product-video.specs, .product-video.tech { display: block; }
+  .product-video-top.specs, .product-video-top.tech, .product-gallery-top.specs, .product-gallery-top.tech { display: block; }
+  .product-video.specs, .product-video.tech, .product-gallery.specs, .product-gallery.tech { display: block; }
   .product-replated-top, .product-related { display: block; }
   /* Discussion styles */
   .discussion-top, .discussion { display: block; }
