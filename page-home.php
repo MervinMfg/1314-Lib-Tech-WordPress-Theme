@@ -73,16 +73,6 @@ get_header();
 									shuffle($promosArray);
 									renderBanner($promosArray[0]);
 								endif;
-								// display snow
-								if(!empty($snowArray)):
-									shuffle($snowArray);
-									renderBanner($snowArray[0]);
-								endif;
-								// display ski
-								if(!empty($skiArray)):
-									shuffle($skiArray);
-									renderBanner($skiArray[0]);
-								endif;
 								// display surf
 								if(!empty($surfArray)):
 									shuffle($surfArray);
@@ -92,6 +82,16 @@ get_header();
 								if(!empty($skateArray)):
 									shuffle($skateArray);
 									renderBanner($skateArray[0]);
+								endif;
+								// display snow
+								if(!empty($snowArray)):
+									shuffle($snowArray);
+									renderBanner($snowArray[0]);
+								endif;
+								// display ski
+								if(!empty($skiArray)):
+									shuffle($skiArray);
+									renderBanner($skiArray[0]);
 								endif;
 							else:
 						?>
@@ -160,8 +160,24 @@ get_header();
 				<ul>
 					<li class="homepage-sport">
 						<div class="sport-wrapper">
+							<a href="/surfing/">
+								<img src="<?php bloginfo('template_directory'); ?>/_/img/home-surf.jpg" alt="Lib Tech Surfing" />
+								<h4>Surfing</h4>
+							</a>
+						</div>
+					</li>
+					<li class="homepage-sport">
+						<div class="sport-wrapper">
+							<a href="/skateboarding/">
+								<img src="<?php bloginfo('template_directory'); ?>/_/img/home-skate.jpg" alt="Lib Tech Skatboarding" />
+								<h4>Skateboarding</h4>
+							</a>
+						</div>
+					</li>
+					<li class="homepage-sport">
+						<div class="sport-wrapper">
 							<a href="/snowboarding/">
-								<img src="<?php bloginfo('template_directory'); ?>/_/img/home-snow.jpg" alt="Snowboarding" />
+								<img src="<?php bloginfo('template_directory'); ?>/_/img/home-snow.jpg" alt="Lib Tech Snowboarding" />
 								<h4>Snowboarding</h4>
 							</a>
 						</div>
@@ -169,24 +185,8 @@ get_header();
 					<li class="homepage-sport">
 						<div class="sport-wrapper">
 							<a href="/skiing/">
-								<img src="<?php bloginfo('template_directory'); ?>/_/img/home-ski.jpg" alt="Nasing" />
-								<h4>Nasing</h4>
-							</a>
-						</div>
-					</li>
-					<li class="homepage-sport">
-						<div class="sport-wrapper">
-							<a href="http://www.libtechwaterboarding.com" target="_blank">
-								<img src="<?php bloginfo('template_directory'); ?>/_/img/home-surf.jpg" alt="Waterboarding" />
-								<h4>Waterboarding</h4>
-							</a>
-						</div>
-					</li>
-					<li class="homepage-sport">
-						<div class="sport-wrapper">
-							<a href="/skateboarding/">
-								<img src="<?php bloginfo('template_directory'); ?>/_/img/home-skate.jpg" alt="Skatboarding" />
-								<h4>Skateboarding</h4>
+								<img src="<?php bloginfo('template_directory'); ?>/_/img/home-ski.jpg" alt="Lib Tech Skiing" />
+								<h4>Skiing</h4>
 							</a>
 						</div>
 					</li>
@@ -201,7 +201,7 @@ get_header();
 				<ul>
 					<li class="homepage-link">
 						<div class="link-wrapper">
-							<a href="/snowboarding/team/">
+							<a href="/team/">
 								<img src="<?php bloginfo('template_directory'); ?>/_/img/home-rippers.jpg" alt="Team" />
 								<h4>Rippers</h4>
 							</a>
