@@ -1,42 +1,42 @@
 		<div id="region-selector">
 			<div class="width-fix">
-		        <div class="choose-region">
-		            <h5 class="h1">Choose your region</h5>
-		            <ul>
-		                <li class="us">
-		                	<div class="flag">
-		                		<img src="<?php bloginfo('template_directory'); ?>/_/img/flag-us.png" alt="United States Flag" />
-		                	</div>
-		                	<div class="copy">
-		                		<h3>USA</h3>
-		                		<p>Shop in US currency<br />Ship to US address</p>
-		                	</div>
-		                	 <div class="clearfix"></div>
-		                </li>
-		                <li class="ca">
-		                	<div class="flag">
-			                	<img src="<?php bloginfo('template_directory'); ?>/_/img/flag-ca.png" alt="Canadian Flag" />
-			                </div>
-		                	<div class="copy">
-			                	<h3>Canada</h3>
-			                	<p>Shop in Canadian currency<br />Ship to Canadian address</p>
-			                </div>
-			                 <div class="clearfix"></div>
-		                </li>
-		                <li class="int">
-		                	<div class="flag">
-		                		<img src="<?php bloginfo('template_directory'); ?>/_/img/flag-lib.png" alt="International Flag" />
-		                	</div>
-		                	<div class="copy">
-		                		<h3>International</h3>
-		                		<p>Browse site in English<br />No online shopping internationally</p>
-		                	</div>
-		                	 <div class="clearfix"></div>
-		                </li>
-		            </ul>
-		        </div>
-		    </div>
-	    </div>
+				<div class="choose-region">
+					<h5 class="h1">Choose your region</h5>
+					<ul>
+						<li class="us">
+							<div class="flag">
+								<img src="<?php bloginfo('template_directory'); ?>/_/img/flag-us.png" alt="United States Flag" />
+							</div>
+							<div class="copy">
+								<h3>USA</h3>
+								<p>Shop in US currency<br />Ship to US address</p>
+							</div>
+							<div class="clearfix"></div>
+						</li>
+						<li class="ca">
+							<div class="flag">
+								<img src="<?php bloginfo('template_directory'); ?>/_/img/flag-ca.png" alt="Canadian Flag" />
+							</div>
+							<div class="copy">
+								<h3>Canada</h3>
+								<p>Shop in Canadian currency<br />Ship to Canadian address</p>
+							</div>
+							<div class="clearfix"></div>
+						</li>
+						<li class="int">
+							<div class="flag">
+								<img src="<?php bloginfo('template_directory'); ?>/_/img/flag-lib.png" alt="International Flag" />
+							</div>
+							<div class="copy">
+								<h3>International</h3>
+								<p>Browse site in English<br />No online shopping internationally</p>
+							</div>
+							<div class="clearfix"></div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div><!-- END #region-selector -->
 		<footer>
 			<div class="footer-top"></div>
 			<div class="footer-wrapper">
@@ -44,38 +44,38 @@
 					<div class="region-selector">
 						<p class="h2">Region Selector</p>
 						<ul>
-			                <li><a href="#country-us" class="country-us">UNITED STATES</a></li>
-			                <li><a href="#country-ca" class="country-ca">CANADA</a></li>
-			                <li><a href="#country-int" class="country-int">INTERNATIONAL</a></li>
-			            </ul>
+							<li><a href="#country-us" class="country-us">UNITED STATES</a></li>
+							<li><a href="#country-ca" class="country-ca">CANADA</a></li>
+							<li><a href="#country-int" class="country-int">INTERNATIONAL</a></li>
+						</ul>
 					</div>
 
 					<?php
 					// determine the correct social links for the sidebar
 					switch ($GLOBALS['sport']) {
-					    case "ski":
-					        $facebookUsername = "libtechNAS";
-					        $instagramUsername = "libtechnas";
-					        $vimeoUsername = "libtech";
-					        $twitterUsername = "libtechnas";
-					        break;
-					    case "surf":
-					        $facebookUsername = "waterboards";
-					        $instagramUsername = "waterboards";
-					        $vimeoUsername = "libtech";
-					        $twitterUsername = "waterboards";
-					        break;
-					    case "skate":
-					        $facebookUsername = "libtechskate";
-					        $instagramUsername = "libtechskate";
-					        $vimeoUsername = "libtech";
-					        $twitterUsername = "LibTechSkate";
-					        break;
-					    default:
-					        $facebookUsername = "libtech";
-					        $instagramUsername = "libtechnologies";
-					        $vimeoUsername = "libtech";
-					        $twitterUsername = "libtechnologies";
+						case "ski":
+							$facebookUsername = "libtechNAS";
+							$instagramUsername = "libtechnas";
+							$vimeoUsername = "libtech";
+							$twitterUsername = "libtechnas";
+							break;
+						case "surf":
+							$facebookUsername = "waterboards";
+							$instagramUsername = "waterboards";
+							$vimeoUsername = "libtech";
+							$twitterUsername = "waterboards";
+							break;
+						case "skate":
+							$facebookUsername = "libtechskate";
+							$instagramUsername = "libtechskate";
+							$vimeoUsername = "libtech";
+							$twitterUsername = "LibTechSkate";
+							break;
+						default:
+							$facebookUsername = "libtech";
+							$instagramUsername = "libtechnologies";
+							$vimeoUsername = "libtech";
+							$twitterUsername = "libtechnologies";
 					}
 					?>
 
@@ -94,19 +94,19 @@
 					<div class="sports">
 						<p class="h2">Sports</p>
 						<ul>
+							<li><a href="/surfing/">Surf</a></li>
+							<li><a href="/skateboarding/">Skate</a></li>
 							<li><a href="/snowboarding/">Snow</a></li>
 							<li><a href="/skiing/">Ski</a></li>
-							<li><a href="http://www.libtechwaterboarding.com" target="_blank">Surf</a></li>
-							<li><a href="/skateboarding/">Skate</a></li>
 						</ul>
 					</div>
 					<div class="shop">
 						<p class="h2">Shop</p>
 						<ul>
+							<li><a href="/surfboards/">Waterboards</a></li>
+							<li><a href="/skateboards/">Skateboards</a></li>
 							<li><a href="/snowboards/">Snowboards</a></li>
 							<li><a href="/skis/">NAS</a></li>
-							<li><a href="http://www.libtechwaterboarding.com/waterboards/" target="_blank">Waterboards</a></li>
-							<li><a href="/skateboards/">Skateboards</a></li>
 							<li><a href="/bindings/">Bindings</a></li>
 							<li><a href="/outerwear/">Outerwear</a></li>
 							<li><a href="/apparel/">Apparel</a></li>
@@ -117,13 +117,13 @@
 					<div class="about">
 						<p class="h2">About</p>
 						<ul>
-							<!--<li><a href="/rippers/">Rippers</a></li>
-							<li><a href="/kraftsmen/">Kraftsmen</a></li>
-							<li><a href="/artists/">Artists</a></li>-->
+							<li><a href="/team/">Rippers</a></li>
+							<li><a href="/category/kraftsmen/">Kraftsmen</a></li>
+							<li><a href="/category/artists/">Artists</a></li>
 							<li><a href="/technology/">Technology</a></li>
 							<li><a href="/environmental/">Environmental</a></li>
-							<!--<li><a href="/faqs/">Faqs</a></li>
-							<li><a href="/testimonials/">Testimonials</a></li>-->
+							<li><a href="/faqs/">Faqs</a></li>
+							<!--<li><a href="/testimonials/">Testimonials</a></li>-->
 							<li><a href="/dealer-locator/">Find a Dealer</a></li>
 							<li><a href="/partners/">Partners</a></li>
 						</ul>
@@ -135,11 +135,11 @@
 							<li><a href="http://www.mervin.com/support/register/">Register</a></li>
 							<li><a href="http://www.mervin.com/support/warranty/">Warranty</a></li>
 							<li><a href="http://lib-tech.shptron.com/home/privacy/4374.4.1.1" target="_blank" id="link-privacy">Privacy</a></li>
-			                <li><a href="http://lib-tech.shptron.com/home/policies/4374.4.1.1" target="_blank" id="link-policies">Policies</a></li>
-			                <li><a href="http://lib-tech.shptron.com/account/?mfg_id=4374.4&language_id=1" target="_blank" id="link-login">My Account</a></li>
-			                <li><a href="http://lib-tech.shptron.com/home/security/4374.4.1.1" target="_blank" id="link-safety">Safety &amp; Security</a></li>
-			                <li><a href="http://lib-tech.shptron.com/home/policies/4374.4.1.1#Returns" target="_blank" id="link-returns">30-Day Returns</a></li>
-			                <li><a href="http://lib-tech.shptron.com/home/ordering/4374.4.1.1" target="_blank" id="link-ordering">Ordering Info</a></li>
+							<li><a href="http://lib-tech.shptron.com/home/policies/4374.4.1.1" target="_blank" id="link-policies">Policies</a></li>
+							<li><a href="http://lib-tech.shptron.com/account/?mfg_id=4374.4&language_id=1" target="_blank" id="link-login">My Account</a></li>
+							<li><a href="http://lib-tech.shptron.com/home/security/4374.4.1.1" target="_blank" id="link-safety">Safety &amp; Security</a></li>
+							<li><a href="http://lib-tech.shptron.com/home/policies/4374.4.1.1#Returns" target="_blank" id="link-returns">30-Day Returns</a></li>
+							<li><a href="http://lib-tech.shptron.com/home/ordering/4374.4.1.1" target="_blank" id="link-ordering">Ordering Info</a></li>
 						</ul>
 					</div>
 				</nav>
@@ -184,55 +184,55 @@
 	<!--[if lt IE 8]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
 	<!-- JavaScript includes -->
 	<!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if necessary -->
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery-1.11.0.min.js"><\/script>')</script>
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery-1.11.0.min.js"><\/script>')</script>
 	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery.fitvids.js"></script>
 	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery.bxslider.min.js"></script>
 	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery.magnific-popup.min.js"></script>
-    <script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery.treeview.js"></script>
-    <script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery.isotope.min.js"></script>
-    <script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/froogaloop.js"></script>
+	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery.treeview.js"></script>
+	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery.isotope.min.js"></script>
+	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/froogaloop.js"></script>
 	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/libtech.main.js"></script>
 	<!-- Init the main JS -->
 	<script type="text/javascript">
-	    $(document).ready(function(){
-	        LIBTECH.main.init();
-	    });
+		$(document).ready(function(){
+			LIBTECH.main.init();
+		});
 	</script>
 	<!-- Social Media Includes -->
 	<div id="fb-root"></div>
 	<script type="text/javascript">
-	    // Facebook
-	    (function(d, s, id) {
-	        var js, fjs = d.getElementsByTagName(s)[0];
-	        if (d.getElementById(id)) return;
-	        js = d.createElement(s); js.id = id;
-	        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=352899581451617";
-	        fjs.parentNode.insertBefore(js, fjs);
-	    }(document, 'script', 'facebook-jssdk'));
-	    // Twitter
-	    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-	    // Google+
-	    (function() {
-	        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-	        po.src = 'https://apis.google.com/js/plusone.js';
-	        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-	    })();
+		// Facebook
+		(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s); js.id = id;
+			js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=352899581451617";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+		// Twitter
+		!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+		// Google+
+		(function() {
+			var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+			po.src = 'https://apis.google.com/js/plusone.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+		})();
 	</script>
 	<script type="text/javascript" src="//assets.pinterest.com/js/pinit.js"></script>
 	<!-- Google Analytics -->
 	<script type="text/javascript">
-	    var _gaq = _gaq || [];
-	    _gaq.push(['_setAccount', 'UA-10240523-1']);
-	    _gaq.push(['_setDomainName', '.lib-tech.com']);
-	    _gaq.push(['_setAllowHash', false]);
-	    _gaq.push(['_setAllowLinker', true]);
-	    _gaq.push(['_trackPageview']);
-	    (function() {
-	        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-	        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-	        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	    })();
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-10240523-1']);
+		_gaq.push(['_setDomainName', '.lib-tech.com']);
+		_gaq.push(['_setAllowHash', false]);
+		_gaq.push(['_setAllowLinker', true]);
+		_gaq.push(['_trackPageview']);
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
 	</script>
 </body>
 </html>
