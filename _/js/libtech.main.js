@@ -74,6 +74,14 @@ LIBTECH.main = {
 		if(is_chrome === true) {
 			$('body').hide().show();
 		}
+		// Fix Facebook comment width
+		if ($('.discussion')) {
+			$(window).smartresize(function () {
+				$(".fb-comments").attr("data-width", $(".fb-comments").parent().width());
+				FB.XFBML.parse($(".comments")[0]);
+			});
+			$(window).trigger('resize');
+		}
 	},
 	shopatronInit: function () {
 		var self, lang, regionCookie, shopAPIKey, shopAPIKeyString;
