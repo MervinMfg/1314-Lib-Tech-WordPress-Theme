@@ -57,7 +57,7 @@ Template Name: Surfboard Detail
 					if ($avail == "Yes" || $avail == "Limited") {
 						$productAvailable = true;
 					}
-					if ($fins == "3 Fins") {
+					if ($fins == "3 Fin Box") {
 						$bImg = $bottomImage[0];
 						$bImgFull = $bottomImageFull[0];
 					} else {
@@ -79,7 +79,7 @@ Template Name: Surfboard Detail
 					// add to master product array
 					array_push($surfboards, $surfboard);
 					// determine bottom image based on fins
-					if ($fins == "3 Fins") {
+					if ($fins == "3 Fin Box") {
 						$bImg = $bottomImage;
 						$bImgFull = $bottomImageFull;
 					} else {
