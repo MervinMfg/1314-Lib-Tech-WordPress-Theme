@@ -400,15 +400,24 @@ LIBTECH.main = {
 		self.utilities.featuredSliderInit();
 	},
 	homeSportInit: function () {
-		var self = this;
+		var self, slideWidth, slideMargin;
+		self = this;
 		// set up large featured images/video
 		self.utilities.featuredSliderInit();
+
+		if ($('body').hasClass('surf')) {
+			slideWidth = 260;
+			slideMargin = 40;
+		} else {
+			slideWidth = 220;
+			slideMargin = 10;
+		}
 		// set up product slider
 		var slider = $('.product-slider .bxslider').bxSlider({
-			slideWidth: 220,
+			slideWidth: slideWidth,
 			minSlides: 2,
 			maxSlides: 8,
-			slideMargin: 10,
+			slideMargin: slideMargin,
 			auto: true,
 			autoHover: true,
 			speed: 500,

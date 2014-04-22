@@ -474,7 +474,7 @@ body.international .shopping-cart .section-content .int-cart-details { display: 
 .product-slider ul li a .product-peek .product-type { color: #fff; }
 .product-slider ul li a:hover .product-peek { opacity: 1; }
 
-.product-slider ul li a img { width: 100%; max-width: 100%; height: auto; margin-left: 0; }
+.surf .product-slider ul li a img { width: 100%; max-width: 100%; height: auto; margin-left: 0; }
 
 .whats-new .section-content { padding: 0 10px; }
 .whats-new .section-content h2 { padding: 0 10px; }
