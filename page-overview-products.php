@@ -646,6 +646,15 @@ get_header();
                             <li data-filter=".XXL">XX Large</li>
                         </ul>
                     </li>
+                    <li class="filters apparel-sports">
+                        <p class="select-title">Sports</p>
+                        <p class="selected-items">Select</p>
+                        <ul>
+                            <li data-filter=".apparel-snow">Snow</li>
+                            <li data-filter=".apparel-surf">Surf</li>
+                            <li data-filter=".apparel-skate">Skate</li>
+                        </ul>
+                    </li>
                     <li class="filters apparel-categories">
                         <p class="select-title">Categories</p>
                         <p class="selected-items">Select</p>
