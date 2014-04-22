@@ -254,31 +254,31 @@ LIBTECH.main = {
 			if (lang === 'ca') {
 				$(".country-ca").addClass("selected");
 				$("body").removeClass("international");
-				//self.takeoverInit();
+				self.takeoverInit();
 			} else if (lang === 'int') {
 				$("body").addClass("international");
 				$(".country-int").addClass("selected");
-				//self.takeoverInit();
+				self.takeoverInit();
 			} else {
 				$(".country-us").addClass("selected");
 				$("body").removeClass("international");
-				//self.takeoverInit();
+				self.takeoverInit();
 			}
 		} else {
 			if (navigator.cookieEnabled === true) {
 				// if no region cookie has been set, open selector if on product page
 				if ($('body').hasClass('page-template-page-snowboard-builder-php') || $('body').hasClass('page-template-page-snowboard-builder-share-php') || $('body').hasClass('page-template-page-shopping-cart-php') || $('body').hasClass('page-template-page-overview-products-php') || $('body').hasClass('single-libtech_snowboards') || $('body').hasClass('single-libtech_nas') || $('body').hasClass('single-libtech_skateboards') || $('body').hasClass('single-libtech_apparel') || $('body').hasClass('single-libtech_accessories') || $('body').hasClass('single-libtech_luggage') || $('body').hasClass('single-libtech_outerwear')) {
 					self.regionSelectorOverlayInit();
-					//self.takeoverInit(false);
+					self.takeoverInit(false);
 				} else {
-					//self.takeoverInit();
+					self.takeoverInit();
 				}
 				// pick us by default, but don't set cookie
 				$(".country-us").addClass("selected");
 			} else {
 				// cookies are disabled
 				$(".country-us").addClass("selected");
-				//self.takeoverInit();
+				self.takeoverInit();
 			}
 		}
 		// add click events

@@ -108,7 +108,7 @@ get_header();
 		            	if ($GLOBALS['sport'] == "ski") {
 		            		$postType = "libtech_nas";
 		            	} else if ($GLOBALS['sport'] == "surf") {
-		            		$postType = "libtech_waterboards";
+		            		$postType = "libtech_surfboards";
 		            	} else if ($GLOBALS['sport'] == "skate") {
 		            		$postType = "libtech_skateboards";
 		            	} else {

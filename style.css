@@ -402,7 +402,7 @@ body.international .shopping-cart .section-content .int-cart-details { display: 
 
 /* Takeover Styles
 -------------------------------------------------------------------------------*/
-.takeover { max-width: 1640px; margin: 0 auto; padding: 0 20px; }
+.takeover { max-width: 1640px; margin: 0 auto; }
 .takeover .takeover-content { position: relative; cursor: pointer; }
 .takeover .takeover-content .expanded { text-align: center; white-space: nowrap; display: none; position: relative; overflow: hidden; }
 .takeover .takeover-content .expanded.show { display: block; }
@@ -467,12 +467,14 @@ body.international .shopping-cart .section-content .int-cart-details { display: 
 -------------------------------------------------------------------------------*/
 .product-slider { overflow: hidden; }
 .product-slider .bx-wrapper .bx-viewport { background: none; overflow: visible !important; }
-.product-slider .bx-wrapper .bx-viewport ul li a img { width: 140%; max-width: 140%; height: auto; margin-left: -20%; }
-.product-slider .bx-wrapper .bx-viewport ul li a .product-peek { background: #000; padding: 5px; width: 90%; position: absolute; top: 40%; left: 5%; opacity: 0; }
-.product-slider .bx-wrapper .bx-viewport ul li a .product-peek .product-title { font-weight: bold; text-transform: uppercase; font-style: normal; }
-.product-slider .bx-wrapper .bx-viewport ul li a .product-peek .product-type { color: #fff; }
-.product-slider .bx-wrapper .bx-viewport ul li a:hover .product-peek { opacity: 1; }
 .product-slider .bx-wrapper .bx-loading { background: none; }
+.product-slider ul li a img { width: 140%; max-width: 140%; height: auto; margin-left: -20%; }
+.product-slider ul li a .product-peek { background: #000; padding: 5px; width: 90%; position: absolute; top: 40%; left: 5%; opacity: 0; }
+.product-slider ul li a .product-peek .product-title { font-weight: bold; text-transform: uppercase; font-style: normal; }
+.product-slider ul li a .product-peek .product-type { color: #fff; }
+.product-slider ul li a:hover .product-peek { opacity: 1; }
+
+.product-slider ul li a img { width: 100%; max-width: 100%; height: auto; margin-left: 0; }
 
 .whats-new .section-content { padding: 0 10px; }
 .whats-new .section-content h2 { padding: 0 10px; }

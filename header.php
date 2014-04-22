@@ -189,38 +189,21 @@
 </head>
 <body <?php body_class($bodyClass); ?>>
 	<div class="wrapper">
-        <?php /*
-            // determine the correct takeover link
-            switch ($GLOBALS['sport']) {
-                case "ski":
-                    $takeoverLink = "/skis/";
-                    break;
-                case "surf":
-                    $takeoverLink = "/surfboards/";
-                    break;
-                case "skate":
-                    $takeoverLink = "/skateboards/";
-                    break;
-                default:
-                    $takeoverLink = "/snowboards/";
-            }
-        
         <div class="takeover">
             <div class="takeover-content">
                 <div class="expanded">
                     <a href="#close-takeover" class="close">Close</a>
-                    <a href="<?php echo $takeoverLink; ?>" class="message"><img src="<?php bloginfo('template_directory'); ?>/_/img/takeovers/lib-tech-free-shipping-100.jpg" alt="Lib Tech Now Offering Free Shipping On Orders Over $100!" /></a>
+                    <a href="/surfboards/bowl/" class="message"><img src="<?php bloginfo('template_directory'); ?>/_/img/takeovers/lib-tech-waterboards-ryan-carlson.jpg" alt="Lib Tech Waterboards - Introducing Ryan Carlson" /></a>
                 </div>
                 <div class="contracted">
                     <a href="#free-shipping">
                         <p class="view-more">View More</p>
-                        <p class="message">Lib Tech now offering free shipping on orders over $100!</p>
+                        <p class="message">Lib Tech Waterboards - Radically Different!</p>
                         <div class="clearfix"></div>
                     </a>
                 </div>
             </div>
-        </div><!-- END .takeover --> */ ?>
-        
+        </div><!-- END .takeover -->
 		<header>
 			<div class="logo-wrapper">
 				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" id="logo"><img src="<?php echo $logo; ?>" alt="<?php bloginfo( 'name' ); ?> – <?php bloginfo( 'description' ); ?>" /></a>
