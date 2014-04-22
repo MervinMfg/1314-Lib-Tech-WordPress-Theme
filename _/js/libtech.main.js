@@ -452,23 +452,22 @@ LIBTECH.main = {
 		productListing = $('.product-overview .product-listing');
 		// adjust initial item widths
 		setWidths();
-		// set up initial settings
-		productListing.isotope({
-			itemSelector: '.product-item',
-			resizable: false, // turn off because it's responsive
-			layoutMode: 'fitRows',
-			fitRows: {
-				columnWidth: getUnitWidth()
-			},
-			getSortData: {
-				price: function ($elem) {
-					return parseFloat($elem.find('.price p span').text().replace("$", ""));
-				}
-			}
-		});
 		// on window load run layout again to fix image heights
 		$(window).load(function () {
-			productListing.isotope('reLayout');
+			// set up initial settings
+			productListing.isotope({
+				itemSelector: '.product-item',
+				resizable: false, // turn off because it's responsive
+				layoutMode: 'fitRows',
+				fitRows: {
+					columnWidth: getUnitWidth()
+				},
+				getSortData: {
+					price: function ($elem) {
+						return parseFloat($elem.find('.price p span').text().replace("$", ""));
+					}
+				}
+			});
 			// adjust width to be correct
 			$('.product-filtering > li.filters').each(function () {
 				var widthTotal = 0;
