@@ -71,14 +71,20 @@
             $GLOBALS['sport'] = "snow"; // default to snow if nothing was found
         }
     }
-    if ($GLOBALS['sport'] == "ski") { // set the correct colored logo
+    // set the correct colored logo
+    if (is_front_page() || is_home() || is_page('18921') || is_page('18947') || is_page('21712') || is_page('dealer-locator') || is_page('search')) {
+        // 18921 -> envrionmental overview id
+        // 18947 -> technology overview id
+        // 21712 -> faq general id
+        $logo = get_bloginfo('template_directory') . '/_/img/lib-tech-logo.png';
+    } else if ($GLOBALS['sport'] == "ski") {
         $logo = get_bloginfo('template_directory') . '/_/img/lib-tech-logo-ski.png';
     } else if ($GLOBALS['sport'] == "surf") {
         $logo = get_bloginfo('template_directory') . '/_/img/lib-tech-logo-surf.png';
     } else if ($GLOBALS['sport'] == "skate") {
         $logo = get_bloginfo('template_directory') . '/_/img/lib-tech-logo-skate.png';
     } else {
-        $logo = get_bloginfo('template_directory') . '/_/img/lib-tech-logo.png';
+        $logo = get_bloginfo('template_directory') . '/_/img/lib-tech-logo-snow.png';
     }
     setcookie('libtech_sport', $GLOBALS['sport'], time() + (86400 * 30), '/'); // 86400 = 1 day
     // set up classes to add to body
@@ -221,7 +227,8 @@
                 <?php
                     // 18921 -> envrionmental
                     // 18947 -> technology
-                    if ($GLOBALS['sport'] != "" && !is_front_page() && !is_home() && !is_page('18921') && !is_page('18947') && !is_page('dealer-locator') && !is_page('search')) { // we have a sport, so use their menus
+                    // 21712 -> general faq
+                    if ($GLOBALS['sport'] != "" && !is_front_page() && !is_home() && !is_page('18921') && !is_page('18947') && !is_page('21712') && !is_page('dealer-locator') && !is_page('search')) { // we have a sport, so use their menus
                         $productNav = $GLOBALS['sport'] . '_products';
                         $subNav = $GLOBALS['sport'] . '_sub';
                         wp_nav_menu( // sport products menu
