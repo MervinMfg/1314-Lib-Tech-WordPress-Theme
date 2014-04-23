@@ -169,7 +169,7 @@ Template Name: Surfboard Detail
 							<?php endforeach; ?>
 						</select>
 						<select id="product-variation-size" class="select">
-							<option value="-1">Select Size &amp; Fins</option>
+							<option value="-1">Select Size &amp; Fin Box</option>
 							<?php
 							foreach ($surfboardOptions as $surfboardOption) :
 								$title = $surfboardOption['length'] . ' - ' . $surfboardOption['fins'];
