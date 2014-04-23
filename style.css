@@ -1074,8 +1074,8 @@ body.skate .ripper-videos .section-content .featured-videos .video-thumbnails li
 .surf .faq-list .faq-question.collapsed .question span { border-top: 8px solid transparent; border-left: 15px solid #ff6600; }
 .surf .faq-list .faq-question .answer { background: #ff6600; }
 
-.skate .faq-list .faq-question .collapsed { color: #66cc00; }
-.skate .faq-list .faq-question .collapsed span { border-left: 8px solid transparent; border-top: 15px solid #66cc00; }
+.skate .faq-list .faq-question .question { color: #66cc00; }
+.skate .faq-list .faq-question .question span { border-left: 8px solid transparent; border-top: 15px solid #66cc00; }
 .skate .faq-list .faq-question.collapsed .question span { border-top: 8px solid transparent; border-left: 15px solid #66cc00; }
 .skate .faq-list .faq-question .answer { background: #66cc00; }
 
