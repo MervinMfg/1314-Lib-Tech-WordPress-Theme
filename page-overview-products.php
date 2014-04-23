@@ -647,7 +647,7 @@ get_header();
                         </ul>
                     </li>
                     <li class="filters apparel-sports">
-                        <p class="select-title">Sports</p>
+                        <p class="select-title">Board Sports</p>
                         <p class="selected-items">Select</p>
                         <ul>
                             <li data-filter=".apparel-snow">Snow</li>

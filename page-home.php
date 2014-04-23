@@ -156,7 +156,7 @@ get_header();
 		<div class="homepage-sports-top bg1-top"></div>
 		<section class="homepage-sports bg1">
 			<div class="section-content">
-				<h2>Sports</h2>
+				<h2>Board Sports</h2>
 				<ul>
 					<li class="homepage-sport">
 						<div class="sport-wrapper">
