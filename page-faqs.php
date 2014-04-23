@@ -4,6 +4,7 @@ Template Name: FAQs
 */
 get_header();
 ?>
+        <div class="bg2-top"></div>
         <section class="faqs bg2">
             <div class="section-content">
 

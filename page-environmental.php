@@ -4,6 +4,7 @@ Template Name: Environmental
 */
 get_header();
 ?>
+        <div class="bg2-top"></div>
         <section class="enviro-video bg2">
             <div class="section-content">
                 <h1><?php the_title(); ?></h1>
