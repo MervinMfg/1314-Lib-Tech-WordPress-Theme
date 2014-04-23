@@ -191,7 +191,7 @@ switch ($parentSlug) {
                 )
             );
             $loop = new WP_Query( $args );
-            // check to see if we have any FAQs to display
+            // check to see if we have any FAQ to display
             if ($loop->have_posts()) :
                 $columnOnePostNum = ceil($loop->post_count / 2);
         ?>
@@ -199,7 +199,7 @@ switch ($parentSlug) {
         <section class="tech-faq bg2">
             <div class="section-content">
                 <div class="faq-list">
-                    <h2>FAQs</h2>
+                    <h2>FAQ</h2>
                     <ul>
                         <?php
                             $i = 0;
