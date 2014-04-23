@@ -402,9 +402,9 @@ LIBTECH.main = {
 	homeSportInit: function () {
 		var self, slideWidth, slideMargin;
 		self = this;
-		// set up large featured images/video
+		// set up large featured images/videos
 		self.utilities.featuredSliderInit();
-
+		// change slide size for surfboards
 		if ($('body').hasClass('surf')) {
 			slideWidth = 260;
 			slideMargin = 40;
@@ -430,6 +430,8 @@ LIBTECH.main = {
 		});
 		// render social content grid items
 		self.utilities.socialContentGridItemsInit();
+		// responsive video
+		$(".faq").fitVids();
 	},
 	productOverviewInit: function () {
 		var self, slider;

@@ -26,12 +26,12 @@ get_header();
 
 								while(the_repeater_field('libtech_homepage_banners')):
 									$bannerImage = get_sub_field('libtech_homepage_banners_image');
-		       						$bannerImage = wp_get_attachment_image_src($bannerImage, 'full', false);
-		       						$bannerlink = get_sub_field('libtech_homepage_banners_link_url');
-		       						$bannerAltText = get_sub_field('libtech_homepage_banners_alt_text');
-		       						$bannerCategory = get_sub_field('libtech_homepage_banners_cat');
+									$bannerImage = wp_get_attachment_image_src($bannerImage, 'full', false);
+									$bannerlink = get_sub_field('libtech_homepage_banners_link_url');
+									$bannerAltText = get_sub_field('libtech_homepage_banners_alt_text');
+									$bannerCategory = get_sub_field('libtech_homepage_banners_cat');
 
-		       						$banner = array(
+									$banner = array(
 										"image" => $bannerImage,
 										"link" => $bannerlink,
 										"altText" => $bannerAltText,
@@ -53,7 +53,7 @@ get_header();
 								// display all featured banners
 								if(!empty($featuresArray)):
 									foreach( $featuresArray as $banner):
-			       						renderBanner($banner);
+										renderBanner($banner);
 									endforeach;
 								endif;
 								// display promos
@@ -94,58 +94,57 @@ get_header();
 				<ul class="product-listing bxslider">
 					<?php if($GLOBALS['sport'] == "snow") : ?>
 					<li>
-		                <a href="/snowboarding/snowboard-builder/">
-		                    <img src="<?php bloginfo('template_directory'); ?>/_/img/diy-board-builder-300x300.png" width="300" height="300" alt="DIY Snowboard Builder" />
-		                    <div class="product-peek">
-		                    	<p class="product-title">DIY Board Builder</p>
-		                    	<p class="product-type">Build your dream snowboard!</p>
-		                    </div>
-		                </a>
-		            </li>
-		            <?php
-		            	endif;
-
-		            	if ($GLOBALS['sport'] == "ski") {
-		            		$postType = "libtech_nas";
-		            	} else if ($GLOBALS['sport'] == "surf") {
-		            		$postType = "libtech_surfboards";
-		            	} else if ($GLOBALS['sport'] == "skate") {
-		            		$postType = "libtech_skateboards";
-		            	} else {
-		            		$postType = "libtech_snowboards";
-		            	}
-		                // Get Snowboards
-		                $args = array(
-		                    'post_type' => $postType,
-		                    'posts_per_page' => -1,
-		                    'orderby' => 'menu_order',
-		                    'order' => 'ASC',
-		                );
-		                $loop = new WP_Query( $args );
-		                while ( $loop->have_posts() ) : $loop->the_post();
-		                    $postType = $post->post_type;
-		                    $imageID = get_field('libtech_product_image');
-		                    $imageFile = wp_get_attachment_image_src($imageID, 'square-medium');
+						<a href="/snowboarding/snowboard-builder/">
+							<img src="<?php bloginfo('template_directory'); ?>/_/img/diy-board-builder-300x300.png" width="300" height="300" alt="DIY Snowboard Builder" />
+							<div class="product-peek">
+								<p class="product-title">DIY Board Builder</p>
+								<p class="product-type">Build your dream snowboard!</p>
+							</div>
+						</a>
+					</li>
+					<?php
+						endif;
+						if ($GLOBALS['sport'] == "ski") {
+							$postType = "libtech_nas";
+						} else if ($GLOBALS['sport'] == "surf") {
+							$postType = "libtech_surfboards";
+						} else if ($GLOBALS['sport'] == "skate") {
+							$postType = "libtech_skateboards";
+						} else {
+							$postType = "libtech_snowboards";
+						}
+						// Get Snowboards
+						$args = array(
+							'post_type' => $postType,
+							'posts_per_page' => -1,
+							'orderby' => 'menu_order',
+							'order' => 'ASC',
+						);
+						$loop = new WP_Query( $args );
+						while ( $loop->have_posts() ) : $loop->the_post();
+							$postType = $post->post_type;
+							$imageID = get_field('libtech_product_image');
+							$imageFile = wp_get_attachment_image_src($imageID, 'square-medium');
 
 							if (get_the_title() != "superBANANA") :
-		            ?>
+					?>
 
-		            <li>
-		                <a href="<? the_permalink(); ?>">
-		                    <img src="<?php echo $imageFile[0]; ?>" width="<?php echo $imageFile[1]; ?>" height="<?php echo $imageFile[2]; ?>" alt="<?php the_title(); ?> Image" />
-		                    <div class="product-peek">
-		                    	<p class="product-title"><?php the_title(); ?></p>
-		                    	<p class="product-type"><?php the_field('libtech_snowboard_contour'); ?></p>
-		                    </div>
-		                </a>
-		            </li>
+					<li>
+						<a href="<? the_permalink(); ?>">
+							<img src="<?php echo $imageFile[0]; ?>" width="<?php echo $imageFile[1]; ?>" height="<?php echo $imageFile[2]; ?>" alt="<?php the_title(); ?> Image" />
+							<div class="product-peek">
+								<p class="product-title"><?php the_title(); ?></p>
+								<p class="product-type"><?php the_field('libtech_snowboard_contour'); ?></p>
+							</div>
+						</a>
+					</li>
 
-		            <?
-		                	endif;
-		                endwhile;
-		                wp_reset_query();
-		            ?>
-		        </ul>
+					<?
+							endif;
+						endwhile;
+						wp_reset_query();
+					?>
+				</ul>
 			</div>
 		</section><!-- END .product-slider -->
 
@@ -226,50 +225,93 @@ get_header();
 						wp_reset_query(); // Reset Post Data
 
 						if ($GLOBALS['sport'] == "ski") {
-		            		$postType = "libtech_team_nas";
-		            	} else if ($GLOBALS['sport'] == "surf") {
-		            		$postType = "libtech_team_surf";
-		            	} else if ($GLOBALS['sport'] == "skate") {
-		            		$postType = "libtech_team_skate";
-		            	} else {
-		            		$postType = "libtech_team_snow";
-		            	}
+							$postType = "libtech_team_nas";
+						} else if ($GLOBALS['sport'] == "surf") {
+							$postType = "libtech_team_surf";
+						} else if ($GLOBALS['sport'] == "skate") {
+							$postType = "libtech_team_skate";
+						} else {
+							$postType = "libtech_team_snow";
+						}
 						// GET TEAM MEMBERS
 						remove_all_filters('posts_orderby'); // make sure you can order random - fix regarding Post Types Order plugin
-	                    $args = array(
-	                        'post_type' => $postType,
-	                        'posts_per_page' => 3,
-	                        'orderby' => 'rand'
-	                    );
-	                    $loop = new WP_Query( $args );
-	                    $i=0;
-	                    while ( $loop->have_posts() ) : $loop->the_post();
-	                        // check if snowbaord is related to the tech
-	                        $overviewPhoto = get_field('libtech_team_profile_photo');
-	                        $overviewPhoto = wp_get_attachment_image_src($overviewPhoto, 'square-medium', false);
-		                ?>
+						$args = array(
+							'post_type' => $postType,
+							'posts_per_page' => 3,
+							'orderby' => 'rand'
+						);
+						$loop = new WP_Query( $args );
+						$i=0;
+						while ( $loop->have_posts() ) : $loop->the_post();
+							// check if snowbaord is related to the tech
+							$overviewPhoto = get_field('libtech_team_profile_photo');
+							$overviewPhoto = wp_get_attachment_image_src($overviewPhoto, 'square-medium', false);
+						?>
 
-		                <li class="grid-item team item-<?php echo $i; ?>">
-		                	<div class="grid-item-wrapper">
-			                    <a href="<?php the_permalink(); ?>">
-			                    	<div class="item-copy">
-			                    		<p class="h3"><?php the_title(); ?></p>
-			                    		<p class="h5"><?php the_field('libtech_team_profile_tagline'); ?></p>
-			                    	</div>
-			                        <div class="item-image">
-			                            <img src="<?php echo $overviewPhoto[0]; ?>" alt="<?php the_title(); ?> Profile" />
-			                        </div>
-			                    </a>
-			                </div>
-		                </li>
+						<li class="grid-item team item-<?php echo $i; ?>">
+							<div class="grid-item-wrapper">
+								<a href="<?php the_permalink(); ?>">
+									<div class="item-copy">
+										<p class="h3"><?php the_title(); ?></p>
+										<p class="h5"><?php the_field('libtech_team_profile_tagline'); ?></p>
+									</div>
+									<div class="item-image">
+										<img src="<?php echo $overviewPhoto[0]; ?>" alt="<?php the_title(); ?> Profile" />
+									</div>
+								</a>
+							</div>
+						</li>
 
-		                <?php
-		                	$i++;
-		                	if($i == 3) {
-		                		break;
-		                	}
-	                    endwhile;
-	                    wp_reset_query(); // Reset Post Data
+						<?php
+							$i++;
+							if($i == 3) {
+								//break;
+							}
+						endwhile;
+						wp_reset_query(); // Reset Post Data
+
+						// GET SURF FAQs - if we're on the surf page
+						if ($GLOBALS['sport'] == "surf") :
+							remove_all_filters('posts_orderby'); // make sure you can order random - fix regarding Post Types Order plugin
+							$args = array(
+								'post_type' => 'libtech_faqs',
+								'posts_per_page' => 3,
+								'orderby' => 'rand',
+								'tax_query' => array(
+									array(
+										'taxonomy' => 'libtech_faqs_categories',
+										'field' => 'slug',
+										'terms' => 'surf'
+									)
+								)
+							);
+							$loop = new WP_Query( $args );
+							$i=0;
+							while ( $loop->have_posts() ) : $loop->the_post();
+						?>
+
+						<li class="grid-item faq item-<?php echo $i; ?>">
+							<div class="grid-item-wrapper">
+								<a href="/surfing/faq/">
+									<div class="item-image">
+										<p class="h3"><?php the_title(); ?></p>
+										<img src="<?php bloginfo('template_directory'); ?>/_/img/square.gif" alt="Answer" />
+									</div>
+									<div class="item-copy">
+										<?php the_content(); ?>
+									</div>
+								</a>
+							</div>
+						</li>
+
+						<?php
+								$i++;
+								if($i == 3) {
+									break;
+								}
+							endwhile;
+							wp_reset_query(); // Reset Post Data
+						endif; // END SURF CHECK
 
 						// GET FEATURED PRODUCTS
 						$post_objects = get_field('libtech_homepage_products');
@@ -298,20 +340,20 @@ get_header();
 								}
 						?>
 						<li class="grid-item product item-<?php echo $i; ?>">
-		                	<div class="grid-item-wrapper">
-			                    <a href="<?php echo $featuredProducts[$i][1]; ?>">
-			                    	<div class="item-copy">
-			                    		<p class="h3"><?php echo $featuredProducts[$i][0]; ?></p>
-			                    		<p class="h5"><?php echo $featuredProducts[$i][3]; ?></p>
-			                    	</div>
-			                        <div class="item-image">
-			                            <img src="<?php echo $featuredProducts[$i][2][0]; ?>" alt="<?php echo $featuredProducts[$i][0]; ?>" />
-			                        </div>
-			                    </a>
-			                </div>
-			            </li>
-			            <?php
-			        		}
+							<div class="grid-item-wrapper">
+								<a href="<?php echo $featuredProducts[$i][1]; ?>">
+									<div class="item-copy">
+										<p class="h3"><?php echo $featuredProducts[$i][0]; ?></p>
+										<p class="h5"><?php echo $featuredProducts[$i][3]; ?></p>
+									</div>
+									<div class="item-image">
+										<img src="<?php echo $featuredProducts[$i][2][0]; ?>" alt="<?php echo $featuredProducts[$i][0]; ?>" />
+									</div>
+								</a>
+							</div>
+						</li>
+						<?php
+							}
 						endif;
 						?>
 

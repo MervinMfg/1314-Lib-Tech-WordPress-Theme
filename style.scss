@@ -1455,7 +1455,29 @@ body.international .shopping-cart .section-content {
 						opacity: 1;
 					}
 					.item-image {
-						opacity: .3;
+						opacity: 0.3;
+					}
+				}
+			}
+		}
+		&.faq {
+			a {
+				.item-image {
+					.h3 {
+						position: absolute;
+						padding: 20px;
+						font-size: 1.125em; /* 18 / 16 */
+						line-height: 1.33em;
+					}
+				}
+				&:hover, &:focus {
+					.item-image {
+						opacity: 0;
+					}
+				}
+				.item-copy {
+					p {
+						margin-bottom: 10px;
 					}
 				}
 			}
@@ -1616,7 +1638,9 @@ body.international .shopping-cart .section-content {
 		&.product.item-1,
 		&.product.item-2,
 		&.team.item-1,
-		&.team.item-2 {
+		&.team.item-2,
+		&.faq.item-1,
+		&.faq.item-2 {
 			display: none;
 		}
 	}
@@ -4994,7 +5018,8 @@ body.skate .ripper-videos .section-content .featured-videos {
 
 			&.blog.item-2,
 			&.facebook.item-2,
-			&.team.item-1 {
+			&.team.item-1,
+			&.faq.item-1 {
 				display: inline-block;
 			}
 		}
@@ -5342,7 +5367,8 @@ body.skate .ripper-videos .section-content .featured-videos {
 
 			&.instagram.item-2,
 			&.product.item-2,
-			&.team.item-2 {
+			&.team.item-2,
+			&.faq.item-2 {
 				display: inline-block;
 			}
 		}
