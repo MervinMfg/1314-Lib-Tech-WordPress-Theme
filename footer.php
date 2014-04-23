@@ -122,7 +122,7 @@
 							<li><a href="/category/artists/">Artists</a></li>
 							<li><a href="/technology/">Technology</a></li>
 							<li><a href="/environmental/">Environmental</a></li>
-							<li><a href="/faqs/">Faqs</a></li>
+							<li><a href="/faq/">Faq</a></li>
 							<!--<li><a href="/testimonials/">Testimonials</a></li>-->
 							<li><a href="/dealer-locator/">Find a Dealer</a></li>
 							<li><a href="/partners/">Partners</a></li>
