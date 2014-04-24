@@ -744,8 +744,14 @@ body.international .shopping-cart .section-content .int-cart-details { display: 
 .product-extras .product-specs table tfoot td a { font-weight: bold; }
 .product-extras .product-specs table tfoot td:nth-child(5), .product-extras .product-specs table tfoot td:nth-child(6), .product-extras .product-specs table tfoot td:nth-child(7), .product-extras .product-specs table tfoot td:nth-child(8), .product-extras .product-specs table tfoot td:nth-child(9) { display: none; }
 .product-extras .product-tech-major { /* check .tech-major */ }
-.product-extras .product-tech-major .surf-technology h4 { color: #FF0000; }
-.product-extras .product-tech-major .surf-environmental h4 { color: #66cc00; }
+.product-extras .product-tech-major .surf-technology h4, .product-extras .product-tech-major .surf-environmental h4, .product-extras .product-tech-major .surf-ding h4, .product-extras .product-tech-major .surf-fins h4, .product-extras .product-tech-major .surf-performance h4, .product-extras .product-tech-major .surf-handcrafted h4 { padding: 5px; color: #000; }
+.product-extras .product-tech-major .surf-technology img, .product-extras .product-tech-major .surf-environmental img, .product-extras .product-tech-major .surf-ding img, .product-extras .product-tech-major .surf-fins img, .product-extras .product-tech-major .surf-performance img, .product-extras .product-tech-major .surf-handcrafted img { border: solid #333333 1px; }
+.product-extras .product-tech-major .surf-technology h4 { background-color: #FF0000; }
+.product-extras .product-tech-major .surf-environmental h4 { background-color: #66cc00; }
+.product-extras .product-tech-major .surf-ding h4 { background-color: #ff6600; }
+.product-extras .product-tech-major .surf-fins h4 { background-color: yellow; }
+.product-extras .product-tech-major .surf-performance h4 { background-color: #0099ff; }
+.product-extras .product-tech-major .surf-handcrafted h4 { background-color: #fff; }
 .product-extras .product-tech-construction { margin-bottom: 20px; clear: both; }
 .product-extras .product-tech-construction h2 { margin-bottom: 10px; }
 .product-extras .product-tech-construction ul li .construction-image img { width: 100%; max-width: none; }
@@ -1306,9 +1312,10 @@ body.skate .ripper-videos .section-content .featured-videos .video-thumbnails li
   .product-related ul li { width: 25%; }
   .product-related ul li:nth-child(4) { display: block; }
   /* Technology styles */
-  .tech-major ul li .tech-video, .tech-major ul li .tech-image { width: 50%; float: left; }
-  .tech-major ul li .tech-copy { width: 50%; float: left; }
+  .tech-major ul li .tech-video, .tech-major ul li .tech-image { width: 50%; float: left; margin-bottom: 0; }
+  .tech-major ul li .tech-copy { width: 50%; float: left; margin-bottom: 0; }
   .tech-major ul li .tech-copy h4, .tech-major ul li .tech-copy h5, .tech-major ul li .tech-copy p, .tech-major ul li .tech-copy ul { margin-left: 20px; }
+  .tech-major ul li .tech-copy ul { margin-bottom: 0; }
   .single-libtech_surfboards .tech-major ul li .tech-image { width: 30%; }
   .single-libtech_surfboards .tech-major ul li .tech-copy { width: 70%; }
   .tech-faq .faq-list ul { width: 50%; float: left; }

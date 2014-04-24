@@ -1,3 +1,4 @@
+
 <?php
 /*
 Template Name: Surfboard Detail
@@ -333,22 +334,11 @@ Template Name: Surfboard Detail
 							</div>
 							<div class="tech-copy">
 								<h4>Environmentallly Nicer</h4>
-								<ul>
-									<li>100% closed cell foam won’t absorb water... won't rot</li>
-									<li>More durable: Lasts longer, less dings, less boards in landfills</li>
-									<li>Recycled foam core: up to 50% recycled content in blank</li>
-									<li>Blank scraps all recycled</li>
-									<li>Elimination of hazardous resin systems</li>
-									<li>Non ozone depleting blowing agent</li>
-									<li>Basalt fiber: no additives, no boron</li>
-									<li>No solvents except water</li>
-									<li>No paint brushes</li>
-									<li>No sandpaper, no tape</li>
-								</ul>
+								<p>100% closed cell foam won’t absorb water... won't rot &bullet; More durable: Lasts longer, less dings, less boards in landfills &bullet; Recycled foam core: up to 50% recycled content in blank &bullet; Blank scraps all recycled &bullet; Elimination of hazardous resin systems &bullet; Non ozone depleting blowing agent &bullet; Basalt fiber: no additives, no boron &bullet; No solvents except water &bullet; No paint brushes &bullet; No sandpaper, no tape</p>
 							</div>
 							<div class="clearfix"></div>
 						</li>
-						<li>
+						<li class="surf-ding">
 							<div class="tech-image">
 								<img src="<?php bloginfo('template_directory'); ?>/_/img/surf-detail-ding.gif" alt="Durable Lib Tech Surfboard being rode over by a man on a bike" />
 							</div>
@@ -359,6 +349,37 @@ Template Name: Surfboard Detail
 									<li>Voted toughest board of the year by Outside Magazine.</li>
 									<li>Crossing the street or the globe, tougher surfboards - free your mind!</li>
 									<li>If you do ding it, you don't have to get out of the water. Our core doesn't take on water.</li>
+								</ul>
+							</div>
+							<div class="clearfix"></div>
+						</li>
+						<li class="surf-fins">
+							<div class="tech-image">
+								<img src="<?php bloginfo('template_directory'); ?>/_/img/surf-detail-fins.jpg" alt="Freedom of Choice multi-fin system" />
+							</div>
+							<div class="tech-copy">
+								<h4>FOC Adjustable Fin System</h4>
+								<p>5-fin F.O.C. "Freedom of Choice" multi-fin system compatible with 5/8" performance tuning adjustability</p>
+							</div>
+							<div class="clearfix"></div>
+						</li>
+						<li class="surf-performance">
+							<div class="tech-image">
+								<img src="<?php bloginfo('template_directory'); ?>/_/img/surf-detail-performance.jpg" alt="Performance - Ryan Carlson" />
+							</div>
+							<div class="tech-copy">
+								<h4>Performance</h4>
+								<p>SMOOTH &bullet; FAST &bullet; POPPY</p>
+							</div>
+							<div class="clearfix"></div>
+						</li>
+						<li class="surf-handcrafted">
+							<div class="tech-image">
+								<img src="<?php bloginfo('template_directory'); ?>/_/img/surf-detail-handcrafted.jpg" alt="Handcrafted in the USA" />
+							</div>
+							<div class="tech-copy">
+								<h4>Handcrafted in the USA</h4>
+								<p>Every waterboard is hand made by surfers in the USA near Canada at the world's most environMENTAL board factory!</p>
 							</div>
 							<div class="clearfix"></div>
 						</li>
