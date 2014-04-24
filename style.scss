@@ -3051,6 +3051,9 @@ body.international .shopping-cart .section-content {
 		background: none;
 	}
 }
+.product-gallery .gallery .gallery-viewer .gallery-viewer-image img {
+	max-height: 675px;
+}
 /* Blog styles
 -------------------------------------------------------------------------------*/
 .blog-posts, .related-posts {
