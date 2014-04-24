@@ -2186,6 +2186,10 @@ body.international .shopping-cart .section-content {
 
 				.cart-link {
 					font-size: 1.2em;
+					color: #000;
+					background: $snowColor;
+					text-transform: uppercase;
+					padding: 2px 8px 2px 4px;
 				}
 			}
 		}
@@ -2241,32 +2245,56 @@ body.international .shopping-cart .section-content {
 		display: none;
 	}
 }
-.ski .product-details .product-buy ul li.cart-button .add-to-cart {
-	background: $skiColor;
+.ski .product-details {
+	.product-buy {
+		ul li.cart-button .add-to-cart {
+			background: $skiColor;
+		}
+		.cart-success,
+		.cart-failure {
+			border-color: $skiColor;
+		}
+		.cart-success p .cart-link {
+			background-color: $skiColor;
+		}
+	}
+	.product-quick-specs li span {
+		color: $skiColor;
+	}
 }
-.surf .product-details .product-buy ul li.cart-button .add-to-cart {
-	background: $surfColor;
+.surf .product-details {
+	.product-buy {
+		ul li.cart-button .add-to-cart {
+			background: $surfColor;
+		}
+		.cart-success,
+		.cart-failure {
+			border-color: $surfColor;
+		}
+		.cart-success p .cart-link {
+			background-color: $surfColor;
+		}
+	}
+	.product-quick-specs li span {
+		color: $surfColor;
+	}
 }
-.skate .product-details .product-buy ul li.cart-button .add-to-cart {
-	background: $skateColor;
-}
-.ski .product-details .product-quick-specs li span {
-	color: $skiColor;
-}
-.surf .product-details .product-quick-specs li span {
-	color: $surfColor;
-}
-.skate .product-details .product-quick-specs li span {
-	color: $skateColor;
-}
-.ski .product-details .product-buy .cart-success, .ski .product-details .product-buy .cart-failure {
-	border-color: $skiColor;
-}
-.surf .product-details .product-buy .cart-success, .surf .product-details .product-buy .cart-failure {
-	border-color: $surfColor;
-}
-.skate .product-details .product-buy .cart-success, .skate .product-details .product-buy .cart-failure {
-	border-color: $skateColor;
+.skate .product-details {
+	.product-buy {
+		ul li.cart-button .add-to-cart {
+			background: $skateColor;
+		}
+		.cart-success,
+		.cart-failure {
+			border-color: $skateColor;
+		}
+		.cart-success p .cart-link {
+			background-color: $skateColor;
+		}
+	}
+	.product-quick-specs li span {
+		color: $skateColor;
+	}
 }
 .single-libtech_apparel .product-details .product-images ul li a,
 .single-libtech_accessories .product-details .product-images ul li a,

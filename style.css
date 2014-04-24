@@ -655,7 +655,7 @@ body.international .shopping-cart .section-content .int-cart-details { display: 
 .product-details .product-buy ul li.find-dealer { font-weight: normal; margin-bottom: 10px; }
 .product-details .product-buy .cart-success, .product-details .product-buy .cart-failure { padding: 10px 10px 0 10px; border: dashed 2px yellow; color: #fff; }
 .product-details .product-buy .cart-success p, .product-details .product-buy .cart-failure p { margin-bottom: 10px; }
-.product-details .product-buy .cart-success p .cart-link, .product-details .product-buy .cart-failure p .cart-link { font-size: 1.2em; }
+.product-details .product-buy .cart-success p .cart-link, .product-details .product-buy .cart-failure p .cart-link { font-size: 1.2em; color: #000; background: yellow; text-transform: uppercase; padding: 2px 8px 2px 4px; }
 .product-details .product-buy .cart-success.hidden, .product-details .product-buy .cart-failure.hidden { display: none; }
 .product-details .product-quick-specs { margin-bottom: 40px; }
 .product-details .product-quick-specs li { margin-bottom: 5px; }
@@ -670,22 +670,19 @@ body.international .shopping-cart .section-content .int-cart-details { display: 
 .international .product-details .product-price, .international .product-details .product-variations, .international .product-details .product-buy .cart-button { display: none; }
 
 .ski .product-details .product-buy ul li.cart-button .add-to-cart { background: #0099ff; }
-
-.surf .product-details .product-buy ul li.cart-button .add-to-cart { background: #ff6600; }
-
-.skate .product-details .product-buy ul li.cart-button .add-to-cart { background: #66cc00; }
-
+.ski .product-details .product-buy .cart-success, .ski .product-details .product-buy .cart-failure { border-color: #0099ff; }
+.ski .product-details .product-buy .cart-success p .cart-link { background-color: #0099ff; }
 .ski .product-details .product-quick-specs li span { color: #0099ff; }
 
+.surf .product-details .product-buy ul li.cart-button .add-to-cart { background: #ff6600; }
+.surf .product-details .product-buy .cart-success, .surf .product-details .product-buy .cart-failure { border-color: #ff6600; }
+.surf .product-details .product-buy .cart-success p .cart-link { background-color: #ff6600; }
 .surf .product-details .product-quick-specs li span { color: #ff6600; }
 
-.skate .product-details .product-quick-specs li span { color: #66cc00; }
-
-.ski .product-details .product-buy .cart-success, .ski .product-details .product-buy .cart-failure { border-color: #0099ff; }
-
-.surf .product-details .product-buy .cart-success, .surf .product-details .product-buy .cart-failure { border-color: #ff6600; }
-
+.skate .product-details .product-buy ul li.cart-button .add-to-cart { background: #66cc00; }
 .skate .product-details .product-buy .cart-success, .skate .product-details .product-buy .cart-failure { border-color: #66cc00; }
+.skate .product-details .product-buy .cart-success p .cart-link { background-color: #66cc00; }
+.skate .product-details .product-quick-specs li span { color: #66cc00; }
 
 .single-libtech_apparel .product-details .product-images ul li a, .single-libtech_accessories .product-details .product-images ul li a, .single-libtech_accessories .product-details .product-images ul li a, .single-libtech_luggage .product-details .product-images ul li a, .single-libtech_bindings .product-details .product-images ul li a { width: 100%; margin-left: 0; }
 
