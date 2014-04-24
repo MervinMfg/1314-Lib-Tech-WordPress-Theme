@@ -802,7 +802,7 @@ LIBTECH.main = {
 					var selector = "#image-list-thumbs li a img[data-sub-alt='" + graphicName + "']";
 					$(selector).parent().addClass('active');
 					// build size options based on graphic selection
-					var sizeOptions = '<option value="-1">Select Size &amp; Fins</option>';
+					var sizeOptions = '<option value="-1">Select Size &amp; Fin Box</option>';
 					var sizeArray = [];
 					var selectedSize = $('#product-variation-size').val();
 					$.each(productArray, function (key, value) {
@@ -825,9 +825,9 @@ LIBTECH.main = {
 					$('#product-variation-size').html(sizeOptions);
 					// kill alert color, if it's added
 					$('#product-variation-size').removeClass('alert');
-					// update price display
-					updatePrice();
 				}
+				// update price display
+				updatePrice();
 			});
 			// check for size / fin selection change
 			$('#product-variation-size').on('change', function () {
@@ -842,9 +842,9 @@ LIBTECH.main = {
 					$(this).removeClass('alert');
 					// change bottom graphic
 					$('.product-images .surfboard-bottom img').attr('src', bottomImage).attr('data-img', bottomImage).attr('data-img-full', bottomImageFull);
-					// update price display
-					updatePrice();
 				}
+				// update price display
+				updatePrice();
 			});
 			var updatePrice = function () {
 				var selectedGraphic, selectedSize;
@@ -867,6 +867,12 @@ LIBTECH.main = {
 				}
 				// remove active class from availability alerts
 				$('.product-stock-alert p').removeClass('active');
+				// update logo/graphic disclaimer
+				if (selectedGraphic == "Logo") {
+					$('.product-stock-alert .surf-logo').addClass('active');
+				} else if (selectedGraphic != -1) {
+					$('.product-stock-alert .surf-graphic').addClass('active');
+				}
 				// check avail if product is selected
 				if (selectedGraphic != -1 && selectedSize != -1) {
 					// with both selections set, check availablity and update messaging display

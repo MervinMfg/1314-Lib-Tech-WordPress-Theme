@@ -159,8 +159,10 @@ Template Name: Surfboard Detail
 						<div class="clearfix"></div>
 					</div>
 					<div class="product-stock-alert">
-						<p class="surf-logo-limited">We are currently out of stock on this Waterboard, but we can build one for you! It can take up to 4-6 weeks to build and ship. Each board is handmade in the USA by surfers.</p>
-						<p class="surf-graphic-limited">Most of our Waterboard graphic options are built to order, they can take up to 4-6 weeks to build and ship. Each board is handmade in the USA by surfers.</p>
+						<p class="surf-logo">The top and bottom logos come in random assorted colorways. They may not be exactly the same as the images you see on our website. Each board is handmade in the USA by surfers.</p>
+						<p class="surf-logo-limited">We are currently out of stock on this Waterboard, but we can build one for you! It can take up to 4-6 weeks to build and ship.</p>
+						<p class="surf-graphic">The bottom logos may not be exactly the same as the images you see on our website. We match them as close as we can to the top graphic you choose. Each board is handmade in the USA by surfers.</p>
+						<p class="surf-graphic-limited">Most of our Waterboard graphic options are built to order, they can take up to 4-6 weeks to build and ship.</p> 
 					</div>
 					<div class="product-variations <?php if(!$productAvailable){echo 'hidden';} ?>">
 						<select id="product-variation-graphic" class="select">
