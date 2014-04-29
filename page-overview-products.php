@@ -651,6 +651,7 @@ get_header();
                         <p class="selected-items">Select</p>
                         <ul>
                             <li data-filter=".apparel-snow">Snow</li>
+                            <li data-filter=".apparel-ski">Ski</li>
                             <li data-filter=".apparel-surf">Surf</li>
                             <li data-filter=".apparel-skate">Skate</li>
                         </ul>
@@ -697,13 +698,13 @@ get_header();
                     </li>
                     <?php elseif (get_the_title() == "Luggage"): ?>
                     <li class="filters luggage-categories">
-                        <p class="select-title">Categories</p>
+                        <p class="select-title">Board Sports</p>
                         <p class="selected-items">Select</p>
                         <ul>
-                            <li data-filter=".snow-luggage">Snow</li>
-                            <li data-filter=".nas-luggage">NAS</li>
-                            <li data-filter=".surf-luggage">Surf</li>
-                            <li data-filter=".skate-luggage">Skate</li>
+                            <li data-filter=".luggage-snow">Snow</li>
+                            <li data-filter=".luggage-ski">Ski</li>
+                            <li data-filter=".luggage-surf">Surf</li>
+                            <li data-filter=".luggage-skate">Skate</li>
                         </ul>
                     </li>
                     <li class="filters luggage-pricing">
