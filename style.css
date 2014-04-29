@@ -588,7 +588,7 @@ body.international .shopping-cart .section-content .int-cart-details { display: 
 .product-filtering > li.outerwear-size > ul { left: 0; }
 .product-filtering > li.outerwear-size > ul > li { width: 4.5em; }
 .product-filtering > li.apparel-sports > ul { left: 0; }
-.product-filtering > li.apparel-sports > ul > li { width: 6.084em; }
+.product-filtering > li.apparel-sports > ul > li { width: 6.07em; }
 .product-filtering > li.width > ul { right: 0; }
 .product-filtering > li.width > ul > li { width: 6em; }
 .product-filtering > li.skate-width > ul { left: 0; }
@@ -1109,19 +1109,22 @@ body.skate .ripper-videos .section-content .featured-videos .video-thumbnails li
 
 /* Surf Fin styles
 -------------------------------------------------------------------------------*/
-.fins-includes .section-content { padding: 0 10px; }
-.fins-includes .section-content h1 { margin-bottom: 20px; padding: 0 10px; }
-.fins-includes .section-content h3 { margin-bottom: 10px; padding: 0 10px; }
-.fins-includes .section-content ul li { width: 50%; float: left; }
-.fins-includes .section-content ul li div { padding: 0 10px; }
-.fins-includes .section-content ul li div img { height: auto; }
-
 .fins-adjusting .section-content { padding: 0 20px; }
-.fins-adjusting .section-content h2 { margin-bottom: 20px; }
-.fins-adjusting .section-content .fins-adjusting-text p { margin-bottom: 10px; }
-.fins-adjusting .section-content .bx-wrapper { padding: 10px 0 20px; }
-.fins-adjusting .section-content .bx-wrapper .bx-viewport { background: none; }
-.fins-adjusting .section-content .fins-adjusting-images li img { height: auto; }
+.fins-adjusting .section-content h1 { margin-bottom: 20px; }
+.fins-adjusting .section-content p { margin-bottom: 20px; }
+.fins-adjusting .section-content .bx-wrapper .bx-viewport { background: none; min-height: 100px; }
+.fins-adjusting .section-content .bx-controls { padding: 0 0 20px; }
+.fins-adjusting .section-content .fins-positioning { padding: 0 0 20px; }
+.fins-adjusting .section-content .fins-positioning li .fin-image img { height: auto; margin-bottom: 10px; }
+.fins-adjusting .section-content .fins-positioning li .fin-description p { margin-bottom: 10px; }
+
+.fins-includes .section-content { padding: 0 10px; }
+.fins-includes .section-content h2 { margin-bottom: 10px; padding: 0 10px; }
+.fins-includes .section-content .fins-breakdown li { width: 50%; float: left; }
+.fins-includes .section-content .fins-breakdown li div { padding: 0 10px; }
+.fins-includes .section-content .fins-breakdown li div img { height: auto; }
+.fins-includes .section-content .fins-more-info { padding: 0 10px; }
+.fins-includes .section-content .fins-more-info p { margin-bottom: 10px; }
 
 .fins-candy .section-content { padding: 0 20px; }
 .fins-candy .section-content h2 { margin-bottom: 20px; }
@@ -1354,11 +1357,6 @@ body.skate .ripper-videos .section-content .featured-videos .video-thumbnails li
   .faq-categories .mobile-nav { display: none; }
   .faq-list { width: 75%; }
   .faq-list .faq-question { padding-right: 20px; max-width: 900px; }
-  /* Surf Fin styles */
-  .fins-adjusting .section-content .fins-adjusting-text { width: 50%; float: left; }
-  .fins-adjusting .section-content .fins-adjusting-text p { padding-right: 20px; }
-  .fins-adjusting .section-content .bx-wrapper { width: 50%; float: left; }
-  .fins-adjusting .section-content .fins-adjusting-video { clear: both; }
   /* LBS styles */
   .lbs-updates .section-content .featured-video .video-player { width: 50%; float: left; }
   .lbs-updates .section-content .featured-video .video-copy { width: 50%; float: left; }
@@ -1456,11 +1454,10 @@ body.skate .ripper-videos .section-content .featured-videos .video-thumbnails li
   .blog-post .section-content #sidebar .related-posts .post:nth-child(1) .post-wrapper { padding-right: 0; }
   .blog-post .section-content #sidebar .related-posts .post:nth-child(2) .post-wrapper { padding-left: 0; }
   /* Surf Fin styles */
-  .fins-includes .section-content ul li { width: 25%; float: left; }
-  .fins-adjusting .section-content .fins-adjusting-content { width: 50%; float: left; }
-  .fins-adjusting .section-content .fins-adjusting-content .fins-adjusting-text { width: 100%; float: none; }
-  .fins-adjusting .section-content .fins-adjusting-content .bx-wrapper { width: 100%; float: none; }
-  .fins-adjusting .section-content .fins-adjusting-video { width: 50%; float: left; clear: none; }
+  .fins-adjusting .section-content .fins-positioning li .fin-image { width: 60%; float: left; }
+  .fins-adjusting .section-content .fins-positioning li .fin-image img { margin-bottom: 0; }
+  .fins-adjusting .section-content .fins-positioning li .fin-description { width: 40%; float: left; }
+  .fins-includes .section-content .fins-breakdown li { width: 25%; float: left; }
   /* Pass It On Project styles */
   .pass-it-on-header .section-content h1, .pass-it-on-header .section-content .pass-it-on-desc { width: 40%; float: right; }
   .pass-it-on-header .section-content .pass-it-on-video { width: 60%; float: left; padding-top: 5px; }

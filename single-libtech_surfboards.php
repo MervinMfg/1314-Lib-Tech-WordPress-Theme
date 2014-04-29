@@ -361,7 +361,7 @@ Template Name: Surfboard Detail
 							</div>
 							<div class="tech-copy">
 								<h4>FOC Adjustable Fin System</h4>
-								<p>5-fin F.O.C. "Freedom of Choice" multi-fin system compatible with 5/8" performance tuning adjustability</p>
+								<p>F.O.C. "Freedom of Choice" multi-fin system compatible with 5/8" performance tuning adjustability</p>
 							</div>
 							<div class="clearfix"></div>
 						</li>

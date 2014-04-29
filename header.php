@@ -56,7 +56,7 @@
         }
     }
     // check for the appropriate sport
-    if (is_front_page() || is_tree('6886') || is_tree('7124') || is_tree('21159') || get_post_type($post->ID) == "libtech_snowboards" || get_post_type($post->ID) == "libtech_bindings" || is_tree('18848') || get_post_type($post->ID) == "libtech_team_snow" || in_category( '220' ) || post_is_in_descendant_category( '220' ) || is_page('passitonproject') || is_page('mt-baker-legendary-banked-slalom')|| in_category( '5540' ) || post_is_in_descendant_category( '5540' )) {
+    if (is_front_page() || is_tree('6886') || is_tree('7124') || is_tree('21159') || get_post_type($post->ID) == "libtech_snowboards" || get_post_type($post->ID) == "libtech_bindings" || is_tree('18848') || get_post_type($post->ID) == "libtech_team_snow" || in_category( '220' ) || post_is_in_descendant_category( '220' ) || is_page('passitonproject') || is_page('mt-baker-legendary-banked-slalom')) {
         $GLOBALS['sport'] = "snow";
     } else if (is_tree('6884') || is_tree('18938') || get_post_type($post->ID) == "libtech_nas" || get_post_type($post->ID) == "libtech_team_nas" || in_category( '828' ) || post_is_in_descendant_category( '828' )) {
         $GLOBALS['sport'] = "ski";

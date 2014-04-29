@@ -587,6 +587,44 @@ LIBTECH.main = {
 					});
 				}
 			}
+			
+			return false;
+		});
+		// filter products on hashchange
+		$(window).on('hashchange', function() {
+			var hashFilterList, filtersBeginIndex;
+			hashFilterList = window.location.hash;
+			// make sure hash has value
+			if (hashFilterList.indexOf('filter=') != -1) {
+				hashFilterList = decodeURIComponent(hashFilterList);
+				filtersBeginIndex = hashFilterList.indexOf('filter=');
+				filtersBeginIndex = filtersBeginIndex + 7; // add amount of characters filter= takes up
+				hashFilterList = hashFilterList.substr(filtersBeginIndex);
+				// check for &, remove everything after incase there is more added to hash
+				if(hashFilterList.indexOf('&') != -1) {
+					hashFilterList = hashFilterList.substr(0, hashFilterList.indexOf('&'));
+				}
+				// set selected filter on front-end dropdowns
+				$('.product-filtering > li.filters > ul > li[data-filter]').each(function () {
+					var target = $(this);
+					if(hashFilterList.indexOf(target.attr('data-filter')) != -1) {
+						target.addClass('selected');
+					}
+				});
+				// submit filter to isotope
+				productListing.isotope({
+					filter: hashFilterList
+				});
+			} else {
+				$('.product-filtering > li.filters > ul > li[data-filter]').each(function () {
+					var target = $(this);
+					target.removeClass('selected');
+				});
+				// submit filter to isotope
+				productListing.isotope({
+					filter: ''
+				});
+			}
 			// UPDATE FILTERS REMOVE FEATURES
 			$('.product-filtering > li.filters').each(function () {
 				// Check to see which filter groups have filters set
@@ -623,8 +661,11 @@ LIBTECH.main = {
 					});
 				}
 			});
-			return false;
 		});
+		// trigger change if there is a value
+		if (window.location.hash !== '') {
+			$(window).trigger("hashchange");
+		}
 	},
 	productDetailInit: function () {
 		var self, slider, thumbSlider, thumbSliderWidth, techConstructionSlider;
@@ -1403,16 +1444,17 @@ LIBTECH.main = {
 		});
 	},
 	finsInit: function () {
-		$('.fins-adjusting .fins-adjusting-video').fitVids();
-		// init fin adjustment slideshow
-		$('.fins-adjusting .fins-adjusting-images').bxSlider({
+		var self = this;
+		// init fin positioning slideshow
+		$('.fins-adjusting .fins-positioning').bxSlider({
 			mode: 'fade',
 			auto: true,
 			controls: false,
-			pause: 4000,
-			autoHover: true,
-			pager: false
+			pause: 3000,
+			autoHover: false
 		});
+		// init faqs
+		self.faqsInit();
 	},
 	lbsInit: function () {
 		$('.lbs-updates .featured-video .video-player').fitVids();
@@ -1703,10 +1745,13 @@ LIBTECH.main = {
 					filterList += ", " + filterArray[i];
 				}
 			}
-			productListing.isotope({
-				filter: filterList
-			}); // submit filter to isotope
 			// should look something like this - { filter: ".womens.Narrow, .youth.BTX" }
+			// update hash history, this triggers the hash change event which will submit the filters
+			if (filterArray.length > 0) {
+				window.location.hash = 'filter=' + encodeURIComponent(filterList);
+			} else {
+				window.location.hash = 'all';
+			}
 		},
 		galleryInit: function () {
 			var gallerySlider, totalItems;

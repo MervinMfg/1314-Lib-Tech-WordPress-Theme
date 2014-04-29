@@ -1932,7 +1932,7 @@ body.international .shopping-cart .section-content {
 			left: 0;
 
 			& > li {
-				width: 6.084em;
+				width: 6.07em;
 			}
 		}
 		&.width > ul {
@@ -3933,19 +3933,51 @@ body.skate .ripper-videos .section-content .featured-videos {
 }
 /* Surf Fin styles
 -------------------------------------------------------------------------------*/
+.fins-adjusting {
+	.section-content {
+		padding: 0 20px;
+
+		h1 {
+			margin-bottom: 20px;
+		}
+		p {
+			margin-bottom: 20px;
+		}
+		.bx-wrapper .bx-viewport {
+			background: none;
+			min-height: 100px;
+		}
+		.bx-controls {
+			padding: 0 0 20px;
+		}
+		.fins-positioning {
+			padding: 0 0 20px;
+
+			li {
+				.fin-image {
+					img {
+						height: auto;
+						margin-bottom: 10px;
+					}
+				}
+				.fin-description {
+					p {
+						margin-bottom: 10px;
+					}
+				}
+			}
+		}
+	}
+}
 .fins-includes {
 	.section-content {
 		padding: 0 10px;
 
-		h1 {
-			margin-bottom: 20px;
-			padding: 0 10px;
-		}
-		h3 {
+		h2 {
 			margin-bottom: 10px;
 			padding: 0 10px;
 		}
-		ul li {
+		.fins-breakdown li {
 			width: 50%;
 			float: left;
 
@@ -3957,34 +3989,12 @@ body.skate .ripper-videos .section-content .featured-videos {
 				}
 			}
 		}
-	}
-}
-.fins-adjusting {
-	.section-content {
-		padding: 0 20px;
-
-		h2 {
-			margin-bottom: 20px;
-		}
-		.fins-adjusting-text {
+		.fins-more-info {
+			padding: 0 10px;
+			
 			p {
 				margin-bottom: 10px;
 			}
-		}
-		.bx-wrapper {
-			padding: 10px 0 20px;
-
-			.bx-viewport {
-				background: none;
-			}
-		}
-		.fins-adjusting-images {
-			li img {
-				height: auto;
-			}
-		}
-		.fins-adjusting-video {
-
 		}
 	}
 }
@@ -4909,26 +4919,6 @@ body.skate .ripper-videos .section-content .featured-videos {
 			max-width: 900px;
 		}
 	}
-	/* Surf Fin styles */
-	.fins-adjusting {
-		.section-content {
-			.fins-adjusting-text {
-				width: 50%;
-				float: left;
-
-				p {
-					padding-right: 20px;
-				}
-			}
-			.bx-wrapper {
-				width: 50%;
-				float: left;
-			}
-			.fins-adjusting-video {
-				clear: both;
-			}
-		}
-	}
 	/* LBS styles */
 	.lbs-updates {
 		.section-content {
@@ -5326,33 +5316,31 @@ body.skate .ripper-videos .section-content .featured-videos {
 		}
 	}
 	/* Surf Fin styles */
-	.fins-includes {
+	.fins-adjusting {
 		.section-content {
-			ul li {
-				width: 25%;
-				float: left;
+			.fins-positioning {
+				li {
+					.fin-image {
+						width: 60%;
+						float: left;
+
+						img {
+							margin-bottom: 0;
+						}
+					}
+					.fin-description {
+						width: 40%;
+						float: left;
+					}
+				}
 			}
 		}
 	}
-	.fins-adjusting {
+	.fins-includes {
 		.section-content {
-			.fins-adjusting-content {
-				width: 50%;
+			.fins-breakdown li {
+				width: 25%;
 				float: left;
-
-				.fins-adjusting-text {
-					width: 100%;
-					float: none;
-				}
-				.bx-wrapper {
-					width: 100%;
-					float: none;
-				}
-			}
-			.fins-adjusting-video {
-				width: 50%;
-				float: left;
-				clear: none;
 			}
 		}
 	}
