@@ -335,7 +335,7 @@ Template Name: Surfboard Detail
 								<img src="<?php bloginfo('template_directory'); ?>/_/img/surf-detail-environmental.jpg" alt="Environmental Surfboards" />
 							</div>
 							<div class="tech-copy">
-								<h4>Environmentallly Nicer</h4>
+								<h4>Environmentally Nicer</h4>
 								<p>100% closed cell foam won’t absorb water... won't rot &bullet; More durable: Lasts longer, less dings, less boards in landfills &bullet; Recycled foam core: up to 50% recycled content in blank &bullet; Blank scraps all recycled &bullet; Elimination of hazardous resin systems &bullet; Non ozone depleting blowing agent &bullet; Basalt fiber: no additives, no boron &bullet; No solvents except water &bullet; No paint brushes &bullet; No sandpaper, no tape</p>
 							</div>
 							<div class="clearfix"></div>
