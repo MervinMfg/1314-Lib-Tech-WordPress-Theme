@@ -60,10 +60,10 @@
 							$twitterUsername = "libtechnas";
 							break;
 						case "surf":
-							$facebookUsername = "waterboards";
-							$instagramUsername = "waterboards";
+							$facebookUsername = "libtechsurf";
+							$instagramUsername = "libtechsurf";
 							$vimeoUsername = "libtech";
-							$twitterUsername = "waterboards";
+							$twitterUsername = "libtechsurf";
 							break;
 						case "skate":
 							$facebookUsername = "libtechskate";
