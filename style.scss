@@ -1751,7 +1751,9 @@ body.international .shopping-cart .section-content {
 		width: 90%;
 		margin-left: 5%;
 	}
-	&.outerwear .section-content ul.product-listing > li .product-copy .description {
+	&.outerwear .section-content ul.product-listing > li .product-copy .description,
+	&.luggage .section-content ul.product-listing > li .product-copy .description,
+	&.accessories .section-content ul.product-listing > li .product-copy .description {
 		display: none;
 	}
 }
