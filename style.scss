@@ -1417,7 +1417,7 @@ body.international .shopping-cart .section-content {
 		.grid-item-wrapper {
 			padding: 10px;
 
-			a {
+			.item-link {
 				width: 100%;
 				position: relative;
 				overflow: hidden;
@@ -1450,7 +1450,8 @@ body.international .shopping-cart .section-content {
 						max-width: 200%;
 					}
 				}
-				&:hover, &:focus {
+				&:hover,
+				&:focus {
 					.item-copy {
 						opacity: 1;
 					}
@@ -1461,16 +1462,20 @@ body.international .shopping-cart .section-content {
 			}
 		}
 		&.faq {
-			a {
+			.item-link {
 				.item-image {
-					.h3 {
+					.faq-question {
 						position: absolute;
-						padding: 20px;
-						font-size: 1.125em; /* 18 / 16 */
-						line-height: 1.33em;
+						padding: 10px;
+
+						.h3 {
+							margin-bottom: 10px;
+						}
 					}
 				}
-				&:hover, &:focus {
+				&:hover,
+				&:focus,
+				&.selected {
 					.item-image {
 						opacity: 0;
 					}
@@ -1483,11 +1488,11 @@ body.international .shopping-cart .section-content {
 			}
 		}
 		&.blog {
-			a {
+			.item-link {
 				.blog-copy {
 					opacity: 1;
 					position: absolute;
-					padding: 20px;
+					padding: 10px;
 					@include transition(opacity);
 
 					.h3 {
@@ -1511,7 +1516,8 @@ body.international .shopping-cart .section-content {
 						float: left;
 					}
 				}
-				&:hover, &:focus {
+				&:hover,
+				&:focus {
 					.blog-copy {
 						opacity: 0;
 					}
@@ -1522,7 +1528,7 @@ body.international .shopping-cart .section-content {
 			}
 		}
 		&.facebook {
-			a {
+			.item-link {
 				font-style: normal;
 				background: #fff;
 				display: inline-block;
@@ -1532,7 +1538,7 @@ body.international .shopping-cart .section-content {
 					float: left;
 				}
 				.facebook-wrapper {
-					padding: 20px;
+					padding: 10px;
 					position: absolute;
 				}
 				.facebook-header {
@@ -1574,20 +1580,21 @@ body.international .shopping-cart .section-content {
 					color: #000;
 					font-size: .875em;
 				}
-				&:hover, &:focus {
+				&:hover,
+				&:focus {
 					text-decoration: none;
 				}
 			}
 		}
 		&.instagram {
-			a {
+			.item-link {
 				background: #000;
 				background: rgba(0, 0, 0, .8);
 			}
 		}
 		&.product {
 			.grid-item-wrapper {
-				a {
+				.item-link {
 					background-image: url('_/img/bg-grid-item-stone.jpg');
 					background-size: 100%;
 					position: relative;
@@ -1611,13 +1618,13 @@ body.international .shopping-cart .section-content {
 					}
 				}
 			}
-			&:nth-child(even) .grid-item-wrapper a {
+			&:nth-child(even) .grid-item-wrapper .item-link {
 				background-image: url('_/img/bg-grid-item-wood.jpg');
 			}
 		}
 		&.team {
 			.grid-item-wrapper {
-				a {
+				.item-link {
 					img {
 						float: left;
 						width: 100%;

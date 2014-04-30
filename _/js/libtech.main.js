@@ -405,9 +405,12 @@ LIBTECH.main = {
 		// set up large featured images/videos
 		self.utilities.featuredSliderInit();
 		// change slide size for surfboards
+		// check for surf specific content
 		if ($('body').hasClass('surf')) {
 			slideWidth = 260;
 			slideMargin = 40;
+			// responsive video
+			$(".faq").fitVids();
 		} else {
 			slideWidth = 220;
 			slideMargin = 10;
@@ -430,8 +433,6 @@ LIBTECH.main = {
 		});
 		// render social content grid items
 		self.utilities.socialContentGridItemsInit();
-		// responsive video
-		$(".faq").fitVids();
 	},
 	productOverviewInit: function () {
 		var self, slider;
@@ -1646,7 +1647,7 @@ LIBTECH.main = {
 						var photoData, listItem;
 						photoData = photosData[i];
 						// set up instagram list item
-						listItem = '<li class="grid-item instagram item-' + i + '"><div class="grid-item-wrapper"><a href="' + photoData.link + '" target="_blank"><div class="item-copy"><p>' + photoData.caption.text + '</p></div><div class="item-image"><img src="' + photoData.images.low_resolution.url + '" /></div><div class="clearfix"></div></a></div></li>';
+						listItem = '<li class="grid-item instagram item-' + i + '"><div class="grid-item-wrapper"><a href="' + photoData.link + '" target="_blank" class="item-link"><div class="item-copy"><p>' + photoData.caption.text + '</p></div><div class="item-image"><img src="' + photoData.images.low_resolution.url + '" /></div><div class="clearfix"></div></a></div></li>';
 						// add list item to content grid
 						$('.content-grid ul').append(listItem);
 					}
@@ -1696,7 +1697,7 @@ LIBTECH.main = {
 							postImage = postData.picture;
 							postImage = postImage.replace("_s", "_n");
 							// set up facebook list item
-							listItem = '<li class="grid-item facebook item-' + totalItems + '"><div class="grid-item-wrapper"><a href="' + postData.link + '" target="_blank"><div class="facebook-wrapper"><div class="facebook-header"><div class="facebook-profile"><img src="https://graph.facebook.com/' + facebookUsername + '/picture" /></div><p class="facebook-name">' + postData.from.name + '</p><p class="facebook-time">' + postDate + '</p><div class="clearfix"></div></div><div class="facebook-photo"><img src="' + postImage + '" /></div><p class="facebook-excerpt">' + postData.message + '</p></div><div class="facebook-aspect-ratio"><img src="/wp-content/themes/libtech/_/img/square.gif" /></div><div class="clearfix"></div></a></div></li>';
+							listItem = '<li class="grid-item facebook item-' + totalItems + '"><div class="grid-item-wrapper"><a href="' + postData.link + '" target="_blank" class="item-link"><div class="facebook-wrapper"><div class="facebook-header"><div class="facebook-profile"><img src="https://graph.facebook.com/' + facebookUsername + '/picture" /></div><p class="facebook-name">' + postData.from.name + '</p><p class="facebook-time">' + postDate + '</p><div class="clearfix"></div></div><div class="facebook-photo"><img src="' + postImage + '" /></div><p class="facebook-excerpt">' + postData.message + '</p></div><div class="facebook-aspect-ratio"><img src="/wp-content/themes/libtech/_/img/square.gif" /></div><div class="clearfix"></div></a></div></li>';
 							// add list item to content grid
 							$('.content-grid ul').append(listItem);
 							totalItems++;

@@ -66,11 +66,11 @@
 
 						<li class="grid-item blog item-<?php echo $i; ?>">
 							<div class="grid-item-wrapper">
-								<a href="<?php the_permalink() ?>">
+								<a href="<?php the_permalink() ?>" class="item-link">
 									<div class="blog-copy">
 										<p class="h3"><?php the_title(); ?></p>
 										<p class="meta"><time datetime="<?php the_time('c') ?>"><?php the_time('F jS, Y') ?></time> | <fb:comments-count href=<?php the_permalink() ?>></fb:comments-count> Comments</p>
-										<p class="excerpt"><?php the_excerpt(); ?></p>
+										<p class="excerpt"><?php libtech_excerpt('libtech_excerptlength_home'); ?></p>
 									</div>
 									<div class="blog-image">
 										<img src="<?php echo $post_thumbnail[0]; ?>" alt="Image From <?php echo get_the_title(); ?>" />
@@ -112,7 +112,7 @@
 						?>
 						<li class="grid-item product item-<?php echo $i; ?>">
 		                	<div class="grid-item-wrapper">
-			                    <a href="<?php echo $featuredProducts[$i][1]; ?>">
+			                    <a href="<?php echo $featuredProducts[$i][1]; ?>" class="item-link">
 			                    	<div class="item-copy">
 			                    		<p class="h3"><?php echo $featuredProducts[$i][0]; ?></p>
 			                    		<p class="h5"><?php echo $featuredProducts[$i][3]; ?></p>
