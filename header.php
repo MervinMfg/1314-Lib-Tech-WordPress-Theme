@@ -202,7 +202,7 @@
                     <a href="/surfboards/bowl/" class="message"><img src="<?php bloginfo('template_directory'); ?>/_/img/takeovers/lib-tech-waterboards-ryan-carlson.jpg" alt="Lib Tech Waterboards - Introducing Ryan Carlson" /></a>
                 </div>
                 <div class="contracted">
-                    <a href="#free-shipping">
+                    <a href="#ryan-carlson">
                         <p class="view-more">View More</p>
                         <p class="message">Lib Tech Waterboards - Radically Different!</p>
                         <div class="clearfix"></div>
