@@ -3792,7 +3792,6 @@ body.skate .ripper-videos .section-content .featured-videos {
 					margin-bottom: 0;
 				}
 			}
-
 			ul {
 				padding:0 0 0 10px;
 				margin-left:20px;
@@ -3801,6 +3800,11 @@ body.skate .ripper-videos .section-content .featured-videos {
 			ol {
 				padding:0 0 0 10px;
 				margin-left:20px;
+			}
+			a {
+				color: #000;
+				text-decoration: underline;
+				font-style: normal;
 			}
 		}
 	}

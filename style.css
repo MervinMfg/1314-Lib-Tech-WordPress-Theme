@@ -1069,6 +1069,7 @@ body.skate .ripper-videos .section-content .featured-videos .video-thumbnails li
 .faq-list .faq-question .answer p:last-child { margin-bottom: 0; }
 .faq-list .faq-question .answer ul { padding: 0 0 0 10px; margin-left: 20px; list-style: square; }
 .faq-list .faq-question .answer ol { padding: 0 0 0 10px; margin-left: 20px; }
+.faq-list .faq-question .answer a { color: #000; text-decoration: underline; font-style: normal; }
 
 .ski .faq-list .faq-question .question { color: #0099ff; }
 .ski .faq-list .faq-question .question span { border-left: 8px solid transparent; border-top: 15px solid #0099ff; }
