@@ -772,13 +772,15 @@ LIBTECH.main = {
 					//$('.product-zoom .zoom-image img.surfboard-top').attr('src', $('.product-images .surfboard-top img').attr('data-img-full'));
 					$('.product-zoom .zoom-image img.surfboard-side').attr('src', $('.product-images .surfboard-side img').attr('data-img-full'));
 					$('.product-zoom .zoom-image img.surfboard-bottom').attr('src', $('.product-images .surfboard-bottom img').attr('data-img-full'));
+					// use name to determine input selection
+					var selector = "#product-variation-graphic option[value='" + $(this).find('img').attr('data-sub-alt') + "']";
+					$(selector).prop('selected', true);
+					$('#product-variation-graphic').change();
 				} else {
 					$('.product-zoom .zoom-image img').attr('src', $(this).attr('href'));
 				}
 				// remove active class from all and add to selected
-				$('#zoom-thumbnails li a').each(function () {
-					$(this).removeClass('active');
-				});
+				$('#zoom-thumbnails li a').removeClass('active');
 				$(this).addClass('active');
 				// update title above product
 				zoomTitle = "";
