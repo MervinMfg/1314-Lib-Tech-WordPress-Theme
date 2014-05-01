@@ -1866,6 +1866,8 @@ LIBTECH.main = {
 			// gallery functionality to load new images
 			function loadGalleryImage(imageLink) {
 				var largeImage, largeImageCaption;
+				// trigger loading image
+				$(".gallery .gallery-viewer .gallery-viewer-image").addClass('loading');
 				// set classes for selected image
 				$('.gallery .gallery-thumbnails li .gallery-icon a').each(function () {
 					$(this).removeClass('selected');
@@ -1890,6 +1892,8 @@ LIBTECH.main = {
 						$(".gallery").trigger("galleryUpdate"); // let anything listening know the gallery has been updated
 					});
 					$(".gallery").trigger("galleryUpdate"); // let anything listening know the gallery has been updated
+					// gallery load complete
+					$(".gallery .gallery-viewer .gallery-viewer-image").removeClass('loading');
 				}).each(function () {
 					if (this.complete) $(this).load();
 				});
