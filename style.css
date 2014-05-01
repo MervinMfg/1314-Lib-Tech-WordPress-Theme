@@ -1240,6 +1240,7 @@ body.skate .ripper-videos .section-content .featured-videos .video-thumbnails li
   .single-libtech_snowboards .product-details .product-images, .single-libtech_skateboards .product-details .product-images, .single-libtech_nas .product-details .product-images { width: 50%; }
   .single-libtech_snowboards .product-details .product-images .bx-wrapper, .single-libtech_skateboards .product-details .product-images .bx-wrapper, .single-libtech_nas .product-details .product-images .bx-wrapper { max-width: 540px !important; }
   .single-libtech_snowboards .product-details .product-details-right, .single-libtech_skateboards .product-details .product-details-right, .single-libtech_nas .product-details .product-details-right { width: 50%; }
+  .single-libtech_surfboards .product-details .product-images { padding-top: 10px; }
   .product-zoom.show { display: block; }
   .product-extras .product-mobile-nav { display: none; }
   .product-extras.info .product-specs, .product-extras.info .product-tech-major, .product-extras.info .product-tech-construction, .product-extras.info .product-tech-minor, .product-extras.specs .product-description, .product-extras.specs .product-awards, .product-extras.specs .product-tech-major, .product-extras.specs .product-tech-construction, .product-extras.specs .product-tech-minor, .product-extras.tech .product-description, .product-extras.tech .product-awards, .product-extras.tech .product-specs { display: block; }
