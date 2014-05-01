@@ -2400,6 +2400,31 @@ body.international .shopping-cart .section-content {
 .skate .product-zoom .section-content .zoom-controls .zoom-close {
 	background: $skateColor;
 }
+/* custom zoom thumbnail layout for surfboards */
+.single-libtech_surfboards .product-zoom .section-content .zoom-controls {
+	position: relative;
+	width: 100%;
+	padding: 20px;
+	right: 0;
+
+	.zoom-close {
+		clear: none;
+		position: absolute;
+		top: -50px;
+		right: 20px;
+	}
+	ul {
+		clear: none;
+	}
+	.bx-wrapper {
+		.bx-loading {
+			background: none;
+		}
+		.bx-viewport {
+			background: none;
+		}
+	}
+}
 .product-extras {
 	padding-right: 20px;
 	padding-left: 20px;

@@ -669,7 +669,7 @@ LIBTECH.main = {
 		}
 	},
 	productDetailInit: function () {
-		var self, slider, thumbSlider, thumbSliderWidth, techConstructionSlider;
+		var self, slider, thumbSlider, thumbSliderWidth, techConstructionSlider, zoomThumbSlider;
 		self = this;
 		$(".product-tech-major").fitVids();
 		$(".product-video").fitVids();
@@ -761,6 +761,21 @@ LIBTECH.main = {
 			if ($('#image-list-thumbs li').length == 1) {
 				$('#zoom-thumbnails').addClass('hidden');
 			}
+			// if surfboard, init slider for thumbnails
+			if ($('body').hasClass('single-libtech_surfboards')) {
+				zoomThumbSlider = $('#zoom-thumbnails').bxSlider({
+					slideWidth: thumbSliderWidth,
+					minSlides: 2,
+					maxSlides: 20,
+					slideMargin: 10,
+					controls: true,
+					pager: false,
+					mode: 'horizontal',
+					moveSlides: 2,
+					infiniteLoop: false,
+					hideControlOnEnd: true
+				});
+			}
 			// listen for clicks on thumbnails to load proper image
 			$('#zoom-thumbnails li a').on('click.productZoom', function (e) {
 				e.preventDefault();
@@ -804,6 +819,11 @@ LIBTECH.main = {
 			// swap display
 			$('.product-zoom').removeClass('show');
 			$('.product-details').removeClass('hide');
+			// destroy thumbnail slider if it exists
+			if (zoomThumbSlider) {
+				zoomThumbSlider.destroySlider();
+				zoomThumbSlider = null;
+			}
 		}
 		// grab view all specs link and turn into lightbox
 		$('.product-specs a.view-all-specs, .product-quick-specs a.specs-link').magnificPopup({

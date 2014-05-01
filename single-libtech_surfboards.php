@@ -231,40 +231,41 @@ Template Name: Surfboard Detail
 			</div><!-- END .section-content -->
 		</section><!-- END .product-details -->
 		<section class="product-zoom bg-product-details">
-        	<div class="section-content">
-        		<div class="zoom-title"></div>
-        		<div class="zoom-image">
-        			<img src="" class="surfboard-top" />
-        			<img src="" class="surfboard-side" />
-        			<img src="" class="surfboard-bottom" />
-        			<div class="clearfix"></div>
-        		</div>
-        		<div class="zoom-controls">
-        			<a href="#close-zoom" class="zoom-close h3">Close</a>
-        			<ul id="zoom-thumbnails"></ul>
-        		</div>
-        	</div><!-- END .section-content -->
-        </section><!-- END .product-zoom -->
+			<div class="section-content">
+				<div class="zoom-title"></div>
+				<div class="zoom-controls">
+					<a href="#close-zoom" class="zoom-close h3">Close</a>
+					<ul id="zoom-thumbnails"></ul>
+				</div>
+				<div class="zoom-image">
+					<img src="" class="surfboard-top" />
+					<img src="" class="surfboard-side" />
+					<img src="" class="surfboard-bottom" />
+					<div class="clearfix"></div>
+				</div>
+				
+			</div><!-- END .section-content -->
+		</section><!-- END .product-zoom -->
 		<div class="bg2-top"></div>
-        <section class="product-extras bg2 info">
-        	<div class="section-content">
-        		<div class="product-mobile-nav">
-        			<ul>
-        				<li><a href="#info" class="h3 selected" id="info">Info</a></li>
-        				<li><a href="#specs" class="h3" id="specs">Specs</a></li>
-        				<li><a href="#tech" class="h3" id="tech">Tech</a></li>
-        			</ul>
-        		</div>
-        		<div class="product-desc-awards-specs">
-        			<div class="product-desc-awards">
-		        		<div class="product-description">
-		        			<?php the_content(); ?>
-		        		</div>
-		        		<?php // display awards if there are any
+		<section class="product-extras bg2 info">
+			<div class="section-content">
+				<div class="product-mobile-nav">
+					<ul>
+						<li><a href="#info" class="h3 selected" id="info">Info</a></li>
+						<li><a href="#specs" class="h3" id="specs">Specs</a></li>
+						<li><a href="#tech" class="h3" id="tech">Tech</a></li>
+					</ul>
+				</div>
+				<div class="product-desc-awards-specs">
+					<div class="product-desc-awards">
+						<div class="product-description">
+							<?php the_content(); ?>
+						</div>
+						<?php // display awards if there are any
 						$awards = get_field('libtech_product_awards');
 						if( $awards ):
 						?>
-			        	<div class="product-awards">
+						<div class="product-awards">
 							<h2>Awards</h2>
 							<ul>
 							<?php
