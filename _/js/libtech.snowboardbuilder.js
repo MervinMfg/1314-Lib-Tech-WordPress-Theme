@@ -1,22 +1,8 @@
 /*
-
-	Lib Tech DIY Builder - lib-tech.com
-	VERSION 1.2
+	Lib Tech DIY Builder - lib-tech.com/diy
 	AUTHOR brian.behrens@mervin.com
-
-	DEPENDENCIES:
-	- jQuery v1.11.0
-	- Shopatron API v2.2.0
-	- Modernizr v2.6.2
-	- Respond.js
-	- TweenMax v1.11.3
-	- Draggable v0.9.8
-	- ThrowPropsPlugin v0.9.1
-	- LIBTECH.main v2.0
-	- BxSlider v4.1.1
-	- FitVids v1.0
-
 */
+
 var boardData = [{
 	"Model": "Skate Banana",
 	"Contour": "BTX",

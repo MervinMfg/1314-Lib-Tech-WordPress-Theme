@@ -40,8 +40,21 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 	<!-- Fav Icon -->
 	<link rel="shortcut icon" href="<?php bloginfo('template_directory'); ?>/_/img/favicon.ico" />
 	<!-- Styles -->
-	<link href="<?php bloginfo('stylesheet_url'); ?>" rel="stylesheet" type="text/css" />
-	<link href="<?php bloginfo('template_directory'); ?>/_/css/snowboard-builder.css" rel="stylesheet" type="text/css" />
+	<?php
+		// Figure out what our server name is
+		$host = $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+		// check if we are in the staging environment
+		if ($host == 'localhost/' || $host == 'libtech.staging.wpengine.com/') {
+			// if staging, provide the CSS files individually for easier debugging
+			include get_template_directory() . '/_/inc/css-main.php';
+			echo "\t" . '<link href="' . get_bloginfo('template_directory') . '/_/css/libtech.snowboardbuilder.dev.css" rel="stylesheet" type="text/css" />' . "\n";
+		} else {
+			// if production, provide the compiled and minified CSS files
+			echo '<link href="' . get_bloginfo('template_directory') . '/_/css/lib/libtech.main.lib.min.css" rel="stylesheet" type="text/css" />' . "\n\t";
+			echo '<link href="' . get_bloginfo('template_directory') . '/style.min.css" rel="stylesheet" type="text/css" />' . "\n\t";
+			echo '<link href="' . get_bloginfo('template_directory') . '/_/css/libtech.snowboardbuilder.min.css" rel="stylesheet" type="text/css" />' . "\n";
+		}
+	?>
 	<!-- Mobile -->
 	<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	<meta name="apple-mobile-web-app-capable" content="yes" />
@@ -490,15 +503,23 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 	<![endif]-->
 	<!-- JavaScript includes -->
 	<!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if necessary -->
-	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script>window.jQuery || document.write('<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery-1.10.2.min.js"><\/script>')</script>
-	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery.fitvids.js"></script>
-	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery.bxslider.min.js"></script>
-	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/GSAP/utils/Draggable.min.js"></script>
-	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/GSAP/plugins/ThrowPropsPlugin.min.js"></script>
-	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/GSAP/TweenMax.min.js"></script>
-	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/libtech.main.js"></script>
-	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/libtech.snowboardbuilder.js"></script>
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery-1.11.1.min.js"><\/script>')</script>
+	<?php
+        // Figure out what our server name is
+        $host = $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+        // check if we are in the staging environment
+        if ($host == 'localhost/' || $host == 'libtech.staging.wpengine.com/') {
+            // if staging, provide the JS files individually for easier debugging
+            include get_template_directory() . '/_/inc/js-snowboardbuilder.php';
+        } else {
+            // if production, provide the compiled and uglified JS files
+            echo '<script type="text/javascript" src="' . get_bloginfo('template_directory') . '/_/js/lib/libtech.main.lib.min.js"></script>' . "\n\t";
+            echo '<script type="text/javascript" src="' . get_bloginfo('template_directory') . '/_/js/lib/libtech.snowboardbuilder.lib.min.js"></script>' . "\n\t";
+            echo '<script type="text/javascript" src="' . get_bloginfo('template_directory') . '/_/js/libtech.main.min.js"></script>' . "\n\t";
+            echo '<script type="text/javascript" src="' . get_bloginfo('template_directory') . '/_/js/libtech.snowboardbuilder.min.js"></script>' . "\n";
+        }
+    ?>
 	<!-- Init the main JS -->
 	<script type="text/javascript">
 		$(document).ready(function(){

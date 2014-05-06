@@ -1,15 +1,6 @@
 /*
-
     Lib Tech - lib-tech.com
-    VERSION 2.1
     AUTHOR brian.behrens@mervin.com
-
-    DEPENDENCIES:
-    - jQuery v1.11.0
-    - Modernizr 2.6.2
-    - Shopatron API v2.2.0
-    - FitVids 1.0
-
 */
 
 var LIBTECH = LIBTECH || {};

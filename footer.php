@@ -184,15 +184,21 @@
 	<!--[if lt IE 8]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
 	<!-- JavaScript includes -->
 	<!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if necessary -->
-	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-	<script>window.jQuery || document.write('<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery-1.11.0.min.js"><\/script>')</script>
-	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery.fitvids.js"></script>
-	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery.bxslider.min.js"></script>
-	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery.magnific-popup.min.js"></script>
-	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery.treeview.js"></script>
-	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery.isotope.min.js"></script>
-	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/froogaloop.js"></script>
-	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/libtech.main.js"></script>
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery-1.11.1.min.js"><\/script>')</script>
+	<?php
+        // Figure out what our server name is
+        $host = $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+        // check if we are in the staging environment
+        if ($host == 'localhost/' || $host == 'libtech.staging.wpengine.com/') {
+            // if staging, provide the JS files individually for easier debugging
+            include get_template_directory() . '/_/inc/js-main.php';
+        } else {
+            // if production, provide the compiled and uglified JS files
+            echo '<script type="text/javascript" src="' . get_bloginfo('template_directory') . '/_/js/lib/libtech.main.lib.min.js"></script>' . "\n\t";
+            echo '<script type="text/javascript" src="' . get_bloginfo('template_directory') . '/_/js/libtech.main.min.js"></script>' . "\n";
+        }
+    ?>
 	<!-- Init the main JS -->
 	<script type="text/javascript">
 		$(document).ready(function(){
