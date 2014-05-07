@@ -27,3 +27,29 @@ Once you have Node, NPM & Grunt, you will need to run the following command from
 ```
 $ sudo npm install
 ```
+
+If you do not have [SASS](http://sass-lang.com/install) installed, run the following command:
+
+```
+$ sudo gem install sass
+```
+
+To check if SASS is installed properly, run the following command:
+
+```
+$ sass -v
+```
+
+## Build
+
+To run the app within a dev environment, build with the following command:
+
+```
+$ grunt run
+```
+
+To run the app within a prod environment, build with the following command:
+
+```
+$ grunt build
+```
