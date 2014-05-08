@@ -188,9 +188,9 @@
 	<script>window.jQuery || document.write('<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery-1.11.1.min.js"><\/script>')</script>
 	<?php
         // Figure out what our server name is
-        $host = $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+        $host = $_SERVER['SERVER_NAME'];
         // check if we are in the staging environment
-        if ($host == 'localhost/' || $host == 'libtech.staging.wpengine.com/') {
+        if ($host == 'localhost' || $host == 'libtech.staging.wpengine.com') {
             // if staging, provide the JS files individually for easier debugging
             include get_template_directory() . '/_/inc/js-main.php';
         } else {

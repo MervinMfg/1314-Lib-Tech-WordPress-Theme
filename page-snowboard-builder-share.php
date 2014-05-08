@@ -42,9 +42,9 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/share/";
     <!-- Styles -->
     <?php
 		// Figure out what our server name is
-		$host = $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+		$host = $_SERVER['SERVER_NAME'];
 		// check if we are in the staging environment
-		if ($host == 'localhost/' || $host == 'libtech.staging.wpengine.com/') {
+		if ($host == 'localhost' || $host == 'libtech.staging.wpengine.com') {
 			// if staging, provide the CSS files individually for easier debugging
 			include get_template_directory() . '/_/inc/css-main.php';
 			echo "\t" . '<link href="' . get_bloginfo('template_directory') . '/_/css/libtech.snowboardbuilder.dev.css" rel="stylesheet" type="text/css" />' . "\n";
@@ -223,9 +223,9 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/share/";
 	<script>window.jQuery || document.write('<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/_/js/lib/jquery-1.11.1.min.js"><\/script>')</script>
 	<?php
         // Figure out what our server name is
-        $host = $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+        $host = $_SERVER['SERVER_NAME'];
         // check if we are in the staging environment
-        if ($host == 'localhost/' || $host == 'libtech.staging.wpengine.com/') {
+        if ($host == 'localhost' || $host == 'libtech.staging.wpengine.com') {
             // if staging, provide the JS files individually for easier debugging
             include get_template_directory() . '/_/inc/js-snowboardbuilder.php';
         } else {
