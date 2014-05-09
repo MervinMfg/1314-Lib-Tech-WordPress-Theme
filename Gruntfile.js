@@ -57,7 +57,7 @@ module.exports = function (grunt) {
         cssmin: {
             dist: {
                 options: {
-                    banner: '/*! <%= pkg.name %> <%= pkg.version %> <%= grunt.template.today("yyyy-mm-dd HH:MM") %> */\n'
+                    banner: '/*! <%= pkg.name %> v<%= pkg.version %> | (c) 2012, <%= grunt.template.today("yyyy") %> Mervin Mfg. | mervin.com */\n'
                 },
                 files: {
                     'style.min.css': ['style.css'],
@@ -68,7 +68,7 @@ module.exports = function (grunt) {
         },
         uglify: {
             options: {
-                banner: '/*! <%= pkg.name %> <%= pkg.version %> <%= grunt.template.today("yyyy-mm-dd HH:MM") %> */\n'
+                banner: '/*! <%= pkg.name %> v<%= pkg.version %> | (c) 2012, <%= grunt.template.today("yyyy") %> Mervin Mfg. | mervin.com */\n'
             },
             dist: {
                 files: {

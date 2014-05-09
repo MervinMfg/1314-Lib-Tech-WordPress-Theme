@@ -1,7 +1,7 @@
 /*
-    Lib Tech - lib-tech.com
-    AUTHOR brian.behrens@mervin.com
-*/
+ * Lib Tech - http://lib-tech.com
+ * Author: brian.behrens@mervin.com - http://www.mervin.com
+ */
 
 var LIBTECH = LIBTECH || {};
 
@@ -389,6 +389,26 @@ LIBTECH.main = {
 	homeInit: function () {
 		var self = this;
 		self.utilities.featuredSliderInit();
+
+		slideWidth = 220;
+			slideMargin = 10;
+		// set up product slider
+		var slider = $('.product-slider .bxslider').bxSlider({
+			slideWidth: slideWidth,
+			minSlides: 2,
+			maxSlides: 8,
+			slideMargin: slideMargin,
+			auto: true,
+			autoHover: true,
+			speed: 500,
+			controls: true,
+			pager: false,
+			mode: 'horizontal',
+			moveSlides: 2,
+			infiniteLoop: false,
+			hideControlOnEnd: true
+		});
+		console.log('product slider go!');
 	},
 	homeSportInit: function () {
 		var self, slideWidth, slideMargin;
@@ -662,77 +682,22 @@ LIBTECH.main = {
 	productDetailInit: function () {
 		var self, slider, thumbSlider, thumbSliderWidth, techConstructionSlider, zoomThumbSlider;
 		self = this;
-		$(".product-tech-major").fitVids();
-		$(".product-video").fitVids();
-		// setup main product image slider
-		slider = $('#image-list').bxSlider({
-			controls: false,
-			mode: 'fade',
-			pagerCustom: '#image-list-thumbs'
-		});
-		// set up thumbnail slider
-		thumbSliderWidth = 100;
-		if ($('body').hasClass('single-libtech_surfboards')) { thumbSliderWidth = 45; }
-		thumbSlider = $('#image-list-thumbs').bxSlider({
-			slideWidth: thumbSliderWidth,
-			minSlides: 2,
-			maxSlides: 8,
-			slideMargin: 10,
-			controls: true,
-			pager: false,
-			mode: 'horizontal',
-			moveSlides: 2,
-			infiniteLoop: false,
-			hideControlOnEnd: true
-		});
-		// setup skate tech slider
-		techConstructionSlider = $('.product-tech-construction ul').bxSlider({
-			video: true,
-			useCSS: false,
-			auto: true,
-			autoHover: true,
-			speed: 500,
-			controls: true,
-			pager: false,
-			mode: 'horizontal'
-		});
-		// navigation when displayed below 600px (mobile phone)
-		$('.product-extras .product-mobile-nav ul li a').click(function (e) {
-			e.preventDefault();
-			// update extras, video and gallery display
-			$('.product-extras, .product-video-top, .product-video, .product-gallery-top, .product-gallery').removeClass('info specs tech');
-			$('.product-extras, .product-video-top, .product-video, .product-gallery-top, .product-gallery').addClass($(this).attr('id'));
-			// update nav item state
-			$('.product-extras .product-mobile-nav ul li a').each(function () {
-				$(this).removeClass('selected');
-			});
-			$(this).addClass('selected');
-			// reload slider to fix responsive bug when visible
-			if ($('body').hasClass('single-libtech_skateboards') && $(this).attr('id') == 'tech') {
-				techConstructionSlider.reloadSlider();
-			}
-		});
-		// check for browser resize and see if desktop zoom should occur
-		$(window).on('resize.productZoom', function () {
-			if (self.utilities.getMediaWidth() >= 600) { // if not mobile, trigger zoom on click
-				// zoom listener
-				$('.product-images #image-list li a').on('click.productZoom', function (e) {
-					e.preventDefault();
-					initZoom($(this).parent().index());
-				});
-				// surf zoom listener
-				$('.product-images .surfboard-top, .product-images .surfboard-side, .product-images .surfboard-bottom').on('click.productZoom', function (e) {
-					e.preventDefault();
-					// determine active graphic option
-					var zoomIndex = $('#image-list-thumbs li a.active').parent().index();
-					if(zoomIndex < 0) {zoomIndex = 0;} // if it's still default
-					initZoom(zoomIndex);
-				});
-			} else { // if mobile, do not zoom on click
-				$('.product-images #image-list li a').off('click.productZoom');
-			}
-		});
-		$(window).resize(); // trigger resize to init features
+		// ADD TO CART COMPLETION METHODS
+		function addToCartSuccess() {
+			$('.product-buy .cart-success').removeClass('hidden');
+			$('.product-buy .cart-failure').addClass('hidden');
+			// update quickcart
+			self.quickCartInit();
+		}
+		function addToCartError() {
+			$('.product-buy .cart-failure').removeClass('hidden');
+			$('.product-buy .cart-success').addClass('hidden');
+		}
+		function addToCartComplete() {
+			$('.product-buy ul li.loading').addClass('hidden');
+			$('.product-buy ul li.cart-button').removeClass('hidden');
+		}
+		// PRODUCT ZOOM METHODS
 		// add product image zoom features
 		function initZoom(clickIndex) {
 			$('.product-zoom').addClass('show');
@@ -816,6 +781,78 @@ LIBTECH.main = {
 				zoomThumbSlider = null;
 			}
 		}
+		// BEGIN EXECUTING DETAIL CODE
+		$(".product-tech-major").fitVids();
+		$(".product-video").fitVids();
+		// setup main product image slider
+		slider = $('#image-list').bxSlider({
+			controls: false,
+			mode: 'fade',
+			pagerCustom: '#image-list-thumbs'
+		});
+		// set up thumbnail slider
+		thumbSliderWidth = 100;
+		if ($('body').hasClass('single-libtech_surfboards')) { thumbSliderWidth = 45; }
+		thumbSlider = $('#image-list-thumbs').bxSlider({
+			slideWidth: thumbSliderWidth,
+			minSlides: 2,
+			maxSlides: 8,
+			slideMargin: 10,
+			controls: true,
+			pager: false,
+			mode: 'horizontal',
+			moveSlides: 2,
+			infiniteLoop: false,
+			hideControlOnEnd: true
+		});
+		// setup skate tech slider
+		techConstructionSlider = $('.product-tech-construction ul').bxSlider({
+			video: true,
+			useCSS: false,
+			auto: true,
+			autoHover: true,
+			speed: 500,
+			controls: true,
+			pager: false,
+			mode: 'horizontal'
+		});
+		// navigation when displayed below 600px (mobile phone)
+		$('.product-extras .product-mobile-nav ul li a').click(function (e) {
+			e.preventDefault();
+			// update extras, video and gallery display
+			$('.product-extras, .product-video-top, .product-video, .product-gallery-top, .product-gallery').removeClass('info specs tech');
+			$('.product-extras, .product-video-top, .product-video, .product-gallery-top, .product-gallery').addClass($(this).attr('id'));
+			// update nav item state
+			$('.product-extras .product-mobile-nav ul li a').each(function () {
+				$(this).removeClass('selected');
+			});
+			$(this).addClass('selected');
+			// reload slider to fix responsive bug when visible
+			if ($('body').hasClass('single-libtech_skateboards') && $(this).attr('id') == 'tech') {
+				techConstructionSlider.reloadSlider();
+			}
+		});
+		// check for browser resize and see if desktop zoom should occur
+		$(window).on('resize.productZoom', function () {
+			if (self.utilities.getMediaWidth() >= 600) { // if not mobile, trigger zoom on click
+				// zoom listener
+				$('.product-images #image-list li a').on('click.productZoom', function (e) {
+					e.preventDefault();
+					initZoom($(this).parent().index());
+				});
+				// surf zoom listener
+				$('.product-images .surfboard-top, .product-images .surfboard-side, .product-images .surfboard-bottom').on('click.productZoom', function (e) {
+					e.preventDefault();
+					// determine active graphic option
+					var zoomIndex = $('#image-list-thumbs li a.active').parent().index();
+					if(zoomIndex < 0) {zoomIndex = 0;} // if it's still default
+					initZoom(zoomIndex);
+				});
+			} else { // if mobile, do not zoom on click
+				$('.product-images #image-list li a').off('click.productZoom');
+			}
+		});
+		$(window).resize(); // trigger resize to init features
 		// grab view all specs link and turn into lightbox
 		$('.product-specs a.view-all-specs, .product-quick-specs a.specs-link').magnificPopup({
 			type: 'ajax',
@@ -984,16 +1021,13 @@ LIBTECH.main = {
 				}, {
 					// All event handlers are optional
 					success: function (data, textStatus) {
-						$('.product-buy .cart-success').removeClass('hidden');
-						$('.product-buy .cart-failure').addClass('hidden');
+						addToCartSuccess();
 					},
 					error: function (textStatus, errorThrown) {
-						$('.product-buy .cart-failure').removeClass('hidden');
-						$('.product-buy .cart-success').addClass('hidden');
+						addToCartError();
 					},
 					complete: function (textStatus) {
-						$('.product-buy ul li.loading').addClass('hidden');
-						$('.product-buy ul li.cart-button').removeClass('hidden');
+						addToCartComplete();
 					}
 				});
 			});
@@ -1081,16 +1115,13 @@ LIBTECH.main = {
 				}, {
 					// All event handlers are optional
 					success: function (data, textStatus) {
-						$('.product-buy .cart-success').removeClass('hidden');
-						$('.product-buy .cart-failure').addClass('hidden');
+						addToCartSuccess();
 					},
 					error: function (textStatus, errorThrown) {
-						$('.product-buy .cart-failure').removeClass('hidden');
-						$('.product-buy .cart-success').addClass('hidden');
+						addToCartError();
 					},
 					complete: function (textStatus) {
-						$('.product-buy ul li.loading').addClass('hidden');
-						$('.product-buy ul li.cart-button').removeClass('hidden');
+						addToCartComplete();
 					}
 				});
 			});
@@ -1160,16 +1191,13 @@ LIBTECH.main = {
 				}, {
 					// All event handlers are optional
 					success: function (data, textStatus) {
-						$('.product-buy .cart-success').removeClass('hidden');
-						$('.product-buy .cart-failure').addClass('hidden');
+						addToCartSuccess();
 					},
 					error: function (textStatus, errorThrown) {
-						$('.product-buy .cart-failure').removeClass('hidden');
-						$('.product-buy .cart-success').addClass('hidden');
+						addToCartError();
 					},
 					complete: function (textStatus) {
-						$('.product-buy ul li.loading').addClass('hidden');
-						$('.product-buy ul li.cart-button').removeClass('hidden');
+						addToCartComplete();
 					}
 				});
 			});

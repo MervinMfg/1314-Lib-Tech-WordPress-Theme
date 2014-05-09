@@ -1396,11 +1396,14 @@ body.international .shopping-cart .section-content {
 		}
 	}
 }
-.surf .product-slider ul li a img {
-	width: 100%;
-	max-width: 100%;
-	height: auto;
-	margin-left: 0;
+.home,
+.surf {
+	.product-slider ul li a img {
+		width: 100%;
+		max-width: 100%;
+		height: auto;
+		margin-left: 0;
+	}
 }
 .whats-new {
 	.section-content {

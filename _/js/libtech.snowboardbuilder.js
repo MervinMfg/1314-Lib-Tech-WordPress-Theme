@@ -1,7 +1,7 @@
 /*
-	Lib Tech DIY Builder - lib-tech.com/diy
-	AUTHOR brian.behrens@mervin.com
-*/
+ * Lib Tech DIY Snowboard Builder - http://lib-tech.com/diy
+ * Author: brian.behrens@mervin.com - http://www.mervin.com
+ */
 
 var boardData = [{
 	"Model": "Skate Banana",

@@ -106,6 +106,35 @@ get_header();
 			</div><!-- END .section-content -->
 			<div class="clearfix"></div>
 		</section><!-- END .featured-slider -->
+		<div class="bg-product-snow-top"></div>
+		<section class="product-slider bg-product-snow">
+			<div class="section-content">
+				<ul class="product-listing bxslider">
+					<?php
+						$post_objects = get_field('libtech_homepage_featured_products');
+						if( $post_objects ):
+							$featuredProducts = Array();
+							foreach( $post_objects as $post_object):
+								$imageID = get_field('libtech_product_image', $post_object->ID);
+								$productImage = wp_get_attachment_image_src($imageID, 'square-medium');
+								$productLink = get_permalink($post_object->ID);
+								$productTitle = get_the_title($post_object->ID);
+								// get price
+								$productPrice = getPrice(get_field('libtech_product_price_us', $post_object->ID), get_field('libtech_product_price_ca', $post_object->ID), get_field('libtech_product_on_sale', $post_object->ID), get_field('libtech_product_sale_percentage', $post_object->ID));
+								// add to featured product array
+								array_push($featuredProducts, Array($productTitle, $productLink, $productImage, $productPrice));
+							endforeach;
+							// randomly sort featured products array
+							shuffle($featuredProducts);
+							// loop through featured products
+							for($i = 0; $i < count($featuredProducts); ++$i) {
+								echo '<li><a href="'. $featuredProducts[$i][1] .'"><img src="'.$featuredProducts[$i][2][0].'" width="'.$featuredProducts[$i][2][1].'" height="'.$featuredProducts[$i][2][2].'" alt="' . $featuredProducts[$i][0] . ' Image" /><div class="product-peek"><p class="product-title">' . $featuredProducts[$i][0] . '</p></div></a></li>';
+							}
+						endif;
+					?>
+				</ul>
+			</div>
+		</section><!-- END .product-slider -->
 		<div class="bg3-top"></div>
 		<section class="homepage-posts bg3">
 			<div class="section-content">

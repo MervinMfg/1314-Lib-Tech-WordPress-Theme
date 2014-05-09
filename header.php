@@ -257,6 +257,20 @@
 								'container_class' => 'nav-sub'
 							)
 						);
+						// build dealer url
+						switch ($GLOBALS['sport']) {
+							case "ski":
+								$dealerURL = '/dealer-locator/?product=nas';
+								break;
+							case "surf":
+								$dealerURL = '/dealer-locator/?product=waterboards';
+								break;
+							case "skate":
+								$dealerURL = '/dealer-locator/?product=skateboards';
+								break;
+							default:
+								$dealerURL = '/dealer-locator/?product=snowboards';
+						}
 					} else {
 						wp_nav_menu( // default sub menu
 							array(
@@ -265,6 +279,8 @@
 								'container_class' => 'nav-sub'
 							)
 						);
+						// default dealer url
+						$dealerURL = '/dealer-locator/';
 					}
 				?>
 
@@ -279,7 +295,7 @@
 					</ul>
 				</div>
 				<div class="link-dealer">
-					<a href="/dealer-locator/">Find a dealer</a>
+					<a href="<?php echo $dealerURL; ?>">Find a dealer</a>
 				</div>
 				<div class="search">
 					<a href="#search">Search</a>
