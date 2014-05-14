@@ -728,6 +728,55 @@ header {
 		}
 	}
 }
+.snow header .nav-main .snow a {
+	color: $snowColor;
+}
+.ski header .nav-main .ski a {
+	color: $skiColor;
+}
+.surf header .nav-main .surf a {
+	color: $surfColor;
+}
+.skate header .nav-main .skate a {
+	color: $skateColor;
+}
+.home,
+.blog,
+.page-template-page-environmental-php,
+.page-template-page-technology-overview-php {
+	header .nav-main {
+		.snow a,
+		.ski a,
+		.surf a,
+		.skate a {
+			color: #fff;
+		}
+		.snow a {
+			&:hover,
+			&:focus {
+				color: $snowColor;
+			}
+		}
+		.ski a {
+			&:hover,
+			&:focus {
+				color: $skiColor;
+			}
+		}
+		.surf a {
+			&:hover,
+			&:focus {
+				color: $surfColor;
+			}
+		}
+		.skate a {
+			&:hover,
+			&:focus {
+				color: $skateColor;
+			}
+		}
+	}	
+}
 .snow header a,
 .ski header a,
 .surf header a,

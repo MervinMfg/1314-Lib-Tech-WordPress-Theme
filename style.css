@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*   
 Theme Name: Lib Tech
 Theme URI: http://www.lib-tech.com
@@ -299,6 +300,20 @@ header .nav-utility #quick-cart { width: 61px; height: 22px; background: url("_/
 header .nav-utility #quick-cart a { display: block; width: 31px; height: 20px; padding: 2px 0 0 30px; }
 header .nav-utility #quick-cart a span { width: 30px; height: 16px; font-size: 12px; font-weight: bold; text-align: center; display: block; }
 header .nav-utility #quick-cart a:hover span, header .nav-utility #quick-cart a:focus span { color: #fff; }
+
+.snow header .nav-main .snow a { color: yellow; }
+
+.ski header .nav-main .ski a { color: #0099ff; }
+
+.surf header .nav-main .surf a { color: #ff6600; }
+
+.skate header .nav-main .skate a { color: #66cc00; }
+
+.home header .nav-main .snow a, .home header .nav-main .ski a, .home header .nav-main .surf a, .home header .nav-main .skate a, .blog header .nav-main .snow a, .blog header .nav-main .ski a, .blog header .nav-main .surf a, .blog header .nav-main .skate a, .page-template-page-environmental-php header .nav-main .snow a, .page-template-page-environmental-php header .nav-main .ski a, .page-template-page-environmental-php header .nav-main .surf a, .page-template-page-environmental-php header .nav-main .skate a, .page-template-page-technology-overview-php header .nav-main .snow a, .page-template-page-technology-overview-php header .nav-main .ski a, .page-template-page-technology-overview-php header .nav-main .surf a, .page-template-page-technology-overview-php header .nav-main .skate a { color: #fff; }
+.home header .nav-main .snow a:hover, .home header .nav-main .snow a:focus, .blog header .nav-main .snow a:hover, .blog header .nav-main .snow a:focus, .page-template-page-environmental-php header .nav-main .snow a:hover, .page-template-page-environmental-php header .nav-main .snow a:focus, .page-template-page-technology-overview-php header .nav-main .snow a:hover, .page-template-page-technology-overview-php header .nav-main .snow a:focus { color: yellow; }
+.home header .nav-main .ski a:hover, .home header .nav-main .ski a:focus, .blog header .nav-main .ski a:hover, .blog header .nav-main .ski a:focus, .page-template-page-environmental-php header .nav-main .ski a:hover, .page-template-page-environmental-php header .nav-main .ski a:focus, .page-template-page-technology-overview-php header .nav-main .ski a:hover, .page-template-page-technology-overview-php header .nav-main .ski a:focus { color: #0099ff; }
+.home header .nav-main .surf a:hover, .home header .nav-main .surf a:focus, .blog header .nav-main .surf a:hover, .blog header .nav-main .surf a:focus, .page-template-page-environmental-php header .nav-main .surf a:hover, .page-template-page-environmental-php header .nav-main .surf a:focus, .page-template-page-technology-overview-php header .nav-main .surf a:hover, .page-template-page-technology-overview-php header .nav-main .surf a:focus { color: #ff6600; }
+.home header .nav-main .skate a:hover, .home header .nav-main .skate a:focus, .blog header .nav-main .skate a:hover, .blog header .nav-main .skate a:focus, .page-template-page-environmental-php header .nav-main .skate a:hover, .page-template-page-environmental-php header .nav-main .skate a:focus, .page-template-page-technology-overview-php header .nav-main .skate a:hover, .page-template-page-technology-overview-php header .nav-main .skate a:focus { color: #66cc00; }
 
 .snow header a, .ski header a, .surf header a, .skate header a { color: #fff; }
 
