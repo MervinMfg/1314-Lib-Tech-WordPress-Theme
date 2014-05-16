@@ -1391,7 +1391,7 @@ LIBTECH.snowboardbuilder = {
 				$('#header .pagination .label').html("BASE");
 				break;
 			case 5:
-				$('#header .top-section').html("SELECT BASE - CUSOMIZED KNIFECUT");
+				$('#header .top-section').html("SELECT BASE - CUSTOMIZED TEXT");
 				$('#header .pagination .label').html("BASE");
 				break;
 			case 6:
@@ -1420,7 +1420,7 @@ LIBTECH.snowboardbuilder = {
 		$('#mobile-receipt .sidewall-cost, .step7-buy .board-reciept .sidewall-cost').html("+ $0.00 " + self.config.bbRegionCurrency);
 		// set base
 		if (self.config.isKnifecut) {
-			$('#mobile-receipt .base, .step7-buy .board-reciept .base').html("KNIFECUT BASE - <span>" + self.getBoardBaseDesc() + "</span><div class=\"text-color\">TEXT COLOR - <span>" + self.getCustomTextColor() + "</span></div><div class=\"base-color\">BASE COLOR - <span>" + self.getCustomBaseColor() + "</span></div>");
+			$('#mobile-receipt .base, .step7-buy .board-reciept .base').html("CUSTOM BASE - <span>" + self.getBoardBaseDesc() + "</span><div class=\"text-color\">TEXT COLOR - <span>" + self.getCustomTextColor() + "</span></div><div class=\"base-color\">BASE COLOR - <span>" + self.getCustomBaseColor() + "</span></div>");
 			$('#mobile-receipt .base-cost, .step7-buy .board-reciept .base-cost').html("+ $" + self.getKnifeCutPrice().toFixed(2) + " " + self.config.bbRegionCurrency);
 		} else {
 			$('#mobile-receipt .base, .step7-buy .board-reciept .base').html("BASE - <span>" + self.getBoardBase() + " " + self.getBoardBaseDesc() + "</span>");
@@ -2066,9 +2066,9 @@ LIBTECH.snowboardbuilder = {
 						895306: top, // Top Graphic
 						895307: self.getBoardSidewall(), // Sidewall Color
 						895308: self.getBoardBase(), // Base Graphic
-						895310: self.getBoardBaseDesc(), // Knife Cut Text
-						895311: self.getCustomBaseColor(), // Knife Cut Base Color
-						895312: self.getCustomTextColor(), // Knife Cut Text Color
+						918748: self.getBoardBaseDesc(), // Knife Cut Text
+						918746: self.getCustomBaseColor(), // Knife Cut Base Color
+						918747: self.getCustomTextColor(), // Knife Cut Text Color
 						895314: self.getBoardBadge(), // Badfge Text
 						895321: boardUrl(),
 					}
@@ -2092,7 +2092,7 @@ LIBTECH.snowboardbuilder = {
 						895306: top, // Top Graphic
 						895307: self.getBoardSidewall(), // Sidewall Color
 						895308: base, // Base Graphic
-						895314: self.getBoardBadge(), // Badfge Text
+						895314: self.getBoardBadge(), // Badge Text
 						895321: boardUrl() // URL
 					}
 				}, {

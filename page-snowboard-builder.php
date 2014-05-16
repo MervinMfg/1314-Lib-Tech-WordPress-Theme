@@ -151,7 +151,7 @@ $page_url = get_site_url() . "/snowboarding/snowboard-builder/";
 				<li class="menu5b">
 					<div class="menu-x">X</div>
 					<div class="menu-title">Text</div>
-					<div class="menu-label">knifecut</div>
+					<div class="menu-label">custom</div>
 				</li>
 				<li class="menu6">
 					<div class="menu-x">X</div>
