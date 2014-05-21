@@ -2182,7 +2182,7 @@ body.international .shopping-cart .section-content .int-cart-details {
   width: 100%;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/bbehrens\/Projects\/1314-Lib-Tech-WordPress-Theme\/style\.scss}line{font-family:\000031696}}
-.content-grid .grid-item.blog.item-1, .content-grid .grid-item.blog.item-2, .content-grid .grid-item.blog.item-3, .content-grid .grid-item.blog.item-4, .content-grid .grid-item.blog.item-5, .content-grid .grid-item.facebook.item-1, .content-grid .grid-item.facebook.item-2, .content-grid .grid-item.instagram.item-1, .content-grid .grid-item.instagram.item-2, .content-grid .grid-item.product.item-1, .content-grid .grid-item.product.item-2, .content-grid .grid-item.team.item-1, .content-grid .grid-item.team.item-2, .content-grid .grid-item.faq.item-1, .content-grid .grid-item.faq.item-2 {
+.content-grid .grid-item.blog.item-1, .content-grid .grid-item.blog.item-2, .content-grid .grid-item.blog.item-3, .content-grid .grid-item.blog.item-4, .content-grid .grid-item.blog.item-5, .content-grid .grid-item.facebook.item-1, .content-grid .grid-item.facebook.item-2, .content-grid .grid-item.instagram.item-1, .content-grid .grid-item.instagram.item-2, .content-grid .grid-item.product.item-1, .content-grid .grid-item.product.item-2, .content-grid .grid-item.team.item-1, .content-grid .grid-item.team.item-2, .content-grid .grid-item.faq.item-0, .content-grid .grid-item.faq.item-1 {
   display: none;
 }
 
@@ -6019,7 +6019,7 @@ body.skate .ripper-videos .section-content .featured-videos .video-thumbnails li
     width: 25%;
   }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/bbehrens\/Projects\/1314-Lib-Tech-WordPress-Theme\/style\.scss}line{font-family:\000035185}}
-  .content-grid .grid-item.blog.item-2, .content-grid .grid-item.facebook.item-2, .content-grid .grid-item.team.item-1, .content-grid .grid-item.faq.item-1 {
+  .content-grid .grid-item.blog.item-2, .content-grid .grid-item.facebook.item-2, .content-grid .grid-item.team.item-1, .content-grid .grid-item.faq.item-0 {
     display: inline-block;
   }
 
@@ -6371,7 +6371,7 @@ body.skate .ripper-videos .section-content .featured-videos .video-thumbnails li
     width: 20%;
   }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/bbehrens\/Projects\/1314-Lib-Tech-WordPress-Theme\/style\.scss}line{font-family:\000035532}}
-  .content-grid .grid-item.instagram.item-2, .content-grid .grid-item.product.item-2, .content-grid .grid-item.team.item-2, .content-grid .grid-item.faq.item-2 {
+  .content-grid .grid-item.instagram.item-2, .content-grid .grid-item.product.item-2, .content-grid .grid-item.team.item-2, .content-grid .grid-item.faq.item-1 {
     display: inline-block;
   }
 

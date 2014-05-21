@@ -275,7 +275,7 @@ get_header();
 							remove_all_filters('posts_orderby'); // make sure you can order random - fix regarding Post Types Order plugin
 							$args = array(
 								'post_type' => 'libtech_faqs',
-								'posts_per_page' => 3,
+								'posts_per_page' => 2,
 								'orderby' => 'rand',
 								'tax_query' => array(
 									array(

@@ -1706,8 +1706,8 @@ body.international .shopping-cart .section-content {
 		&.product.item-2,
 		&.team.item-1,
 		&.team.item-2,
-		&.faq.item-1,
-		&.faq.item-2 {
+		&.faq.item-0,
+		&.faq.item-1 {
 			display: none;
 		}
 	}
@@ -5185,7 +5185,7 @@ body.skate .ripper-videos .section-content .featured-videos {
 			&.blog.item-2,
 			&.facebook.item-2,
 			&.team.item-1,
-			&.faq.item-1 {
+			&.faq.item-0 {
 				display: inline-block;
 			}
 		}
@@ -5532,7 +5532,7 @@ body.skate .ripper-videos .section-content .featured-videos {
 			&.instagram.item-2,
 			&.product.item-2,
 			&.team.item-2,
-			&.faq.item-2 {
+			&.faq.item-1 {
 				display: inline-block;
 			}
 		}
