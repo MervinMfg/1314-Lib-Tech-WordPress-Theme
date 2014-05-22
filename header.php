@@ -213,12 +213,12 @@
 			<div class="takeover-content">
 				<div class="expanded">
 					<a href="#close-takeover" class="close">Close</a>
-					<a href="/surfboards/bowl/" class="message"><img src="<?php bloginfo('template_directory'); ?>/_/img/takeovers/lib-tech-waterboards-ryan-carlson.jpg" alt="Lib Tech Waterboards - Introducing Ryan Carlson" /></a>
+					<a href="/surfboards/aireola/" class="message"><img src="<?php bloginfo('template_directory'); ?>/_/img/takeovers/lib-tech-waterboards-johnny-grubbs.jpg" alt="Lib Tech Waterboards Kraftsmen - Introducing Johnny Grubbs" /></a>
 				</div>
 				<div class="contracted">
-					<a href="#ryan-carlson">
+					<a href="#johnny-grubbs">
 						<p class="view-more">View More</p>
-						<p class="message">Lib Tech Waterboards - Radically Different!</p>
+						<p class="message">Lib Tech Waterboards - Handcrafted in the USA</p>
 						<div class="clearfix"></div>
 					</a>
 				</div>

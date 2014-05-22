@@ -428,8 +428,9 @@ body.international .shopping-cart .section-content .int-cart-details { display: 
 .takeover .takeover-content .contracted a .message span.green { color: #009900; }
 .takeover .takeover-content .contracted a .view-more { display: block; float: right; width: 41px; height: 41px; background: url("_/img/sprite.png") no-repeat -214px -46px; text-indent: -9999px; padding: 5px; }
 
-.international .takeover { display: none; }
-
+/*.international .takeover {
+	display: none;
+}*/
 /* Homepage Styles
 -------------------------------------------------------------------------------*/
 .featured-slider { padding-top: 60px; margin-top: -40px; }

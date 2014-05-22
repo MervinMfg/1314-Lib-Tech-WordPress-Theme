@@ -349,7 +349,7 @@ LIBTECH.main = {
 		var self = this;
 		if (typeof (showTakeover) === 'undefined') showTakeover = true;
 		// make sure we're not on an international page, we don't show it there
-		if ($('body').hasClass('international') === false) {
+		//if ($('body').hasClass('international') === false) {
 			// on click of takeover, check expansion / contraction
 			$('.takeover').on('click.takeover', function (e) {
 				var contracted, expanded;
@@ -384,20 +384,17 @@ LIBTECH.main = {
 					}, 2000);
 				}
 			}
-		}
+		//}
 	},
 	homeInit: function () {
 		var self = this;
 		self.utilities.featuredSliderInit();
-
-		slideWidth = 220;
-			slideMargin = 10;
 		// set up product slider
 		var slider = $('.product-slider .bxslider').bxSlider({
-			slideWidth: slideWidth,
+			slideWidth: 220,
 			minSlides: 2,
 			maxSlides: 8,
-			slideMargin: slideMargin,
+			slideMargin: 10,
 			auto: true,
 			autoHover: true,
 			speed: 500,
@@ -408,7 +405,6 @@ LIBTECH.main = {
 			infiniteLoop: false,
 			hideControlOnEnd: true
 		});
-		console.log('product slider go!');
 	},
 	homeSportInit: function () {
 		var self, slideWidth, slideMargin;
