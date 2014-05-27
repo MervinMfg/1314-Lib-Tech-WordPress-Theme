@@ -190,7 +190,7 @@
         // Figure out what our server name is
         $host = $_SERVER['SERVER_NAME'];
         // check if we are in the staging environment
-        if ($host == 'localhost' || $host == 'libtech.staging.wpengine.com') {
+        if ($host == 'localhost' || $host == 'libtech.staging.wpengine.com' || $host == 'libtech.dev') {
             // if staging, provide the JS files individually for easier debugging
             include get_template_directory() . '/_/inc/js-main.php';
         } else {

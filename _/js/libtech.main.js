@@ -21,19 +21,19 @@ LIBTECH.main = {
 		// check body class and init proper class
 		if ($('body').hasClass('home')) {
 			self.homeInit();
-		} else if ($('body').hasClass('page-template-page-home-sport-php')) {
+		} else if ($('body').hasClass('page-template-page-templatespage-home-sport-php')) {
 			self.homeSportInit();
-		} else if ($('body').hasClass('page-template-page-overview-products-php')) {
+		} else if ($('body').hasClass('page-template-page-templatespage-overview-products-php')) {
 			self.productOverviewInit();
 		} else if ($('body').hasClass('single-libtech_snowboards') || $('body').hasClass('single-libtech_nas') || $('body').hasClass('single-libtech_surfboards') || $('body').hasClass('single-libtech_skateboards') || $('body').hasClass('single-libtech_apparel') || $('body').hasClass('single-libtech_accessories') || $('body').hasClass('single-libtech_luggage') || $('body').hasClass('single-libtech_outerwear') || $('body').hasClass('single-libtech_bindings')) {
 			self.productDetailInit();
-		} else if ($('body').hasClass('page-template-page-technology-detail-php')) {
+		} else if ($('body').hasClass('page-template-page-templatespage-technology-detail-php')) {
 			self.technologyDetailInit();
-		} else if ($('body').hasClass('page-template-page-environmental-php')) {
+		} else if ($('body').hasClass('page-template-page-templatespage-environmental-php')) {
 			self.environmentalInit();
-		} else if ($('body').hasClass('page-template-page-environmental-detail-php')) {
+		} else if ($('body').hasClass('page-template-page-templatespage-environmental-detail-php')) {
 			self.environmentalDetailInit();
-		} else if ($('body').hasClass('page-template-page-overview-team-php')) {
+		} else if ($('body').hasClass('page-template-page-templatespage-overview-team-php')) {
 			self.teamOverviewInit();
 		} else if ($('body').hasClass('single-libtech_team_snow') || $('body').hasClass('single-libtech_team_nas') || $('body').hasClass('single-libtech_team_surf') || $('body').hasClass('single-libtech_team_skate')) {
 			self.teamDetailsInit();
@@ -42,19 +42,19 @@ LIBTECH.main = {
 		} else if ($('body').hasClass('single-post')) {
 			self.blogInit();
 			self.blogSingleInit();
-		} else if ($('body').hasClass('page-template-page-faqs-php')) {
+		} else if ($('body').hasClass('page-template-page-templatespage-faqs-php')) {
 			self.faqsInit();
-		} else if ($('body').hasClass('page-template-page-snowboard-builder-php')) {
+		} else if ($('body').hasClass('page-template-page-templatespage-snowboard-builder-php')) {
 			LIBTECH.snowboardbuilder.init();
-		} else if ($('body').hasClass('page-template-page-snowboard-builder-share-php')) {
+		} else if ($('body').hasClass('page-template-page-templatespage-snowboard-builder-share-php')) {
 			LIBTECH.snowboardbuilder.shareInit();
-		} else if ($('body').hasClass('page-template-page-partners-php')) {
+		} else if ($('body').hasClass('page-template-page-templatespage-partners-php')) {
 			self.partnersInit();
-		} else if ($('body').hasClass('page-template-page-surfboard-fins-php')) {
+		} else if ($('body').hasClass('page-template-page-templatespage-surfboard-fins-php')) {
 			self.finsInit();
-		} else if ($('body').hasClass('page-template-page-lbs-php')) {
+		} else if ($('body').hasClass('page-template-page-templatespage-lbs-php')) {
 			self.lbsInit();
-		} else if ($('body').hasClass('page-template-page-pass-it-on-project-php')) {
+		} else if ($('body').hasClass('page-template-page-templatespage-pass-it-on-project-php')) {
 			self.passItOnInit();
 		}
 		/* Chrome Webfont Fix Styles
@@ -145,7 +145,7 @@ LIBTECH.main = {
 					success: function (data) {
 						// init the shopatron page elements
 						self.quickCartInit();
-						if ($('body').hasClass('page-template-page-shopping-cart-php')) {
+						if ($('body').hasClass('page-template-page-templatespage-shopping-cart-php')) {
 							self.shoppingCartInit();
 						}
 					}
@@ -258,7 +258,7 @@ LIBTECH.main = {
 		} else {
 			if (navigator.cookieEnabled === true) {
 				// if no region cookie has been set, open selector if on product page
-				if ($('body').hasClass('page-template-page-snowboard-builder-php') || $('body').hasClass('page-template-page-snowboard-builder-share-php') || $('body').hasClass('page-template-page-shopping-cart-php') || $('body').hasClass('page-template-page-overview-products-php') || $('body').hasClass('single-libtech_snowboards') || $('body').hasClass('single-libtech_nas') || $('body').hasClass('single-libtech_surfboards') || $('body').hasClass('single-libtech_skateboards') || $('body').hasClass('single-libtech_apparel') || $('body').hasClass('single-libtech_accessories') || $('body').hasClass('single-libtech_luggage') || $('body').hasClass('single-libtech_outerwear')) {
+				if ($('body').hasClass('page-template-page-templatespage-snowboard-builder-php') || $('body').hasClass('page-template-page-templatespage-snowboard-builder-share-php') || $('body').hasClass('page-template-page-templatespage-shopping-cart-php') || $('body').hasClass('page-template-page-templatespage-overview-products-php') || $('body').hasClass('single-libtech_snowboards') || $('body').hasClass('single-libtech_nas') || $('body').hasClass('single-libtech_surfboards') || $('body').hasClass('single-libtech_skateboards') || $('body').hasClass('single-libtech_apparel') || $('body').hasClass('single-libtech_accessories') || $('body').hasClass('single-libtech_luggage') || $('body').hasClass('single-libtech_outerwear')) {
 					self.regionSelectorOverlayInit();
 					self.takeoverInit(false);
 				} else {

@@ -113,30 +113,30 @@ module.exports = function (grunt) {
         mainLibJS.forEach(function(path) {
             files = grunt.file.expand(path);
             files.forEach(function(file){
-                html += '<script type="text/javascript" src="/wp-content/themes/libtech/' + file + '"></script>\n\t';
+                html += '<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/' + file + '"></script>\n\t';
             });
         });
         htmlMain = html;
-        htmlMain += '<script type="text/javascript" src="/wp-content/themes/libtech/_/js/libtech.main.js"></script>\n';
+        htmlMain += '<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/_/js/libtech.main.js"></script>\n';
         grunt.file.write('_/inc/js-main.php', htmlMain);
         // GENERATE SNOWBOARD BUIDLER SCRIPT INCLUDES
         snowboardbuilderLibJS.forEach(function(path) {
             files = grunt.file.expand(path);
             files.forEach(function(file){
-                html += '<script type="text/javascript" src="/wp-content/themes/libtech/' + file + '"></script>\n\t';
+                html += '<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/' + file + '"></script>\n\t';
             });
         });
-        html += '<script type="text/javascript" src="/wp-content/themes/libtech/_/js/libtech.main.js"></script>\n\t';
-        html += '<script type="text/javascript" src="/wp-content/themes/libtech/_/js/libtech.snowboardbuilder.js"></script>\n';
+        html += '<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/_/js/libtech.main.js"></script>\n\t';
+        html += '<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/_/js/libtech.snowboardbuilder.js"></script>\n';
         grunt.file.write('_/inc/js-snowboardbuilder.php', html);
         // GENERATE MAIN CSS INCLUDES
         mainLibCSS.forEach(function(path) {
             files = grunt.file.expand(path);
             files.forEach(function(file){
-                htmlCSS += '<link href="/wp-content/themes/libtech/' + file + '" rel="stylesheet" type="text/css" />' + "\n\t";
+                htmlCSS += '<link href="<?php echo get_template_directory_uri(); ?>/' + file + '" rel="stylesheet" type="text/css" />' + "\n\t";
             });
         });
-        htmlCSS += '<link href="/wp-content/themes/libtech/style.dev.css" rel="stylesheet" type="text/css" />\n';
+        htmlCSS += '<link href="<?php echo get_template_directory_uri(); ?>/style.dev.css" rel="stylesheet" type="text/css" />\n';
         grunt.file.write('_/inc/css-main.php', htmlCSS);
     });
 };

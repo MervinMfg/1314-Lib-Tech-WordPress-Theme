@@ -182,13 +182,13 @@
 		// Figure out what our server name is
 		$host = $_SERVER['SERVER_NAME'];
 		// check if we are in the staging environment
-		if ($host == 'localhost' || $host == 'libtech.staging.wpengine.com') {
+		if ($host == 'localhost' || $host == 'libtech.staging.wpengine.com' || $host == 'libtech.dev') {
 			// if staging, provide the CSS files individually for easier debugging
 			include get_template_directory() . '/_/inc/css-main.php';
 		} else {
 			// if production, provide the compiled and minified CSS files
-			echo '<link href="' . get_bloginfo('template_directory') . '/_/css/lib/libtech.main.lib.min.css" rel="stylesheet" type="text/css" />' . "\n\t";
-			echo '<link href="' . get_bloginfo('template_directory') . '/style.min.css" rel="stylesheet" type="text/css" />' . "\n";
+			echo '<link href="' . get_template_directory_uri() . '/_/css/lib/libtech.main.lib.min.css" rel="stylesheet" type="text/css" />' . "\n\t";
+			echo '<link href="' . get_template_directory_uri() . '/style.min.css" rel="stylesheet" type="text/css" />' . "\n";
 		}
 	?>
 	<!--  Mobile Meta Info -->
@@ -200,9 +200,9 @@
 	<!-- Google Site Verification -->
 	<meta name="google-site-verification" content="wE_gDgt0-MYrOnCO0K7VH2HP7af_DuxpDK1EJFdohFc" />
 	<!-- JavaScript Includes -->
-	<script src="<?php bloginfo('template_directory'); ?>/_/js/lib/modernizr-2.6.2.min.js"></script>
+	<script src="<?php echo get_template_directory_uri(); ?>/_/js/lib/modernizr-2.6.2.min.js"></script>
 	<!--[if lt IE 9]>
-	<script src="<?php bloginfo('template_directory'); ?>/_/js/lib/respond.min.js"></script>
+	<script src="<?php echo get_template_directory_uri(); ?>/_/js/lib/respond.min.js"></script>
 	<![endif]-->
 	<!-- WordPress Head -->
 	<?php wp_head(); ?>
