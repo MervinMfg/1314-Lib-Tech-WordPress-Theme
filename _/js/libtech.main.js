@@ -10,7 +10,9 @@ LIBTECH.main = {
 		menuState: 'closed'
 	},
 	init: function () {
-		var self = this;
+		var self, $body;
+		self = this;
+		$body = $('body');
 		self.shopatronInit(); // init shopatron JS
 		self.regionSelectorInit(); // init the region selector
 		self.sportCookieInit(); // init/check the sport cookie
@@ -19,43 +21,45 @@ LIBTECH.main = {
 			self.menuInit(); // init main menu
 		});
 		// check body class and init proper class
-		if ($('body').hasClass('home')) {
+		if ($body.hasClass('home')) {
 			self.homeInit();
-		} else if ($('body').hasClass('page-template-page-templatespage-home-sport-php')) {
+		} else if ($body.hasClass('page-template-page-templatespage-home-sport-php')) {
 			self.homeSportInit();
-		} else if ($('body').hasClass('page-template-page-templatespage-overview-products-php')) {
+		} else if ($body.hasClass('page-template-page-templatespage-overview-products-php')) {
 			self.productOverviewInit();
-		} else if ($('body').hasClass('single-libtech_snowboards') || $('body').hasClass('single-libtech_nas') || $('body').hasClass('single-libtech_surfboards') || $('body').hasClass('single-libtech_skateboards') || $('body').hasClass('single-libtech_apparel') || $('body').hasClass('single-libtech_accessories') || $('body').hasClass('single-libtech_luggage') || $('body').hasClass('single-libtech_outerwear') || $('body').hasClass('single-libtech_bindings')) {
+		} else if ($body.hasClass('single-libtech_snowboards') || $body.hasClass('single-libtech_nas') || $body.hasClass('single-libtech_surfboards') || $body.hasClass('single-libtech_skateboards') || $body.hasClass('single-libtech_apparel') || $body.hasClass('single-libtech_accessories') || $body.hasClass('single-libtech_luggage') || $body.hasClass('single-libtech_outerwear') || $body.hasClass('single-libtech_bindings')) {
 			self.productDetailInit();
-		} else if ($('body').hasClass('page-template-page-templatespage-technology-detail-php')) {
+		} else if ($body.hasClass('page-template-page-templatespage-technology-detail-php')) {
 			self.technologyDetailInit();
-		} else if ($('body').hasClass('page-template-page-templatespage-environmental-php')) {
+		} else if ($body.hasClass('page-template-page-templatespage-environmental-php')) {
 			self.environmentalInit();
-		} else if ($('body').hasClass('page-template-page-templatespage-environmental-detail-php')) {
+		} else if ($body.hasClass('page-template-page-templatespage-environmental-detail-php')) {
 			self.environmentalDetailInit();
-		} else if ($('body').hasClass('page-template-page-templatespage-overview-team-php')) {
+		} else if ($body.hasClass('page-template-page-templatespage-overview-team-php')) {
 			self.teamOverviewInit();
-		} else if ($('body').hasClass('single-libtech_team_snow') || $('body').hasClass('single-libtech_team_nas') || $('body').hasClass('single-libtech_team_surf') || $('body').hasClass('single-libtech_team_skate')) {
+		} else if ($body.hasClass('single-libtech_team_snow') || $body.hasClass('single-libtech_team_nas') || $body.hasClass('single-libtech_team_surf') || $body.hasClass('single-libtech_team_skate')) {
 			self.teamDetailsInit();
-		} else if ($('body').hasClass('blog') || $('body').hasClass('search') || $('body').hasClass('archive') || $('body').hasClass('error404')) {
+		} else if ($body.hasClass('blog') || $body.hasClass('search') || $body.hasClass('archive') || $body.hasClass('error404')) {
 			self.blogInit();
-		} else if ($('body').hasClass('single-post')) {
+		} else if ($body.hasClass('single-post')) {
 			self.blogInit();
 			self.blogSingleInit();
-		} else if ($('body').hasClass('page-template-page-templatespage-faqs-php')) {
+		} else if ($body.hasClass('page-template-page-templatespage-faqs-php')) {
 			self.faqsInit();
-		} else if ($('body').hasClass('page-template-page-templatespage-snowboard-builder-php')) {
+		} else if ($body.hasClass('page-template-page-templatespage-snowboard-builder-php')) {
 			LIBTECH.snowboardbuilder.init();
-		} else if ($('body').hasClass('page-template-page-templatespage-snowboard-builder-share-php')) {
+		} else if ($body.hasClass('page-template-page-templatespage-snowboard-builder-share-php')) {
 			LIBTECH.snowboardbuilder.shareInit();
-		} else if ($('body').hasClass('page-template-page-templatespage-partners-php')) {
+		} else if ($body.hasClass('page-template-page-templatespage-partners-php')) {
 			self.partnersInit();
-		} else if ($('body').hasClass('page-template-page-templatespage-surfboard-fins-php')) {
+		} else if ($body.hasClass('page-template-page-templatespage-surfboard-fins-php')) {
 			self.finsInit();
-		} else if ($('body').hasClass('page-template-page-templatespage-lbs-php')) {
+		} else if ($body.hasClass('page-template-page-templatespage-lbs-php')) {
 			self.lbsInit();
-		} else if ($('body').hasClass('page-template-page-templatespage-pass-it-on-project-php')) {
+		} else if ($body.hasClass('page-template-page-templatespage-pass-it-on-project-php')) {
 			self.passItOnInit();
+		} else if ($body.hasClass('page-template-page-templatespage-lib-legs-php')) {
+			self.libLegsInit();
 		}
 		/* Chrome Webfont Fix Styles
 			- https://code.google.com/p/chromium/issues/detail?id=336476
@@ -1498,13 +1502,35 @@ LIBTECH.main = {
 		$('.lbs-updates .featured-video .video-player').fitVids();
 	},
 	passItOnInit: function () {
-		$('.pass-it-on-header .pass-it-on-video').fitVids();
+		$('.video-header .video-player').fitVids();
 		// lightbox for gold member
 		$('.pass-it-on-contest .product-wrapper .product.lightbox').magnificPopup({
 			delegate: 'a',
 			type: 'image',
 			disableOn: '768',
 			closeOnBgClick: true
+		});
+	},
+	libLegsInit: function () {
+		var self = this;
+		$('.video-header .video-player').fitVids();
+		// set up large featured images/videos
+		self.utilities.featuredSliderInit(false);
+		// set up product slider
+		var slider = $('.product-slider .bxslider').bxSlider({
+			slideWidth: 220,
+			minSlides: 2,
+			maxSlides: 8,
+			slideMargin: 10,
+			auto: true,
+			autoHover: true,
+			speed: 500,
+			controls: true,
+			pager: false,
+			mode: 'horizontal',
+			moveSlides: 2,
+			infiniteLoop: false,
+			hideControlOnEnd: true
 		});
 	},
 	shoppingCartInit: function () {
@@ -1622,11 +1648,12 @@ LIBTECH.main = {
 			}
 			return i;
 		},
-		featuredSliderInit: function () {
+		featuredSliderInit: function (autoRotate) {
+			autoRotate = typeof autoRotate !== 'undefined' ? autoRotate : true;
 			var slider = $('.featured-slider .bxslider').bxSlider({
 				video: true,
 				useCSS: false,
-				auto: true,
+				auto: autoRotate,
 				autoHover: true,
 				speed: 500,
 				randomStart: false,

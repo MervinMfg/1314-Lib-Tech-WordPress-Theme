@@ -8,18 +8,20 @@ get_header();
 		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
 		<div class="bg-product-snow-top"></div>
-		<section class="pass-it-on-header bg-product-snow">
+		<section class="video-header video bg-product-snow">
 			<div class="section-content">
 				<h1><?php the_title(); ?></h1>
-				<div class="pass-it-on-video">
-					<iframe src="http://player.vimeo.com/video/88123987?title=0&amp;byline=0&amp;portrait=0&amp;color=fff100" width="940" height="528" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+				<div class="video-player">
+					<div class="video-wrapper">
+						<iframe src="http://player.vimeo.com/video/88123987?title=0&amp;byline=0&amp;portrait=0&amp;color=fff100" width="640" height="360" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+					</div>
 				</div>
-				<div class="pass-it-on-desc">
+				<div class="video-text">
 					<?php the_content(); ?>
 				</div>
 				<div class="clearfix"></div>
 			</div><!-- END .section-content -->
-		</section><!-- END .pass-it-on-header -->
+		</section><!-- END .video-header -->
 		<div class="bg3-top"></div>
 		<section class="bg3 pass-it-on-contest">
 			<div class="section-content">
