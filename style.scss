@@ -1236,18 +1236,27 @@ body.international .shopping-cart .section-content {
 			width: 128.875%;
 			width: 140.597539543058%;
 			margin-left: -20.298769771529%;
-
-			.bxslider li:nth-child(n+2) {
-				display: none;
+			// before bxslider is rendered
+			.bxslider li {
+				&:nth-child(n+2) {
+					display: none;
+				}
+				img {
+					@include vendorize(opacity, 0);
+					height: auto;
+				}
 			}
-			.bxslider li img {
-				@include vendorize(opacity, 0);
-			}
-			.bx-wrapper .bxslider li:nth-child(n+2) {
-				display: block;
-			}
-			.bx-wrapper .bxslider li img {
-				@include vendorize(opacity, 1);
+			// after it is rendered
+			.bx-wrapper .bxslider li {
+				&:nth-child(n+2) {
+					display: block;
+				}
+				img {
+					@include vendorize(opacity, 1);
+				}
+				&.bx-clone {
+					display: none;
+				}
 			}
 			.bx-controls {
 				margin-left: 20.298769771529%;

@@ -41,9 +41,9 @@ get_header();
 							if(get_field('libtech_liblegs_banners')):
 								function renderBanner($banner) {
 									if (strpos($banner['link'],'vimeo.com') !== false) : // display vimeo image/video
-										echo '<li><a href="' . $banner['link'] . '" class="video-link"><div class="video-image"><img src="' . $banner['image'][0] . '" alt="' . $banner['altText'] . '" /></div></a></li>';
+										echo '<li><a href="' . $banner['link'] . '" class="video-link"><div class="video-image"><img src="' . $banner['image'][0] . '" alt="' . $banner['altText'] . '" width="' . $banner['image'][1] . '" height="' . $banner['image'][2] . '" /></div></a></li>';
 									else: // display standard image
-										echo '<li><a href="' . $banner['link'] . '"><img src="' . $banner['image'][0] . '" alt="' . $banner['altText'] . '" /></a></li>';
+										echo '<li><a href="' . $banner['link'] . '"><img src="' . $banner['image'][0] . '" alt="' . $banner['altText'] . '" width="' . $banner['image'][1] . '" height="' . $banner['image'][2] . '" /></a></li>';
 									endif;
 								}
 								while(the_repeater_field('libtech_liblegs_banners')):
