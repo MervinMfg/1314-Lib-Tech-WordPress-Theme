@@ -1650,12 +1650,13 @@ body.international .shopping-cart .section-content {
 
 					img {
 						width: 100%;
-						margin-top: -20%;
+						margin-top: -10%;
 					}
 				}
 				.facebook-excerpt {
 					color: #000;
 					font-size: .875em;
+					word-wrap: break-word;
 				}
 				&:hover,
 				&:focus {

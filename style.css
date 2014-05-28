@@ -528,8 +528,8 @@ body.international .shopping-cart .section-content .int-cart-details { display: 
 .content-grid .grid-item.facebook .item-link .facebook-header .facebook-name { width: 75%; float: right; color: #3b5998; font-weight: 900; }
 .content-grid .grid-item.facebook .item-link .facebook-header .facebook-time { width: 75%; float: right; color: #89919c; }
 .content-grid .grid-item.facebook .item-link .facebook-photo { clear: both; max-height: 100px; overflow: hidden; margin-bottom: 10px; }
-.content-grid .grid-item.facebook .item-link .facebook-photo img { width: 100%; margin-top: -20%; }
-.content-grid .grid-item.facebook .item-link .facebook-excerpt { color: #000; font-size: .875em; }
+.content-grid .grid-item.facebook .item-link .facebook-photo img { width: 100%; margin-top: -10%; }
+.content-grid .grid-item.facebook .item-link .facebook-excerpt { color: #000; font-size: .875em; word-wrap: break-word; }
 .content-grid .grid-item.facebook .item-link:hover, .content-grid .grid-item.facebook .item-link:focus { text-decoration: none; }
 .content-grid .grid-item.instagram .item-link { background: #000; background: rgba(0, 0, 0, 0.8); }
 .content-grid .grid-item.product .grid-item-wrapper .item-link { background-image: url("_/img/bg-grid-item-stone.jpg"); background-size: 100%; position: relative; }
