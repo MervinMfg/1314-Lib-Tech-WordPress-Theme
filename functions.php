@@ -33,17 +33,27 @@ function removeHeadLinks() {
 }
 add_action('init', 'removeHeadLinks');
 remove_action('wp_head', 'wp_generator');
-// allow script tag within posts
-function allow_script_tags( $allowedposttags ){
+// allow script & iframe tag within posts
+function allow_post_tags( $allowedposttags ){
     $allowedposttags['script'] = array(
         'type' => true,
         'src' => true,
         'height' => true,
         'width' => true,
     );
+    $allowedposttags['iframe'] = array(
+        'src' => true,
+        'width' => true,
+        'height' => true,
+        'class' => true,
+        'frameborder' => true,
+        'webkitAllowFullScreen' => true,
+        'mozallowfullscreen' => true,
+        'allowFullScreen' => true
+    );
     return $allowedposttags;
 }
-add_filter('wp_kses_allowed_html','allow_script_tags', 1);
+add_filter('wp_kses_allowed_html','allow_post_tags', 1);
 // register menus
 register_nav_menus( array(
     'main_menu' => 'Main Menu',
