@@ -172,7 +172,7 @@ get_header();
 				<!-- START TagBoard -->
 				<div id="tagboard-embed"></div>
 				<script>
-					var tagboardOptions = {tagboard:"liblegs/173006", darkMode: false};
+					var tagboardOptions = {tagboard:"liblegs/173006", darkMode: true};
 				</script>
 				<script src="https://tagboard.com/public/js/embed.js"></script>
 				<!-- END TagBoard -->
