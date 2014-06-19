@@ -213,12 +213,12 @@
 			<div class="takeover-content">
 				<div class="expanded">
 					<a href="#close-takeover" class="close">Close</a>
-					<a href="/surfboards/aireola/" class="message"><img src="<?php bloginfo('template_directory'); ?>/_/img/takeovers/lib-tech-waterboards-johnny-grubbs.jpg" alt="Lib Tech Waterboards Kraftsmen - Introducing Johnny Grubbs" /></a>
+					<a href="/2014/06/19/ryan-carlson-ripping-on-his-new-ringer-pro-model/" class="message"><img src="<?php bloginfo('template_directory'); ?>/_/img/takeovers/lib-tech-waterboards-ryan-carlson-ringer.jpg" alt="Lib Tech Waterboards - Introducing Ryan Carlson's Pro Model, The Ringer" /></a>
 				</div>
 				<div class="contracted">
-					<a href="#johnny-grubbs">
+					<a href="#the-ringer">
 						<p class="view-more">View More</p>
-						<p class="message">Lib Tech Waterboards - Handcrafted in the USA</p>
+						<p class="message">Lib Tech Waterboards - Introducing The Ringer</p>
 						<div class="clearfix"></div>
 					</a>
 				</div>
