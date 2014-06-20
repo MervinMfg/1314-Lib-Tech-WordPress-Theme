@@ -122,7 +122,11 @@ Template Name: Surfboard Detail
 							<img src="<?php echo $sideImage[0]; ?>" alt="Surfboard Side Profile" data-img="<?php echo $sideImage[0]; ?>" data-img-full="<?php echo $sideImageFull[0]; ?>" />
 						</div>
 						<div class="surfboard-bottom">
+							<?php if ($bottomImage == null) : // show 5 fin image if 3 does not exist ?>
+							<img src="<?php echo $bottomImage5Fin[0]; ?>" alt="Surfboard Bottom" data-img="<?php echo $bottomImage5Fin[0]; ?>" data-img-full="<?php echo $bottomImage5FinFull[0]; ?>" />
+							<?php else: ?>
 							<img src="<?php echo $bottomImage[0]; ?>" alt="Surfboard Bottom" data-img="<?php echo $bottomImage[0]; ?>" data-img-full="<?php echo $bottomImageFull[0]; ?>" />
+							<?php endif; ?>
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -143,13 +147,13 @@ Template Name: Surfboard Detail
 						</ul>
 					</div>
 					<div class="product-price">
-						<div class="price-logo active">
+						<div class="price-logo">
 							<?php echo getPrice( get_field('libtech_product_price_us'), get_field('libtech_product_price_ca'), get_field('libtech_product_on_sale'), get_field('libtech_product_sale_percentage') ); ?>
 						</div>
 						<div class="price-graphic">
 							<?php echo getPrice( get_field('libtech_product_price_us_graphic'), get_field('libtech_product_price_ca_graphic'), get_field('libtech_product_on_sale'), get_field('libtech_product_sale_percentage') ); ?>
 						</div>
-						<div class="price-logo-five">
+						<div class="price-logo-five active">
 							<?php echo getPrice( get_field('libtech_product_price_us_5fin'), get_field('libtech_product_price_ca_5fin'), get_field('libtech_product_on_sale'), get_field('libtech_product_sale_percentage') ); ?>
 						</div>
 						<div class="price-graphic-five">

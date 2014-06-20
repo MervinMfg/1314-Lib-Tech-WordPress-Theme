@@ -80,14 +80,20 @@ module.exports = function (grunt) {
             }
         },
         watch: {
+            markup: {
+                files: ['*.php', 'page-templates/*.php'],
+                options: {
+                    livereload: true,
+                }
+            },
             js: {
-                files: ['_/js/*.js', '_/js/lib/*.js'],
+                files: ['_/js/*.js', '_/js/**/*.js'],
                 options: {
                     livereload: true
                 }
             },
             sass: {
-                files: ['*.scss', '_/css/*.scss'],
+                files: ['*.scss', '_/css/*.scss', '_/css/**/*.scss'],
                 tasks: ['sass'],
                 options: {
                     livereload: true

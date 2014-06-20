@@ -38,6 +38,11 @@
 		}else{
 			$pageDescription = $pageDescriptionDefault;
 		}
+		// check for product image
+		if( get_field('libtech_product_image') ) {
+            $GLOBALS['pageImage'] = wp_get_attachment_image_src(get_field('libtech_product_image'), 'square');
+            $GLOBALS['pageImage'] = $GLOBALS['pageImage'][0];
+        }
 	}else{
 		if(has_post_thumbnail($post->ID) && !is_home()){
 			$GLOBALS['pageImage'] = get_post_image('medium');
