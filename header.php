@@ -218,12 +218,12 @@
 			<div class="takeover-content">
 				<div class="expanded">
 					<a href="#close-takeover" class="close">Close</a>
-					<a href="/skateboards/" class="message"><img src="<?php bloginfo('template_directory'); ?>/_/img/takeovers/lib-tech-skateboards-sky-siljeg.jpg" alt="Lib Tech Skateboards - Sky Siljeg" /></a>
+					<a href="/surfboards/extension-ramp/" class="message"><img src="<?php bloginfo('template_directory'); ?>/_/img/takeovers/lib-tech-waterboards-extension-ramp.jpg" alt="Lib Tech Waterboards - Jamie Lynn - 6ft 6in Extension Ramp" /></a>
 				</div>
 				<div class="contracted">
-					<a href="#sky-siljeg">
+					<a href="#the-extension-ramp">
 						<p class="view-more">View More</p>
-						<p class="message">Lib Tech Skateboards - Sky Siljeg</p>
+						<p class="message">Lib Tech Waterboards - Introducing The Extension Ramp</p>
 						<div class="clearfix"></div>
 					</a>
 				</div>

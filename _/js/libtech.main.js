@@ -381,8 +381,8 @@ LIBTECH.main = {
 			// check if we should diplay the takeover or not based on cookies
 			if (navigator.cookieEnabled !== false && showTakeover === true) {
 				var takeoverCookie = self.utilities.cookie.getCookie('libtech_takeover');
-				if (takeoverCookie !== 'SkateboardsSkySiljeg') {
-					self.utilities.cookie.setCookie('libtech_takeover', 'SkateboardsSkySiljeg', 7);
+				if (takeoverCookie !== 'ExtensionRamp') {
+					self.utilities.cookie.setCookie('libtech_takeover', 'ExtensionRamp', 7);
 					setTimeout(function () {
 						$('.takeover').click();
 					}, 2000);
